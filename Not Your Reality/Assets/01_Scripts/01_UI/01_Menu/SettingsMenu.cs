@@ -13,14 +13,16 @@ public class SettingsMenu : MonoBehaviour
     private void Start()
     {
         QualitySettings.vSyncCount = 1;
+        
         _resOptions = new List<string>();
         _resolutions = Screen.resolutions;
         resDropDown.ClearOptions();
 
         for (int i = 0; i < _resolutions.Length; i++)
         {
-            _resOption = $"{_resolutions[i].width} x {_resolutions[i].height}";
+            _resOption = $"{_resolutions[i].width} x {_resolutions[i].height} @{_resolutions[i].refreshRateRatio}";
             _resOptions.Add(_resOption);
+            
             if (_resolutions[i].width == Screen.currentResolution.width &&
                 _resolutions[i].height == Screen.currentResolution.height)
             {
@@ -34,12 +36,17 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetResolution(int resIndex)
     {
-        var resolution = _resolutions[_resIndex];
+        var resolution = _resolutions[resIndex];
         Screen.SetResolution(resolution.width, resolution.height, fullscreenMode: FullScreenMode.FullScreenWindow);
     }
 
     public void SetFullscreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetVsync(bool isVsync)
+    {
+        QualitySettings.vSyncCount = isVsync ? 1 : 0;
     }
 }
