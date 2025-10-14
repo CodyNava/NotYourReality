@@ -22,7 +22,6 @@ public class FirstPersonController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
-        // Cursor sperren
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -39,10 +38,8 @@ public class FirstPersonController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        // Spieler horizontal drehen
         transform.Rotate(Vector3.up * mouseX);
 
-        // Kamera vertikal drehen
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
         cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -53,13 +50,11 @@ public class FirstPersonController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        // Bewegung relativ zur Blickrichtung
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
         controller.Move(move * currentSpeed * Time.deltaTime);
 
-        // Springen
         if (controller.isGrounded && Input.GetButtonDown("Jump"))
         {
             velocity.y = jumpForce;
