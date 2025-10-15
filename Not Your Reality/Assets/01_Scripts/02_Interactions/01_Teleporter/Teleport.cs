@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Teleport : MonoBehaviour
@@ -21,8 +22,20 @@ public class Teleport : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.transform.position = targetLocation.position;
-            player.transform.rotation = targetLocation.rotation;
+            StartCoroutine(StartTeleport());
         }
+    }
+
+    private IEnumerator StartTeleport()
+    {
+        var controller = player.GetComponent<CharacterController>();
+        var script = player.GetComponent<FirstPersonController>();
+        script.enabled = false;
+        controller.enabled = false;
+        player.transform.position = targetLocation.position;
+        player.transform.rotation = targetLocation.rotation;
+        yield return new WaitForSeconds(0.1f);
+        controller.enabled = true;
+        script.enabled = true;
     }
 }
