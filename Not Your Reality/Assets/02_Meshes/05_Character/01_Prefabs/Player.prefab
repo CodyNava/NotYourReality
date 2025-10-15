@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2558584410323852203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9576807, y: -0.6134331, z: -0.64748484}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -220,9 +220,22 @@ MonoBehaviour:
   sprintSpeed: 8
   jumpForce: 5
   gravity: -9.81
+  moveActive: 1
+  jumpActive: 1
+  acceleration: 10
+  deceleration: 20
+  stopThreshold: 0.2
+  airControlMultiplier: 0.5
   cameraHolder: {fileID: 2362332136989335655}
   mouseSensitivity: 2
   maxLookAngle: 80
+  mouseSmoothTime: 0.03
+  bobFrequency: 10
+  bobAmplitude: 0.05
+  bobSway: 0.02
+  sprintBobFrequency: 15
+  sprintBobAmplitude: 0.08
+  sprintBobSway: 0.03
 --- !u!143 &5327218979770825562
 CharacterController:
   m_ObjectHideFlags: 0
@@ -277,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 6253172860204063525}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8976807, y: 1.2734332, z: 0.94748485}
+  m_LocalPosition: {x: 0.060000002, y: 0.16000009, z: -0.05251503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -401,4 +414,8 @@ MonoBehaviour:
   playerBody: {fileID: 5503796991583672414}
   cameraHolder: {fileID: 2362332136989335655}
   mouseSensitivity: 2
+  cameraRadius: 0.1
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 0
   lookAction: {fileID: 0}
