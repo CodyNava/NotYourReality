@@ -34,10 +34,12 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float bobFrequency = 10f;
     [SerializeField] private float bobAmplitude = 0.05f;
     [SerializeField] private float bobSway = 0.02f;
+    [SerializeField, Range(0f, 3f)] private float sprintBobMultiplier = 1.5f; 
 
     private float bobTimer = 0f;
     private Vector3 originalCameraPosition;
 
+    // Getter-Bools
     public bool MoveActive => moveActive;
     public bool JumpActive => jumpActive;
 
@@ -78,7 +80,7 @@ public class FirstPersonController : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (input.magnitude > 1f) input.Normalize();
 
-        Vector3 targetDirection = (transform.right * input.x + transform.forward * input.y);
+        Vector3 targetDirection = transform.right * input.x + transform.forward * input.y;
         float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
         Vector3 targetVelocity = targetDirection * targetSpeed;
 
@@ -117,9 +119,13 @@ public class FirstPersonController : MonoBehaviour
     {
         if (currentVelocity.magnitude > 0.1f && controller.isGrounded)
         {
-            bobTimer += Time.deltaTime * bobFrequency;
-            float bobOffsetY = Mathf.Sin(bobTimer) * bobAmplitude;
-            float bobOffsetX = Mathf.Cos(bobTimer * 0.5f) * bobSway;
+            float speedMultiplier = Input.GetKey(KeyCode.LeftShift) ? sprintBobMultiplier : 1f;
+
+            bobTimer += Time.deltaTime * bobFrequency * speedMultiplier;
+
+            float bobOffsetY = Mathf.Sin(bobTimer) * bobAmplitude * speedMultiplier;
+            float bobOffsetX = Mathf.Cos(bobTimer * 0.5f) * bobSway * speedMultiplier;
+
             cameraHolder.localPosition = originalCameraPosition + new Vector3(bobOffsetX, bobOffsetY, 0);
         }
         else
