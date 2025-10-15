@@ -9,6 +9,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private bool moveActive = true;
+    [SerializeField] private bool jumpActive = true;
 
     [SerializeField, Range(0f, 50f)] private float acceleration = 10f;
     [SerializeField, Range(0f, 50f)] private float deceleration = 20f;
@@ -34,10 +35,18 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float bobAmplitude = 0.05f;
     [SerializeField] private float bobSway = 0.02f;
 
+    [Header("Sprint Headbob Settings")]
+    [SerializeField] private float sprintBobFrequency = 15f;
+    [SerializeField] private float sprintBobAmplitude = 0.08f;
+    [SerializeField] private float sprintBobSway = 0.03f;
+
     private float bobTimer = 0f;
     private Vector3 originalCameraPosition;
 
-    void Awake()
+    public bool MoveActive => moveActive;
+    public bool JumpActive => jumpActive;
+
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -46,7 +55,7 @@ public class FirstPersonController : MonoBehaviour
         originalCameraPosition = cameraHolder.localPosition;
     }
 
-    void Update()
+    private void Update()
     {
         HandleMouseLook();
         HandleMovement();
@@ -69,12 +78,12 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (!moveActive) return;
+        if (!MoveActive) return;
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (input.magnitude > 1f) input.Normalize();
 
-        Vector3 targetDirection = (transform.right * input.x + transform.forward * input.y);
+        Vector3 targetDirection = transform.right * input.x + transform.forward * input.y;
         float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
         Vector3 targetVelocity = targetDirection * targetSpeed;
 
@@ -92,9 +101,9 @@ public class FirstPersonController : MonoBehaviour
                 currentVelocity = Vector3.zero;
         }
 
-        if (controller.isGrounded && Input.GetButtonDown("Jump"))
+        if (JumpActive && controller.isGrounded && Input.GetButtonDown("Jump"))
         {
-            velocity.y = jumpForce;
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
         }
 
         Vector3 move = currentVelocity + velocity;
@@ -104,9 +113,7 @@ public class FirstPersonController : MonoBehaviour
     private void ApplyGravity()
     {
         if (controller.isGrounded && velocity.y < 0f)
-        {
             velocity.y = -0.05f;
-        }
 
         velocity.y += gravity * Time.deltaTime;
     }
@@ -115,9 +122,17 @@ public class FirstPersonController : MonoBehaviour
     {
         if (currentVelocity.magnitude > 0.1f && controller.isGrounded)
         {
-            bobTimer += Time.deltaTime * bobFrequency;
-            float bobOffsetY = Mathf.Sin(bobTimer) * bobAmplitude;
-            float bobOffsetX = Mathf.Cos(bobTimer * 0.5f) * bobSway;
+            bool isSprinting = Input.GetKey(KeyCode.LeftShift);
+
+            float frequency = isSprinting ? sprintBobFrequency : bobFrequency;
+            float amplitude = isSprinting ? sprintBobAmplitude : bobAmplitude;
+            float sway = isSprinting ? sprintBobSway : bobSway;
+
+            bobTimer += Time.deltaTime * frequency;
+
+            float bobOffsetY = Mathf.Sin(bobTimer) * amplitude;
+            float bobOffsetX = Mathf.Cos(bobTimer * 0.5f) * sway;
+
             cameraHolder.localPosition = originalCameraPosition + new Vector3(bobOffsetX, bobOffsetY, 0);
         }
         else
