@@ -13,7 +13,8 @@ public class Interactable_Base : MonoBehaviour, IInteractable
     public bool MultipleUse => multipleUse;
     public bool IsInteractable => isInteractable;
 
-    public void OnInteract()
+    public virtual void OnInteract()
     {
+        Debug.Log("Interacted" + gameObject.name);
     }
 }
