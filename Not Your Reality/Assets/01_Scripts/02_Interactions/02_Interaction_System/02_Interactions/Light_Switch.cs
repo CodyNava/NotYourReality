@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Light_Switch : Interactable_Base
 {
-    private bool _interacted;
     [SerializeField] private List<GameObject> effectedObjects;
+    private bool _interacted;
     
     public override void OnInteract()
     {
@@ -12,9 +12,7 @@ public class Light_Switch : Interactable_Base
         //Current Use: Turns effected Objects off or on
         if (!_interacted)
         {
-            gameObject.transform.Rotate(-60,0,0);
-            _interacted = true;
-           
+            ToggleOn();
             foreach (var teeHee in effectedObjects)
             {
                 teeHee.SetActive(true);
@@ -22,12 +20,22 @@ public class Light_Switch : Interactable_Base
         }
         else
         {
-            gameObject.transform.Rotate(60,0,0);
-            _interacted = false;
+            ToggleOff();
             foreach (var teeHee in effectedObjects)
             {
                 teeHee.SetActive(false);
             }
         }
+    }
+
+    private void ToggleOn()
+    {
+        gameObject.transform.Rotate(-60,0,0);
+        _interacted = true;
+    }
+    private void ToggleOff()
+    {
+        gameObject.transform.Rotate(60,0,0);
+        _interacted = false;
     }
 }
