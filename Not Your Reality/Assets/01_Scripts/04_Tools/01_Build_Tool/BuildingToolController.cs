@@ -16,17 +16,19 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
 
       private static float _gridSize = 1f;
       private static float _rotationSnap = 15f;
-      private static bool _snapping;
+      private static bool _snappingXZ;
+      private static bool _snappingY;
 
       private static SceneView _sceneView;
 
       static BuildingModeController() { SceneView.duringSceneGui += OnSceneGUI; }
 
-      public static void SetSettings(float grid, float rotation, bool snapping)
+      public static void SetSettings(float grid, float rotation, bool snappingXZ, bool snappingY)
       {
          _gridSize = grid;
          _rotationSnap = rotation;
-         _snapping = snapping;
+         _snappingXZ = snappingXZ;
+         _snappingY = snappingY;
       }
 
       public static void StartGhostMode(GameObject prefab)
@@ -115,12 +117,13 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
             pos.y = 0f;
          }
 
-         if (_snapping)
+         if (_snappingXZ)
          {
             pos.x = Mathf.Round(pos.x / _gridSize) * _gridSize;
             pos.z = Mathf.Round(pos.z / _gridSize) * _gridSize;
-            pos.y = Mathf.Round(pos.y / _gridSize) * _gridSize;
          }
+
+         if (_snappingY) pos.y = Mathf.Round(pos.y / _gridSize) * _gridSize;
 
          if (!_previewInstance) { CreatePreview(); }
 
@@ -146,23 +149,23 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
                case KeyCode.Alpha1:
                   angle = +_rotationSnap;
                   _previewInstance.transform.Rotate(Vector3.up, angle);
-                  break;
+               break;
                case KeyCode.Alpha2:
                   angle = -_rotationSnap;
                   _previewInstance.transform.Rotate(Vector3.up, angle);
-                  break;
+               break;
                case KeyCode.Alpha3:
                   angle = +_rotationSnap;
                   _previewInstance.transform.Rotate(Vector3.right, angle);
-                  break;
+               break;
                case KeyCode.Alpha4:
                   angle = -_rotationSnap;
                   _previewInstance.transform.Rotate(Vector3.right, angle);
-                  break;
+               break;
                case KeyCode.Alpha5: // Reset
-                  _previewInstance.transform.eulerAngles = Vector3.zero;
-                  break;
+                  _previewInstance.transform.eulerAngles = Vector3.zero; break;
             }
+
             e.Use();
          }
 

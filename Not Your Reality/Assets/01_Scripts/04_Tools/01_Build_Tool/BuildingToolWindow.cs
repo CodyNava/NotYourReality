@@ -15,7 +15,8 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
         
         private float _gridSize = 1f;
         private float _rotationSnap = 15f;
-        private bool _snapping;
+        private bool _snappingXZ;
+        private bool _snappingY;
 
         [MenuItem("Tools/Building Tool")]
         public static void OpenWindow() => GetWindow<BuildingToolWindow>("Building Tool");
@@ -58,11 +59,12 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
             GUILayout.Space(10);
             GUILayout.Label("Ghost Mode Settings", EditorStyles.boldLabel);
 
-            _snapping = EditorGUILayout.Toggle("Snapping Toggle", _snapping);
+            _snappingXZ = EditorGUILayout.Toggle("SnappingHorizontal Toggle", _snappingXZ);
+            _snappingY = EditorGUILayout.Toggle("SnappingVertical Toggle", _snappingY);
             _gridSize = EditorGUILayout.FloatField("Grid Size", _gridSize);
             _rotationSnap = EditorGUILayout.FloatField("Rotation Snap", _rotationSnap);
 
-            BuildingModeController.SetSettings(_gridSize, _rotationSnap, _snapping);
+            BuildingModeController.SetSettings(_gridSize, _rotationSnap, _snappingXZ, _snappingY);
         }
 
         private void DrawCategory(string category)
