@@ -7,9 +7,11 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
     [SerializeField] private float goalWeight;
     
     private List<Move_Object> _objects;
+    private Animator _animator;
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _objects = new List<Move_Object>();
         _objects.Clear();
     }
@@ -23,10 +25,12 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
         }
         if (currentWeight >= goalWeight)
         {
+            _animator.SetTrigger("Activate");
             Debug.Log("You did it");
         }
         else
         {
+            _animator.SetTrigger("Deactivate");
             Debug.Log("Not enough");
         }
     }
