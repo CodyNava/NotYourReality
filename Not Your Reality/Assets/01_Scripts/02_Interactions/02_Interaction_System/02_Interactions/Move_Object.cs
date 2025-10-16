@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Move_Object : Interactable_Base
 {
-    [SerializeField] private float distance;
-    [SerializeField] private float speed;
+    [SerializeField] private float holdingDistance;
+    [SerializeField] private float dragSpeed;
     [SerializeField] private float weight;
 
     public float Weight => weight;
@@ -26,8 +26,8 @@ public class Move_Object : Interactable_Base
     {
         var cam = FindFirstObjectByType<Camera>();
         var currentPosition = gameObject.transform.position;
-        var targetPosition = cam.transform.position + cam.transform.forward * distance;
-        var time = Time.deltaTime * speed;
+        var targetPosition = cam.transform.position + cam.transform.forward * holdingDistance;
+        var time = Time.deltaTime * dragSpeed;
         var lerp = Vector3.Lerp(currentPosition, targetPosition, time);
         _rb.MovePosition(lerp);
     }
