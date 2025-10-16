@@ -13,6 +13,7 @@ public class Interaction_Controller : MonoBehaviour
 
     private Camera _camera;
     private bool _interacting;
+
     private float _holdTimer;
 
     private void Awake()
@@ -65,6 +66,11 @@ public class Interaction_Controller : MonoBehaviour
         {
             _interacting = false;
             _holdTimer = 0f;
+        }
+
+        if (interactionInputData.InteractedReleased && interactionData.InteractableBase is Move_Object moveObject)
+        {
+            moveObject.Release();
         }
 
         if (!_interacting) return;
