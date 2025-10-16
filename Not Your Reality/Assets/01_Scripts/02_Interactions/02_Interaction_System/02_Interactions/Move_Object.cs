@@ -4,7 +4,10 @@ public class Move_Object : Interactable_Base
 {
     [SerializeField] private float distance;
     [SerializeField] private float speed;
-    
+    [SerializeField] private float weight;
+
+    public float Weight => weight;
+
     private Rigidbody _rb;
 
     private void Awake()
