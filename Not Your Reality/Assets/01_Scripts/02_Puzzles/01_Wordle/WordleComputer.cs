@@ -1,16 +1,48 @@
+using System;
 using UnityEngine;
 
-public class WordleComputer : MonoBehaviour
+public class WordleComputer : Interactable_Base
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool _isActive = false;
+    [SerializeField] private FirstPersonController player;
+    [SerializeField] private MouseLook camera;
+
+    public void Update()
     {
-        
+        if (_isActive && Input.GetKeyUp(KeyCode.Escape))
+        {
+            ExitTerminal();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnInteract()
     {
-        
+        base.OnInteract();
+        if (!_isActive)
+        {
+            EnterTerminal();
+        }
+        else
+        {
+            ExitTerminal();
+        }
+    }
+    
+    public void EnterTerminal()
+    {
+        _isActive = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        /*  player.MoveActive = false;
+           player.LookActive = false;*/
+    }
+
+    public void ExitTerminal()
+    {
+        _isActive = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        /* player.MoveActive = true;
+         player.LookActive = true;*/
     }
 }
