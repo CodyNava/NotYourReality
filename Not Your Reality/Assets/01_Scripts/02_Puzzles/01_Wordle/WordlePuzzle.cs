@@ -44,10 +44,11 @@ public class WordlePuzzle : MonoBehaviour
 
     public void OnKeyboardClick(char letter)
     {
+        Debug.Log("Key Got Clicked: " + letter + "");
         if (_isGameOver) return;
-        if (_currentGuess > 5)
+        if (_currentInput.Length < 5)
         {
-            _currentGuess += letter;
+            _currentInput += letter;
             UpdateCurrentRow();
         }
     }
@@ -93,7 +94,7 @@ public class WordlePuzzle : MonoBehaviour
             return;
         }
 
-        var feedback = CheckGuess(_currentInput, wordList.targetWord);
+        LetterState[] feedback = CheckGuess(_currentInput, wordList.targetWord);
 
         for (int i = 0; i < 5; i++)
         {
@@ -116,7 +117,7 @@ public class WordlePuzzle : MonoBehaviour
         _currentGuess++;
         _currentInput = "";
 
-        if (_currentGuess > maxGuesses)
+        if (_currentGuess >= maxGuesses)
         {
             Debug.Log("You Lose");
             _isGameOver = true;
@@ -132,11 +133,11 @@ public class WordlePuzzle : MonoBehaviour
 
     private static LetterState[] CheckGuess(string guess, string target)
     {
-        guess.ToUpper();
-        target.ToUpper();
+        guess = guess.ToUpper();
+        target = target.ToUpper();
 
-        var result = new LetterState[guess.Length];
-        var targetLetters = new List<char>(target);
+        LetterState[] result = new LetterState[guess.Length];
+        List<char> targetLetters = new List<char>(target);
 
         for (int i = 0; i < guess.Length; i++)
         {
