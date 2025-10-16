@@ -13,17 +13,17 @@ public class Light_Switch : Interactable_Base
         if (!_interacted)
         {
             ToggleOn();
-            foreach (var teeHee in effectedObjects)
+            foreach (var effectedObject in effectedObjects)
             {
-                teeHee.SetActive(true);
+                effectedObject.SetActive(true);
             }
         }
         else
         {
             ToggleOff();
-            foreach (var teeHee in effectedObjects)
+            foreach (var effectedObject in effectedObjects)
             {
-                teeHee.SetActive(false);
+                effectedObject.SetActive(false);
             }
         }
     }
