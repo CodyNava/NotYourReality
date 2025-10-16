@@ -13,8 +13,10 @@ public class Interaction_Controller : MonoBehaviour
 
     private Camera _camera;
     private bool _interacting;
-
     private float _holdTimer;
+
+    private Interactable_Base _hoveredObject;
+    private Interactable_Base _selectedObject;
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class Interaction_Controller : MonoBehaviour
         {
             var interactableBase = hit.transform.GetComponent<Interactable_Base>();
             if (interactableBase == null) return;
+            _hoveredObject = interactableBase;
             if (interactionData.IsEmpty() || !interactionData.IsSameInteractable(interactableBase))
             {
                 interactionData.InteractableBase = interactableBase;
@@ -42,7 +45,10 @@ public class Interaction_Controller : MonoBehaviour
         }
         else
         {
-            interactionData.ResetData();
+            if (!_interacting)
+            {
+                interactionData.ResetData();
+            }
         }
     }
 
@@ -53,10 +59,12 @@ public class Interaction_Controller : MonoBehaviour
         var interactable = interactionData.InteractableBase;
         if (!interactable.IsInteractable) return;
 
-        if (interactionInputData.InteractedClicked)
+        if (interactionInputData.InteractedClicked && _hoveredObject != null)
         {
             _interacting = true;
-            if (interactable.HoldInteract && interactable.HoldDuration > 0f)
+            _selectedObject = _hoveredObject;
+            
+            if (_selectedObject.HoldInteract && _selectedObject.HoldDuration > 0f)
             {
                 _holdTimer = 0f;
             }
@@ -66,31 +74,34 @@ public class Interaction_Controller : MonoBehaviour
         {
             _interacting = false;
             _holdTimer = 0f;
-        }
+            if (_selectedObject is Move_Object moveObject)
+            {
+                moveObject.Release();
+            }
 
-        if (interactionInputData.InteractedReleased && interactionData.InteractableBase is Move_Object moveObject)
-        {
-            moveObject.Release();
+            _selectedObject = null;
         }
-
         if (!_interacting) return;
-
-        switch (interactable.HoldInteract)
+        if (_selectedObject == null) return;
+        if (!_selectedObject.IsInteractable) return;
+        switch (_selectedObject.HoldInteract)
         {
             case false:
-                interactable.OnInteract();
+                _selectedObject.OnInteract();
                 _interacting = false;
+                _selectedObject = null;
                 break;
-            case true when interactable.HoldDuration <= 0f:
-                interactable.OnInteract();
+            case true when _selectedObject.HoldDuration <= 0f:
+                _selectedObject.OnInteract();
                 break;
-            case true when interactable.HoldDuration > 0f:
+            case true when _selectedObject.HoldDuration > 0f:
             {
                 _holdTimer += Time.deltaTime;
-                if (_holdTimer >= interactable.HoldDuration)
+                if (_holdTimer >= _selectedObject.HoldDuration)
                 {
-                    interactable.OnInteract();
+                    _selectedObject.OnInteract();
                     _interacting = false;
+                    _selectedObject = null;
                 }
 
                 break;
