@@ -47,15 +47,18 @@ public class Interaction_Controller : MonoBehaviour
 
     private void CheckForInput()
     {
-        if (interactionData.IsEmpty())
-        {
-            return;
-        }
+        if (interactionData.IsEmpty()) return;
+
+        var interactable = interactionData.InteractableBase;
+        if (!interactable.IsInteractable) return;
 
         if (interactionInputData.InteractedClicked)
         {
             _interacting = true;
-            _holdTimer = 0f;
+            if (interactable.HoldInteract && interactable.HoldDuration > 0f)
+            {
+                _holdTimer = 0f;
+            }
         }
 
         if (interactionInputData.InteractedReleased)
@@ -65,14 +68,27 @@ public class Interaction_Controller : MonoBehaviour
         }
 
         if (!_interacting) return;
-        if (!interactionData.InteractableBase.IsInteractable) return;
 
-        if (interactionData.InteractableBase.HoldInteract)
+        switch (interactable.HoldInteract)
         {
-            _holdTimer += Time.deltaTime;
-            if (!(_holdTimer >= interactionData.InteractableBase.HoldDuration)) return;
+            case false:
+                interactable.OnInteract();
+                _interacting = false;
+                break;
+            case true when interactable.HoldDuration <= 0f:
+                interactable.OnInteract();
+                break;
+            case true when interactable.HoldDuration > 0f:
+            {
+                _holdTimer += Time.deltaTime;
+                if (_holdTimer >= interactable.HoldDuration)
+                {
+                    interactable.OnInteract();
+                    _interacting = false;
+                }
+
+                break;
+            }
         }
-        interactionData.Interact();
-        _interacting = false;
     }
 }

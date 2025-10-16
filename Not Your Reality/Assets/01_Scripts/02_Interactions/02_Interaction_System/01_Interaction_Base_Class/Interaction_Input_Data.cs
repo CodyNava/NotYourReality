@@ -4,12 +4,19 @@ using UnityEngine;
 public class Interaction_Input_Data : ScriptableObject
 {
     private bool _interactedClicked;
+    private bool _interactedHold;
     private bool _interactedReleased;
 
     public bool InteractedClicked
     {
         get => _interactedClicked;
         set => _interactedClicked = value;
+    }
+
+    public bool InteractedHold
+    {
+        get => _interactedHold;
+        set => _interactedHold = value;
     }
 
     public bool InteractedReleased
@@ -22,5 +29,6 @@ public class Interaction_Input_Data : ScriptableObject
     {
         _interactedClicked = false;
         _interactedReleased = false;
+        _interactedHold = false;
     }
 }

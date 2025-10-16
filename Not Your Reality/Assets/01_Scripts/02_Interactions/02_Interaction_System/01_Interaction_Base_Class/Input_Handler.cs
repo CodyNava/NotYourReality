@@ -17,6 +17,7 @@ public class Input_Handler : MonoBehaviour
     private void GetInteractionInputData()
     {
         interactionInputData.InteractedClicked = Input.GetMouseButtonDown(0);
+        interactionInputData.InteractedHold = Input.GetMouseButton(0);
         interactionInputData.InteractedReleased = Input.GetMouseButtonUp(0);
     }
 }
