@@ -44,7 +44,6 @@ public class WordlePuzzle : MonoBehaviour
 
     public void OnKeyboardClick(char letter)
     {
-        Debug.Log("Key Got Clicked: " + letter + "");
         if (_isGameOver) return;
         if (_currentInput.Length < 5)
         {
@@ -73,6 +72,7 @@ public class WordlePuzzle : MonoBehaviour
 
     public void UpdateCurrentRow()
     {
+
         for (int i = 0; i < 5; i++)
         {
             if (i < _currentInput.Length)

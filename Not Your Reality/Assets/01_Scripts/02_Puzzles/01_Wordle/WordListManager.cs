@@ -27,5 +27,6 @@ public class WordListManager : MonoBehaviour
         }
         
         targetWord = wordListData[UnityEngine.Random.Range(0, wordListData.Count)];
+        Debug.Log(targetWord);
     }
 }
