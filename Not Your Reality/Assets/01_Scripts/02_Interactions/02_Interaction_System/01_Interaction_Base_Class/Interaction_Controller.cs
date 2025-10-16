@@ -15,6 +15,9 @@ public class Interaction_Controller : MonoBehaviour
     private bool _interacting;
     private float _holdTimer;
 
+    private Interactable_Base _hoveredObject;
+    private Interactable_Base _selectedObject;
+
     private void Awake()
     {
         _camera = FindFirstObjectByType<Camera>();
@@ -34,6 +37,7 @@ public class Interaction_Controller : MonoBehaviour
         {
             var interactableBase = hit.transform.GetComponent<Interactable_Base>();
             if (interactableBase == null) return;
+            _hoveredObject = interactableBase;
             if (interactionData.IsEmpty() || !interactionData.IsSameInteractable(interactableBase))
             {
                 interactionData.InteractableBase = interactableBase;
@@ -41,38 +45,67 @@ public class Interaction_Controller : MonoBehaviour
         }
         else
         {
-            interactionData.ResetData();
+            if (!_interacting)
+            {
+                interactionData.ResetData();
+            }
         }
     }
 
     private void CheckForInput()
     {
-        if (interactionData.IsEmpty())
-        {
-            return;
-        }
+        if (interactionData.IsEmpty()) return;
 
-        if (interactionInputData.InteractedClicked)
+        var interactable = interactionData.InteractableBase;
+        if (!interactable.IsInteractable) return;
+
+        if (interactionInputData.InteractedClicked && _hoveredObject != null)
         {
             _interacting = true;
-            _holdTimer = 0f;
+            _selectedObject = _hoveredObject;
+            
+            if (_selectedObject.HoldInteract && _selectedObject.HoldDuration > 0f)
+            {
+                _holdTimer = 0f;
+            }
         }
 
         if (interactionInputData.InteractedReleased)
         {
             _interacting = false;
             _holdTimer = 0f;
-        }
+            if (_selectedObject is Move_Object moveObject)
+            {
+                moveObject.Release();
+            }
 
+            _selectedObject = null;
+        }
         if (!_interacting) return;
-        if (!interactionData.InteractableBase.IsInteractable) return;
-
-        if (interactionData.InteractableBase.HoldInteract)
+        if (_selectedObject == null) return;
+        if (!_selectedObject.IsInteractable) return;
+        switch (_selectedObject.HoldInteract)
         {
-            _holdTimer += Time.deltaTime;
-            if (!(_holdTimer >= interactionData.InteractableBase.HoldDuration)) return;
+            case false:
+                _selectedObject.OnInteract();
+                _interacting = false;
+                _selectedObject = null;
+                break;
+            case true when _selectedObject.HoldDuration <= 0f:
+                _selectedObject.OnInteract();
+                break;
+            case true when _selectedObject.HoldDuration > 0f:
+            {
+                _holdTimer += Time.deltaTime;
+                if (_holdTimer >= _selectedObject.HoldDuration)
+                {
+                    _selectedObject.OnInteract();
+                    _interacting = false;
+                    _selectedObject = null;
+                }
+
+                break;
+            }
         }
-        interactionData.Interact();
-        _interacting = false;
     }
 }
