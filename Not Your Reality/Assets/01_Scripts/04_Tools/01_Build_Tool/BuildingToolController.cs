@@ -144,6 +144,7 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
          if (e.type == EventType.KeyDown)
          {
             float angle;
+            bool pressed = true;
             switch (e.keyCode)
             {
                case KeyCode.Alpha1:
@@ -164,9 +165,10 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
                break;
                case KeyCode.Alpha5: // Reset
                   _previewInstance.transform.eulerAngles = Vector3.zero; break;
+               default: pressed = false; break;
             }
 
-            e.Use();
+            if (pressed) e.Use();
          }
 
          sceneView.Repaint();
