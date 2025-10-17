@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Sequence_Switch : Interactable_Base
 {
+    [Tooltip("The target of the Switch")]
     [SerializeField] private Switch_Sequence switchSequence;
     private bool _interacted;
 
