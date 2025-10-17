@@ -1,4 +1,4 @@
-using System.Numerics;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
@@ -175,3 +175,4 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
       }
    }
 }
+#endif
