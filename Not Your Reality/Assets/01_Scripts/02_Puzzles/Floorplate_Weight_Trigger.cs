@@ -11,8 +11,9 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
 
     [Tooltip("The speed the platform will move at once it is activated")]
     [SerializeField] private float platformMoveSpeed;
+    [SerializeField] private GameObject winTarget;
     
-    private List<Move_Object> _objects;
+    [SerializeField]private List<Move_Object> _objects;
     private Rigidbody _rb;
     private bool _hasWon;
 
@@ -45,19 +46,21 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
         {
             _targetPos = _startPos + Vector3.down * platformMoveDistance;
             _hasWon = true;
+            winTarget.SetActive(false);
             Debug.Log("You did it");
         }
         else if (currentWeight < goalWeight && _hasWon)
         {
             _hasWon = false;
             _targetPos = _startPos;
+            winTarget.SetActive(true);
             Debug.Log("Not enough");
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) return;
+        if (!other.CompareTag("Weight")) return;
         var moveObject = other.GetComponent<Move_Object>();
         _objects.Add(moveObject);
         CheckWin();
@@ -65,7 +68,7 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) return;
+        if (!other.CompareTag("Weight")) return;
         var moveObject = other.GetComponent<Move_Object>();
         _objects.Remove(moveObject);
         CheckWin();

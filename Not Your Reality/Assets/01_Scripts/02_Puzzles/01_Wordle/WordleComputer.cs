@@ -8,6 +8,11 @@ public class WordleComputer : Interactable_Base
     [SerializeField] private FirstPersonController player;
     [SerializeField] private GameObject computerCamera;
 
+    public void Start()
+    {
+        var playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerGameObject.GetComponent<FirstPersonController>();
+    }
     public void Update()
     {
         if (_isActive && Input.GetKeyUp(KeyCode.Escape))
