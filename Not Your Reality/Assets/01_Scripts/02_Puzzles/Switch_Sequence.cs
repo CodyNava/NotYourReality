@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Switch_Sequence : MonoBehaviour
 {
-    [Tooltip("These are all the switches relevant for this puzzle")]
-    [SerializeField] private List <Sequence_Switch> allSwitches;
     [Tooltip("This is the order the switches are supposed to be pressed in")]
     [SerializeField] private List<Sequence_Switch> sequenceOrder;
-    [SerializeField] private GameObject door;
     private List<Sequence_Switch> _playerOrder;
     private bool _hasWon;
 
@@ -43,7 +40,7 @@ public class Switch_Sequence : MonoBehaviour
         {
             Debug.Log("You Win");
             _hasWon = true;
-            door.SetActive(false);
+            gameObject.SetActive(false);
         }
         else
         {
@@ -53,7 +50,7 @@ public class Switch_Sequence : MonoBehaviour
 
     private void Reset()
     {
-        foreach (var seqSwitch in allSwitches)
+        foreach (var seqSwitch in _playerOrder)
         {
             seqSwitch.ToggleOff();
         }

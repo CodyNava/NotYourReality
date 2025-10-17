@@ -74,9 +74,14 @@ public class Interaction_Controller : MonoBehaviour
         {
             _interacting = false;
             _holdTimer = 0f;
-            if (_selectedObject is Move_Object moveObject)
+            switch (_selectedObject)
             {
-                moveObject.Release();
+                case Move_Object moveObject:
+                    moveObject.Release();
+                    break;
+                case Puzzle_Mirror mirror:
+                    mirror.Release();
+                    break;
             }
 
             _selectedObject = null;

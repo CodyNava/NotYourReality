@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Light_Switch : Interactable_Base
 {
+    [Tooltip("All objects you want to be effected by the Switch")]
     [SerializeField] private List<GameObject> effectedObjects;
     private bool _interacted;
     
@@ -13,17 +14,17 @@ public class Light_Switch : Interactable_Base
         if (!_interacted)
         {
             ToggleOn();
-            foreach (var teeHee in effectedObjects)
+            foreach (var effectedObject in effectedObjects)
             {
-                teeHee.SetActive(true);
+                effectedObject.SetActive(true);
             }
         }
         else
         {
             ToggleOff();
-            foreach (var teeHee in effectedObjects)
+            foreach (var effectedObject in effectedObjects)
             {
-                teeHee.SetActive(false);
+                effectedObject.SetActive(false);
             }
         }
     }
