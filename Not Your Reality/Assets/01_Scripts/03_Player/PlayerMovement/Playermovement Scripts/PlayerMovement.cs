@@ -24,6 +24,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 2f;
     [SerializeField] private float maxLookAngle = 80f;
     [SerializeField, Range(0f, 0.5f)] private float mouseSmoothTime = 0.03f;
+    [SerializeField] private bool cameraActive = true;  // ?? Neu
 
     private CharacterController controller;
     private float xRotation;
@@ -43,8 +44,28 @@ public class FirstPersonController : MonoBehaviour
     private float bobTimer = 0f;
     private Vector3 originalCameraPosition;
 
-    public bool MoveActive => moveActive;
-    public bool JumpActive => jumpActive;
+    public bool MoveActive
+    {
+        get => moveActive;
+        set => moveActive = value;
+    }
+
+    public bool JumpActive
+    {
+        get => jumpActive;
+        set => jumpActive = value;
+    }
+
+    public bool CameraActive
+    {
+        get => cameraActive;
+        set
+        {
+            cameraActive = value;
+            Cursor.lockState = cameraActive ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !cameraActive;
+        }
+    }
 
     private void Awake()
     {
@@ -65,6 +86,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMouseLook()
     {
+        if (!cameraActive) return; 
+
         Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseSensitivity;
 
         smoothMouseDelta.x = Mathf.SmoothDamp(smoothMouseDelta.x, targetMouseDelta.x, ref currentMouseDelta.x, mouseSmoothTime);
@@ -78,35 +101,42 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (!MoveActive) return;
+        Vector3 move = Vector3.zero;
 
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (input.magnitude > 1f) input.Normalize();
-
-        Vector3 targetDirection = transform.right * input.x + transform.forward * input.y;
-        float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
-        Vector3 targetVelocity = targetDirection * targetSpeed;
-
-        float accel = controller.isGrounded ? acceleration : acceleration * airControlMultiplier;
-        float decel = controller.isGrounded ? deceleration : deceleration * airControlMultiplier;
-
-        if (targetDirection.magnitude > 0.1f)
+        if (moveActive)
         {
-            currentVelocity = Vector3.MoveTowards(currentVelocity, targetVelocity, accel * Time.deltaTime);
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (input.magnitude > 1f) input.Normalize();
+
+            Vector3 targetDirection = transform.right * input.x + transform.forward * input.y;
+            float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
+            Vector3 targetVelocity = targetDirection * targetSpeed;
+
+            float accel = controller.isGrounded ? acceleration : acceleration * airControlMultiplier;
+            float decel = controller.isGrounded ? deceleration : deceleration * airControlMultiplier;
+
+            if (targetDirection.magnitude > 0.1f)
+            {
+                currentVelocity = Vector3.MoveTowards(currentVelocity, targetVelocity, accel * Time.deltaTime);
+            }
+            else
+            {
+                currentVelocity = Vector3.MoveTowards(currentVelocity, Vector3.zero, decel * Time.deltaTime);
+                if (currentVelocity.magnitude < stopThreshold)
+                    currentVelocity = Vector3.zero;
+            }
+
+            if (jumpActive && controller.isGrounded && Input.GetButtonDown("Jump"))
+            {
+                velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+            }
         }
         else
         {
-            currentVelocity = Vector3.MoveTowards(currentVelocity, Vector3.zero, decel * Time.deltaTime);
-            if (currentVelocity.magnitude < stopThreshold)
-                currentVelocity = Vector3.zero;
+            currentVelocity = Vector3.zero;
         }
 
-        if (JumpActive && controller.isGrounded && Input.GetButtonDown("Jump"))
-        {
-            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-        }
-
-        Vector3 move = currentVelocity + velocity;
+        move = currentVelocity + velocity;
         controller.Move(move * Time.deltaTime);
     }
 
