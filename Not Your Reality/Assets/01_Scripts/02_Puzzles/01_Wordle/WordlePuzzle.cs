@@ -72,7 +72,6 @@ public class WordlePuzzle : MonoBehaviour
 
     public void UpdateCurrentRow()
     {
-
         for (int i = 0; i < 5; i++)
         {
             if (i < _currentInput.Length)
@@ -126,15 +125,18 @@ public class WordlePuzzle : MonoBehaviour
 
     private enum LetterState
     {
-        Correct,
+        Absent,
         Present,
-        Absent
+        Correct
     }
 
     private static LetterState[] CheckGuess(string guess, string target)
     {
-        guess = guess.ToUpper();
-        target = target.ToUpper();
+        guess = guess.ToUpper().Trim();
+        target = target.ToUpper().Trim();
+
+        Debug.Log(guess);
+        Debug.Log(target);
 
         LetterState[] result = new LetterState[guess.Length];
         List<char> targetLetters = new List<char>(target);

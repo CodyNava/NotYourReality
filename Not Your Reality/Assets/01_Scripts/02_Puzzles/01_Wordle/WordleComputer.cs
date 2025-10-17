@@ -5,7 +5,6 @@ public class WordleComputer : Interactable_Base
 {
     private bool _isActive = false;
     [SerializeField] private FirstPersonController player;
-    [SerializeField] private MouseLook camera;
     [SerializeField] private GameObject computerCamera;
 
     public void Update()
@@ -35,8 +34,8 @@ public class WordleComputer : Interactable_Base
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         computerCamera.SetActive(true);
-        /*  player.MoveActive = false;
-           player.LookActive = false;*/
+        player.MoveActive = false;
+        player.CameraActive = false;
     }
 
     public void ExitTerminal()
@@ -45,7 +44,7 @@ public class WordleComputer : Interactable_Base
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         computerCamera.SetActive(false);
-        /* player.MoveActive = true;
-         player.LookActive = true;*/
+        player.MoveActive = true;
+        player.CameraActive = true;
     }
 }
