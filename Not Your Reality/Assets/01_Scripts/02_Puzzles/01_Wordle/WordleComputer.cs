@@ -1,4 +1,5 @@
 using System;
+using _01_Scripts._03_Player.PlayerMovement.Playermovement_Scripts;
 using UnityEngine;
 
 public class WordleComputer : Interactable_Base
