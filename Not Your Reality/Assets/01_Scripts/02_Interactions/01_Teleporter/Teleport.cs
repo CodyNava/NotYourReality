@@ -1,4 +1,5 @@
 using System.Collections;
+using _01_Scripts._03_Player.PlayerMovement.Playermovement_Scripts;
 using UnityEngine;
 
 public class Teleport : MonoBehaviour
@@ -10,13 +11,15 @@ public class Teleport : MonoBehaviour
 
     private void Start()
     {
-        if (portalCamera != null && portalScreen != null)
+        if (portalCamera && portalScreen)
         {
-            RenderTexture portalTexture = new RenderTexture(Screen.width, Screen.height, 24);
+            player = GameObject.FindGameObjectWithTag("Player");
+            var portalTexture = new RenderTexture(Screen.width, Screen.height, 24);
             portalCamera.targetTexture = portalTexture;
             portalScreen.material.mainTexture = portalTexture;
         }
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,12 +33,13 @@ public class Teleport : MonoBehaviour
     {
         var controller = player.GetComponent<CharacterController>();
         var script = player.GetComponent<FirstPersonController>();
-        script.enabled = false;
+        
+        script.MoveActive = false;
         controller.enabled = false;
         player.transform.position = targetLocation.position;
         player.transform.rotation = targetLocation.rotation;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         controller.enabled = true;
-        script.enabled = true;
+        script.MoveActive = true;
     }
 }
