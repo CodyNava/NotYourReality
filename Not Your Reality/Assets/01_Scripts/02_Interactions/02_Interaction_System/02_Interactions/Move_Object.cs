@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Move_Object : Interactable_Base
 {
+    [Tooltip("The distance at which the player holds the object")]
     [SerializeField] private float holdingDistance;
+    [Tooltip("The speed at which the object follows the mouse")]
     [SerializeField] private float dragSpeed;
+    [Tooltip("OPTIONAL: Weight for interacting with trigger plates")]
     [SerializeField] private float weight;
 
     public float Weight => weight;

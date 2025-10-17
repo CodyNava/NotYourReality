@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Light_Switch : Interactable_Base
 {
+    [Tooltip("All objects you want to be effected by the Switch")]
     [SerializeField] private List<GameObject> effectedObjects;
     private bool _interacted;
     
