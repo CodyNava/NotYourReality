@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class Interaction_Controller : MonoBehaviour
 {
-    [Header("Data")] [SerializeField] private Interaction_Input_Data interactionInputData;
+    [Header("Data")]
+    [SerializeField] private Interaction_Input_Data interactionInputData;
     [SerializeField] private Interaction_Data interactionData;
 
-    [Header("Spherecast Settings")] [SerializeField]
-    private float rayDistance;
+    [Header("UI")]
+    [SerializeField] private InteractionUIPanel interactionUIPanel;
+    
+    [Header("Spherecast Settings")]
+    [SerializeField] private float rayDistance;
+
+    [Header("Crosshair")]
+    [SerializeField] private RectTransform crosshair;
 
     [SerializeField] private float raySphereRadius;
     [SerializeField] private LayerMask interactableLayer;
@@ -27,6 +34,12 @@ public class Interaction_Controller : MonoBehaviour
     {
         CheckForInteractable();
         CheckForInput();
+        UpdateCrosshair();
+    }
+
+    private void UpdateCrosshair()
+    {
+        crosshair.localScale = _interacting ? Vector3.one * 1.5f : Vector3.one;
     }
 
     private void CheckForInteractable()
@@ -41,12 +54,14 @@ public class Interaction_Controller : MonoBehaviour
             if (interactionData.IsEmpty() || !interactionData.IsSameInteractable(interactableBase))
             {
                 interactionData.InteractableBase = interactableBase;
+                interactionUIPanel.SetTooltip(interactableBase.TooltipMessage);
             }
         }
         else
         {
             if (!_interacting)
             {
+                interactionUIPanel.Reset();
                 interactionData.ResetData();
             }
         }
@@ -62,6 +77,7 @@ public class Interaction_Controller : MonoBehaviour
         if (interactionInputData.InteractedClicked && _hoveredObject != null)
         {
             _interacting = true;
+            interactionUIPanel.Reset();
             _selectedObject = _hoveredObject;
             
             if (_selectedObject.HoldInteract && _selectedObject.HoldDuration > 0f)
@@ -73,6 +89,7 @@ public class Interaction_Controller : MonoBehaviour
         if (interactionInputData.InteractedReleased)
         {
             _interacting = false;
+            interactionUIPanel.SetTooltip(interactable.TooltipMessage);
             _holdTimer = 0f;
             switch (_selectedObject)
             {
