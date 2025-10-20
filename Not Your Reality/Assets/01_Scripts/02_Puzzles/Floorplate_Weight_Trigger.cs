@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Floorplate_Weight_Trigger : MonoBehaviour
 {
+    [Space]
     [Tooltip("The weight that needs to be reached for the plate to trigger")]
     [SerializeField] private float goalWeight;
 
@@ -11,9 +12,10 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
 
     [Tooltip("The speed the platform will move at once it is activated")]
     [SerializeField] private float platformMoveSpeed;
+    [Tooltip("The target effected by the plate (e.g. a Door)")]
     [SerializeField] private GameObject winTarget;
     
-    [SerializeField]private List<Move_Object> _objects;
+    private List<Move_Object> _objects;
     private Rigidbody _rb;
     private bool _hasWon;
 
