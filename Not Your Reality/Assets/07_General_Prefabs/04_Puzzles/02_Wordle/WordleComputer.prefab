@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 832009985404694403}
   - component: {fileID: 5996880502136525292}
   - component: {fileID: 7938294244607489343}
+  - component: {fileID: 5496341475936490382}
   m_Layer: 6
   m_Name: WordleCamera
   m_TagString: Untagged
@@ -137,6 +138,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &5496341475936490382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205821555995269302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &2006763580313730560
 GameObject:
   m_ObjectHideFlags: 0
