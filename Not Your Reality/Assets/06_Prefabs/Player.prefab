@@ -48,6 +48,8 @@ GameObject:
   - component: {fileID: 4302839011803609550}
   - component: {fileID: 1985151745531331754}
   - component: {fileID: 2600103484916613202}
+  - component: {fileID: 7183324833667695129}
+  - component: {fileID: 3845501346586102656}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -220,9 +222,23 @@ MonoBehaviour:
   sprintSpeed: 8
   jumpForce: 5
   gravity: -9.81
+  moveActive: 1
+  jumpActive: 1
+  acceleration: 10
+  deceleration: 20
+  stopThreshold: 0.2
+  airControlMultiplier: 0.5
   cameraHolder: {fileID: 1104030733657090290}
   mouseSensitivity: 2
   maxLookAngle: 80
+  mouseSmoothTime: 0.03
+  cameraActive: 1
+  bobFrequency: 10
+  bobAmplitude: 0.05
+  bobSway: 0.02
+  sprintBobFrequency: 15
+  sprintBobAmplitude: 0.08
+  sprintBobSway: 0.03
 --- !u!143 &2600103484916613202
 CharacterController:
   m_ObjectHideFlags: 0
@@ -248,6 +264,38 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7183324833667695129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083705901644432156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567cc5f71a01b4e4dbc5614cf480bbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionInputData: {fileID: 11400000, guid: fe7826490897395499255fa45e6b52d0, type: 2}
+--- !u!114 &3845501346586102656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083705901644432156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a3740c3bdc28419480454a960908d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionInputData: {fileID: 11400000, guid: fe7826490897395499255fa45e6b52d0, type: 2}
+  interactionData: {fileID: 11400000, guid: 5ce8f7466936bf547af49c2712dde287, type: 2}
+  rayDistance: 2
+  raySphereRadius: 0.3
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6655354304855916896
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +309,7 @@ GameObject:
   - component: {fileID: 8067396961055115979}
   - component: {fileID: 3123285597383905679}
   - component: {fileID: 3651560303050269171}
+  - component: {fileID: 6860030764436175439}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -401,4 +450,22 @@ MonoBehaviour:
   playerBody: {fileID: 5544628250311775283}
   cameraHolder: {fileID: 1104030733657090290}
   mouseSensitivity: 2
+  cameraRadius: 0.1
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 0
   lookAction: {fileID: 0}
+--- !u!114 &6860030764436175439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655354304855916896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
