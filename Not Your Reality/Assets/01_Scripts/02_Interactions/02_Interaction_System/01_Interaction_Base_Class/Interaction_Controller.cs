@@ -1,3 +1,4 @@
+using _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions;
 using UnityEngine;
 
 public class Interaction_Controller : MonoBehaviour
@@ -81,6 +82,9 @@ public class Interaction_Controller : MonoBehaviour
                     break;
                 case Puzzle_Mirror mirror:
                     mirror.Release();
+                    break;
+                case OpenDoor door:
+                    door.Release();
                     break;
             }
 
