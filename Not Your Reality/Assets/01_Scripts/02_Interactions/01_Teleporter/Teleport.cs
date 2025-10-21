@@ -11,13 +11,11 @@ public class Teleport : MonoBehaviour
 
     private void Start()
     {
-        if (portalCamera && portalScreen)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-            var portalTexture = new RenderTexture(Screen.width, Screen.height, 24);
-            portalCamera.targetTexture = portalTexture;
-            portalScreen.material.mainTexture = portalTexture;
-        }
+        if (!portalCamera || !portalScreen) return;
+        player = GameObject.FindGameObjectWithTag("Player");
+        var portalTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        portalCamera.targetTexture = portalTexture;
+        portalScreen.material.mainTexture = portalTexture;
     }
     
 
@@ -25,19 +23,24 @@ public class Teleport : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(StartTeleport());
+            StartCoroutine(StartTeleport(transform, targetLocation));
         }
     }
 
-    private IEnumerator StartTeleport()
+    private IEnumerator StartTeleport(Transform entryPortal, Transform exitPortal)
     {
         var controller = player.GetComponent<CharacterController>();
         var script = player.GetComponent<FirstPersonController>();
         
         script.MoveActive = false;
         controller.enabled = false;
-        player.transform.position = targetLocation.position;
-        player.transform.rotation = targetLocation.rotation;
+
+        var localPos = entryPortal.InverseTransformPoint(player.transform.position);
+        var localRotate = Quaternion.Inverse(entryPortal.rotation) * player.transform.rotation;
+
+        player.transform.position = exitPortal.TransformPoint(localPos);
+        player.transform.rotation = exitPortal.rotation * localRotate;
+        
         yield return new WaitForSeconds(0.01f);
         controller.enabled = true;
         script.MoveActive = true;
