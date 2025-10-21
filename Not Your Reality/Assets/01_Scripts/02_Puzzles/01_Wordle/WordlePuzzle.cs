@@ -8,6 +8,7 @@ public class WordlePuzzle : MonoBehaviour
 
     [SerializeField] private Transform wordleBoard;
     [SerializeField] private int maxGuesses = 6;
+    [SerializeField] private Collider doorCollider;
 
     [Header("Colors")]
     [SerializeField] private Color correctColor = Color.green;
@@ -24,20 +25,29 @@ public class WordlePuzzle : MonoBehaviour
 
     private void Start()
     {
+            doorCollider.enabled = false;
+            ResetWordl();
+    }
+
+    private void ResetWordl()
+    {
+        _currentGuess = 0;
+        _isGameOver = false;
+        _currentInput = "";
         foreach (Transform row in wordleBoard)
         {
             List<LetterTile> rowTiles = new();
             foreach (Transform tileobj in row)
             {
                 var tile = tileobj.GetComponent<LetterTile>();
-                if (tile != null)
+                if (tile)
                 {
                     rowTiles.Add(tile);
                     tile.SetLetter(' ');
                     tile.SetColor(defaultColor);
                 }
             }
-
+            
             _board.Add(rowTiles);
         }
     }
@@ -110,6 +120,7 @@ public class WordlePuzzle : MonoBehaviour
         {
             Debug.Log("You Win");
             _isGameOver = true;
+            doorCollider.enabled = true;
             return;
         }
 
@@ -119,7 +130,7 @@ public class WordlePuzzle : MonoBehaviour
         if (_currentGuess >= maxGuesses)
         {
             Debug.Log("You Lose");
-            _isGameOver = true;
+            ResetWordl();
         }
     }
 
