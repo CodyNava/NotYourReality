@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InteractionInputData", menuName = "InteractionSystem/InputData")]
 public class Interaction_Input_Data : ScriptableObject
 {
+    
     private bool _interactedClicked;
     private bool _interactedHold;
     private bool _interactedReleased;
