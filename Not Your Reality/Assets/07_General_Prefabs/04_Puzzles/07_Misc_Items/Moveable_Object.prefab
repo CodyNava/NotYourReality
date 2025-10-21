@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4830451346774426960}
   m_Layer: 6
   m_Name: Moveable_Object
-  m_TagString: Misc Interactable
+  m_TagString: Weight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 55706b6b81f6fb1409d137c50d5fb3a5, type: 2}
+  - {fileID: 7444164931454603689, guid: e053bc4a655a7a34a9809afc41c0ad33, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,8 @@ MonoBehaviour:
   isHolding: 0
   multipleUse: 0
   isInteractable: 1
-  holdingDistance: 3
+  tooltipMessage: Press E to Interact
+  holdingDistance: 1.25
   dragSpeed: 120
   weight: 1
 --- !u!54 &4830451346774426960

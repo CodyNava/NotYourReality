@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 9051272731288398216, guid: d1e94aae496e9874a877d0a9a00c2168, type: 3}
+  - {fileID: 2100000, guid: 9c1866e2e10e0aa45a42125e2d24e0bb, type: 2}
   - {fileID: 9140553008243251169, guid: d1e94aae496e9874a877d0a9a00c2168, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -108,9 +108,10 @@ MonoBehaviour:
   isHolding: 0
   multipleUse: 0
   isInteractable: 1
+  tooltipMessage: Hold E to interact
   drag: 0.2
   pullStrength: 8
-  lockThreshold: 0.06
+  lockThreshold: 0.09
   lockAngle: 2
 --- !u!54 &9115077055828007396
 Rigidbody:

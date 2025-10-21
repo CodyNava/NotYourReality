@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6490443606560076107}
   - component: {fileID: 6476251334831332265}
   - component: {fileID: 1123913652837639314}
+  - component: {fileID: 8251337811558407641}
   m_Layer: 0
   m_Name: Lightswitch_v2
   m_TagString: Untagged
@@ -88,3 +89,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8251337811558407641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2814662164306948219}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07867816, y: 0.100489646, z: 0.026344027}
+  m_Center: {x: 0.00022027269, y: -0.0022957493, z: 0.012956645}

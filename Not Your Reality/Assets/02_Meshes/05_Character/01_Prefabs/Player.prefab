@@ -195,12 +195,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41186dd94f898749949e4b094ae36e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2
-  sprintSpeed: 3
+  walkSpeed: 1.25
+  sprintSpeed: 2
   jumpForce: 0.35
   gravity: -9.81
   moveActive: 1
-  jumpActive: 1
+  jumpActive: 0
   acceleration: 10
   deceleration: 20
   stopThreshold: 0.2
@@ -208,14 +208,14 @@ MonoBehaviour:
   cameraHolder: {fileID: 2362332136989335655}
   mouseSensitivity: 2
   maxLookAngle: 80
-  mouseSmoothTime: 0.03
+  mouseSmoothTime: 0.02
   cameraActive: 1
   bobFrequency: 10
-  bobAmplitude: 0.05
-  bobSway: 0.02
+  bobAmplitude: 0.02
+  bobSway: 0.01
   sprintBobFrequency: 15
-  sprintBobAmplitude: 0.08
-  sprintBobSway: 0.03
+  sprintBobAmplitude: 0.033
+  sprintBobSway: 0.02
 --- !u!136 &6916166284920186865
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -258,7 +258,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.75
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_SlopeLimit: 90
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -278,7 +278,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionInputData: {fileID: 11400000, guid: fe7826490897395499255fa45e6b52d0, type: 2}
   interactionData: {fileID: 11400000, guid: 5ce8f7466936bf547af49c2712dde287, type: 2}
+  interactionUIPanel: {fileID: 0}
   rayDistance: 3
+  crosshair: {fileID: 0}
   raySphereRadius: 0.1
   interactableLayer:
     serializedVersion: 2
@@ -408,7 +410,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
