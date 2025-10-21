@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class WordlePuzzle : MonoBehaviour
 {
+    private Dictionary<char, KeyboardButton> _keyboardButtons = new();
+
     [Header("References")]
     [SerializeField] private WordListManager wordList;
 
@@ -17,16 +19,20 @@ public class WordlePuzzle : MonoBehaviour
     [SerializeField] private Color incorrectColor = Color.red;
     [SerializeField] private Color defaultColor = Color.white;
 
-    private int _currentGuess = 0;
-    private string _currentInput = "";
-    private bool _isGameOver = false;
+    private int _currentGuess;
+    private string _currentInput;
+    private bool _isGameOver;
 
     private List<List<LetterTile>> _board = new();
 
     private void Start()
     {
+        if (doorCollider != null)
+        {
             doorCollider.enabled = false;
-            ResetWordl();
+        }
+
+        ResetWordl();
     }
 
     private void ResetWordl()
@@ -47,7 +53,7 @@ public class WordlePuzzle : MonoBehaviour
                     tile.SetColor(defaultColor);
                 }
             }
-            
+
             _board.Add(rowTiles);
         }
     }
@@ -107,20 +113,32 @@ public class WordlePuzzle : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            Color color = feedback[i] switch
+            char guessedLetter = char.ToUpper(_currentInput[i]);
+            if (_keyboardButtons.TryGetValue(guessedLetter, out KeyboardButton key))
             {
-                LetterState.Correct => correctColor,
-                LetterState.Present => presentColor,
-                _ => incorrectColor
-            };
-            _board[_currentGuess][i].SetColor(color);
+                Color color = feedback[i] switch
+                {
+                    LetterState.Correct => correctColor,
+                    LetterState.Present => presentColor,
+                    _ => incorrectColor
+                };
+                _board[_currentGuess][i].SetColor(color);
+                if (color != correctColor && color != presentColor)
+                {
+                    key.SetColor(Color.gray);
+                }
+            }
         }
 
         if (_currentInput.ToUpper() == wordList.targetWord)
         {
             Debug.Log("You Win");
             _isGameOver = true;
-            doorCollider.enabled = true;
+            if (doorCollider != null)
+            {
+                doorCollider.enabled = true;
+            }
+
             return;
         }
 
@@ -177,5 +195,12 @@ public class WordlePuzzle : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void RegisterKeyboardKey(KeyboardButton key)
+    {
+        char letter = char.ToUpper(key.buttonLetter.text[0]);
+        if (!_keyboardButtons.ContainsKey(letter))
+            _keyboardButtons.Add(letter, key);
     }
 }

@@ -7,12 +7,16 @@ public class WordleComputer : Interactable_Base
     private bool _isActive = false;
     [SerializeField] private FirstPersonController player;
     [SerializeField] private GameObject computerCamera;
+    [SerializeField] private Canvas crosshairCanvas;
 
     public void Start()
     {
+        var crosshairCanvasGameObject = GameObject.FindGameObjectWithTag("Crosshair");
         var playerGameObject = GameObject.FindGameObjectWithTag("Player");
         player = playerGameObject.GetComponent<FirstPersonController>();
+        crosshairCanvas = crosshairCanvasGameObject.GetComponent<Canvas>();
     }
+
     public void Update()
     {
         if (_isActive && Input.GetKeyUp(KeyCode.Escape))
@@ -40,6 +44,7 @@ public class WordleComputer : Interactable_Base
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         computerCamera.SetActive(true);
+        crosshairCanvas.enabled = false;
         player.MoveActive = false;
         player.CameraActive = false;
     }
@@ -50,6 +55,7 @@ public class WordleComputer : Interactable_Base
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         computerCamera.SetActive(false);
+        crosshairCanvas.enabled = true;
         player.MoveActive = true;
         player.CameraActive = true;
     }
