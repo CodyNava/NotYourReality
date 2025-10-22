@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6308942356568589964}
   - component: {fileID: 3506017760909851131}
   - component: {fileID: 3119077450088386339}
+  - component: {fileID: 6470009809984503443}
   m_Layer: 0
   m_Name: KeyboardTile
   m_TagString: Untagged
@@ -120,7 +121,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3506017760909851131}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6470009809984503443}
+        m_TargetAssemblyTypeName: FMODButtons, Assembly-CSharp
+        m_MethodName: OnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6470009809984503443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903091582003523865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf04e68552060584ab7246aaacab189a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPress:
+    Guid:
+      Data1: 1835685335
+      Data2: 1211764272
+      Data3: -1895401301
+      Data4: 191720773
+    Path: event:/Button
+  button: {fileID: 3119077450088386339}
 --- !u!1 &2993519173544977324
 GameObject:
   m_ObjectHideFlags: 0
