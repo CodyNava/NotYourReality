@@ -13,6 +13,7 @@ public class Mirror_Light_Reflection : MonoBehaviour
     [SerializeField] private Renderer targetRenderer;
     [SerializeField] private Material targetWinMaterial;
     [SerializeField] private Material targetDefaultMaterial;
+    [SerializeField] private Collider doorCollider;
 
     private LineRenderer _lineRenderer;
     private readonly List<Vector3> _reflectionPoints = new List<Vector3>();
@@ -22,6 +23,7 @@ public class Mirror_Light_Reflection : MonoBehaviour
     {
         targetRenderer.material = targetDefaultMaterial;
         _lineRenderer = GetComponent<LineRenderer>();
+        doorCollider.enabled = false;
     }
 
     private void Update()
@@ -89,6 +91,7 @@ public class Mirror_Light_Reflection : MonoBehaviour
     private void CheckWin()
     {
         targetRenderer.material = _targetHit? targetWinMaterial : targetDefaultMaterial;
+        doorCollider.enabled = _targetHit;
     }
 
     private Vector3 Reflect(Vector3 direction, Vector3 normal)
