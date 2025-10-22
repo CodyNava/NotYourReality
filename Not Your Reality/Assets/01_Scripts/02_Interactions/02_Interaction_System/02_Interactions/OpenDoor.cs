@@ -13,7 +13,7 @@ namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
       [SerializeField] private float lockAngle;
 
       private bool _isHeld;
-      private Camera _cam;
+      [SerializeField] private Camera _cam;
       private Rigidbody _rb;
       private float _initialYRotation;
       private Vector3 _initialCamForward;
@@ -23,7 +23,7 @@ namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
 
       private void Awake()
       {
-         _cam = FindFirstObjectByType<Camera>();
+         _cam = Camera.main;
          _rb = GetComponent<Rigidbody>();
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
