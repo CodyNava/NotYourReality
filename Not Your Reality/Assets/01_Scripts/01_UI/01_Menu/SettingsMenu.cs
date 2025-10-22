@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FMOD.Studio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    [Space]
+    [Header("Graphics")]
     [SerializeField] private TMP_Dropdown resDropDown;
     private Resolution[] _resolutions;
     private List<Resolution> _uniqueRes;
@@ -25,13 +26,19 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Toggle motionBlurToggle;
     private MotionBlur _motionBlur;
     private int _motionBlurInt;
+
+    [Header("Audio")]
+    [SerializeField] private Slider masterSlider;
+    private Bus _masterBus; 
     
     private const string MotionBlur = "Motion Blur";
     private const string Vsync = "Vsync";
     private const string Fullscreen = "Fullscreen";
+    private const string Master = "Master";
 
     private void Awake()
     {
+        _masterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
         volume.profile.TryGet(out _motionBlur);
     }
 
@@ -95,11 +102,25 @@ public class SettingsMenu : MonoBehaviour
     }
     #endregion
     
+    #region Sound
+    public void MasterVolume()
+    {
+        ApplyVolume(_masterBus, masterSlider.value);
+    }
+
+    private void ApplyVolume(Bus bus, float newValue)
+    {
+        bus.setVolume(newValue);
+        SaveSettings();
+    }
+    #endregion
+    
     private void SaveSettings()
     {
         PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
         PlayerPrefs.SetInt(Vsync, _vSyncInt);
         PlayerPrefs.SetInt(Fullscreen, _fullScreenInt);
+        PlayerPrefs.SetFloat(Master, masterSlider.value);
     }
     
     private void LoadSettings()
@@ -115,5 +136,8 @@ public class SettingsMenu : MonoBehaviour
         _fullScreenInt = PlayerPrefs.GetInt(Fullscreen, 1);
         fullScreenToggle.SetIsOnWithoutNotify(_fullScreenInt == 1);
         SetFullscreen();
+
+        masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
+        MasterVolume();
     }
 }
