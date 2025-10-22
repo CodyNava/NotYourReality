@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-//using UnityEngine.Rendering;
-//using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
@@ -21,19 +21,19 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Toggle vSyncToggle;
     private int _vSyncInt;
     
-    /*[SerializeField] private Volume volume;
+    [SerializeField] private Volume volume;
     [SerializeField] private Toggle motionBlurToggle;
     private MotionBlur _motionBlur;
-    private int _motionBlurInt;*/
+    private int _motionBlurInt;
     
-    //private const string MotionBlur = "Motion Blur";
+    private const string MotionBlur = "Motion Blur";
     private const string Vsync = "Vsync";
     private const string Fullscreen = "Fullscreen";
 
-    /*private void Awake()
+    private void Awake()
     {
         volume.profile.TryGet(out _motionBlur);
-    }*/
+    }
 
     private void Start()
     {
@@ -87,26 +87,26 @@ public class SettingsMenu : MonoBehaviour
         SaveSettings();
     }
 
-    /*public void SetMotionBlur()
+    public void SetMotionBlur()
     {
         _motionBlurInt = motionBlurToggle.isOn ? 1 : 0;
         _motionBlur.active = motionBlurToggle.isOn;
         SaveSettings();
-    }*/
+    }
     #endregion
     
     private void SaveSettings()
     {
-        //PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
+        PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
         PlayerPrefs.SetInt(Vsync, _vSyncInt);
         PlayerPrefs.SetInt(Fullscreen, _fullScreenInt);
     }
     
     private void LoadSettings()
     {
-        /*_motionBlurInt = PlayerPrefs.GetInt(MotionBlur, 1);
+        _motionBlurInt = PlayerPrefs.GetInt(MotionBlur, 1);
         motionBlurToggle.SetIsOnWithoutNotify(_motionBlurInt == 1);
-        SetMotionBlur();*/
+        SetMotionBlur();
         
         _vSyncInt = PlayerPrefs.GetInt(Vsync, 1);
         vSyncToggle.SetIsOnWithoutNotify(_vSyncInt == 1);

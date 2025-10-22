@@ -17,7 +17,7 @@ public class Interaction_Controller : MonoBehaviour
 
    [SerializeField] private float raySphereRadius;
    [SerializeField] private LayerMask interactableLayer;
-
+   
    private Camera _camera;
    private bool _interacting;
    private float _holdTimer;

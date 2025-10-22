@@ -17,7 +17,7 @@ public class Move_Object : Interactable_Base
 
     private void Awake()
     {
-        _cam = FindFirstObjectByType<Camera>();
+        _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
     }
 
