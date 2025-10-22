@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &1973528687672375176
 Transform:
@@ -127,7 +127,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &2229595766849524130
 Transform:
@@ -232,6 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdDuration: 0
   holdInteract: 0
+  isHolding: 0
   multipleUse: 0
   isInteractable: 1
+  tooltipMessage: Press E to Interact
   effectedObjects: []

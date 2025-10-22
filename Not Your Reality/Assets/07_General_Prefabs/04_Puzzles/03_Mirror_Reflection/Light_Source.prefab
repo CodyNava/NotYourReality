@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &5902598827668128824
 Transform:
@@ -233,3 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beamLength: 0
   reflections: 0
+  targetRenderer: {fileID: 0}
+  targetWinMaterial: {fileID: 0}
+  targetDefaultMaterial: {fileID: 0}

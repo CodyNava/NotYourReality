@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4326666144006599436
 Transform:
@@ -133,6 +133,7 @@ MonoBehaviour:
   isHolding: 0
   multipleUse: 0
   isInteractable: 1
+  tooltipMessage: Press E to Interact
   dragSpeed: 120
 --- !u!65 &432824691966589578
 BoxCollider:
