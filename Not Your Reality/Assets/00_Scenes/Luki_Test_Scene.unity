@@ -360,6 +360,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2558584410323852203, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3813537213009599553, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
@@ -408,10 +412,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6253172860204063525, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 7604080607814834838, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1368701037}
+    - target: {fileID: 7604080607814834838, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 1309930457}
     - target: {fileID: 7604080607814834838, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: interactionUIPanel
       value: 
@@ -1032,6 +1044,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d41186dd94f898749949e4b094ae36e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1309930457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7415491272098474915, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+  m_PrefabInstance: {fileID: 406379948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309930450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567cc5f71a01b4e4dbc5614cf480bbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &1368701037 stripped

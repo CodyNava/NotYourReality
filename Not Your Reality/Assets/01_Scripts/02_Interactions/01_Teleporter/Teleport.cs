@@ -21,28 +21,35 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(StartTeleport(transform, targetLocation));
-        }
+        StartCoroutine(StartTeleport(transform, targetLocation, other));
     }
 
-    private IEnumerator StartTeleport(Transform entryPortal, Transform exitPortal)
+    private IEnumerator StartTeleport(Transform entryPortal, Transform exitPortal, Collider other)
     {
-        var controller = player.GetComponent<CharacterController>();
-        var script = player.GetComponent<FirstPersonController>();
+        var localPos = entryPortal.InverseTransformPoint(other.transform.position);
+        var localRotate = Quaternion.Inverse(entryPortal.rotation) * other.transform.rotation;
         
-        script.MoveActive = false;
-        controller.enabled = false;
-
-        var localPos = entryPortal.InverseTransformPoint(player.transform.position);
-        var localRotate = Quaternion.Inverse(entryPortal.rotation) * player.transform.rotation;
-
-        player.transform.position = exitPortal.TransformPoint(localPos);
-        player.transform.rotation = exitPortal.rotation * localRotate;
+        switch (other.tag)
+        {
+            case "Player":
+                var controller = player.GetComponent<CharacterController>();
+                var script = player.GetComponent<FirstPersonController>();
         
-        yield return new WaitForSeconds(0.01f);
-        controller.enabled = true;
-        script.MoveActive = true;
+                script.MoveActive = false;
+                controller.enabled = false;
+
+                other.transform.position = exitPortal.TransformPoint(localPos);
+                other.transform.rotation = exitPortal.rotation * localRotate;
+        
+                yield return new WaitForSeconds(0.01f);
+                controller.enabled = true;
+                script.MoveActive = true;
+                break;
+            case "Weight":
+            case "Misc Interactable":
+                other.transform.position = exitPortal.TransformPoint(localPos);
+                other.transform.rotation = exitPortal.rotation * localRotate;
+                break;
+        }
     }
 }
