@@ -61,8 +61,6 @@ public class SettingsMenu : MonoBehaviour
         }
 
         resDropDown.AddOptions(_resOptions);
-        
-        resDropDown.value = _resIndex; resDropDown.RefreshShownValue();
 
         LoadSettings();
         ApplySettings();
@@ -80,7 +78,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen()
     {
         _fullScreenInt = fullScreenToggle.isOn ? 1 : 0;
-        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         Screen.fullScreen = fullScreenToggle.isOn;
         PlayerPrefs.SetInt(Fullscreen, _fullScreenInt);
     }
