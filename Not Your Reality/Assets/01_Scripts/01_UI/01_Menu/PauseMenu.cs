@@ -6,12 +6,14 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject crosshairCanvas;
     [SerializeField] private string menuScene;
     [SerializeField] private FirstPersonController player;
     private bool _isPaused;
 
     private void Update()
     {
+        crosshairCanvas.SetActive(!_isPaused);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_isPaused)
