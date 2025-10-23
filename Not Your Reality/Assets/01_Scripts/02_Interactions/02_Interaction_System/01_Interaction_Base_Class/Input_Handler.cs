@@ -1,16 +1,47 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Input_Handler : MonoBehaviour
+public class InputHandler : MonoBehaviour
 {
-   private Interaction_Input_Data _interactionInputData;
-   public void Intialize(Interaction_Input_Data runtimeInput) { _interactionInputData = runtimeInput; }
-   private void Update() { GetInteractionInputData(); }
+    private InteractionInputData _interactionInputData;
 
-   private void GetInteractionInputData()
-   {
-      if (!_interactionInputData) return;
-      _interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.E);
-      _interactionInputData.InteractedHold = Input.GetKey(KeyCode.E);
-      _interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.E);
-   }
+    public void Initialize(InteractionInputData runtimeInput)
+    {
+        Keybinds.MainInput.Interaction.Interact.started += OnInteractStarted;
+        Keybinds.MainInput.Interaction.Interact.performed += WhileInteract;
+        Keybinds.MainInput.Interaction.Interact.canceled += OnInteractReleased;
+        _interactionInputData = runtimeInput;
+    }
+
+    private void OnDestroy()
+    {
+        Keybinds.MainInput.Interaction.Interact.started -= OnInteractStarted;
+        Keybinds.MainInput.Interaction.Interact.performed -= WhileInteract;
+        Keybinds.MainInput.Interaction.Interact.canceled -= OnInteractReleased;
+    }
+
+    private void OnInteractStarted(InputAction.CallbackContext context)
+    {
+        _interactionInputData.InteractedClicked = true;
+        _interactionInputData.InteractedHold = true;
+    }
+
+    private void WhileInteract(InputAction.CallbackContext context)
+    {
+        _interactionInputData.InteractedClicked = true;
+        _interactionInputData.InteractedHold = true;
+    }
+
+    private void OnInteractReleased(InputAction.CallbackContext context)
+    {
+        _interactionInputData.InteractedHold = false;
+        _interactionInputData.InteractedReleased = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (!_interactionInputData) return;
+        _interactionInputData.InteractedClicked = false;
+        _interactionInputData.InteractedReleased = false;
+    }
 }

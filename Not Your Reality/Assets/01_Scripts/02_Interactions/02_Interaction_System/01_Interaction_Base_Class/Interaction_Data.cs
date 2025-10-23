@@ -1,24 +1,17 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Interaction Data", menuName = "InteractionSystem/InteractionData")]
-public class Interaction_Data : ScriptableObject
+public class InteractionData : ScriptableObject
 {
-    
-    private Interactable_Base _interactableBase;
-
-    public Interactable_Base InteractableBase
-    {
-        get => _interactableBase;
-        set => _interactableBase = value;
-    }
+    public Interactable_Base InteractableBase { get; set; }
 
     public void Interact()
     {
-        _interactableBase.OnInteract();
+        InteractableBase.OnInteract();
         ResetData();
     }
 
-    public bool IsSameInteractable(Interactable_Base newInteractable) => _interactableBase == newInteractable;
-    public bool IsEmpty() => _interactableBase == null;
-    public void ResetData() => _interactableBase = null;
+    public bool IsSameInteractable(Interactable_Base newInteractable) => InteractableBase == newInteractable;
+    public bool IsEmpty() => InteractableBase == null;
+    public void ResetData() => InteractableBase = null;
 }

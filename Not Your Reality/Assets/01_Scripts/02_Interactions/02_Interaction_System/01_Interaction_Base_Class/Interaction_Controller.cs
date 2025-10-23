@@ -1,10 +1,10 @@
 using _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions;
 using UnityEngine;
 
-public class Interaction_Controller : MonoBehaviour
+public class InteractionController : MonoBehaviour
 {
    [Header("Data")]
-   [SerializeField] private Input_Handler inputHandler;
+   [SerializeField] private InputHandler inputHandler;
 
    [Header("UI")]
    [SerializeField] private InteractionUIPanel interactionUIPanel;
@@ -22,18 +22,18 @@ public class Interaction_Controller : MonoBehaviour
    private bool _interacting;
    private float _holdTimer;
 
-   private Interaction_Input_Data _interactionInputData;
-   private Interaction_Data _interactionData;
+   private InteractionInputData _interactionInputData;
+   private InteractionData _interactionData;
 
    private Interactable_Base _hoveredObject;
    private Interactable_Base _selectedObject;
 
    private void Awake()
    {
-      _camera = GetComponentInChildren<Camera>();
-      _interactionInputData = ScriptableObject.CreateInstance<Interaction_Input_Data>();
-      _interactionData = ScriptableObject.CreateInstance<Interaction_Data>();
-      inputHandler.Intialize(_interactionInputData);
+      _camera = Camera.main;
+      _interactionInputData = ScriptableObject.CreateInstance<InteractionInputData>();
+      _interactionData = ScriptableObject.CreateInstance<InteractionData>();
+      inputHandler.Initialize(_interactionInputData);
    }
 
    private void Update()

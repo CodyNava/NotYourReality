@@ -8,5 +8,5 @@ public interface IInteractable
 
     string TooltipMessage { get; }
 
-void OnInteract();
+    void OnInteract();
 }
