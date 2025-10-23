@@ -9,16 +9,17 @@ public class Puzzle_Mirror : Interactable_Base
              "<b>Off</b>: Mirror rotates Left and Right")]
     [SerializeField] private bool zRotation;
     
-    private bool _isHeld;
+   
+    [SerializeField]private bool _isHeld;
     private Camera _cam;
     private Rigidbody _rigidbody;
     private float _initialYRotation;
     private float _initialZRotation;
     private Vector3 _initialCamForward;
 
-    private void Awake()
+    private void Start()
     {
-        _cam = FindFirstObjectByType<Camera>();
+        _cam = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = false;
         _rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;

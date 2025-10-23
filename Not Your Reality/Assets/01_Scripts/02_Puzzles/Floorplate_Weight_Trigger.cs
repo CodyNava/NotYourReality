@@ -33,6 +33,7 @@ public class Floorplate_Weight_Trigger : MonoBehaviour
       _startPos = transform.position;
       _targetPos = _startPos;
       if (toggleDoor) _collider = winTarget.GetComponent<Collider>();
+      _collider.enabled = false;
    }
 
    private void FixedUpdate()
