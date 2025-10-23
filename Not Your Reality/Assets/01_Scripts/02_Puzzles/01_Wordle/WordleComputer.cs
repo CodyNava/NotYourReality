@@ -17,14 +17,6 @@ public class WordleComputer : Interactable_Base
         crosshairCanvas = crosshairCanvasGameObject.GetComponent<Canvas>();
     }
 
-    public void Update()
-    {
-        if (_isActive && Input.GetKeyUp(KeyCode.Escape))
-        {
-            ExitTerminal();
-        }
-    }
-
     public override void OnInteract()
     {
         base.OnInteract();
