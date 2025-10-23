@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
@@ -23,10 +24,15 @@ namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
 
       private void Awake()
       {
-         _cam = Camera.main;
          _rb = GetComponent<Rigidbody>();
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
+      }
+      private IEnumerator Start() {
+         while (_cam == null) {
+            _cam = Camera.main;
+            yield return null;
+         }
       }
 
       public override void OnInteract()

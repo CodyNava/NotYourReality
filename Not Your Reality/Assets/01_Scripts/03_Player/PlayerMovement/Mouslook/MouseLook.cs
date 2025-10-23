@@ -1,47 +1,52 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
     [Header("Settings")]
-    public Transform playerBody;
-    public Transform cameraHolder;
-    public float mouseSensitivity = 2f;
+    [SerializeField] private Transform playerBody;
+    [SerializeField] private Transform cameraHolder;
+    [SerializeField] private float mouseSensitivity = 2f;
 
     [Header("Clipping Settings")]
     [SerializeField] private float cameraRadius = 0.1f;
     [SerializeField] private LayerMask collisionLayers;
 
-    [Header("Input Action")]
-    public InputActionReference lookAction;
-
     private float xRotation = 0f;
     private Vector3 originalLocalPos;
+    private bool lookEnabled = true;
 
     private void Awake()
     {
         if (cameraHolder != null)
             originalLocalPos = cameraHolder.localPosition;
-    }
 
-    private void OnEnable() => lookAction?.action.Enable();
-    private void OnDisable() => lookAction?.action.Disable();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Update()
     {
-        if (lookAction == null || playerBody == null || cameraHolder == null) return;
+        if (!lookEnabled || playerBody == null || cameraHolder == null)
+            return;
 
         HandleMouseLook();
         HandleCameraClipping();
+
+        // Toggle Look mit Escape
+        if (Input.GetKeyDown(KeyCode.Escape))
+            ToggleLook();
     }
 
     private void HandleMouseLook()
     {
-        Vector2 lookInput = lookAction.action.ReadValue<Vector2>();
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        playerBody.Rotate(Vector3.up * lookInput.x * mouseSensitivity);
+        // Body dreht sich horizontal
+        playerBody.Rotate(Vector3.up * mouseX);
 
-        xRotation -= lookInput.y * mouseSensitivity;
+        // Kamera rotiert vertikal
+        xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
         cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
@@ -63,5 +68,12 @@ public class MouseLook : MonoBehaviour
         {
             cameraHolder.position = Vector3.Lerp(cameraHolder.position, desiredCamPos, 15f * Time.deltaTime);
         }
+    }
+
+    private void ToggleLook()
+    {
+        lookEnabled = !lookEnabled;
+        Cursor.lockState = lookEnabled ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !lookEnabled;
     }
 }
