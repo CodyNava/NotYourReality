@@ -17,6 +17,15 @@ public class WordleComputer : Interactable_Base
         crosshairCanvas = crosshairCanvasGameObject.GetComponent<Canvas>();
     }
 
+    private void Update()
+    {
+        if (_isActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
     public override void OnInteract()
     {
         base.OnInteract();
