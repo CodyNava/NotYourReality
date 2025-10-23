@@ -4858,6 +4858,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 397461241}
+    - target: {fileID: 2580482942623690341, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2764479440731040961, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
       propertyPath: m_Type
       value: 0
@@ -5030,6 +5034,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -6.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5881977968549996353, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6100679692154480522, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
       propertyPath: m_Type
       value: 2
@@ -5194,7 +5202,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 397461241}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2037966263762471055, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
+    - {fileID: 3212623105759964420, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
+    - {fileID: 2580482942623690341, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6233121444658007629, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
     - {fileID: 2928580753338784888, guid: 51364c4e839f7c24887a1bb41133dd66, type: 3}
@@ -20836,6 +20847,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4148949803381929052, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+      propertyPath: m_Constraints
+      value: 122
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327218979770825562, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5503796991583672414, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.53
