@@ -72,6 +72,8 @@ namespace _01_Scripts._03_Player.PlayerMovement.Playermovement_Scripts
 
       private void Update()
       {
+         if (cameraHolder == null) return;
+         if (_controller == null || !_controller.enabled) return;
          HandleMouseLook();
          HandleMovement();
          ApplyGravity();
