@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.PlayMainMenu();
+        //AudioManager.instance.PlayMainMenu();
     }
 
 
@@ -21,13 +21,13 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        AudioManager.instance.StopMainMenu();
+        //AudioManager.instance.StopMainMenu();
         SceneManager.LoadScene(gameScene);
     }
 
     public void QuitGame()
     {
-        AudioManager.instance.StopMainMenu();
+        //AudioManager.instance.StopMainMenu();
         Application.Quit();
     }
 }
