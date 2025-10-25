@@ -1,5 +1,20 @@
 {
   "dependencies": {
+    "com.overdrive.pbplus": {
+      "version": "file:com.overdrive.pbplus",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.overdrive.shared": "1.0.5",
+        "com.unity.probuilder": "6.0.0"
+      }
+    },
+    "com.overdrive.shared": {
+      "version": "file:com.overdrive.shared",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "10.2.1",
       "depth": 1,
