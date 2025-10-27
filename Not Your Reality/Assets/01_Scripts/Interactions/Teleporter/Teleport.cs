@@ -1,9 +1,10 @@
 using System.Collections;
 using _01_Scripts._03_Player.PlayerMovement.Playermovement_Scripts;
 using UnityEngine;
-
 public class Teleport : MonoBehaviour
 {
+    //Property for the Texture, the camera is Rendering 
+    private static readonly int Mask = Shader.PropertyToID("_Mask"); 
     [SerializeField] private Transform targetLocation;
     [SerializeField] private Camera portalCamera;
     [SerializeField] private Renderer portalScreen;
@@ -13,9 +14,9 @@ public class Teleport : MonoBehaviour
     {
         if (!portalCamera || !portalScreen) return;
         player = GameObject.FindGameObjectWithTag("Player");
-        var portalTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        var portalTexture = new RenderTexture(1024, 2048, 24);
         portalCamera.targetTexture = portalTexture;
-        portalScreen.material.mainTexture = portalTexture;
+        portalScreen.material.SetTexture(Mask, portalTexture);
     }
     
 
