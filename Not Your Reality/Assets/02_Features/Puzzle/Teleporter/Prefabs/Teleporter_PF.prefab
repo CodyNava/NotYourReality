@@ -131,9 +131,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8520843028223698749}
   - component: {fileID: 5607298743292786198}
-  - component: {fileID: 8732451931388132372}
   - component: {fileID: 1767149524492725601}
   - component: {fileID: 4502558735122671127}
+  - component: {fileID: 9001009308142793171}
   m_Layer: 0
   m_Name: PortalOutCam
   m_TagString: Untagged
@@ -207,14 +207,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8732451931388132372
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080025129322932586}
-  m_Enabled: 1
 --- !u!114 &1767149524492725601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,11 +263,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623e1bd26a54b48489d8453c7f0ce4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedPortal: {fileID: 0}
-  screen: {fileID: 0}
-  _playerCamera: {fileID: 0}
-  _portalCamera: {fileID: 0}
-  _viewTexture: {fileID: 0}
+  entryPortal: {fileID: 0}
+  exitPortal: {fileID: 0}
+  portalCamera: {fileID: 0}
+  playerCamera: {fileID: 0}
+--- !u!114 &9001009308142793171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080025129322932586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &4766034760898041843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLocation: {fileID: 7870859844511362149}
   portalCamera: {fileID: 5607298743292786198}
+  portalScreen: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &3810340631768990993
 MonoBehaviour:
@@ -1088,8 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623e1bd26a54b48489d8453c7f0ce4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedPortal: {fileID: 0}
-  screen: {fileID: 0}
-  _playerCamera: {fileID: 0}
-  _portalCamera: {fileID: 0}
-  _viewTexture: {fileID: 0}
+  entryPortal: {fileID: 0}
+  exitPortal: {fileID: 0}
+  portalCamera: {fileID: 0}
+  playerCamera: {fileID: 0}
