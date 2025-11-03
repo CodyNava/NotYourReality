@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 5503796991583672414}
   - component: {fileID: 6874790004823706588}
   - component: {fileID: 692332781787801146}
-  - component: {fileID: 5942993867541450028}
   - component: {fileID: 4148949803381929052}
   - component: {fileID: 3021767166360640070}
   - component: {fileID: 6916166284920186865}
@@ -126,36 +125,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5942993867541450028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5900628979139198040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d2c03c00eea2328439b045f6034038e8, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!54 &4148949803381929052
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -197,14 +166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 1.25
   sprintSpeed: 2
-  jumpForce: 0.35
-  gravity: -9.81
   moveActive: 1
-  jumpActive: 0
   acceleration: 10
   deceleration: 20
   stopThreshold: 0.2
-  airControlMultiplier: 0.5
   cameraHolder: {fileID: 2362332136989335655}
   mouseSensitivity: 2
   maxLookAngle: 80
@@ -216,6 +181,12 @@ MonoBehaviour:
   sprintBobFrequency: 15
   sprintBobAmplitude: 0.033
   sprintBobSway: 0.02
+  cameraRadius: 0.1
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  eyeHeight: 1.8
+  clipLerpSpeed: 15
 --- !u!136 &6916166284920186865
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -276,14 +247,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82a3740c3bdc28419480454a960908d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputHandler: {fileID: 7415491272098474915}
   interactionUIPanel: {fileID: 0}
+  playerCamera: {fileID: 8568008801164876246}
   rayDistance: 3
-  crosshair: {fileID: 0}
   raySphereRadius: 0.1
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  crosshair: {fileID: 0}
 --- !u!114 &7415491272098474915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +279,6 @@ GameObject:
   - component: {fileID: 8568008801164876246}
   - component: {fileID: 6858684812429145559}
   - component: {fileID: 3813537213009599553}
-  - component: {fileID: 5703295261072601836}
   - component: {fileID: -3015649171513681425}
   m_Layer: 0
   m_Name: Main Camera
@@ -435,26 +405,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &5703295261072601836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6253172860204063525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe1b9a5bbe6801a44bfdab46201cd13e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBody: {fileID: 5503796991583672414}
-  cameraHolder: {fileID: 2362332136989335655}
-  mouseSensitivity: 2
-  cameraRadius: 0.1
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  lookAction: {fileID: 0}
 --- !u!114 &-3015649171513681425
 MonoBehaviour:
   m_ObjectHideFlags: 0

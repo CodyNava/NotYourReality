@@ -1,10 +1,10 @@
-using System;
 using System.Collections;
+using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 
-namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
+namespace Interactions.Interaction_System.Interactions
 {
-   public class OpenDoor : Interactable_Base
+   public class OpenDoor : InteractableBase
    {
       [Space]
       [SerializeField] private float drag;
@@ -14,7 +14,7 @@ namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
       [SerializeField] private float lockAngle;
 
       private bool _isHeld;
-      [SerializeField] private Camera _cam;
+      private Camera _cam;
       private Rigidbody _rb;
       private float _initialYRotation;
       private Vector3 _initialCamForward;
@@ -28,8 +28,11 @@ namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
       }
-      private IEnumerator Start() {
-         while (_cam == null) {
+
+      private IEnumerator Start()
+      {
+         while (!_cam)
+         {
             _cam = Camera.main;
             yield return null;
          }
@@ -80,7 +83,7 @@ namespace _01_Scripts._02_Interactions._02_Interaction_System._02_Interactions
       {
          var hingeVelocity = Vector3.Project(_rb.angularVelocity, Vector3.up).magnitude;
          var angle = Quaternion.Angle(_rb.rotation, _lockRotation);
-         
+
          if (hingeVelocity < lockThreshold && angle < lockAngle)
          {
             _joint.useLimits = false;

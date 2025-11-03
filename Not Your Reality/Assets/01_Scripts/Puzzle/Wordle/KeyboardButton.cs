@@ -2,29 +2,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardButton : MonoBehaviour
+namespace Puzzle.Wordle
 {
-    private char _letter;
-    private Image background;
-    
-    public TextMeshProUGUI buttonLetter;
-    public WordlePuzzle wordlePuzzle;
+   public class KeyboardButton : MonoBehaviour
+   {
+      private char _letter;
+      private Image _background;
 
-    void Start()
-    {
-        _letter = buttonLetter.text[0];
-        GetComponent<Button>().onClick.AddListener(OnClick);
-        wordlePuzzle.RegisterKeyboardKey(this);
-        background = GetComponent<Image>();
-    }
+      public TextMeshProUGUI buttonLetter;
+      public WordlePuzzle wordlePuzzle;
 
-    void OnClick()
-    {
-        wordlePuzzle.OnKeyboardClick(_letter);
-    }
-    
-    public void SetColor(Color color)
-    {
-        background.color = color;
-    }
+      private void Start()
+      {
+         _letter = buttonLetter.text[0];
+         GetComponent<Button>().onClick.AddListener(OnClick);
+         wordlePuzzle.RegisterKeyboardKey(this);
+         _background = GetComponent<Image>();
+      }
+
+      private void OnClick() { wordlePuzzle.OnKeyboardClick(_letter); }
+
+      public void SetColor(Color color) { _background.color = color; }
+   }
 }

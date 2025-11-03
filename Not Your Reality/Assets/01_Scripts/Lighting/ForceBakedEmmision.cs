@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace _01_Scripts.Lighting
+namespace Lighting
 {
    [ExecuteAlways]
    public class ForceBakedEmission : MonoBehaviour
    {
       public Renderer[] targets;
-      void OnValidate() => Apply();
+      private void OnValidate() => Apply();
       void Apply()
       {
          foreach (var r in targets)

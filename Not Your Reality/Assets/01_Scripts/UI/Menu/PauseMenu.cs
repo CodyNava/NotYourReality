@@ -1,4 +1,4 @@
-using _01_Scripts._03_Player.PlayerMovement.Playermovement_Scripts;
+using Player.PlayerMovement.Movement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject crosshairCanvas;
     [SerializeField] private string menuScene;
-    [SerializeField] private FirstPersonController player;
+    [SerializeField] private PlayerController player;
     private bool _isPaused;
 
     private void Update()

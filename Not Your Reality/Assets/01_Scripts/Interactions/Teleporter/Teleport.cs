@@ -1,9 +1,8 @@
 using System.Collections;
-using _01_Scripts._03_Player.PlayerMovement.Playermovement_Scripts;
+using Player.PlayerMovement.Movement;
 using UnityEngine;
 public class Teleport : MonoBehaviour
 {
-    //Property for the Texture, the camera is Rendering 
     private static readonly int Mask = Shader.PropertyToID("_Mask"); 
     [SerializeField] private Transform targetLocation;
     [SerializeField] private Camera portalCamera;
@@ -34,7 +33,7 @@ public class Teleport : MonoBehaviour
         {
             case "Player":
                 var controller = player.GetComponent<CharacterController>();
-                var script = player.GetComponent<FirstPersonController>();
+                var script = player.GetComponent<PlayerController>();
         
                 script.MoveActive = false;
                 controller.enabled = false;
