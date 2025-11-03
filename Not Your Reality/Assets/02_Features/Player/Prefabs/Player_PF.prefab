@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 5327218979770825562}
   - component: {fileID: 7604080607814834838}
   - component: {fileID: 7415491272098474915}
+  - component: {fileID: 515194107437298156}
   m_Layer: 0
   m_Name: Player_PF
   m_TagString: Player
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82a3740c3bdc28419480454a960908d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputHandler: {fileID: 0}
+  inputHandler: {fileID: 7415491272098474915}
   interactionUIPanel: {fileID: 0}
   rayDistance: 3
   crosshair: {fileID: 0}
@@ -265,6 +266,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 567cc5f71a01b4e4dbc5614cf480bbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &515194107437298156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900628979139198040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef96e7b6ec9e8a42a1be5ed11932de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6253172860204063525
