@@ -10,6 +10,9 @@ namespace Editor
     {
         private static readonly string SrcRoot = "Assets/StreamingAssets/FMOD";
         private static readonly string DstRoot = "Audio/FMOD/Build";
+        
+        private const bool DeleteStaleBanks = true;   
+        private const bool VerboseLogs = true;      
 
         static FMODBankBackfill()
         {
@@ -17,18 +20,18 @@ namespace Editor
             EditorApplication.playModeStateChanged += s =>
             {
                 if (s == PlayModeStateChange.ExitingEditMode)
-                    EnsureBackfill(showDialogs: false);
+                    SyncBanks(showDialogs: false);
             };
         }
 
         private static void OneShot()
         {
             EditorApplication.update -= OneShot;
-            EnsureBackfill(showDialogs: false);
+            SyncBanks(showDialogs: false);
         }
 
         [MenuItem("FMOD/Backfill Project Build (from StreamingAssets)")]
-        public static void BackfillMenu() => EnsureBackfill(showDialogs: true);
+        public static void BackfillMenu() => SyncBanks(showDialogs: true);
 
         [MenuItem("FMOD/Show Bank Status")]
         public static void ShowStatus()
@@ -37,59 +40,81 @@ namespace Editor
             Debug.Log($"[FMOD] Status → SRC: {srcAbs} ({srcCount} .bank) | DST: {dstAbs} ({dstCount} .bank)");
         }
 
-        private static void EnsureBackfill(bool showDialogs)
+        private static void SyncBanks(bool showDialogs)
         {
             var (srcAbs, dstAbs, srcCount, dstCount) = Count();
-            
-            if (srcCount == 0)
+            var srcDesktop = Path.Combine(srcAbs, "Desktop");
+            var dstDesktop = Path.Combine(dstAbs, "Desktop");
+
+            if (srcCount == 0 || !Directory.Exists(srcDesktop))
             {
-                var msg = $"No .bank files under:\n{srcAbs}\n\n" +
-                          "Build in FMOD Studio (File → Build). " +
-                          "Build path should be the folder 'Assets/StreamingAssets/FMOD' (FMOD adds 'Desktop').";
+                var msg = $"No .bank files under: {srcAbs}. Build in FMOD Studio (File → Build).";
                 if (showDialogs) EditorUtility.DisplayDialog("FMOD Banks missing", msg, "OK");
-                else Debug.LogWarning("[FMOD] " + msg.Replace("\n", " "));
+                else Debug.LogWarning("[FMOD] " + msg);
                 return;
+            }
+
+            Directory.CreateDirectory(dstDesktop);
+
+            int added = 0, updated = 0, deleted = 0;
+            
+            foreach (var srcFile in Directory.GetFiles(srcDesktop, "*.bank", SearchOption.AllDirectories))
+            {
+                var rel = Path.GetRelativePath(srcDesktop, srcFile);
+                var dstFile = Path.Combine(dstDesktop, rel);
+                Directory.CreateDirectory(Path.GetDirectoryName(dstFile)!);
+
+                if (!File.Exists(dstFile))
+                {
+                    File.Copy(srcFile, dstFile, true);
+                    added++;
+                }
+                else
+                {
+                    var srcTime = File.GetLastWriteTimeUtc(srcFile);
+                    var dstTime = File.GetLastWriteTimeUtc(dstFile);
+                    if (srcTime > dstTime) { File.Copy(srcFile, dstFile, true); updated++; }
+                }
             }
             
-            if (dstCount == 0)
+            if (DeleteStaleBanks)
             {
-                var copied = CopyDesktopBanks(srcAbs, dstAbs);
-                Debug.Log($"[FMOD] Backfilled {copied} bank(s) into {Path.Combine(dstAbs, "Desktop")}.");
-                return;
+                foreach (var dstFile in Directory.GetFiles(dstDesktop, "*.bank", SearchOption.AllDirectories))
+                {
+                    var rel = Path.GetRelativePath(dstDesktop, dstFile);
+                    var srcFile = Path.Combine(srcDesktop, rel);
+                    if (!File.Exists(srcFile))
+                    {
+                        File.Delete(dstFile);
+                        var meta = dstFile + ".meta";
+                        if (File.Exists(meta)) File.Delete(meta);
+                        deleted++;
+                    }
+                }
             }
+            
+            if (added + updated > 0)
+            {
+                foreach (var f in Directory.GetFiles(dstDesktop, "*.bank", SearchOption.AllDirectories))
+                {
+                    var meta = f + ".meta";
+                    if (File.Exists(meta)) File.Delete(meta);
+                }
+            }
+
+            if (added + updated + deleted > 0) AssetDatabase.Refresh();
+
+            if (VerboseLogs || showDialogs)
+                Debug.Log($"[FMOD] Mirror complete → Added: {added}, Updated: {updated}, Deleted: {deleted}. (SRC {srcCount} | DST {dstCount})");
         }
 
         private static (string srcAbs, string dstAbs, int srcCount, int dstCount) Count()
         {
             var srcAbs = Path.GetFullPath(Path.Combine(Application.dataPath, "..", SrcRoot));
             var dstAbs = Path.GetFullPath(Path.Combine(Application.dataPath, "..", DstRoot));
-            var srcCount = Directory.Exists(srcAbs)
-                ? Directory.GetFiles(srcAbs, "*.bank", SearchOption.AllDirectories).Length
-                : 0;
-            var dstCount = Directory.Exists(dstAbs)
-                ? Directory.GetFiles(dstAbs, "*.bank", SearchOption.AllDirectories).Length
-                : 0;
+            int srcCount = Directory.Exists(srcAbs) ? Directory.GetFiles(srcAbs, "*.bank", SearchOption.AllDirectories).Length : 0;
+            int dstCount = Directory.Exists(dstAbs) ? Directory.GetFiles(dstAbs, "*.bank", SearchOption.AllDirectories).Length : 0;
             return (srcAbs, dstAbs, srcCount, dstCount);
-        }
-
-        private static int CopyDesktopBanks(string srcAbs, string dstAbs)
-        {
-            var srcDesktop = Path.Combine(srcAbs, "Desktop");
-            var dstDesktop = Path.Combine(dstAbs, "Desktop");
-            Directory.CreateDirectory(dstDesktop);
-
-            int copied = 0;
-            if (!Directory.Exists(srcDesktop)) return 0;
-
-            foreach (var srcFile in Directory.GetFiles(srcDesktop, "*.bank", SearchOption.AllDirectories))
-            {
-                var rel = Path.GetRelativePath(srcDesktop, srcFile);
-                var dstFile = Path.Combine(dstDesktop, rel);
-                Directory.CreateDirectory(Path.GetDirectoryName(dstFile)!);
-                File.Copy(srcFile, dstFile, true);
-                copied++;
-            }
-            return copied;
         }
     }
 }
