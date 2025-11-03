@@ -1,36 +1,39 @@
-using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace System.Audio
 {
-    public static AudioManager instance;
-
-    [SerializeField] private EventReference mainMenu;
-
-    private EventInstance _mainMenuInstance;
-
-    void Awake()
+    public class AudioManager : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        private static AudioManager _instance;
+
+        [SerializeField] private EventReference mainMenu;
+
+        private EventInstance _mainMenuInstance;
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (_instance && _instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            _mainMenuInstance = RuntimeManager.CreateInstance(mainMenu);
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        public void PlayMainMenu()
+        {
+            _mainMenuInstance.start();
+        }
 
-        _mainMenuInstance = RuntimeManager.CreateInstance(mainMenu);
-    }
-
-    public void PlayMainMenu()
-    {
-        _mainMenuInstance.start();
-    }
-
-    public void StopMainMenu()
-    {
-        _mainMenuInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        public void StopMainMenu()
+        {
+            _mainMenuInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
 }

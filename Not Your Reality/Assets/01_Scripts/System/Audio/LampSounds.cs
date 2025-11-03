@@ -1,23 +1,25 @@
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class LampSounds : MonoBehaviour
+namespace System.Audio
 {
-    [SerializeField] private EventReference lampBuzz;
-
-    private EventInstance eventInstance;
-
-    private void Start()
+    public class LampSounds : MonoBehaviour
     {
-        Buzz();
-    }
+        [SerializeField] private EventReference lampBuzz;
 
-    public void Buzz()
-    {
-        eventInstance = RuntimeManager.CreateInstance(lampBuzz.Guid);
-        eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
-        eventInstance.start();
+        private EventInstance _eventInstance;
+
+        private void Start()
+        {
+            Buzz();
+        }
+
+        public void Buzz()
+        {
+            _eventInstance = RuntimeManager.CreateInstance(lampBuzz.Guid);
+            _eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+            _eventInstance.start();
+        }
     }
 }

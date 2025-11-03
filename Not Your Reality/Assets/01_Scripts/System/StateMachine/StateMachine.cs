@@ -1,7 +1,6 @@
 using UnityEngine;
-using _01_Scripts._07_Enums._01_StateMachine;
 
-namespace _01_Scripts._06_System._01_StateMachine
+namespace System.StateMachine
 {
     public class StateMachine : MonoBehaviour
     {

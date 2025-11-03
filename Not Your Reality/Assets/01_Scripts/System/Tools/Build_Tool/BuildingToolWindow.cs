@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace _01_Scripts._04_Tools._01_Build_Tool
+namespace System.Tools.Build_Tool
 {
    public class BuildingToolWindow : EditorWindow
    {

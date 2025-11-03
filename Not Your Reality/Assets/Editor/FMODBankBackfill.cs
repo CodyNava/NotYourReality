@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Editor
 {
-    [InitializeOnLoad]
     public static class FMODBankBackfill
     {
         private static readonly string SrcRoot = "Assets/StreamingAssets/FMOD";
@@ -17,17 +16,13 @@ namespace Editor
         static FMODBankBackfill()
         {
             EditorApplication.update += OneShot;
-            EditorApplication.playModeStateChanged += s =>
-            {
-                if (s == PlayModeStateChange.ExitingEditMode)
-                    SyncBanks(showDialogs: false);
-            };
         }
 
         private static void OneShot()
         {
             EditorApplication.update -= OneShot;
             SyncBanks(showDialogs: false);
+            
         }
 
         [MenuItem("FMOD/Backfill Project Build (from StreamingAssets)")]
@@ -48,9 +43,6 @@ namespace Editor
 
             if (srcCount == 0 || !Directory.Exists(srcDesktop))
             {
-                var msg = $"No .bank files under: {srcAbs}. Build in FMOD Studio (File → Build).";
-                if (showDialogs) EditorUtility.DisplayDialog("FMOD Banks missing", msg, "OK");
-                else Debug.LogWarning("[FMOD] " + msg);
                 return;
             }
 

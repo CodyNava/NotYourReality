@@ -1,38 +1,41 @@
-using FMODUnity;
 using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FMODButtons : MonoBehaviour
+namespace System.Audio
 {
-    //[SerializeField] private EventReference buttonHover;
-    [SerializeField] private EventReference buttonPress;
-
-    //[SerializeField] private EventReference buttonDisabled;
-    //[SerializeField] private string parameterName;
-    //[SerializeField] private float value;
-    private EventInstance eventInstance;
-
-    [SerializeField] private Button button;
-
-    public void OnPress()
+    public class FMODButtons : MonoBehaviour
     {
-        if (button.interactable)
+        //[SerializeField] private EventReference buttonHover;
+        [SerializeField] private EventReference buttonPress;
+
+        //[SerializeField] private EventReference buttonDisabled;
+        //[SerializeField] private string parameterName;
+        //[SerializeField] private float value;
+        private EventInstance _eventInstance;
+
+        [SerializeField] private Button button;
+
+        public void OnPress()
         {
-            RuntimeManager.PlayOneShot(buttonPress, transform.position);
-            //  eventInstance.setParameterByName(parameterName, value);
-        }
-        /*else
+            if (button.interactable)
+            {
+                RuntimeManager.PlayOneShot(buttonPress, transform.position);
+                //  eventInstance.setParameterByName(parameterName, value);
+            }
+            /*else
         {
             RuntimeManager.PlayOneShot(buttonDisabled, transform.position);
             eventInstance.setParameterByName(parameterName, value);
         }*/
-    }
+        }
 
-    /* public void OnHover()
+        /* public void OnHover()
      {
          if (!button.interactable) return;
          RuntimeManager.PlayOneShot(buttonHover, transform.position);
          eventInstance.setParameterByName(parameterName, value);
      }*/
+    }
 }

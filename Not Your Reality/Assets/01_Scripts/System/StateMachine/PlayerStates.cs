@@ -1,4 +1,4 @@
-namespace _01_Scripts._07_Enums._01_StateMachine
+namespace System.StateMachine
 {
    public enum PlayerStates
    {
