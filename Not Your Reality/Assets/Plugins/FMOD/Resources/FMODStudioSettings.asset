@@ -310,7 +310,7 @@ MonoBehaviour:
   sourceProjectPath: Audio/FMOD/NYR.fspro
   sourceBankPath: Audio/FMOD/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 10
+  BankRefreshCooldown: -2
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -330,7 +330,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
