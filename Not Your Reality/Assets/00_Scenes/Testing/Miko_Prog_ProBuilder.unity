@@ -11002,7 +11002,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 2012276207}
-  m_VersionIndex: 7
+  m_VersionIndex: 10
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12226,7 +12226,8 @@ PrefabInstance:
       propertyPath: interactionUIPanel
       value: 
       objectReference: {fileID: 1257486822}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12949,37 +12950,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
---- !u!1 &1275503486
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1275503487}
-  m_Layer: 0
-  m_Name: System
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1275503487
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275503486}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3230023, y: 1.9298418, z: 0.59241647}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1322548155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13163,8 +13133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1502039014}
   - component: {fileID: 1502039013}
-  - component: {fileID: 1502039012}
   - component: {fileID: 1502039015}
+  - component: {fileID: 1502039016}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13172,14 +13142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!81 &1502039012
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502039011}
-  m_Enabled: 1
 --- !u!20 &1502039013
 Camera:
   m_ObjectHideFlags: 0
@@ -13290,6 +13252,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1502039016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502039011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1001 &1516600219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13832,7 +13808,7 @@ PrefabInstance:
       objectReference: {fileID: 579386285}
     - target: {fileID: 3076115110854526402, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
       propertyPath: m_VersionIndex
-      value: 2483
+      value: 2489
       objectReference: {fileID: 0}
     - target: {fileID: 5607298743292786198, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
       propertyPath: m_TargetTexture
@@ -13918,11 +13894,34 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2080025129322932586, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1922944242}
   m_SourcePrefab: {fileID: 100100000, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
+--- !u!1 &1922944241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2080025129322932586, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
+  m_PrefabInstance: {fileID: 1922944240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1922944242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922944241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1001 &1932783989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14437,7 +14436,7 @@ PrefabInstance:
       objectReference: {fileID: 408398986}
     - target: {fileID: 1821234627146464631, guid: 3a5639ae820a52343a93c68793c417b3, type: 3}
       propertyPath: m_VersionIndex
-      value: 10408
+      value: 10411
       objectReference: {fileID: 0}
     - target: {fileID: 3500693309145105663, guid: 3a5639ae820a52343a93c68793c417b3, type: 3}
       propertyPath: m_Mesh
@@ -14519,7 +14518,7 @@ PrefabInstance:
       objectReference: {fileID: 392967536}
     - target: {fileID: 5691559370066272094, guid: fec8dbf402338f04c947ddacfb4c7cb8, type: 3}
       propertyPath: m_VersionIndex
-      value: 88
+      value: 91
       objectReference: {fileID: 0}
     - target: {fileID: 5691559370066272094, guid: fec8dbf402338f04c947ddacfb4c7cb8, type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -32750,7 +32749,7 @@ PrefabInstance:
       objectReference: {fileID: 822348639}
     - target: {fileID: 7306292040551149560, guid: e6eb7d8dc1d31474788479965a9cb2a2, type: 3}
       propertyPath: m_VersionIndex
-      value: 95
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 7306292040551149560, guid: e6eb7d8dc1d31474788479965a9cb2a2, type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -50922,7 +50921,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1502039014}
-  - {fileID: 1275503487}
   - {fileID: 568880842}
   - {fileID: 2018208678}
   - {fileID: 344420261}

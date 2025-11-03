@@ -85,27 +85,37 @@ InitTestScene*.unity*
 *.ipr
 *.iws
 
-### FMOD Unity Integration ###
-# Never ignore DLLs in the FMOD subfolder, so make sure that the FMOD-folder is in the correct path.
-!/[Aa]ssets/Plugins/FMOD/**/*.dll
+### FMOD (Unity Integration stays tracked) ###
+# keep FMOD runtime libs in Git (otherwise game won't run)
+!/[Aa]ssets/Plugins/FMOD/**/lib/*
 
-# Don't ignore images and gizmos used by FMOD in the Unity Editor
-!/[Aa}ssets/Gizmos/FMOD/*
-!/[Aa}ssets/Editor Default Resources/FMOD/*
+# keep FMOD editor icons/gizmos
+!/[Aa]ssets/Gizmos/FMOD/*
+!/[Aa]ssets/Editor Default Resources/FMOD/*
 
-# Ignore the Cache-file since it is updated locally either way
-/[Aa]ssets/**/FMODStudioCache.asset
-/[Aa]ssets/**/FMODStudioCache.asset.meta
-/[Aa]ssets/Plugins/FMOD/Cache.meta
-/[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
+# FMOD Unity local cache (safe to ignore)
+/[Aa]ssets/Plugins/FMOD/Cache/**
 
-# Log-files
-fmod.log
+# generated banks (StreamingAssets) — do NOT version
+/[Aa]ssets/StreamingAssets/**/*.bank
+/[Aa]ssets/StreamingAssets/**/*.bank.meta
+
+# FMOD Studio project build + temp (your .fspro lives in /Audio/FMOD)
+/Audio/FMOD/**/Build/**
+/Audio/FMOD/**/Desktop/**
+/Audio/FMOD/**/.cache/**
+/Audio/FMOD/**/.user/**
+/Audio/FMOD/**/.unsaved/**
+
+# FSBank-Überbleibsel nur im FMOD-Projekt/Integration ignorieren
+/Audio/FMOD/**/*.fsbank
+/[Aa]ssets/Plugins/FMOD/**/*.fsbank
+
+# FMOD-spezifische Logs
 fmod_editor.log
+/[Aa]ssets/Plugins/FMOD/**/*.log
 
-# FMOD 1.10.x (Legacy)
-/Assets/FMODAssets/*
-/Assets/FMODStudioCache.meta
+
 
 
 # Addressables default ignores, before user customizations
