@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _01_Scripts._04_Tools._01_Build_Tool
+namespace System.Tools.Build_Tool
 {
    [CreateAssetMenu(fileName = "BuildingToolObjects", menuName = "BuildingTool")]
    public class BuildingToolObjects : ScriptableObject

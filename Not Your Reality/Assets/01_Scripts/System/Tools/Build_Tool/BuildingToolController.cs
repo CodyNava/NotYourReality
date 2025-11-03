@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-namespace _01_Scripts._04_Tools._01_Build_Tool
+namespace System.Tools.Build_Tool
 {
    [InitializeOnLoad]
    public static class BuildingModeController
@@ -38,7 +38,7 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
          _selectedPrefab = prefab;
          _isActive = true;
 
-         if (_previewInstance) { Object.DestroyImmediate(_previewInstance); }
+         if (_previewInstance) { UnityEngine.Object.DestroyImmediate(_previewInstance); }
 
          _previewInstance = null;
 
@@ -51,7 +51,7 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
       private static void StopGhostMode()
       {
          _isActive = false;
-         if (_previewInstance) { Object.DestroyImmediate(_previewInstance); }
+         if (_previewInstance) { UnityEngine.Object.DestroyImmediate(_previewInstance); }
 
          _previewInstance = null;
          _selectedPrefab = null;
@@ -62,9 +62,9 @@ namespace _01_Scripts._04_Tools._01_Build_Tool
       {
          if (!_selectedPrefab) { return; }
 
-         if (_previewInstance) { Object.DestroyImmediate(_previewInstance); }
+         if (_previewInstance) { UnityEngine.Object.DestroyImmediate(_previewInstance); }
 
-         _previewInstance = Object.Instantiate(_selectedPrefab);
+         _previewInstance = UnityEngine.Object.Instantiate(_selectedPrefab);
          _previewInstance.name = "[PREVIEW]";
 
          foreach (Renderer r in _previewInstance.GetComponentsInChildren<Renderer>())
