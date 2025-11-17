@@ -1,22 +1,30 @@
 using UnityEngine;
 
-public class PortalView : MonoBehaviour
+namespace Interactions.Teleporter
 {
-    [Space]
-    public Transform entryPortal;
-    public Transform exitPortal;
-    public Camera portalCamera;
-    public Camera playerCamera;
-
-    private void LateUpdate()
+    public class PortalView : MonoBehaviour
     {
-        if (!entryPortal || !exitPortal || !portalCamera || !playerCamera) return;
-        
-        var relativePos = entryPortal.InverseTransformPoint(playerCamera.transform.position);
-        var relativeRot = Quaternion.Inverse(entryPortal.rotation) * playerCamera.transform.rotation;
+        [Space]
+        [SerializeField] private Transform entryPortal;
+        [SerializeField] private Transform exitPortal;
+        [SerializeField] private Camera portalCamera;
+        private Camera _playerCamera;
 
-        portalCamera.transform.position = exitPortal.TransformPoint(relativePos);
-        portalCamera.transform.rotation = exitPortal.rotation * relativeRot;
+        private void Start()
+        {
+            _playerCamera = Camera.main;
+            portalCamera.fieldOfView = 80f;
+        }
+        private void LateUpdate()
+        {
+            if (!entryPortal || !exitPortal || !portalCamera || !_playerCamera) return;
         
+            var relativePos = entryPortal.InverseTransformPoint(_playerCamera.transform.position);
+            var relativeRot = Mathf.Atan2(relativePos.x, relativePos.z) * Mathf.Rad2Deg;
+
+            var exitRotation = Quaternion.AngleAxis(relativeRot, exitPortal.up) * exitPortal.rotation;
+            
+            portalCamera.transform.rotation = exitRotation;
+        }
     }
 }
