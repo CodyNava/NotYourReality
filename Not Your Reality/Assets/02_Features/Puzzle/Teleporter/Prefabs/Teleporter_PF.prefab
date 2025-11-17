@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 8520843028223698749}
   - component: {fileID: 5607298743292786198}
   - component: {fileID: 1767149524492725601}
-  - component: {fileID: 4502558735122671127}
   - component: {fileID: 9001009308142793171}
   m_Layer: 0
   m_Name: PortalOutCam
@@ -251,22 +250,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &4502558735122671127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080025129322932586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623e1bd26a54b48489d8453c7f0ce4e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entryPortal: {fileID: 0}
-  exitPortal: {fileID: 0}
-  portalCamera: {fileID: 0}
-  playerCamera: {fileID: 0}
 --- !u!114 &9001009308142793171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,7 +1005,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e17fad24a689c954ab98c037e3c72aa9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1080,7 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLocation: {fileID: 7870859844511362149}
   portalCamera: {fileID: 5607298743292786198}
-  portalScreen: {fileID: 0}
+  portalScreen: {fileID: 720932801423781120}
   player: {fileID: 0}
 --- !u!114 &3810340631768990993
 MonoBehaviour:
@@ -1094,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623e1bd26a54b48489d8453c7f0ce4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entryPortal: {fileID: 0}
-  exitPortal: {fileID: 0}
-  portalCamera: {fileID: 0}
+  entryPortal: {fileID: 7928104944792282694}
+  exitPortal: {fileID: 7870859844511362149}
+  portalCamera: {fileID: 5607298743292786198}
   playerCamera: {fileID: 0}
