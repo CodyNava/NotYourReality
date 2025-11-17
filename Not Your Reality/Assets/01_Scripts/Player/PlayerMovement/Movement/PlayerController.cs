@@ -43,6 +43,7 @@ namespace Player.PlayerMovement.Movement
       private Vector2 _moveInput;
       private Vector2 _lookInput;
       private bool _sprintingHeld;
+      private const float Gravity = -9.81f;
 
       private Vector3 _currentVelocity;
       private Vector3 _verticalVelocity;
@@ -108,6 +109,7 @@ namespace Player.PlayerMovement.Movement
          HandleHeadBob();
          HandleMovement();
          HandleCameraClipping();
+         ApplyGravity();
       }
 
       private void Move(InputAction.CallbackContext ctx)
@@ -184,6 +186,14 @@ namespace Player.PlayerMovement.Movement
 
          cameraHolder.localPosition = _originalCamLocalPos + new Vector3(x, y, 0f);
       }
+      private void ApplyGravity()
+      {
+         if (_cc.isGrounded && _verticalVelocity.y < 0f)
+            _verticalVelocity.y = -0.05f;
+
+         _verticalVelocity.y += Gravity * Time.deltaTime;
+      }
+
 
       private void HandleCameraClipping()
       {
