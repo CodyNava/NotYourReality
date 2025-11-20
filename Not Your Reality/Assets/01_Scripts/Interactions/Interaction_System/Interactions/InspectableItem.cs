@@ -10,6 +10,7 @@ namespace Interactions.Interaction_System.Interactions
     public class InspectableItem : InteractableBase
     {
         [SerializeField] private Volume volume;
+        [SerializeField] private float duration = 1.5f;
         private Camera _cam;
         private Transform _anchorTransform;
         private Quaternion _anchorRotation;
@@ -17,7 +18,7 @@ namespace Interactions.Interaction_System.Interactions
         private Vignette _vignette;
         private Vector3 _transform;
         private Quaternion _rotation;
-        [SerializeField] private float duration = 1.5f;
+        private Coroutine _inspect;
 
         private void Awake()
         {
@@ -31,16 +32,17 @@ namespace Interactions.Interaction_System.Interactions
         public override void OnInteract()
         {
             base.OnInteract();
-            StartCoroutine(!_isInspecting ? Inspect() : Release());
+            if (_inspect != null) StopCoroutine(_inspect);
+            _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
             Debug.Log(_isInspecting);
         }
         
         private IEnumerator Inspect()
         {
-            if (_cam != null)
-                _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
-            if (_cam != null)
-                _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
+            _isInspecting = true;
+            TooltipMessage = "";
+            _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
+            _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
             InputManager.Input.Player.Disable();
             var t = 0f;
             _vignette.intensity.value = 0.2f;
@@ -52,11 +54,12 @@ namespace Interactions.Interaction_System.Interactions
                 transform.rotation = Quaternion.Lerp(transform.rotation, _anchorRotation, t/duration);
                 yield return null;
             }
-            _isInspecting = true;
         }
 
         private IEnumerator Release()
         {
+            _isInspecting = false;
+            TooltipMessage = "Press E to Inspect";
             InputManager.Input.Player.Enable();
             _vignette.intensity.value = 0f;
             var t = 0f;
@@ -67,7 +70,6 @@ namespace Interactions.Interaction_System.Interactions
                 transform.rotation = Quaternion.Lerp(transform.rotation, _rotation, t/duration);
                 yield return null;
             }
-            _isInspecting = false;
         }
     }
 }
