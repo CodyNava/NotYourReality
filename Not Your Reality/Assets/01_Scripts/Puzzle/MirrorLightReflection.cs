@@ -9,17 +9,23 @@ namespace Puzzle
       [Space]
       [Tooltip("The length of the light beam for this puzzle")]
       [SerializeField] private float beamLength;
+      public float BeamLength => beamLength;
 
       [Tooltip("Allowed Reflections before the light stops")]
       [SerializeField] private int reflections;
+      public int Reflections => reflections;
+      
       [SerializeField] private Renderer targetRenderer;
       [SerializeField] private Material targetWinMaterial;
       [SerializeField] private Material targetDefaultMaterial;
       [SerializeField] private Collider doorCollider;
 
+      private Skull _skull;
+      public bool Splitting { get; private set; }
+
       private LineRenderer _lineRenderer;
       private readonly List<Vector3> _reflectionPoints = new List<Vector3>();
-      private bool _targetHit;
+      public bool TargetHit { get; set; }
 
       private void Awake()
       {
@@ -30,6 +36,7 @@ namespace Puzzle
 
       private void Update()
       {
+          TargetHit = false;
          _reflectionPoints.Clear();
          var currentPosition = transform.position;
          var currentDirection = transform.forward;
@@ -38,13 +45,6 @@ namespace Puzzle
          {
             if (Physics.Raycast(currentPosition, currentDirection, out var hit, beamLength))
             {
-               if (hit.collider.CompareTag("Player"))
-               {
-                  currentPosition = hit.point + currentDirection * 0.01f;
-                  i--;
-                  continue;
-               }
-
                _reflectionPoints.Add(hit.point);
 
                if (hit.collider.CompareTag("Mirror"))
@@ -55,13 +55,20 @@ namespace Puzzle
                else if (hit.collider.CompareTag("Goal"))
                {
                   _reflectionPoints.Add(hit.point);
-                  _targetHit = true;
+                  TargetHit = true;
                   break;
                }
-               else
+               else if (hit.collider.CompareTag("Death Trap"))
                {
-                  _targetHit = false;
-                  break;
+                   //TODO: GAME OVER and RESET
+                   break;
+               }
+               else if (hit.collider.CompareTag("Skull"))
+               {
+                   _skull = hit.collider.GetComponent<Skull>();
+                   Splitting = true;
+                   _skull.Split();
+                   break;
                }
             }
             else
@@ -69,10 +76,8 @@ namespace Puzzle
                _reflectionPoints.Add(currentPosition + currentDirection * beamLength);
                break;
             }
-
-            CheckWin();
          }
-
+         CheckWin();
          if (_reflectionPoints.Count > 1)
          {
             Vector3 lastPoint = _reflectionPoints[^1];
@@ -91,10 +96,10 @@ namespace Puzzle
 
       private void CheckWin()
       {
-         targetRenderer.material = _targetHit ? targetWinMaterial : targetDefaultMaterial;
-         doorCollider.enabled = _targetHit;
+         targetRenderer.material = TargetHit ? targetWinMaterial : targetDefaultMaterial;
+         doorCollider.enabled = TargetHit;
       }
 
-      private Vector3 Reflect(Vector3 direction, Vector3 normal) { return Vector3.Reflect(direction, normal); }
+      public Vector3 Reflect(Vector3 direction, Vector3 normal) { return Vector3.Reflect(direction, normal); }
    }
 }
