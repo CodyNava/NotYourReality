@@ -1,49 +1,73 @@
 ﻿using Interactions.Interaction_System.Interaction_Base_Class;
-using Player.PlayerMovement.Movement;
-using UnityEditor;
 using UnityEngine;
+using System.Collections;
+using System.Linq;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace Interactions.Interaction_System.Interactions
 {
     public class InspectableItem : InteractableBase
     {
-        private PlayerController _playerController;
+        [SerializeField] private Volume volume;
+        private Camera _cam;
+        private Transform _anchorTransform;
+        private Quaternion _anchorRotation;
         private bool _isInspecting;
+        private Vignette _vignette;
+        private Vector3 _transform;
+        private Quaternion _rotation;
+        [SerializeField] private float duration = 1.5f;
 
-        private void Start()
+        private void Awake()
         {
-            _playerController = FindFirstObjectByType<PlayerController>();
+            _cam = Camera.main;
+            _transform = transform.position;
+            _rotation = transform.rotation;
+            volume.profile.TryGet(out _vignette);
+            TooltipMessage = "Press E to Inspect";
         }
         
         public override void OnInteract()
         {
             base.OnInteract();
-            if (!_isInspecting)
-            {
-                Inspect();
-            }
-            else
-            {
-                Release();
-            }
+            StartCoroutine(!_isInspecting ? Inspect() : Release());
+            Debug.Log(_isInspecting);
         }
         
-        private void Inspect()
+        private IEnumerator Inspect()
         {
+            if (_cam != null)
+                _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
+            if (_cam != null)
+                _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
+            InputManager.Input.Player.Disable();
+            var t = 0f;
+            _vignette.intensity.value = 0.2f;
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                if (_anchorTransform != null)
+                    transform.position = Vector3.Lerp(transform.position, _anchorTransform.position, t / duration);
+                transform.rotation = Quaternion.Lerp(transform.rotation, _anchorRotation, t/duration);
+                yield return null;
+            }
             _isInspecting = true;
-            _playerController.enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            
-            //TODO: Blur Background/Add Vignette, Display Object in Center, Possibly Add Object Rotation (Via Click and Drag or 'Q' and 'E'
         }
 
-        private void Release()
+        private IEnumerator Release()
         {
+            InputManager.Input.Player.Enable();
+            _vignette.intensity.value = 0f;
+            var t = 0f;
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, _transform, t/duration);
+                transform.rotation = Quaternion.Lerp(transform.rotation, _rotation, t/duration);
+                yield return null;
+            }
             _isInspecting = false;
-            _playerController.enabled = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

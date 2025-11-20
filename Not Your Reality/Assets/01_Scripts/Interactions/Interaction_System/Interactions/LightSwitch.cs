@@ -9,7 +9,7 @@ namespace Interactions.Interaction_System.Interactions
       [Tooltip("All objects you want to be effected by the Switch")]
       [SerializeField] private List<GameObject> effectedObjects;
       private bool _interacted;
-
+      
       public override void OnInteract()
       {
          base.OnInteract();

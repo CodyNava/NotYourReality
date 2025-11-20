@@ -27,6 +27,7 @@ namespace Interactions.Interaction_System.Interactions
          _rb = GetComponent<Rigidbody>();
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
+         TooltipMessage = "Hold E to Interact";
       }
 
       private IEnumerator Start()

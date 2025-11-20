@@ -19,7 +19,8 @@ namespace Interactions.Interaction_System.Interactions
       private Vector3 _initialCamForward;
 
       private void Start()
-      {
+      { 
+          TooltipMessage = "Hold E to Rotate";
          _cam = Camera.main;
          _rigidbody = GetComponent<Rigidbody>();
          _rigidbody.isKinematic = false;
