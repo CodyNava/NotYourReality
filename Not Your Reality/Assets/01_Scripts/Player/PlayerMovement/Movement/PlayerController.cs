@@ -1,3 +1,4 @@
+using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -68,7 +69,6 @@ namespace Player.PlayerMovement.Movement
       private void Awake()
       {
          _cc = GetComponent<CharacterController>();
-         _input = new MainInput();
 
          if (cameraHolder) _originalCamLocalPos = cameraHolder.localPosition;
 
@@ -78,6 +78,8 @@ namespace Player.PlayerMovement.Movement
 
       private void OnEnable()
       {
+         _input = InputManager.Input;
+         
          _input.Player.Enable();
          _input.Player.Move.performed += Move;
          _input.Player.Move.canceled += Move;
