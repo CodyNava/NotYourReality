@@ -1,3 +1,4 @@
+using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,6 +44,7 @@ namespace Player.PlayerMovement.Movement
       private Vector2 _moveInput;
       private Vector2 _lookInput;
       private bool _sprintingHeld;
+      private const float Gravity = -9.81f;
 
       private Vector3 _currentVelocity;
       private Vector3 _verticalVelocity;
@@ -67,7 +69,6 @@ namespace Player.PlayerMovement.Movement
       private void Awake()
       {
          _cc = GetComponent<CharacterController>();
-         _input = new MainInput();
 
          if (cameraHolder) _originalCamLocalPos = cameraHolder.localPosition;
 
@@ -77,6 +78,8 @@ namespace Player.PlayerMovement.Movement
 
       private void OnEnable()
       {
+         _input = InputManager.Input;
+         
          _input.Player.Enable();
          _input.Player.Move.performed += Move;
          _input.Player.Move.canceled += Move;
@@ -108,6 +111,7 @@ namespace Player.PlayerMovement.Movement
          HandleHeadBob();
          HandleMovement();
          HandleCameraClipping();
+         ApplyGravity();
       }
 
       private void Move(InputAction.CallbackContext ctx)
@@ -184,6 +188,14 @@ namespace Player.PlayerMovement.Movement
 
          cameraHolder.localPosition = _originalCamLocalPos + new Vector3(x, y, 0f);
       }
+      private void ApplyGravity()
+      {
+         if (_cc.isGrounded && _verticalVelocity.y < 0f)
+            _verticalVelocity.y = -0.05f;
+
+         _verticalVelocity.y += Gravity * Time.deltaTime;
+      }
+
 
       private void HandleCameraClipping()
       {
