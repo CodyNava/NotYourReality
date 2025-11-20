@@ -13,7 +13,6 @@ namespace Puzzle
 
       [Tooltip("Allowed Reflections before the light stops")]
       [SerializeField] private int reflections;
-      public int Reflections => reflections;
       
       [SerializeField] private Renderer targetRenderer;
       [SerializeField] private Material targetWinMaterial;
@@ -21,11 +20,12 @@ namespace Puzzle
       [SerializeField] private Collider doorCollider;
 
       private Skull _skull;
-      public bool Splitting { get; private set; }
 
       private LineRenderer _lineRenderer;
       private readonly List<Vector3> _reflectionPoints = new List<Vector3>();
+      
       public bool TargetHit { get; set; }
+      private bool _continueTracing = true;
 
       private void Awake()
       {
@@ -36,46 +36,50 @@ namespace Puzzle
 
       private void Update()
       {
+          _continueTracing = true;
           TargetHit = false;
          _reflectionPoints.Clear();
+         
          var currentPosition = transform.position;
          var currentDirection = transform.forward;
          _reflectionPoints.Add(currentPosition);
-         for (var i = 0; i <= reflections; i++)
+         
+         for (var i = 0; i <= reflections && _continueTracing; i++)
          {
-            if (Physics.Raycast(currentPosition, currentDirection, out var hit, beamLength))
-            {
-               _reflectionPoints.Add(hit.point);
+             if (Physics.Raycast(currentPosition, currentDirection, out var hit, beamLength))
+             {
+                 _reflectionPoints.Add(hit.point);
 
-               if (hit.collider.CompareTag("Mirror"))
-               {
-                  currentPosition = hit.point;
-                  currentDirection = Reflect(currentDirection, hit.normal);
-               }
-               else if (hit.collider.CompareTag("Goal"))
-               {
-                  _reflectionPoints.Add(hit.point);
-                  TargetHit = true;
-                  break;
-               }
-               else if (hit.collider.CompareTag("Death Trap"))
-               {
-                   //TODO: GAME OVER and RESET
-                   break;
-               }
-               else if (hit.collider.CompareTag("Skull"))
-               {
-                   _skull = hit.collider.GetComponent<Skull>();
-                   Splitting = true;
-                   _skull.Split();
-                   break;
-               }
-            }
-            else
-            {
+                 switch (hit.collider.tag)
+                 {
+                     case "Mirror":
+                         currentPosition = hit.point;
+                         currentDirection = Reflect(currentDirection, hit.normal);
+                         break;
+
+                     case "Goal":
+                         _reflectionPoints.Add(hit.point);
+                         TargetHit = true;
+                         _continueTracing = false;
+                         break;
+
+                     case "Death Trap":
+                         // TODO: GAME OVER and RESET
+                         _continueTracing = false;
+                         break;
+
+                     case "Skull":
+                         _skull = hit.collider.GetComponent<Skull>();
+                         _skull.Split(reflections - i);
+                         _continueTracing = false;
+                         break;
+                 }
+             }
+             else
+             {
                _reflectionPoints.Add(currentPosition + currentDirection * beamLength);
                break;
-            }
+             }
          }
          CheckWin();
          if (_reflectionPoints.Count > 1)

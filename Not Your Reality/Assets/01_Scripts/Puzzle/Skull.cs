@@ -6,8 +6,10 @@ namespace Puzzle
     [ExecuteInEditMode]
     public class Skull : MonoBehaviour
     {
-        private List<LineRenderer> _lineRenderers;
         [SerializeField] private MirrorLightReflection reflection;
+        private List<LineRenderer> _lineRenderers;
+        private bool _continueTracing;
+        private bool _isActive;
 
         private void Awake()
         {
@@ -15,55 +17,63 @@ namespace Puzzle
             {
                 line.enabled = false;
             }
-            //reflection = GetComponentInParent<MirrorLightReflection>();
         }
 
         private void Update()
         {
             foreach (var line in GetComponentsInChildren<LineRenderer>())
             {
-                line.enabled = reflection.Splitting;
+                line.enabled = _isActive;
             }
+
+            _isActive = false;
         }
-        public void Split()
+        public void Split(int remainingReflections)
         {
+            _isActive = true;
             foreach (var line in GetComponentsInChildren<LineRenderer>())
             {
                 var linePoints = line.GetComponent<ReflectionPoints>().points;
                 linePoints.Clear();
+                
                 var currentPosition = transform.position;
                 var currentDirection = line.transform.forward;
                 linePoints.Add(currentPosition);
-                for (var i = 0; i < reflection.Reflections; i++)
+                
+                _continueTracing = true;
+                
+                for (var i = 0; i < remainingReflections && _continueTracing; i++)
                 {
                     if (Physics.Raycast(currentPosition, currentDirection, out var hit, reflection.BeamLength))
                     {
                         linePoints.Add(hit.point);
 
-                        if (hit.collider.CompareTag("Mirror"))
+                        switch (hit.collider.tag)
                         {
-                            currentPosition = hit.point;
-                            currentDirection = reflection.Reflect(currentDirection, hit.normal);
-                        }
-                        else if (hit.collider.CompareTag("Goal"))
-                        {
-                            linePoints.Add(hit.point);
-                            reflection.TargetHit = true;
-                            break;
-                        }
-                        else if (hit.collider.CompareTag("Death Trap"))
-                        {
-                            //TODO: GAME OVER and RESET
-                            break;
-                        }
-                        else if (hit.collider.CompareTag("Skull"))
-                        {
-                            var otherSkull = hit.collider.GetComponent<Skull>();
-                            if (otherSkull != null && otherSkull != this)
-                            {
-                                otherSkull.Split();
-                            }
-                            break;
+                            case "Mirror":
+                                currentPosition = hit.point;
+                                currentDirection = reflection.Reflect(currentDirection, hit.normal);
+                                break;
+
+                            case "Goal":
+                                linePoints.Add(hit.point);
+                                reflection.TargetHit = true;
+                                _continueTracing = false;
+                                break;
+
+                            case "Death Trap":
+                                // TODO: GAME OVER and RESET
+                                _continueTracing = false;
+                                break;
+
+                            case "Skull":
+                                var otherSkull = hit.collider.GetComponent<Skull>();
+                                if (otherSkull != null && otherSkull != this)
+                                {
+                                    otherSkull.Split(remainingReflections - i);
+                                }
+                                _continueTracing = false;
+                                break;
                         }
                     }
                     else
@@ -82,7 +92,6 @@ namespace Puzzle
                             linePoints.Add(lastPoint + lastDir * reflection.BeamLength);
                         }
                 }
-                line.enabled = true;
                 line.positionCount = linePoints.Count;
                 line.SetPositions(linePoints.ToArray());
             }
