@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace Puzzle
       [SerializeField] private Material targetWinMaterial;
       [SerializeField] private Material targetDefaultMaterial;
       [SerializeField] private Collider doorCollider;
+
+      [SerializeField] private float rotationTime = 3f;
 
       private Skull _skull;
 
@@ -69,6 +72,7 @@ namespace Puzzle
                          break;
 
                      case "Skull":
+                         StartCoroutine(TurnSkull(currentDirection, hit.collider));
                          _skull = hit.collider.GetComponent<Skull>();
                          _skull.Split(reflections - i);
                          _continueTracing = false;
@@ -84,8 +88,8 @@ namespace Puzzle
          CheckWin();
          if (_reflectionPoints.Count > 1)
          {
-            Vector3 lastPoint = _reflectionPoints[^1];
-            Vector3 lastDir = (_reflectionPoints.Count >= 2) ?
+            var lastPoint = _reflectionPoints[^1];
+            var lastDir = (_reflectionPoints.Count >= 2) ?
                (_reflectionPoints[^1] - _reflectionPoints[^2]).normalized : currentDirection;
 
             if (!Physics.Raycast(lastPoint, lastDir, out _))
@@ -96,6 +100,18 @@ namespace Puzzle
 
          _lineRenderer.positionCount = _reflectionPoints.Count;
          _lineRenderer.SetPositions(_reflectionPoints.ToArray());
+      }
+
+      private IEnumerator TurnSkull(Vector3 forward, Collider other)
+      {
+          var t = 0f;
+
+          while (t < rotationTime)
+          {
+              t += Time.deltaTime;
+              other.transform.rotation = Quaternion.Lerp(other.transform.rotation, Quaternion.LookRotation(forward),t/rotationTime);
+              yield return null;
+          }
       }
 
       private void CheckWin()
