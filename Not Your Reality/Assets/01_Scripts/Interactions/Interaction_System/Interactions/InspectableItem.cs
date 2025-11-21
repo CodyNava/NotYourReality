@@ -9,8 +9,10 @@ namespace Interactions.Interaction_System.Interactions
 {
     public class InspectableItem : InteractableBase
     {
-        [SerializeField] private Volume volume;
+        [Tooltip("The speed at which the Item goes into focus")]
         [SerializeField] private float duration = 1.5f;
+        
+        private Volume _volume;
         private Camera _cam;
         private Transform _anchorTransform;
         private Quaternion _anchorRotation;
@@ -25,7 +27,8 @@ namespace Interactions.Interaction_System.Interactions
             _cam = Camera.main;
             _transform = transform.position;
             _rotation = transform.rotation;
-            volume.profile.TryGet(out _vignette);
+            _volume = FindFirstObjectByType<Volume>();
+            _volume.profile.TryGet(out _vignette);
             TooltipMessage = "Press E to Inspect";
         }
         
