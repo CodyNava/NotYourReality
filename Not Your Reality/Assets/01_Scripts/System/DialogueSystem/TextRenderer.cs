@@ -10,9 +10,9 @@ namespace System.DialogueSystem
    {
       [Space(15f)]
       [Header("UI Refs")]
-      [SerializeField] TMP_Text subtitleTextUI;
-      [SerializeField] TMP_Text speakerNameUI;
-      [SerializeField] Image subtitleImageUI;
+      [SerializeField] private TMP_Text subtitleTextUI;
+      [SerializeField] private TMP_Text speakerNameUI;
+      [SerializeField] private Image subtitleImageUI;
 
       [Space(15f)]
       [Header("Fade")]
