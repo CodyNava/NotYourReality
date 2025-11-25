@@ -39,6 +39,12 @@ namespace Interactions.Interaction_System.Interactions
             _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
             Debug.Log(_isInspecting);
         }
+
+        private void Update()
+        {
+            Cursor.visible = _isInspecting;
+            Cursor.lockState = _isInspecting ? CursorLockMode.None : CursorLockMode.Locked;
+        }
         
         private IEnumerator Inspect()
         {
@@ -47,8 +53,6 @@ namespace Interactions.Interaction_System.Interactions
             _originalTransform = _camera.transform.position;
             _originalRotation = _camera.transform.rotation;
             InputManager.Input.Player.Disable();
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             var t = 0f;
             _vignette.intensity.value = 0.2f;
             while (t < duration)
@@ -65,8 +69,6 @@ namespace Interactions.Interaction_System.Interactions
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
             _vignette.intensity.value = 0f;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             var t = 0f;
             while (t < duration)
             {
