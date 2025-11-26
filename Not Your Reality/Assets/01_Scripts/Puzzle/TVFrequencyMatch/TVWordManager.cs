@@ -12,8 +12,8 @@ namespace Puzzle.TVFrequencyMatch
         [SerializeField]
         private TextAsset words;
 
-        public readonly List<(string original, string scrambled)> WordPairs = new();
-        public readonly List<(string original, string scrambled)> UsedPairs = new();
+        private readonly List<(string original, string scrambled)> _wordPairs = new();
+        private readonly List<(string original, string scrambled)> _usedPairs = new();
 
         public string OriginalWord { get; private set; }
         public string ScrambledWord { get; private set; }
@@ -32,19 +32,19 @@ namespace Puzzle.TVFrequencyMatch
                 var parts = line.Split('|');
                 var original = parts[0].Trim().ToUpper();
                 var scrambled = parts[1].Trim().ToUpper();
-                WordPairs.Add((original, scrambled));
+                _wordPairs.Add((original, scrambled));
             }
         }
 
         public void SelectPair()
         {
-            Debug.Log(UsedPairs.Count);
-            Debug.Log(WordPairs.Count);
+            Debug.Log(_usedPairs.Count);
+            Debug.Log(_wordPairs.Count);
             
-            var unusedIndices = new List<int>(WordPairs.Count);
-            for (var i = 0; i < WordPairs.Count; i++)
+            var unusedIndices = new List<int>(_wordPairs.Count);
+            for (var i = 0; i < _wordPairs.Count; i++)
             {
-                if (!UsedPairs.Contains(WordPairs[i]))
+                if (!_usedPairs.Contains(_wordPairs[i]))
                 {
                     unusedIndices.Add(i);
                 }
@@ -58,10 +58,10 @@ namespace Puzzle.TVFrequencyMatch
             }
             var randIndex = unusedIndices[Random.Range(0, unusedIndices.Count)];
 
-            OriginalWord = WordPairs[randIndex].original;
-            ScrambledWord = WordPairs[randIndex].scrambled;
+            OriginalWord = _wordPairs[randIndex].original;
+            ScrambledWord = _wordPairs[randIndex].scrambled;
 
-            UsedPairs.Add(WordPairs[randIndex]);
+            _usedPairs.Add(_wordPairs[randIndex]);
 
             Debug.Log(OriginalWord + ScrambledWord);
         }
