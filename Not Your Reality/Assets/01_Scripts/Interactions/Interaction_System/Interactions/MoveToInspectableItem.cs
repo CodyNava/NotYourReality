@@ -53,6 +53,7 @@ namespace Interactions.Interaction_System.Interactions
             _originalTransform = _camera.transform.position;
             _originalRotation = _camera.transform.rotation;
             InputManager.Input.Player.Disable();
+            InputManager.Input.UI.Disable();
             var t = 0f;
             _vignette.intensity.value = 0.2f;
             while (t < duration)
@@ -78,6 +79,7 @@ namespace Interactions.Interaction_System.Interactions
                 yield return null;
             }
             InputManager.Input.Player.Enable();
+            InputManager.Input.UI.Enable();
         }
     }
 }
