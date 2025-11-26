@@ -354,6 +354,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce7fb9d01ee115745a228b7a22c083a2, type: 3}
+--- !u!1 &447815081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4499416023626306238, guid: 118517650622c0444b56e0b050e38871, type: 3}
+  m_PrefabInstance: {fileID: 749934705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &447815083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447815081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 0
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 766502106}
+        m_TargetAssemblyTypeName: Puzzle.Wordle.WordlePuzzle, Assembly-CSharp
+        m_MethodName: WordKnitterFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &570726855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -427,6 +488,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 60308553404148191, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
+    - target: {fileID: 330871483727923459, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 364669293075385558, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -435,6 +504,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 512613539995130551, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 536648105850031302, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -443,10 +516,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 966318687324250804, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 1069731450301914488, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1278104921777283562, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 1412015293273185444, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -455,6 +536,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1767155185255625568, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
+    - target: {fileID: 1996798721145554528, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 2006763580313730560, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_Name
       value: WordleComputer
@@ -462,6 +551,14 @@ PrefabInstance:
     - target: {fileID: 2024286182425125312, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024286182425125312, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024286182425125312, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WordKnitterFocus
       objectReference: {fileID: 0}
     - target: {fileID: 2030546308493394650, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_LocalPosition.x
@@ -503,6 +600,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2309518534126874159, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 2499718037521775305, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -543,6 +644,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4575858738744750819, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 4581818615610057254, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -551,6 +656,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4675702303573864117, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 5219988727342597854, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -559,6 +668,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5592156214604554267, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 6039224154182981004, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -571,10 +684,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7001714550677806614, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001714550677806614, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001714550677806614, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8000001
+      objectReference: {fileID: 0}
     - target: {fileID: 7012696361637502024, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7304624893936654040, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 7555167727532954810, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -583,6 +712,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8538186796531875021, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      propertyPath: wordlePuzzle
+      value: 
+      objectReference: {fileID: 766502106}
     - target: {fileID: 8635880997433808475, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -624,10 +757,25 @@ PrefabInstance:
     - {fileID: 2767509243189471289, guid: 118517650622c0444b56e0b050e38871, type: 3}
     - {fileID: 5554842762042250134, guid: 118517650622c0444b56e0b050e38871, type: 3}
     - {fileID: 5575884374499165519, guid: 118517650622c0444b56e0b050e38871, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4499416023626306238, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 447815083}
   m_SourcePrefab: {fileID: 100100000, guid: 118517650622c0444b56e0b050e38871, type: 3}
+--- !u!114 &766502106 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8233867558340989803, guid: 118517650622c0444b56e0b050e38871, type: 3}
+  m_PrefabInstance: {fileID: 749934705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b04dcf7b6e5b94c8aa695f5a7f4bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1246790355
 GameObject:
   m_ObjectHideFlags: 0
