@@ -1,21 +1,18 @@
 using Interactions.Interaction_System.Interaction_Base_Class;
-using Player.PlayerMovement.Movement;
 using UnityEngine;
 
 namespace Puzzle.Wordle
 {
    public class WordleComputer : InteractableBase
    {
-      private bool _isActive = false;
-      [SerializeField] private PlayerController player;
+      private bool _isActive;
       [SerializeField] private GameObject computerCamera;
       [SerializeField] private Canvas crosshairCanvas;
 
       public void Start()
       {
          var crosshairCanvasGameObject = GameObject.FindGameObjectWithTag("Crosshair");
-         var playerGameObject = GameObject.FindGameObjectWithTag("Player");
-         player = playerGameObject.GetComponent<PlayerController>();
+
          crosshairCanvas = crosshairCanvasGameObject.GetComponent<Canvas>();
       }
 
@@ -42,8 +39,7 @@ namespace Puzzle.Wordle
          Cursor.visible = true;
          computerCamera.SetActive(true);
          crosshairCanvas.enabled = false;
-         player.MoveActive = false;
-         player.CameraActive = false;
+         InputManager.Input.Player.Disable();
       }
 
       public void ExitTerminal()
@@ -53,8 +49,7 @@ namespace Puzzle.Wordle
          Cursor.visible = false;
          computerCamera.SetActive(false);
          crosshairCanvas.enabled = true;
-         player.MoveActive = true;
-         player.CameraActive = true;
+         InputManager.Input.Player.Enable();
       }
    }
 }
