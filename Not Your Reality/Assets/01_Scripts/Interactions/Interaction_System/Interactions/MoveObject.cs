@@ -20,6 +20,7 @@ namespace Interactions.Interaction_System.Interactions
 
       private void Awake()
       {
+          TooltipMessage = "Hold E to Move Object";
          _cam = Camera.main;
          _rb = GetComponent<Rigidbody>();
       }

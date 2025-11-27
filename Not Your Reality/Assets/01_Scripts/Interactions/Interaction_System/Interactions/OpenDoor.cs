@@ -7,10 +7,14 @@ namespace Interactions.Interaction_System.Interactions
    public class OpenDoor : InteractableBase
    {
       [Space]
+      [Tooltip("The drag of the door")]
       [SerializeField] private float drag;
-      [Tooltip("The speed at which the object follows the mouse")]
+      [Tooltip("The speed at which the door follows the mouse")]
       [SerializeField] private float pullStrength;
+      [Header("Close and Lock Mechanism")]
+      [Tooltip("The maximum velocity the door is allowed to have to close and stay shut if the angle is low enough")]
       [SerializeField] private float lockThreshold;
+      [Tooltip("The angle at which the door closes and stays shut if the velocity is low enough")]
       [SerializeField] private float lockAngle;
 
       private bool _isHeld;
@@ -27,6 +31,7 @@ namespace Interactions.Interaction_System.Interactions
          _rb = GetComponent<Rigidbody>();
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
+         TooltipMessage = "Hold E to Interact";
       }
 
       private IEnumerator Start()

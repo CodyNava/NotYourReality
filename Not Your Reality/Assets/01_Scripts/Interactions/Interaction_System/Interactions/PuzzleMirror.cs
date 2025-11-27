@@ -5,7 +5,7 @@ namespace Interactions.Interaction_System.Interactions
 {
    public class PuzzleMirror : InteractableBase
    {
-      [Space]
+      [Header("Mirror Settings")]
       [Tooltip("The speed at which the object follows the mouse")]
       [SerializeField] private float dragSpeed;
       [Tooltip("<b>On</b>: Mirror rotates Up and Down \n" + "<b>Off</b>: Mirror rotates Left and Right")]
@@ -19,7 +19,8 @@ namespace Interactions.Interaction_System.Interactions
       private Vector3 _initialCamForward;
 
       private void Start()
-      {
+      { 
+          TooltipMessage = "Hold E to Rotate";
          _cam = Camera.main;
          _rigidbody = GetComponent<Rigidbody>();
          _rigidbody.isKinematic = false;

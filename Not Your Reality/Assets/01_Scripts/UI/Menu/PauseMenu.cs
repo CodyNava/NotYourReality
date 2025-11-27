@@ -1,56 +1,58 @@
-using Player.PlayerMovement.Movement;
+using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+namespace UI.Menu
 {
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject crosshairCanvas;
-    [SerializeField] private string menuScene;
-    [SerializeField] private PlayerController player;
-    private bool _isPaused;
-
-    private void Update()
+    public class PauseMenu : MonoBehaviour
     {
-        crosshairCanvas.SetActive(!_isPaused);
-        if (Input.GetKeyDown(KeyCode.Escape))
+        [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private GameObject settingsMenu;
+        [SerializeField] private GameObject crosshairCanvas;
+        [SerializeField] private string menuScene;
+        private bool _isPaused;
+
+        private void Update()
         {
-            if (_isPaused)
+            crosshairCanvas.SetActive(!_isPaused);
+            if (InputManager.Input.UI.Pause.WasPressedThisFrame())
             {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
+                if (_isPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
-    }
 
-    public void ResumeGame()
-    {
-        _isPaused = false;
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);   
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Time.timeScale = 1f;
-        player.enabled = true;
-    }
+        public void ResumeGame()
+        {
+            _isPaused = false;
+            InputManager.Input.Player.Enable();
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pauseMenu.SetActive(false);
+            settingsMenu.SetActive(false);   
+        }
 
-    private void PauseGame()
-    {
-        _isPaused = true;
-        settingsMenu.SetActive(false);
-        pauseMenu.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
-        player.enabled = false;
-    }
+        private void PauseGame()
+        {
+            _isPaused = true;
+            InputManager.Input.Player.Disable();
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            settingsMenu.SetActive(false);
+            pauseMenu.SetActive(true);
+        }
 
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(menuScene);
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene(menuScene);
+        }
     }
 }

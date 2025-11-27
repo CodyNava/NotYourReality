@@ -18,8 +18,6 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
       [SerializeField] private bool multipleUse;
       [Tooltip("<b>On:</b> The object can be interacted with\n" + "<b>Off:</b> The object cannot be interacted with")]
       [SerializeField] private bool isInteractable;
-      [Tooltip("The Prompt that shows when hovering over an object")]
-      [SerializeField] private string tooltipMessage = "Press E to Interact";
 
       public float HoldDuration => holdDuration;
       public bool HoldInteract => holdInteract;
@@ -27,7 +25,7 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
       public bool MultipleUse => multipleUse;
       public bool IsInteractable => isInteractable;
 
-      public string TooltipMessage => tooltipMessage;
+      public string TooltipMessage { get; protected set; } = "Press E to Interact";
 
       public virtual void OnInteract() { Debug.Log("Interacted" + gameObject.name); }
    }
