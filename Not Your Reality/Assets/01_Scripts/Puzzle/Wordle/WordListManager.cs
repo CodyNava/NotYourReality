@@ -31,7 +31,7 @@ namespace Puzzle.Wordle
             };
          }
 
-         targetWord = wordListData[UnityEngine.Random.Range(0, wordListData.Count)];
+         targetWord = wordListData[Random.Range(0, wordListData.Count)];
          Debug.Log(targetWord);
       }
    }
