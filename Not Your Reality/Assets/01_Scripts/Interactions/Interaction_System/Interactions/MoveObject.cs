@@ -1,3 +1,4 @@
+using System;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 
@@ -11,9 +12,11 @@ namespace Interactions.Interaction_System.Interactions
       [SerializeField] private float dragSpeed;
       [Tooltip("OPTIONAL: Weight for interacting with trigger plates")]
       [SerializeField] private float weight;
+      
 
       public float Weight => weight;
 
+      private Vector3 _cachedTarget;
       private Rigidbody _rb;
       private bool _isHeld;
       private Camera _cam;
@@ -38,13 +41,16 @@ namespace Interactions.Interaction_System.Interactions
          MoveItem();
       }
 
+      private void LateUpdate()
+      {
+         _cachedTarget = _cam.transform.position + _cam.transform.forward * holdingDistance;
+      }
+
       private void MoveItem()
       {
-         var currentPosition = gameObject.transform.position;
-         var targetPosition = _cam.transform.position + _cam.transform.forward * holdingDistance;
-         var time = Time.deltaTime * dragSpeed;
-         var lerp = Vector3.Lerp(currentPosition, targetPosition, time);
-         _rb.MovePosition(lerp);
+         var velocity = Vector3.zero;
+         var smoothlerp = Vector3.SmoothDamp(_rb.position, _cachedTarget, ref velocity, 0.05f);
+         _rb.MovePosition(smoothlerp);
       }
 
       public void Release()
