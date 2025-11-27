@@ -10,14 +10,15 @@ namespace Puzzle
         [Header("Beam Settings")]
         [Tooltip("The length of the Light beam for this puzzle")]
         [SerializeField] private float beamLength;
-
         public float BeamLength => beamLength;
 
         [Tooltip("Allowed reflections before the Light stops")]
         [SerializeField] private int reflections;
 
-        [Header("Target Settings")] [Tooltip("The renderer component of the Goal")]
+        [Header("Target Settings")]
+        [Tooltip("The renderer component of the Goal")]
         [SerializeField] private Renderer targetRenderer;
+        public bool TargetHit { get; set; }
 
         [Tooltip("The material the Goal should have when it is hit by the Light")]
         [SerializeField] private Material targetWinMaterial;
@@ -29,20 +30,21 @@ namespace Puzzle
         [SerializeField] private Collider doorCollider;
 
         [Header("Misc Settings")]
-        [Tooltip("The speed at which the Skull rotates to the desired position")]
-        [SerializeField] private float rotationSpeed = 3f;
+        [Tooltip("The speed at which the Skull rotates to the desired position.\n" + "<b>BASE VALUE:</b> 0.005f" )]
+        [Range(0f, 0.01f)]
+        [SerializeField] private float rotationSpeed = 0.005f;
+        public float RotationSpeed => rotationSpeed;
 
         private Skull _skull;
-        private Coroutine _turning;
+        public bool Splitting { get; private set; }
 
         private LineRenderer _lineRenderer;
         private readonly List<Vector3> _reflectionPoints = new List<Vector3>();
+        
+        private readonly List<GameObject> _objectsToReset = new List<GameObject>();
         private readonly List<Vector3> _initialPosition = new List<Vector3>();
         private readonly List<Quaternion> _initialRotation = new List<Quaternion>();
-        private readonly List<GameObject> _objectsToReset = new List<GameObject>();
 
-        public bool TargetHit { get; set; }
-        public bool Splitting { get; private set; }
         private bool _continueTracing = true;
 
         private void Awake()
@@ -96,9 +98,10 @@ namespace Puzzle
                             break;
 
                         case "Skull":
-                            StartCoroutine(TurnSkull(currentDirection, hit.collider));
                             _continueTracing = false;
                             _skull = hit.collider.GetComponent<Skull>();
+                            _skull.transform.rotation = Quaternion.Slerp(_skull.transform.rotation, Quaternion.LookRotation(currentDirection), rotationSpeed);
+                            _skull.Reached = Skull.HasReached(_skull.transform.rotation, Quaternion.LookRotation(currentDirection));
                             _skull.Split(reflections - i);
                             break;
                     }
@@ -127,17 +130,6 @@ namespace Puzzle
             _lineRenderer.positionCount = _reflectionPoints.Count;
             _lineRenderer.SetPositions(_reflectionPoints.ToArray());
         }
-       
-        private IEnumerator TurnSkull(Vector3 forward, Collider other)
-        {
-            var t = 0f;
-            while (t < rotationSpeed)
-            {
-                t += Time.deltaTime;
-                other.transform.rotation = Quaternion.Lerp(other.transform.rotation, Quaternion.LookRotation(forward),t / rotationSpeed);
-                yield return null;
-            }
-        }
 
         private void CheckWin()
         {
@@ -146,23 +138,21 @@ namespace Puzzle
             doorCollider.enabled = TargetHit;
         }
 
-        public Vector3 Reflect(Vector3 direction, Vector3 normal)
+        public static Vector3 Reflect(Vector3 direction, Vector3 normal)
         {
             return Vector3.Reflect(direction, normal);
         }
 
         public IEnumerator ResetRiddle()
         {
-            Debug.Log("DEATH");
+            _lineRenderer.enabled = false;
             for (var i = 0; i < _objectsToReset.Count; i++)
             {
-                Debug.Log("RESET");
                 _objectsToReset[i].transform.position = _initialPosition[i];
                 _objectsToReset[i].transform.rotation = _initialRotation[i];
                 yield return null;
             }
+            _lineRenderer.enabled = true;
         }
-
-        
     }
 }

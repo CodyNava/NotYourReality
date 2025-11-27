@@ -9,6 +9,7 @@ namespace Puzzle
         private MirrorLightReflection _reflection;
         private List<LineRenderer> _lineRenderers;
         private bool _continueTracing;
+        public bool Reached { get; set; }
 
         private void Awake()
         {
@@ -23,12 +24,25 @@ namespace Puzzle
         {
             foreach (var line in GetComponentsInChildren<LineRenderer>())
             {
-                line.enabled = _reflection.Splitting;
-            } 
+                if (_reflection.Splitting && Reached)
+                {
+                    line.enabled = true;
+                }
+                else
+                {
+                    line.enabled = false;
+                }
+            }
+        }
+
+        public static bool HasReached(Quaternion current, Quaternion final)
+        {
+            return Quaternion.Angle(current, final) < 7;
         }
         
         public void Split(int remainingReflections)
         {
+            if (!Reached) return;
             foreach (var line in GetComponentsInChildren<LineRenderer>())
             {
                 var linePoints = line.GetComponent<ReflectionPoints>().points;
@@ -50,7 +64,7 @@ namespace Puzzle
                         {
                             case "Mirror":
                                 currentPosition = hit.point;
-                                currentDirection = _reflection.Reflect(currentDirection, hit.normal);
+                                currentDirection = MirrorLightReflection.Reflect(currentDirection, hit.normal);
                                 break;
 
                             case "Goal":
@@ -68,6 +82,8 @@ namespace Puzzle
                                 var otherSkull = hit.collider.GetComponent<Skull>();
                                 if (otherSkull != null && otherSkull != this)
                                 {
+                                    otherSkull.transform.rotation = Quaternion.Slerp(otherSkull.transform.rotation, Quaternion.LookRotation(currentDirection), _reflection.RotationSpeed);
+                                    otherSkull.Reached = HasReached(otherSkull.transform.rotation, Quaternion.LookRotation(currentDirection));
                                     otherSkull.Split(remainingReflections - i);
                                 }
                                 _continueTracing = false;
