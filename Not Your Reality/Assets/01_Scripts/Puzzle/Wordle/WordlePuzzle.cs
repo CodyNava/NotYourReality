@@ -9,15 +9,12 @@ namespace Puzzle.Wordle
 
         [Header("References")]
         [SerializeField] private WordListManager wordList;
-
         [SerializeField] private Transform wordleBoard;
         [SerializeField] private Transform wordKnitterBoard;
         [SerializeField] private int maxGuesses = 6;
-        //[SerializeField] private Collider doorCollider;
 
         [Header("Colors")]
         [SerializeField] private Color correctColor = Color.green;
-
         [SerializeField] private Color presentColor = Color.yellow;
         [SerializeField] private Color incorrectColor = Color.red;
         [SerializeField] private Color defaultColor = Color.white;
@@ -29,30 +26,35 @@ namespace Puzzle.Wordle
         private bool _isGameOver;
         private WordKnitterTile _selectedTile;
 
-        private readonly List<List<LetterTile>> _wordleBoard = new();
-        private readonly List<List<LetterTile>> _wordKnitterBoard = new();
+        private readonly List<List<LetterTile>> _wordleBoardTiles = new();
+        private readonly List<List<LetterTile>> _wordKnitterBoardTiles = new();
 
+        // ---------------------------
+        // UNITY LIFECYCLE
+        // ---------------------------
         private void Start()
         {
-            /* if (doorCollider)
-             {
-                 doorCollider.enabled = false;
-             }*/
-
             ResetWordl();
         }
 
+        // ---------------------------
+        // RESET WORDLE BOARD
+        // ---------------------------
         private void ResetWordl()
         {
             _currentGuess = 0;
             _isGameOver = false;
             _currentInput = "";
+
+            _wordleBoardTiles.Clear();
+
             foreach (Transform row in wordleBoard)
             {
                 List<LetterTile> rowTiles = new();
-                foreach (Transform tileobj in row)
+
+                foreach (Transform tileObj in row)
                 {
-                    var tile = tileobj.GetComponent<LetterTile>();
+                    var tile = tileObj.GetComponent<LetterTile>();
                     if (tile)
                     {
                         rowTiles.Add(tile);
@@ -61,31 +63,34 @@ namespace Puzzle.Wordle
                     }
                 }
 
-                _wordleBoard.Add(rowTiles);
+                _wordleBoardTiles.Add(rowTiles);
             }
         }
 
+        // ---------------------------
+        // TILE SELECTION (WORDKNITTER)
+        // ---------------------------
         public void SelectTile(WordKnitterTile tile)
         {
-            if (_selectedTile == null)
-            {
-                _selectedTile = tile;
-                _selectedTile.SetColor(Color.cyan);
-            }
-
-            if (_selectedTile != tile)
-            {
+            if (_selectedTile != null)
                 _selectedTile.SetColor(defaultColor);
-                _selectedTile = tile;
-                _selectedTile.SetColor(Color.cyan);
-            }
 
-            Debug.Log("Selected Tile:" + tile);
+            _selectedTile = tile;
+            _selectedTile.SetColor(Color.cyan);
+
+            Debug.Log("[KNITTER] Tile Selected: " + tile);
+
+            WordKnitterFocusButton();
         }
 
+        // ---------------------------
+        // KEYBOARD INPUT
+        // ---------------------------
         public void OnKeyboardClick(char letter)
         {
             if (_isGameOver) return;
+
+            // WORDLE MODE
             if (_wordleFocus)
             {
                 if (_currentInput.Length < 5)
@@ -95,13 +100,13 @@ namespace Puzzle.Wordle
                 }
             }
 
+            // KNITTER MODE
             if (_wordKnitterFocus)
             {
-                Debug.Log("Word Knitter Keyboard Clicked");
+                Debug.Log("[KNITTER] Keyboard letter pressed: " + letter);
                 if (_selectedTile == null) return;
-                
-                _selectedTile.SetLetter(letter);    
-                
+
+                _selectedTile.SetLetter(letter);
             }
         }
 
@@ -109,13 +114,14 @@ namespace Puzzle.Wordle
         {
             if (_isGameOver) return;
 
+            // WORDLE
             if (_wordleFocus)
             {
                 if (action == "BACK")
                 {
                     if (_currentInput.Length > 0)
                     {
-                        _currentInput = _currentInput.Substring(0, _currentInput.Length - 1);
+                        _currentInput = _currentInput[..^1];
                         UpdateCurrentRow();
                     }
                 }
@@ -125,6 +131,7 @@ namespace Puzzle.Wordle
                 }
             }
 
+            // KNITTER
             if (_wordKnitterFocus)
             {
                 if (_selectedTile == null) return;
@@ -135,7 +142,7 @@ namespace Puzzle.Wordle
                 }
                 else if (action == "ENTER")
                 {
-                    //TODO Submit für den WordKnitter bauen.
+                    // TODO: Submit logic
                 }
             }
         }
@@ -145,54 +152,49 @@ namespace Puzzle.Wordle
             for (int i = 0; i < 5; i++)
             {
                 if (i < _currentInput.Length)
-                {
-                    _wordleBoard[_currentGuess][i].SetLetter(_currentInput[i]);
-                }
+                    _wordleBoardTiles[_currentGuess][i].SetLetter(_currentInput[i]);
                 else
-                {
-                    _wordleBoard[_currentGuess][i].SetLetter(' ');
-                }
+                    _wordleBoardTiles[_currentGuess][i].SetLetter(' ');
             }
         }
 
+        // ---------------------------
+        // WORDLE GUESS LOGIC
+        // ---------------------------
         private void SubmitGuess()
         {
             if (_currentInput.Length != 5)
             {
-                Debug.Log("Guess must be 5 characters long");
+                Debug.Log("Guess must be 5 characters long.");
                 return;
             }
 
-            LetterState[] feedback = CheckGuess(_currentInput, wordList.targetWord);
+            var feedback = CheckGuess(_currentInput, wordList.targetWord);
 
             for (int i = 0; i < 5; i++)
             {
                 char guessedLetter = char.ToUpper(_currentInput[i]);
+
                 if (_keyboardButtons.TryGetValue(guessedLetter, out KeyboardButton key))
                 {
-                    Color color = feedback[i] switch
+                    Color col = feedback[i] switch
                     {
                         LetterState.Correct => correctColor,
                         LetterState.Present => presentColor,
                         _ => incorrectColor
                     };
-                    _wordleBoard[_currentGuess][i].SetColor(color);
-                    if (color != correctColor && color != presentColor)
-                    {
+
+                    _wordleBoardTiles[_currentGuess][i].SetColor(col);
+
+                    if (col == incorrectColor)
                         key.SetColor(Color.gray);
-                    }
                 }
             }
 
             if (_currentInput.ToUpper() == wordList.targetWord)
             {
-                Debug.Log("You Win");
+                Debug.Log("[WORDLE] You win!");
                 _isGameOver = true;
-                /*if (doorCollider != null)
-                {
-                    doorCollider.enabled = true;
-                }*/
-
                 return;
             }
 
@@ -201,28 +203,20 @@ namespace Puzzle.Wordle
 
             if (_currentGuess >= maxGuesses)
             {
-                Debug.Log("You Lose");
+                Debug.Log("[WORDLE] You lose.");
                 ResetWordl();
             }
         }
 
-        private enum LetterState
-        {
-            Absent,
-            Present,
-            Correct
-        }
+        private enum LetterState { Absent, Present, Correct }
 
         private static LetterState[] CheckGuess(string guess, string target)
         {
             guess = guess.ToUpper().Trim();
             target = target.ToUpper().Trim();
 
-            Debug.Log(guess);
-            Debug.Log(target);
-
             LetterState[] result = new LetterState[guess.Length];
-            List<char> targetLetters = new List<char>(target);
+            List<char> targetLetters = new(target);
 
             for (int i = 0; i < guess.Length; i++)
             {
@@ -254,33 +248,39 @@ namespace Puzzle.Wordle
         public void RegisterKeyboardKey(KeyboardButton key)
         {
             char letter = char.ToUpper(key.buttonLetter.text[0]);
-            if (!_keyboardButtons.ContainsKey(letter)) _keyboardButtons.Add(letter, key);
+            if (!_keyboardButtons.ContainsKey(letter))
+                _keyboardButtons.Add(letter, key);
         }
 
-        public void WordKnitterFocus()
+        // ---------------------------
+        // FOCUS SYSTEM
+        // ---------------------------
+        public enum Focus
         {
-            Debug.Log("Word Knitter Focus");
-            _wordKnitterFocus = true;
-            SwapFocus();
+            None,
+            Wordle,
+            WordKnitter
         }
 
-        public void WordleFocus()
+        private Focus _focus = Focus.None;
+
+        public void SetFocus(Focus f)
         {
-            Debug.Log("Wordle Focus");
-            _wordleFocus = true;
-            SwapFocus();
+            _focus = f;
+            _wordleFocus = (f == Focus.Wordle);
+            _wordKnitterFocus = (f == Focus.WordKnitter);
+
+            Debug.Log("[FOCUS] Switched to: " + _focus);
         }
 
-        private void SwapFocus()
+        public void WordKnitterFocusButton()
         {
-            if (_wordKnitterFocus)
-            {
-                _wordleFocus = false;
-            }
-            else if (_wordleFocus)
-            {
-                _wordKnitterFocus = false;
-            }
+            SetFocus(Focus.WordKnitter);
+        }
+
+        public void WordleFocusButton()
+        {
+            SetFocus(Focus.Wordle);
         }
     }
 }
