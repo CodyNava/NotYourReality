@@ -7,23 +7,25 @@ namespace Puzzle.TVFrequencyMatch
     public class TVFrequencyMatch : MonoBehaviour
     {
         [SerializeField] private Collider doorCollider;
-        private List<TVManager> _tvManagers;
+        private readonly List<TVManager> _tvManagers = new ();
 
-        private void Awake()
+        private void Start()
         {
             foreach (Transform child in transform)
             {
-                _tvManagers.Add(child.GetComponent<TVManager>());
+                foreach (Transform grandChild in child)
+                {
+                    if (!grandChild.CompareTag("TV")) continue;
+                    _tvManagers.Add(grandChild.GetComponent<TVManager>());
+                }
             }
         }
 
         public void Status()
         {
             var winCounter = _tvManagers.Count(tvManager => tvManager.Completed);
-            if (winCounter == _tvManagers.Count)
-            {
-                if (doorCollider) doorCollider.enabled = true;
-            }
+            if (winCounter != _tvManagers.Count) return;
+            if (doorCollider) doorCollider.enabled = true;
         }
     }
 }

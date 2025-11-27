@@ -696,6 +696,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!65 &554044292 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2969921950217299414, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
+  m_PrefabInstance: {fileID: 60265382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &603845794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1023313712229891673, guid: b1dc2ec618cb5e14f96e192052fd290f, type: 3}
@@ -1758,6 +1763,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 34582849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1747011496 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8568008801164876246, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
+  m_PrefabInstance: {fileID: 1959502405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1758716757 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5607298743292786198, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
@@ -2121,6 +2131,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TVFrequencyMatch_PF
       objectReference: {fileID: 0}
+    - target: {fileID: 1775286255564181770, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
+      propertyPath: m_TagString
+      value: TV
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167926716289640395, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
+      propertyPath: tvLetters.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442631025298335022, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1747011496}
     - target: {fileID: 8320513064397421886, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2186,7 +2208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb382cf1ad7e58046a8e5832a274365d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorCollider: {fileID: 0}
+  doorCollider: {fileID: 554044292}
 --- !u!1001 &887732611139975641
 PrefabInstance:
   m_ObjectHideFlags: 0
