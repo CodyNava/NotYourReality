@@ -23,7 +23,11 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
       public bool HoldInteract => holdInteract;
       public bool IsHolding => isHolding;
       public bool MultipleUse => multipleUse;
-      public bool IsInteractable => isInteractable;
+      public bool IsInteractable
+      {
+         get => isInteractable;
+         set => isInteractable = value;
+      }
 
       public string TooltipMessage { get; protected set; } = "Press E to Interact";
 

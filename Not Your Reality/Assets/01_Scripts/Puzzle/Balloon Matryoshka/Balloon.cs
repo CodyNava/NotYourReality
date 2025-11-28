@@ -29,7 +29,7 @@ namespace Puzzle.Balloon_Matryoshka
             //TODO: Add Rope Rigidbody
             /*_rb = GetComponent<Rigidbody>();
             _rope = GetComponent<SpringJoint>();
-            _rope.connectedBody = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();*/
+            _rope.connectedBody = GameObject.FindWithTag("Rope").GetComponent<Rigidbody>();*/
             _balloonChecker = GetComponentInParent<BalloonChecker>();
         }
 
