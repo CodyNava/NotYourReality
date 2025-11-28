@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Interactions.Interaction_System.Interactions;
 using UnityEngine;
 
 namespace Puzzle.Wordle
@@ -23,6 +24,7 @@ namespace Puzzle.Wordle
 
         [Header("Animation")]
         [SerializeField] private float revealDuration = 1.5f;
+        [SerializeField] private OpenDoor door;
 
         private bool _isRevealing;
         private float _perLetterDelay;
@@ -71,7 +73,7 @@ namespace Puzzle.Wordle
             ResetWordKnitter();
             BuildKnitterWordTiles();
             _knitterSolutions = knitterBundles.chosenBundle;
-
+            door.IsInteractable = false;
             Debug.Log("[KNITTER] Knitter Solutions: " + _knitterSolutions.Count);
         }
 
@@ -602,6 +604,7 @@ namespace Puzzle.Wordle
             {
                 Debug.Log("Word Knitter: All tiles are correct.");
                 _isGameOver = true;
+                door.IsInteractable = true;
             }
             else if (!allWordsSolved)
             {
