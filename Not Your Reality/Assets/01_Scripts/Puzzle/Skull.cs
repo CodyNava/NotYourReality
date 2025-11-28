@@ -92,6 +92,9 @@ namespace Puzzle
                             case "Goal":
                                 linePoints.Add(hit.point);
                                 _continueTracing = false;
+                                var goal = hit.collider.GetComponent<ReflectionGoal>();
+                                if (goal.BeenHit()) break;
+                                goal.RegisterHit(hit.point);
                                 break;
 
                             case "Death Trap":
@@ -130,9 +133,8 @@ namespace Puzzle
                         linePoints.Add(currentPosition + currentDirection * lightSource.BeamLength);
                         break;
                     }
-
-                    lightSource.TargetHit = hit.collider.CompareTag("Goal");
                 }
+                mirrorLightReflection.CheckWin();
                 if (linePoints.Count > 1)
                 {
                         var lastPoint = linePoints[^1];
