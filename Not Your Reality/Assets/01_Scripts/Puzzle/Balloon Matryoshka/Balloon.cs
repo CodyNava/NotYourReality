@@ -17,12 +17,19 @@ namespace Puzzle.Balloon_Matryoshka
         [SerializeField] private int spawnAmount;
         [Tooltip("The scale the balloon should grow to after spawning")]
         [SerializeField] private Vector3 size;
+        
         private BalloonChecker _balloonChecker;
         private const float Speed = 1.5f;
         private bool _sizeReached;
+        private SpringJoint _rope;
+        private Rigidbody _rb;
 
         private void Start()
         {
+            //TODO: Add Rope Rigidbody
+            /*_rb = GetComponent<Rigidbody>();
+            _rope = GetComponent<SpringJoint>();
+            _rope.connectedBody = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();*/
             _balloonChecker = GetComponentInParent<BalloonChecker>();
         }
 
@@ -33,6 +40,12 @@ namespace Puzzle.Balloon_Matryoshka
             var difference = size.x - transform.localScale.x;
             _sizeReached = difference <= 0.05f;
         }
+
+        //TODO: Enable when rope asset is there
+        /*private void FixedUpdate()
+        {
+            _rb.AddForce(Vector3.up, ForceMode.Force);
+        }*/
 
         private void OnCollisionEnter(Collision collision)
         {
