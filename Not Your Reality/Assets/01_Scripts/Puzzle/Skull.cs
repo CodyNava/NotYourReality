@@ -107,6 +107,7 @@ namespace Puzzle
                                 _otherSkull = hit.collider.GetComponent<Skull>();
                                 if (_otherSkull != null && _otherSkull != this)
                                 {
+                                    if (_otherSkull.Splitting) break;
                                     _otherSkull.Splitting = true;
                                     
                                     _otherSkull.Reached = false;
