@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 1100391721837932600}
   - component: {fileID: 1686615971917610671}
   - component: {fileID: 8233867558340989803}
+  - component: {fileID: 5784403897549010184}
   m_Layer: 6
   m_Name: WordleManager
   m_TagString: Untagged
@@ -627,6 +628,22 @@ MonoBehaviour:
   presentColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   incorrectColor: {r: 1, g: 0, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  revealDuration: 1.5
+  knitterBundles: {fileID: 5784403897549010184}
+--- !u!114 &5784403897549010184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166695097673116475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7063b3646a5d62b43af7edbc74cacd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knitterBundleList: {fileID: 4900000, guid: f0a78ca00eb7fc44696bde609958e331, type: 3}
+  chosenBundle: []
 --- !u!1 &7845711453729358027
 GameObject:
   m_ObjectHideFlags: 0

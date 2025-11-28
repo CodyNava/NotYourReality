@@ -34,10 +34,8 @@ namespace Puzzle.Wordle
         private bool _isGameOver;
         private WordKnitterTile _selectedTile;
 
-        private List<string> _knitterSolutions = new()
-        {
-            "NIGHT", "ROGER", "SON", "SIM", "MEL", "NHL"
-        };
+        [SerializeField] private KnitterWordListManager knitterBundles;
+        private List<string> _knitterSolutions;
 
         private List<List<int>> _knitterTilePositions = new()
         {
@@ -72,6 +70,9 @@ namespace Puzzle.Wordle
             ResetWordl();
             ResetWordKnitter();
             BuildKnitterWordTiles();
+            _knitterSolutions = knitterBundles.chosenBundle;
+
+            Debug.Log("[KNITTER] Knitter Solutions: " + _knitterSolutions.Count);
         }
 
         // ---------------------------
