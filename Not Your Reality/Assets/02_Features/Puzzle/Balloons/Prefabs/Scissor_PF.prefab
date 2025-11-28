@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 2534496022153358265}
   - component: {fileID: 1972334770860480400}
   - component: {fileID: 8219701244475656675}
-  - component: {fileID: 8104544342629729523}
   m_Layer: 6
   m_Name: Scissor_PF
   m_TagString: Scissors
@@ -332,23 +331,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05482483, y: 0.011221176, z: 0.05720143}
   m_Center: {x: -0.0004982874, y: 0.00072447024, z: 0.035102807}
---- !u!114 &8104544342629729523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4417883485038387605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0340326903fb7fd4f86dbf89b1b0322b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 1
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  holdingDistance: 1
-  dragSpeed: 120
-  weight: 0

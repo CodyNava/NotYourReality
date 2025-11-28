@@ -56,6 +56,7 @@ namespace Interactions.Interaction_System.Interactions
       public void Release()
       {
          _isHeld = false;
+         if (!_rb) return;
          _rb.useGravity = true;
       }
    }
