@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Puzzle.TVFrequencyMatch
 {
@@ -11,6 +12,8 @@ namespace Puzzle.TVFrequencyMatch
 
         [SerializeField] private List<GameObject> tvLetters;
         private readonly List<GameObject> _actualLetters = new();
+
+        [SerializeField] private List<Button> buttons;
 
         private string _original;
         private string _scrambled;
@@ -109,6 +112,15 @@ namespace Puzzle.TVFrequencyMatch
         private void CheckWin()
         {
             if (_scrambled != _original) return;
+            foreach (var button in buttons)
+            {
+                button.interactable = false;
+            }
+            foreach (var letter in _actualLetters)
+            {
+                letter.GetComponent<TextMeshProUGUI>().color = Color.green;
+            }
+            
             Completed = true;
             _tvFrequencyMatch.Status();
         }
