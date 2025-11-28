@@ -8,7 +8,9 @@ namespace Puzzle
     {
         [Tooltip("The light source of this riddle")]
         [SerializeField] private LightSource lightSource;
-        
+
+        [Tooltip("The goal")]
+        [SerializeField] private ReflectionGoal reflectionGoal;
         [Tooltip("The renderer component of the Goal")]
         [SerializeField] private Renderer targetRenderer;
 
@@ -41,9 +43,9 @@ namespace Puzzle
 
         public void CheckWin()
         {
-            targetRenderer.material = lightSource.TargetHit ? targetWinMaterial : targetDefaultMaterial;
+            targetRenderer.material = reflectionGoal.BeenHit() ? targetWinMaterial : targetDefaultMaterial;
             if (!doorCollider) return;
-            doorCollider.enabled = lightSource.TargetHit;
+            doorCollider.enabled = reflectionGoal.BeenHit();
         }
 
         public IEnumerator ResetRiddle()
@@ -54,6 +56,7 @@ namespace Puzzle
                 _objectsToReset[i].transform.rotation = _initialRotation[i];
                 yield return null;
             }
+            reflectionGoal.ClearHits();
         }
     }
 }

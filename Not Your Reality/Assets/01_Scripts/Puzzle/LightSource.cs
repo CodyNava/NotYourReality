@@ -6,6 +6,8 @@ namespace Puzzle
     [ExecuteInEditMode]
     public class LightSource : MonoBehaviour
     {
+        [SerializeField] private ReflectionGoal reflectionGoal;
+        
         [Tooltip("The length of the light beam")]
         [SerializeField] private float beamLength;
         public float BeamLength => beamLength;
@@ -22,8 +24,6 @@ namespace Puzzle
         
         private Skull _skull;
         
-        public bool TargetHit { get;  set; }
-        
         private LineRenderer _lineRenderer;
         private readonly List<Vector3> _reflectionPoints = new();
 
@@ -37,6 +37,7 @@ namespace Puzzle
         private void Update()
         {
             Skull.ClearAllSplits();
+            reflectionGoal.ClearHits();
             
             _tracing = true;
             _reflectionPoints.Clear();
@@ -60,6 +61,8 @@ namespace Puzzle
 
                         case "Goal":
                             _reflectionPoints.Add(hit.point);
+                            if (reflectionGoal.BeenHit()) break;
+                            reflectionGoal.RegisterHit(hit.point);
                             _tracing = false;
                             break;
 
@@ -94,7 +97,6 @@ namespace Puzzle
                     _reflectionPoints.Add(currentPosition + currentDirection * beamLength);
                     break;
                 }
-                TargetHit = hit.collider.CompareTag("Goal");
             }
             mirrorLightReflection.CheckWin();
             if (_reflectionPoints.Count > 1)
