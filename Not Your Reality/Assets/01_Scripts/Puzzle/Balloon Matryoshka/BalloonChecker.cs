@@ -11,6 +11,7 @@ namespace Puzzle.Balloon_Matryoshka
         [SerializeField] private int amount;
         [Tooltip("The key that drops after the last balloon is destroyed")]
         [SerializeField] private GameObject key;
+        [SerializeField] private bool holdsKey;
         private void Awake()
         {
             for (var i = 0; i < amount; i++)
@@ -23,7 +24,7 @@ namespace Puzzle.Balloon_Matryoshka
         {
             Debug.Log(transform.childCount);
             if (transform.childCount > 1) return;
-            Debug.Log("You Win!");
+            if (!holdsKey) return;
             Instantiate(key, transform.position, transform.rotation);
         }
     }

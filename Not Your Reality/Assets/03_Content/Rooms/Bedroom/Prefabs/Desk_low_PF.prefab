@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 6235985535966551201}
   - component: {fileID: 5794177601824506528}
   - component: {fileID: 8759856405856780026}
-  - component: {fileID: 5952173018787694178}
+  - component: {fileID: 6237209724717656996}
   m_Layer: 0
   m_Name: Desk_low_PF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6235985535966551201
 Transform:
@@ -53,7 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5952173018787694178
-MeshCollider:
+--- !u!65 &6237209724717656996
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6711425430524579272, guid: f1075c014e043fd4685f0d06bbfd23f3, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.43748, y: 0.7907693, z: 0.7833177}
+  m_Center: {x: -0.10677394, y: 0.39538464, z: 0}

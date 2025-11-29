@@ -2735,15 +2735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1468767831124735137, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775286255564181770, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
-      propertyPath: m_TagString
-      value: TV
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167926716289640395, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
-      propertyPath: tvLetters.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6442631025298335022, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
       propertyPath: m_Camera
@@ -2792,29 +2784,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1468767831124735137, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 243726574265915814}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
---- !u!1 &243726574265915813 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1468767831124735137, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}
-  m_PrefabInstance: {fileID: 243726574265915812}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &243726574265915814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243726574265915813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb382cf1ad7e58046a8e5832a274365d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorCollider: {fileID: 0}
 --- !u!4 &243726574265915815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8320513064397421886, guid: 993099d48eba47e438e0b1460e8d5a36, type: 3}

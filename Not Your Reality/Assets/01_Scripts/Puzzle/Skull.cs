@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Puzzle
 {
-   [ExecuteInEditMode]
    public class Skull : MonoBehaviour
    {
       private static readonly List<Skull> RegisteredSkulls = new List<Skull>();

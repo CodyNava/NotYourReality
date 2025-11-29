@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Puzzle
 {
-   [ExecuteInEditMode]
    public class LightSource : MonoBehaviour
    {
       [Tooltip("The length of the light beam")]

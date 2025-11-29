@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8320513064397421886}
+  - component: {fileID: 3705246492968299912}
   m_Layer: 0
   m_Name: TVFrequencyMatch_PF
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 491747207864197730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3705246492968299912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468767831124735137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb382cf1ad7e58046a8e5832a274365d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 0}
 --- !u!1001 &3403269640291567972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,6 +114,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4006447496732219502, guid: 6d36bfe6b65b53644b75e930ce7cdf02, type: 3}
+      propertyPath: m_TagString
+      value: TV
+      objectReference: {fileID: 0}
     - target: {fileID: 6145646118596832569, guid: 6d36bfe6b65b53644b75e930ce7cdf02, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -115,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 8366640953779880828, guid: 6d36bfe6b65b53644b75e930ce7cdf02, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8836686028315471535, guid: 6d36bfe6b65b53644b75e930ce7cdf02, type: 3}
+      propertyPath: tvLetters.Array.size
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -43,12 +43,13 @@ namespace Interactions.Interaction_System.Interactions
         private void Update()
         {
             Cursor.visible = _isInspecting;
-            Cursor.lockState = _isInspecting ? CursorLockMode.None : CursorLockMode.Locked;
+            //Cursor.lockState = _isInspecting ? CursorLockMode.None : CursorLockMode.Locked;
         }
         
         private IEnumerator Inspect()
         {
             _isInspecting = true;
+            Cursor.lockState = CursorLockMode.None;
             TooltipMessage = "";
             _originalTransform = _camera.transform.position;
             _originalRotation = _camera.transform.rotation;
@@ -68,6 +69,7 @@ namespace Interactions.Interaction_System.Interactions
         private IEnumerator Release()
         {
             _isInspecting = false;
+            Cursor.lockState = CursorLockMode.Locked;
             TooltipMessage = "Press E to Inspect";
             _vignette.intensity.value = 0f;
             var t = 0f;

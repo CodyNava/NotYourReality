@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Interactions.Interaction_System.Interactions;
 using UnityEngine;
 
 namespace Puzzle.TVFrequencyMatch
 {
     public class TVFrequencyMatch : MonoBehaviour
     {
-        [SerializeField] private Collider doorCollider;
+        [SerializeField] private OpenDoor door;
         private readonly List<TVManager> _tvManagers = new ();
 
         private void Start()
@@ -19,13 +20,15 @@ namespace Puzzle.TVFrequencyMatch
                     _tvManagers.Add(grandChild.GetComponent<TVManager>());
                 }
             }
+
+            door.IsInteractable = false;
         }
 
         public void Status()
         {
             var winCounter = _tvManagers.Count(tvManager => tvManager.Completed);
             if (winCounter != _tvManagers.Count) return;
-            if (doorCollider) doorCollider.enabled = true;
+            if (door) door.IsInteractable = true;
         }
     }
 }
