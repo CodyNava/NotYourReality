@@ -20,11 +20,11 @@ namespace Puzzle.Balloon_Matryoshka
             }
         }
 
-        public void CheckWin()
+        public void CheckWin(GameObject balloon)
         {
             Debug.Log(transform.childCount);
             if (transform.childCount > 1) return;
-            Instantiate(key, transform.position, transform.rotation);
+            Instantiate(key, balloon.transform.position, balloon.transform.rotation);
         }
     }
 }
