@@ -22,7 +22,7 @@ namespace Puzzle.Wordle
 
         [SerializeField] private EventReference allCorrectSound;
         [SerializeField] private EventReference coloringSound;
-        [SerializeField] private EventReference doorOpenSound;
+        //[SerializeField] private EventReference doorOpenSound;
 
         [Header("Colors")]
         [SerializeField] private Color correctColor = Color.green;
@@ -620,7 +620,7 @@ namespace Puzzle.Wordle
                 Debug.Log("Word Knitter: All tiles are correct.");
                 _isGameOver = true;
                 door.IsInteractable = true;
-                RuntimeManager.PlayOneShot(doorOpenSound, door.transform.position);
+                //RuntimeManager.PlayOneShot(doorOpenSound, door.transform.position);
                 RuntimeManager.PlayOneShot(allCorrectSound, transform.position);
             }
             else if (!allWordsSolved)

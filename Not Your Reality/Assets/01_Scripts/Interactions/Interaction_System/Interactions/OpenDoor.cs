@@ -1,104 +1,122 @@
 using System.Collections;
+using FMODUnity;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 
 namespace Interactions.Interaction_System.Interactions
 {
-   public class OpenDoor : InteractableBase
-   {
-      [Space]
-      [Tooltip("The drag of the door")]
-      [SerializeField] private float drag;
-      [Tooltip("The speed at which the door follows the mouse")]
-      [SerializeField] private float pullStrength;
-      [Header("Close and Lock Mechanism")]
-      [Tooltip("The maximum velocity the door is allowed to have to close and stay shut if the angle is low enough")]
-      [SerializeField] private float lockThreshold;
-      [Tooltip("The angle at which the door closes and stays shut if the velocity is low enough")]
-      [SerializeField] private float lockAngle;
-      
-      private bool _isHeld;
-      private Camera _cam;
-      private Rigidbody _rb;
-      private float _initialYRotation;
-      private Vector3 _initialCamForward;
-      private Quaternion _lockRotation;
-      private Vector3 _torque;
-      private HingeJoint _joint;
+    public class OpenDoor : InteractableBase
+    {
+        [Space]
+        [Tooltip("The drag of the door")]
+        [SerializeField] private float drag;
 
-      private void Awake()
-      {
-         _rb = GetComponent<Rigidbody>();
-         _joint = GetComponent<HingeJoint>();
-         _lockRotation = _rb.transform.rotation;
-         TooltipMessage = "Hold E to Interact";
-         
-         
-      }
+        [Tooltip("The speed at which the door follows the mouse")]
+        [SerializeField] private float pullStrength;
 
-      private IEnumerator Start()
-      {
-         while (!_cam)
-         {
-            _cam = Camera.main;
-            yield return null;
-         }
-      }
+        [Header("Close and Lock Mechanism")]
+        [Tooltip("The maximum velocity the door is allowed to have to close and stay shut if the angle is low enough")]
+        [SerializeField] private float lockThreshold;
 
-      public override void OnInteract()
-      {
-         base.OnInteract();
-         _isHeld = true;
-         _initialYRotation = transform.eulerAngles.y;
-         _initialCamForward = _cam.transform.forward;
-      }
+        [Tooltip("The angle at which the door closes and stays shut if the velocity is low enough")]
+        [SerializeField] private float lockAngle;
 
-      private void Update()
-      {
-         if (!_isHeld)
-         {
-            LockDoor();
-            return;
-         }
-         RotateDoor();
-      }
+        [Header("Sounds")]
+        [Tooltip("The sound that plays when the door is unlocked")]
+        [SerializeField] private EventReference doorUnlockSound;
 
-      private void RotateDoor()
-      {
-         var currentCamForward = _cam.transform.forward;
-         currentCamForward.y = 0;
-         _initialCamForward.y = 0;
+        private bool _isHeld;
+        private Camera _cam;
+        private Rigidbody _rb;
+        private float _initialYRotation;
+        private Vector3 _initialCamForward;
+        private Quaternion _lockRotation;
+        private Vector3 _torque;
+        private HingeJoint _joint;
 
-         currentCamForward.Normalize();
-         _initialCamForward.Normalize();
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
+            _joint = GetComponent<HingeJoint>();
+            _lockRotation = _rb.transform.rotation;
+            TooltipMessage = "Hold E to Interact";
+        }
 
-         var angle = -Vector3.SignedAngle(_initialCamForward, currentCamForward, Vector3.up);
-         var targetYRotation = _initialYRotation + angle;
+        private IEnumerator Start()
+        {
+            while (!_cam)
+            {
+                _cam = Camera.main;
+                yield return null;
+            }
+        }
 
-         var currentY = transform.eulerAngles.y;
-         var moveAngle = Mathf.DeltaAngle(currentY, targetYRotation);
+        public override void OnInteract()
+        {
+            base.OnInteract();
+            _isHeld = true;
+            _initialYRotation = transform.eulerAngles.y;
+            _initialCamForward = _cam.transform.forward;
+        }
 
-         _torque = Vector3.up * moveAngle * pullStrength;
+        private void Update()
+        {
+            if (!_isHeld)
+            {
+                LockDoor();
+                return;
+            }
 
-         _torque -= _rb.angularVelocity * drag;
+            RotateDoor();
+        }
 
-         _rb.AddTorque(_torque, ForceMode.Acceleration);
-      }
+        private void RotateDoor()
+        {
+            var currentCamForward = _cam.transform.forward;
+            currentCamForward.y = 0;
+            _initialCamForward.y = 0;
 
-      private void LockDoor()
-      {
-         var hingeVelocity = Vector3.Project(_rb.angularVelocity, Vector3.up).magnitude;
-         var angle = Quaternion.Angle(_rb.rotation, _lockRotation);
+            currentCamForward.Normalize();
+            _initialCamForward.Normalize();
 
-         if (hingeVelocity < lockThreshold && angle < lockAngle)
-         {
-            _joint.useLimits = false;
-            _rb.angularVelocity = Vector3.zero;
-            _rb.rotation = _lockRotation;
-         }
-         else { _joint.useLimits = true; }
-      }
+            var angle = -Vector3.SignedAngle(_initialCamForward, currentCamForward, Vector3.up);
+            var targetYRotation = _initialYRotation + angle;
 
-      public void Release() { _isHeld = false; }
-   }
+            var currentY = transform.eulerAngles.y;
+            var moveAngle = Mathf.DeltaAngle(currentY, targetYRotation);
+
+            _torque = Vector3.up * moveAngle * pullStrength;
+
+            _torque -= _rb.angularVelocity * drag;
+
+            _rb.AddTorque(_torque, ForceMode.Acceleration);
+        }
+
+        private void LockDoor()
+        {
+            var hingeVelocity = Vector3.Project(_rb.angularVelocity, Vector3.up).magnitude;
+            var angle = Quaternion.Angle(_rb.rotation, _lockRotation);
+
+            if (hingeVelocity < lockThreshold && angle < lockAngle)
+            {
+                _joint.useLimits = false;
+                _rb.angularVelocity = Vector3.zero;
+                _rb.rotation = _lockRotation;
+            }
+            else
+            {
+                _joint.useLimits = true;
+            }
+        }
+
+        private void UnlockSound()
+        {
+            RuntimeManager.PlayOneShotAttached(doorUnlockSound, gameObject);
+        }
+
+        public void Release()
+        {
+            _isHeld = false;
+        }
+    }
 }
