@@ -43,7 +43,6 @@ namespace Interactions.Interaction_System.Interactions
         {
             InputManager.Input.Player.Disable();
             InputManager.Input.UI.Disable();
-            InputManager.Input.Interaction.Disable();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _isInspecting = true;
@@ -59,7 +58,6 @@ namespace Interactions.Interaction_System.Interactions
                 _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _anchorRotation, t/duration);
                 yield return null;
             }
-
         }
 
         private IEnumerator Release()
@@ -79,7 +77,6 @@ namespace Interactions.Interaction_System.Interactions
             }
             InputManager.Input.Player.Enable();
             InputManager.Input.UI.Enable();
-            InputManager.Input.Interaction.Enable();
         }
     }
 }
