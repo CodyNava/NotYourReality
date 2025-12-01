@@ -4,107 +4,130 @@ using UnityEngine;
 
 namespace Interactions.Interaction_System.Interactions
 {
-   public class OpenDoor : InteractableBase
-   {
-      [Space]
-      [Tooltip("The drag of the door")]
-      [SerializeField] private float drag;
-      [Tooltip("The speed at which the door follows the mouse")]
-      [SerializeField] private float pullStrength;
-      [Header("Close and Lock Mechanism")]
-      [Tooltip("The maximum velocity the door is allowed to have to close and stay shut if the angle is low enough")]
-      [SerializeField] private float lockThreshold;
-      [Tooltip("The angle at which the door closes and stays shut if the velocity is low enough")]
-      [SerializeField] private float lockAngle;
-      
-      private bool _isHeld;
-      private Camera _cam;
-      private Rigidbody _rb;
-      private float _initialYRotation;
-      private Vector3 _initialCamForward;
-      private Quaternion _lockRotation;
-      private Vector3 _torque;
-      private HingeJoint _joint;
+    public class OpenDoor : InteractableBase
+    {
+        [Space]
+        [Tooltip("The drag of the door")]
+        [SerializeField] private float drag = 5;
+        
+        [Tooltip("The speed at which the door follows the mouse")]
+        [SerializeField] private float pullStrength = 8;
 
-      private void Awake()
-      {
-         _rb = GetComponent<Rigidbody>();
-         _joint = GetComponent<HingeJoint>();
-         _lockRotation = _rb.transform.rotation;
-         TooltipMessage = "Hold E to Interact";
-      }
+        [Header("Close and Lock Mechanism")]
+        [Tooltip("The maximum velocity the door is allowed to have to close and stay shut if the angle is low enough")]
+        [SerializeField] private float lockThreshold = 0.3f;
 
-      private IEnumerator Start()
-      {
-         while (!_cam)
-         {
-            _cam = Camera.main;
-            yield return null;
-         }
-      }
+        [Tooltip("The angle at which the door closes and stays shut if the velocity is low enough")]
+        [SerializeField] private float lockAngle = 5;
 
-      public override void OnInteract()
-      {
-         base.OnInteract();
-         _isHeld = true;
-         _initialYRotation = transform.eulerAngles.y;
-         _initialCamForward = _cam.transform.forward;
-      }
+        [Tooltip("The handle of the door")]
+        [SerializeField] private Transform handleTransform;
 
-      private void Update()
-      {
-          if (!IsInteractable)
-          {
-              _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-          }
-          else
-          {
-              _rb.constraints = RigidbodyConstraints.None;
-          }
-          if (!_isHeld)
-          {
-              LockDoor(); 
-              return;
-          }
-          RotateDoor();
-      }
+        private bool _isHeld;
+        private Rigidbody _rb;
+        private Vector3 _initialCamForward;
+        private Quaternion _lockRotation;
+        private Vector3 _torque;
+        private HingeJoint _joint;
+        private Camera _camera;
 
-      private void RotateDoor()
-      {
-         var currentCamForward = _cam.transform.forward;
-         currentCamForward.y = 0;
-         _initialCamForward.y = 0;
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
+            _joint = GetComponent<HingeJoint>();
+            _lockRotation = _rb.transform.rotation;
+            TooltipMessage = "Hold E to Interact";
+        }
 
-         currentCamForward.Normalize();
-         _initialCamForward.Normalize();
+        private IEnumerator Start()
+        {
+            while (!_camera)
+            {
+                _camera = Camera.main;
+                yield return null;
+            }
+        }
 
-         var angle = -Vector3.SignedAngle(_initialCamForward, currentCamForward, Vector3.up);
-         var targetYRotation = _initialYRotation + angle;
+        public override void OnInteract()
+        {
+            base.OnInteract();
+            _isHeld = true;
+        }
 
-         var currentY = transform.eulerAngles.y;
-         var moveAngle = Mathf.DeltaAngle(currentY, targetYRotation);
+        
+        // Optional Edit if you want the text to change based on status
+        /*private void Update()
+        {
+            TooltipMessage = IsInteractable ? "Hold E to Interact" : "";
+        }*/
 
-         _torque = Vector3.up * moveAngle * pullStrength;
+        private void FixedUpdate()
+        {
+            if (!IsInteractable)
+            {
+                _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+                                  RigidbodyConstraints.FreezeRotationZ;
+            }
+            else
+            {
+                _rb.constraints = RigidbodyConstraints.None;
+            }
 
-         _torque -= _rb.angularVelocity * drag;
+            if (!_isHeld)
+            {
+                LockDoor();
+                return;
+            }
 
-         _rb.AddTorque(_torque, ForceMode.Acceleration);
-      }
+            RotateDoor();
+        }
 
-      private void LockDoor()
-      {
-         var hingeVelocity = Vector3.Project(_rb.angularVelocity, Vector3.up).magnitude;
-         var angle = Quaternion.Angle(_rb.rotation, _lockRotation);
+        private void RotateDoor()
+        {
+            var hingeToHandle = (handleTransform != null)
+                ? (handleTransform.position - transform.position).normalized
+                : transform.forward;
+            hingeToHandle.y = 0;
+            hingeToHandle.Normalize();
 
-         if (hingeVelocity < lockThreshold && angle < lockAngle)
-         {
-            _joint.useLimits = false;
-            _rb.angularVelocity = Vector3.zero;
-            _rb.rotation = _lockRotation;
-         }
-         else { _joint.useLimits = true; }
-      }
+            var playerToHinge = transform.position - _camera.transform.position;
+            playerToHinge.y = 0;
+            playerToHinge.Normalize();
+            
+            var dot = Vector3.Dot(playerToHinge, hingeToHandle);
+            var side = (Mathf.Abs(dot) < 0.0001f) ? 1f : Mathf.Sign(dot);
+            var lookInput = InputManager.Input.Player.Look.ReadValue<Vector2>();
+            var lookX = lookInput.x;
+            var moveAngle = lookX * side;
+            
+            _torque = Vector3.up * (moveAngle * pullStrength);
+            _torque -= _rb.angularVelocity * drag;
+            const float maxTorque = 10000f;
+            if (_torque.sqrMagnitude > maxTorque * maxTorque) _torque =  _torque.normalized * maxTorque;
+            
+            _rb.AddTorque(_torque, ForceMode.Acceleration);
+        }
 
-      public void Release() { _isHeld = false; }
-   }
+        private void LockDoor()
+        {
+            var hingeVelocity = Vector3.Project(_rb.angularVelocity, Vector3.up).magnitude;
+            var angle = Quaternion.Angle(_rb.rotation, _lockRotation);
+
+            if (hingeVelocity < lockThreshold && angle < lockAngle)
+            {
+                _joint.useLimits = false;
+                _rb.angularVelocity = Vector3.zero;
+                _rb.rotation = _lockRotation;
+            }
+            else
+            {
+                _joint.useLimits = true;
+            }
+        }
+
+        public void Release()
+        {
+            _isHeld = false;
+        }
+    }
 }
