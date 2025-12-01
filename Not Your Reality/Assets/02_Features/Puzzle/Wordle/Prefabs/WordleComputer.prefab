@@ -624,11 +624,40 @@ MonoBehaviour:
   wordleBoard: {fileID: 3520706063628039024}
   wordKnitterBoard: {fileID: 3918256317546947043}
   maxGuesses: 6
+  keyboardSound:
+    Guid:
+      Data1: -2046901402
+      Data2: 1251705479
+      Data3: -208298082
+      Data4: -2114509731
+    Path: event:/Wordle Sound
+  allCorrectSound:
+    Guid:
+      Data1: 1944704654
+      Data2: 1312478922
+      Data3: 1227316374
+      Data4: -1384341931
+    Path: event:/Done sound
+  coloringSound:
+    Guid:
+      Data1: 84475187
+      Data2: 1097352538
+      Data3: 408106686
+      Data4: 1837295602
+    Path: event:/Coloring Sound
+  doorOpenSound:
+    Guid:
+      Data1: 577123290
+      Data2: 1333586409
+      Data3: -348259649
+      Data4: 1600281846
+    Path: event:/Door Open
   correctColor: {r: 0, g: 1, b: 0, a: 1}
   presentColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   incorrectColor: {r: 1, g: 0, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   revealDuration: 20
+  door: {fileID: 0}
   knitterBundles: {fileID: 5784403897549010184}
 --- !u!114 &5784403897549010184
 MonoBehaviour:
