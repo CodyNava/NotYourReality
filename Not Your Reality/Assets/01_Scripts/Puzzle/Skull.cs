@@ -3,112 +3,144 @@ using UnityEngine;
 
 namespace Puzzle
 {
-    [ExecuteInEditMode]
-    public class Skull : MonoBehaviour
-    {
-        private MirrorLightReflection _reflection;
-        private List<LineRenderer> _lineRenderers;
-        private bool _continueTracing;
-        public bool Reached { get; set; }
+   public class Skull : MonoBehaviour
+   {
+      private static readonly List<Skull> RegisteredSkulls = new List<Skull>();
+      [SerializeField] private LightSource lightSource;
+      [SerializeField] private MirrorLightReflection mirrorLightReflection;
 
-        private void Awake()
-        {
-            foreach (var line in GetComponentsInChildren<LineRenderer>())
-            {
-                line.enabled = false;
-            }
-            _reflection = GetComponentInParent<MirrorLightReflection>();
-        }
+      private Skull _otherSkull;
 
-        private void Update()
-        {
-            foreach (var line in GetComponentsInChildren<LineRenderer>())
-            {
-                if (_reflection.Splitting && Reached)
-                {
-                    line.enabled = true;
-                }
-                else
-                {
-                    line.enabled = false;
-                }
-            }
-        }
+      private List<LineRenderer> _lineRenderers;
+      private bool _continueTracing;
 
-        public static bool HasReached(Quaternion current, Quaternion final)
-        {
-            return Quaternion.Angle(current, final) < 7;
-        }
-        
-        public void Split(int remainingReflections)
-        {
-            if (!Reached) return;
-            foreach (var line in GetComponentsInChildren<LineRenderer>())
+      public bool Reached { get; set; }
+      public bool Splitting { get; set; }
+
+      private void Awake()
+      {
+         foreach (var line in GetComponentsInChildren<LineRenderer>()) { line.enabled = false; }
+      }
+
+      private void Update()
+      {
+         foreach (var line in GetComponentsInChildren<LineRenderer>()) { line.enabled = Splitting && Reached; }
+      }
+
+      public static void ClearAllSplits()
+      {
+         foreach (var skull in RegisteredSkulls) { skull.Splitting = false; }
+      }
+
+      private void OnEnable()
+      {
+         if (!RegisteredSkulls.Contains(this)) { RegisteredSkulls.Add(this); }
+      }
+
+      private void OnDisable() { RegisteredSkulls.Remove(this); }
+
+      public bool HasReached(Quaternion current, Quaternion final) { return Quaternion.Angle(current, final) < 3; }
+
+      public void Split(int remainingRefs)
+      {
+         if (!Reached) return;
+         foreach (var line in GetComponentsInChildren<LineRenderer>())
+         {
+            var linePoints = line.GetComponent<ReflectionPoints>().points;
+            linePoints.Clear();
+
+            var currentPosition = transform.position;
+            var currentDirection = line.transform.forward;
+            linePoints.Add(currentPosition);
+
+            _continueTracing = true;
+
+            for (var i = 0; i < remainingRefs && _continueTracing; i++)
             {
-                var linePoints = line.GetComponent<ReflectionPoints>().points;
-                linePoints.Clear();
-                
-                var currentPosition = transform.position;
-                var currentDirection = line.transform.forward;
-                linePoints.Add(currentPosition);
-                
-                _continueTracing = true;
-                
-                for (var i = 0; i < remainingReflections && _continueTracing; i++)
-                {
-                    if (Physics.Raycast(currentPosition, currentDirection, out var hit, _reflection.BeamLength))
-                    {
+               if (Physics.Raycast(currentPosition, currentDirection, out var hit, lightSource.BeamLength))
+               {
+                  linePoints.Add(hit.point);
+
+                  switch (hit.collider.tag)
+                  {
+                     case "Mirror":
+                        currentPosition = hit.point;
+                        currentDirection = LightSource.Reflect(currentDirection, hit.normal);
+                     break;
+
+                     case "Goal":
                         linePoints.Add(hit.point);
-
-                        switch (hit.collider.tag)
+                        _continueTracing = false;
+                        foreach (var goal in mirrorLightReflection.goals)
                         {
-                            case "Mirror":
-                                currentPosition = hit.point;
-                                currentDirection = MirrorLightReflection.Reflect(currentDirection, hit.normal);
-                                break;
-
-                            case "Goal":
-                                linePoints.Add(hit.point);
-                                _reflection.TargetHit = true;
-                                _continueTracing = false;
-                                break;
-
-                            case "Death Trap":
-                                StartCoroutine(_reflection.ResetRiddle());
-                                _continueTracing = false;
-                                break;
-
-                            case "Skull":
-                                var otherSkull = hit.collider.GetComponent<Skull>();
-                                if (otherSkull != null && otherSkull != this)
-                                {
-                                    otherSkull.transform.rotation = Quaternion.Slerp(otherSkull.transform.rotation, Quaternion.LookRotation(currentDirection), _reflection.RotationSpeed);
-                                    otherSkull.Reached = HasReached(otherSkull.transform.rotation, Quaternion.LookRotation(currentDirection));
-                                    otherSkull.Split(remainingReflections - i);
-                                }
-                                _continueTracing = false;
-                                break;
+                           if (hit.collider != goal.GetComponent<Collider>()) continue;
+                           if (goal.BeenHit()) break;
+                           goal.RegisterHit(hit.point);
                         }
-                    }
-                    else
-                    {
-                        linePoints.Add(currentPosition + currentDirection * _reflection.BeamLength);
-                        break;
-                    }
-                }
-                if (linePoints.Count > 1)
-                {
-                        var lastPoint = linePoints[^1];
-                        var lastDir = (linePoints.Count >= 2)
-                            ? (linePoints[^1] - linePoints[^2]).normalized : currentDirection;
-                        if (!Physics.Raycast(lastPoint, lastDir, out _))
+
+                     break;
+
+                     case "Death Trap":
+                        StartCoroutine(mirrorLightReflection.ResetRiddle());
+                        _continueTracing = false;
+                     break;
+
+                     case "Skull":
+                        _continueTracing = false;
+                        _otherSkull = hit.collider.GetComponent<Skull>();
+                        if (_otherSkull != null && _otherSkull != this)
                         {
-                            linePoints.Add(lastPoint + lastDir * _reflection.BeamLength);
+                           if (_otherSkull.Splitting) break;
+                           _otherSkull.Splitting = true;
+
+                           _otherSkull.Reached = false;
+                           _otherSkull.Reached = _otherSkull.HasReached(
+                              _otherSkull.transform.rotation,
+                              Quaternion.LookRotation(currentDirection)
+                           );
+                           if (_otherSkull != null && _otherSkull != this)
+                           {
+                              if (_otherSkull.Reached)
+                              {
+                                 _otherSkull.transform.rotation = Quaternion.LookRotation(currentDirection);
+                              }
+                              else
+                              {
+                                 _otherSkull.transform.rotation = Quaternion.Slerp(
+                                    _otherSkull.transform.rotation,
+                                    Quaternion.LookRotation(currentDirection),
+                                    lightSource.RotationSpeed
+                                 );
+                              }
+
+                              _otherSkull.Split(remainingRefs - i);
+                           }
                         }
-                }
-                line.positionCount = linePoints.Count;
-                line.SetPositions(linePoints.ToArray());
+
+                     break;
+                  }
+               }
+               else
+               {
+                  linePoints.Add(currentPosition + currentDirection * lightSource.BeamLength);
+                  break;
+               }
             }
-        }
-    }
+
+            mirrorLightReflection.CheckWin();
+            if (linePoints.Count > 1)
+            {
+               var lastPoint = linePoints[^1];
+               var lastDir = (linePoints.Count >= 2) ? (linePoints[^1] - linePoints[^2]).normalized : currentDirection;
+               if (!Physics.Raycast(lastPoint, lastDir, out _))
+               {
+                  linePoints.Add(lastPoint + lastDir * lightSource.BeamLength);
+               }
+            }
+
+            line.positionCount = linePoints.Count;
+            line.SetPositions(linePoints.ToArray());
+         }
+      }
+   }
 }

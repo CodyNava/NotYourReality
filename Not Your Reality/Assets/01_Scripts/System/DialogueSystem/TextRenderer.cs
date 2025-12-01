@@ -23,11 +23,16 @@ namespace System.DialogueSystem
       private Coroutine _fadeRoutine;
       private SubtitleSettingsData _currentSetting;
 
-      private void OnEnable()
+      private void OnEnable() { }
+
+      private void Start()
       {
-         _currentSetting = SubtitleSettingsManager.Instance.currentSettings;
-         ApplySettings(_currentSetting);
-         SubtitleSettingsManager.Instance.OnSettingsChanged += ApplySettings;
+         if (SubtitleSettingsManager.Instance != null)
+         {
+            _currentSetting = SubtitleSettingsManager.Instance.currentSettings;
+            ApplySettings(_currentSetting);
+            SubtitleSettingsManager.Instance.OnSettingsChanged += ApplySettings;
+         }
       }
 
       private void OnDisable() { SubtitleSettingsManager.Instance.OnSettingsChanged -= ApplySettings; }
@@ -125,6 +130,8 @@ namespace System.DialogueSystem
          Fade(0f, fadeOutTime);
          StartCoroutine(ClearAfterFade());
       }
+
+      public void ClearInstant() { subtitleTextUI.text = ""; }
 
       private string TruncateToMaxLines(string text, int maxLines)
       {

@@ -6,11 +6,11 @@ namespace System.DialogueSystem
 {
    public class DialogueManager : MonoBehaviour
    {
-
       [Header("Refs")]
       //todo audio
       [SerializeField] private TextRenderer textRenderer;
       [SerializeField] private DialogueSequence sequenceData;
+      [SerializeField] private float delayBetweenLines;
 
       [SerializeField] private bool playOnStart;
 
@@ -27,7 +27,7 @@ namespace System.DialogueSystem
       public void PlaySequence(DialogueSequence sequence)
       {
          if (!sequence) { return; }
-         
+
          if (_runningCoroutine != null)
          {
             StopCoroutine(_runningCoroutine);
@@ -37,7 +37,7 @@ namespace System.DialogueSystem
          _currentSequence = sequence;
          _currentSequenceIndex = 0;
          _isPlaying = true;
-         
+
          PlayCurrentLine();
       }
 
@@ -87,6 +87,10 @@ namespace System.DialogueSystem
       private IEnumerator LineRoutine(float duration)
       {
          yield return new WaitForSeconds(duration);
+         
+         if (textRenderer) textRenderer.ClearInstant();
+         if (delayBetweenLines > 0) yield return new WaitForSeconds(delayBetweenLines);
+         
          _currentSequenceIndex++;
          PlayCurrentLine();
       }

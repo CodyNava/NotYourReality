@@ -16,7 +16,7 @@ namespace Interactions.Interaction_System.Interactions
       [SerializeField] private float lockThreshold;
       [Tooltip("The angle at which the door closes and stays shut if the velocity is low enough")]
       [SerializeField] private float lockAngle;
-
+      
       private bool _isHeld;
       private Camera _cam;
       private Rigidbody _rb;
@@ -32,6 +32,8 @@ namespace Interactions.Interaction_System.Interactions
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
          TooltipMessage = "Hold E to Interact";
+         
+         
       }
 
       private IEnumerator Start()
@@ -58,7 +60,6 @@ namespace Interactions.Interaction_System.Interactions
             LockDoor();
             return;
          }
-
          RotateDoor();
       }
 

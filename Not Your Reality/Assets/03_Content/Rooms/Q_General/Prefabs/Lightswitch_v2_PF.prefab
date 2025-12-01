@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6476251334831332265}
   - component: {fileID: 1123913652837639314}
   - component: {fileID: 8251337811558407641}
+  - component: {fileID: -7496783334580244057}
   m_Layer: 0
   m_Name: Lightswitch_v2_PF
   m_TagString: Untagged
@@ -110,3 +111,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.07867816, y: 0.100489646, z: 0.026344027}
   m_Center: {x: 0.00022027269, y: -0.0022957493, z: 0.012956645}
+--- !u!114 &-7496783334580244057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2814662164306948219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf8d5abcde08af4bb939b91e755fadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  isHolding: 0
+  multipleUse: 0
+  isInteractable: 1
