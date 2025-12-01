@@ -54,7 +54,11 @@ namespace Puzzle.Balloon_Matryoshka
             {
                 Instantiate(balloonPrefab, transform.position, transform.rotation, _balloonChecker.transform);
             }
-            _balloonChecker.CheckWin();
+            if (this.tag == "Tier 3 Balloon")
+            {
+                _balloonChecker.CheckWin();
+            }
+
             Destroy(gameObject);
         }
     }

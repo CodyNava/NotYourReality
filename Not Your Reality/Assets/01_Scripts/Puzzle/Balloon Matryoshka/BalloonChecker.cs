@@ -24,7 +24,6 @@ namespace Puzzle.Balloon_Matryoshka
         {
             Debug.Log(transform.childCount);
             if (transform.childCount > 1) return;
-            if (!holdsKey) return;
             Instantiate(key, transform.position, transform.rotation);
         }
     }
