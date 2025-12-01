@@ -72,6 +72,7 @@ namespace Player.PlayerMovement.Movement
 
          if (cameraHolder) _originalCamLocalPos = cameraHolder.localPosition;
 
+         CameraActive = true;
          Cursor.lockState = CursorLockMode.Locked;
          Cursor.visible = false;
       }
