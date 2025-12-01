@@ -14,10 +14,13 @@ namespace UI.Menu
         [SerializeField] private string menuScene;
         private bool _isPaused;
         private PlayerController _playerController;
+        private GameObject _player;
 
         private void Start()
         {
             _playerController = FindFirstObjectByType<PlayerController>();
+            _player = _playerController.gameObject;
+            ResumeGame();
         }
 
         private void Update()
@@ -58,6 +61,7 @@ namespace UI.Menu
 
         public void BackToMenu()
         {
+            Destroy(_player);
             SceneManager.LoadScene(menuScene);
         }
     }
