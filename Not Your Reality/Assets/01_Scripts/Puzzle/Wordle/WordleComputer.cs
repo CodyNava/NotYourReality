@@ -39,6 +39,7 @@ namespace Puzzle.Wordle
          computerCamera.SetActive(true);
          crosshairCanvas.enabled = false;
          InputManager.Input.Player.Disable();
+         InputManager.Input.UI.Disable();
       }
 
       public void ExitTerminal()
@@ -48,6 +49,7 @@ namespace Puzzle.Wordle
          computerCamera.SetActive(false);
          crosshairCanvas.enabled = true;
          InputManager.Input.Player.Enable();
+         InputManager.Input.UI.Enable();
       }
    }
 }
