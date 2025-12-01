@@ -66,7 +66,7 @@ namespace Interactions.Interaction_System.Interactions
                var zAngle = -Vector3.SignedAngle(_initialCamForward, zForward, Vector3.forward);
                var targetZRotation = _initialZRotation + zAngle;
 
-               var zTargetRotation = Quaternion.Euler(0, 0, targetZRotation);
+               var zTargetRotation = Quaternion.Euler(0, _initialYRotation, targetZRotation);
 
                var zTime = Time.deltaTime * dragSpeed;
                var zRotate = Quaternion.RotateTowards(transform.rotation, zTargetRotation, zTime);
@@ -85,7 +85,7 @@ namespace Interactions.Interaction_System.Interactions
                var angle = -Vector3.SignedAngle(_initialCamForward, currentCamForward, Vector3.up);
                var targetYRotation = _initialYRotation + angle;
 
-               var targetRotation = Quaternion.Euler(0, targetYRotation, 0);
+               var targetRotation = Quaternion.Euler(0, targetYRotation, _initialZRotation);
 
                var time = Time.deltaTime * dragSpeed;
                var rotate = Quaternion.RotateTowards(transform.rotation, targetRotation, time);
