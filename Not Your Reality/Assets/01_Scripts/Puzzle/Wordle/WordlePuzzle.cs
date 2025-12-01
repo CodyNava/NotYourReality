@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using Interactions.Interaction_System.Interactions;
 using UnityEngine;
 
@@ -15,6 +17,13 @@ namespace Puzzle.Wordle
         [SerializeField] private Transform wordKnitterBoard;
         [SerializeField] private int maxGuesses = 6;
 
+        [Header("Audio References")]
+        [SerializeField] private EventReference keyboardSound;
+
+        [SerializeField] private EventReference allCorrectSound;
+        [SerializeField] private EventReference coloringSound;
+        [SerializeField] private EventReference doorOpenSound;
+
         [Header("Colors")]
         [SerializeField] private Color correctColor = Color.green;
 
@@ -24,6 +33,7 @@ namespace Puzzle.Wordle
 
         [Header("Animation")]
         [SerializeField] private float revealDuration = 1.5f;
+
         [SerializeField] private OpenDoor door;
 
         private bool _isRevealing;
@@ -190,6 +200,8 @@ namespace Puzzle.Wordle
 
                 _selectedTile.SetLetter(letter);
             }
+
+            RuntimeManager.PlayOneShot(keyboardSound, transform.position);
         }
 
         public void OnSpecialKey(string action)
@@ -227,6 +239,8 @@ namespace Puzzle.Wordle
                     SubmitGuess();
                 }
             }
+
+            RuntimeManager.PlayOneShot(keyboardSound, transform.position);
         }
 
         private void UpdateCurrentRow()
@@ -461,6 +475,7 @@ namespace Puzzle.Wordle
                     }
                 }
 
+                RuntimeManager.PlayOneShot(coloringSound, transform.position);
                 yield return new WaitForSeconds(_perLetterDelay);
 
                 foreach (int w in yellowWords)
@@ -605,6 +620,8 @@ namespace Puzzle.Wordle
                 Debug.Log("Word Knitter: All tiles are correct.");
                 _isGameOver = true;
                 door.IsInteractable = true;
+                RuntimeManager.PlayOneShot(doorOpenSound, door.transform.position);
+                RuntimeManager.PlayOneShot(allCorrectSound, transform.position);
             }
             else if (!allWordsSolved)
             {
