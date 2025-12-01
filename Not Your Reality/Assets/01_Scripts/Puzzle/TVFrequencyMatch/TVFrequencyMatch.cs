@@ -21,7 +21,7 @@ namespace Puzzle.TVFrequencyMatch
                 }
             }
 
-            door.IsInteractable = false;
+            if (door) door.IsInteractable = false;
         }
 
         public void Status()

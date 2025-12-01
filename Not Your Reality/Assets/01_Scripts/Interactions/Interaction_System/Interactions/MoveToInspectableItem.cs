@@ -10,7 +10,7 @@ namespace Interactions.Interaction_System.Interactions
     public class MoveToInspectableItem : InteractableBase
     {
         [Tooltip("The speed at which the Item goes into focus")]
-        [SerializeField] private float duration = 1.5f;
+        [SerializeField] private float duration = 1f;
         
         private Volume _volume;
         private Camera _camera;
@@ -37,24 +37,19 @@ namespace Interactions.Interaction_System.Interactions
             base.OnInteract();
             if (_inspect != null) StopCoroutine(_inspect);
             _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
-            Debug.Log(_isInspecting);
-        }
-
-        private void Update()
-        {
-            Cursor.visible = _isInspecting;
-            //Cursor.lockState = _isInspecting ? CursorLockMode.None : CursorLockMode.Locked;
         }
         
         private IEnumerator Inspect()
         {
-            _isInspecting = true;
+            InputManager.Input.Player.Disable();
+            InputManager.Input.UI.Disable();
+            InputManager.Input.Interaction.Disable();
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            _isInspecting = true;
             TooltipMessage = "";
             _originalTransform = _camera.transform.position;
             _originalRotation = _camera.transform.rotation;
-            InputManager.Input.Player.Disable();
-            InputManager.Input.UI.Disable();
             var t = 0f;
             _vignette.intensity.value = 0.2f;
             while (t < duration)
@@ -64,12 +59,14 @@ namespace Interactions.Interaction_System.Interactions
                 _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _anchorRotation, t/duration);
                 yield return null;
             }
+
         }
 
         private IEnumerator Release()
         {
-            _isInspecting = false;
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
             _vignette.intensity.value = 0f;
             var t = 0f;
@@ -82,6 +79,7 @@ namespace Interactions.Interaction_System.Interactions
             }
             InputManager.Input.Player.Enable();
             InputManager.Input.UI.Enable();
+            InputManager.Input.Interaction.Enable();
         }
     }
 }

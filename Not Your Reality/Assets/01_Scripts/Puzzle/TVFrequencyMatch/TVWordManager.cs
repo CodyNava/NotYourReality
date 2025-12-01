@@ -7,10 +7,8 @@ namespace Puzzle.TVFrequencyMatch
     public class TVWordManager : MonoBehaviour
     {
         [Header("TW Word Manager")]
-        [Tooltip("The .txt file with the words for this riddle \n"
-                 + "<b>PLEASE, I BEG YOU, MAKE SURE THERE ARE MORE WORDS THAN TV'S OR THE GAME BREAKS</b>")]
-        [SerializeField]
-        private TextAsset words;
+        [Tooltip("The .txt file with the words for this riddle")]
+        [SerializeField] private TextAsset words;
 
         private readonly List<(string original, string scrambled)> _wordPairs = new();
         private readonly List<(string original, string scrambled)> _usedPairs = new();
@@ -38,9 +36,6 @@ namespace Puzzle.TVFrequencyMatch
 
         public void SelectPair()
         {
-            Debug.Log(_usedPairs.Count);
-            Debug.Log(_wordPairs.Count);
-            
             var unusedIndices = new List<int>(_wordPairs.Count);
             for (var i = 0; i < _wordPairs.Count; i++)
             {
@@ -52,7 +47,6 @@ namespace Puzzle.TVFrequencyMatch
 
             if (unusedIndices.Count == 0)
             {
-                Debug.Log("All Words Used");
                 OriginalWord = ScrambledWord = string.Empty;
                 return;
             }
@@ -62,8 +56,6 @@ namespace Puzzle.TVFrequencyMatch
             ScrambledWord = _wordPairs[randIndex].scrambled;
 
             _usedPairs.Add(_wordPairs[randIndex]);
-
-            Debug.Log(OriginalWord + ScrambledWord);
         }
     }
 }

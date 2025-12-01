@@ -30,22 +30,22 @@ namespace UI.Menu
 
         public void ResumeGame()
         {
-            _isPaused = false;
             InputManager.Input.Player.Enable();
-            Time.timeScale = 1f;
-            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            _isPaused = false;
+            Time.timeScale = 1f;
             pauseMenu.SetActive(false);
-            settingsMenu.SetActive(false);   
+            settingsMenu.SetActive(false); 
         }
 
         private void PauseGame()
         {
-            _isPaused = true;
             InputManager.Input.Player.Disable();
-            Time.timeScale = 0f;
-            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            _isPaused = true;
+            Time.timeScale = 0f;
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(true);
         }
