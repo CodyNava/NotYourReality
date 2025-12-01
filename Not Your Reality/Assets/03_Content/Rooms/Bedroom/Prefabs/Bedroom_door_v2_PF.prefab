@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3278653466706028477}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3414833855109833652
@@ -108,10 +109,11 @@ MonoBehaviour:
   isHolding: 0
   multipleUse: 0
   isInteractable: 1
-  drag: 0.2
+  drag: 5
   pullStrength: 8
-  lockThreshold: 0.09
-  lockAngle: 2
+  lockThreshold: 0.3
+  lockAngle: 5
+  handleTransform: {fileID: 3278653466706028477}
 --- !u!54 &9115077055828007396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,3 +201,34 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &7956690049162479668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3278653466706028477}
+  m_Layer: 6
+  m_Name: HandleTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3278653466706028477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956690049162479668}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.412, y: 0.699, z: 0.062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1354245938758479163}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
