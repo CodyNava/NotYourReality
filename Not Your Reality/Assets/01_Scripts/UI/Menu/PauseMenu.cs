@@ -1,4 +1,6 @@
+using System;
 using Interactions.Interaction_System.Interaction_Base_Class;
+using Player.PlayerMovement.Movement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +13,12 @@ namespace UI.Menu
         [SerializeField] private GameObject crosshairCanvas;
         [SerializeField] private string menuScene;
         private bool _isPaused;
+        private PlayerController _playerController;
+
+        private void Start()
+        {
+            _playerController = FindFirstObjectByType<PlayerController>();
+        }
 
         private void Update()
         {
@@ -30,24 +38,22 @@ namespace UI.Menu
 
         public void ResumeGame()
         {
-            InputManager.Input.Player.Enable();
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            _isPaused = false;
             Time.timeScale = 1f;
+            _isPaused = false;
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(false); 
+            _playerController.CameraActive = true;
+            InputManager.Input.Player.Enable();
         }
 
         private void PauseGame()
         {
             InputManager.Input.Player.Disable();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
             _isPaused = true;
             Time.timeScale = 0f;
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(true);
+            _playerController.CameraActive = false;
         }
 
         public void BackToMenu()
