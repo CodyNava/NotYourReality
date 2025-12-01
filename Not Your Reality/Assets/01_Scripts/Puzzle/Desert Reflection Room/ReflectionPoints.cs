@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Puzzle
+namespace Puzzle.Desert_Reflection_Room
 {
     public class ReflectionPoints : MonoBehaviour
     {

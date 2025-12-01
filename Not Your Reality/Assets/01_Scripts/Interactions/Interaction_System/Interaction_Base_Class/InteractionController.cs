@@ -1,4 +1,5 @@
 using Interactions.Interaction_System.Interactions;
+using Puzzle.Desert_Reflection_Room;
 using UnityEngine;
 
 namespace Interactions.Interaction_System.Interaction_Base_Class

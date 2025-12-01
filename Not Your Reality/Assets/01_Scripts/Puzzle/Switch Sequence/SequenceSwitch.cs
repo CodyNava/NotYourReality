@@ -1,8 +1,7 @@
 using Interactions.Interaction_System.Interaction_Base_Class;
-using Puzzle;
 using UnityEngine;
 
-namespace Interactions.Interaction_System.Interactions
+namespace Puzzle.Switch_Sequence
 {
    public class SequenceSwitch : InteractableBase
    {

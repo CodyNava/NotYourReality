@@ -1,7 +1,7 @@
 using Interactions.Interaction_System.Interactions;
 using UnityEngine;
 
-namespace Puzzle
+namespace Puzzle.General
 {
    public class Key : MonoBehaviour
    {

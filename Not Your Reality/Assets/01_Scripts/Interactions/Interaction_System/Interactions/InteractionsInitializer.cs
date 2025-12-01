@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
@@ -7,11 +6,11 @@ namespace Interactions.Interaction_System.Interactions
 {
    public class InteractionsInitializer : MonoBehaviour
    {
-      [SerializeField] private List<InteractableBase> _interactables;
+      [SerializeField] private List<InteractableBase> interactableObjects;
 
       private void Start()
       {
-         _interactables =
+         interactableObjects =
             new List<InteractableBase>(FindObjectsByType<InteractableBase>(sortMode: FindObjectsSortMode.None));
          ReEnableScripts(false);
          ReEnableScripts(true);
@@ -19,7 +18,7 @@ namespace Interactions.Interaction_System.Interactions
 
       private void ReEnableScripts(bool status)
       {
-         foreach (var interactable in _interactables)
+         foreach (var interactable in interactableObjects)
          {
             interactable.enabled = status;
          }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Interactions.Interaction_System.Interactions
+namespace Puzzle.Path_of_Truth
 {
    public class PathOfTruthTiles : MonoBehaviour
    {

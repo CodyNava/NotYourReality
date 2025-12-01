@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Puzzle
+namespace Puzzle.Path_of_Truth
 {
    public class PathOfTruth : MonoBehaviour
    {

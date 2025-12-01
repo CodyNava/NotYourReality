@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Interactions.Interaction_System.Interactions;
 using UnityEngine;
 
-namespace Puzzle
+namespace Puzzle.FloorplateWeightTrigger
 {
    public class FloorplateWeightTrigger : MonoBehaviour
    {

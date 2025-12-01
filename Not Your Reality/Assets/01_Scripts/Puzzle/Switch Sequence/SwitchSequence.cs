@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Interactions.Interaction_System.Interactions;
 using UnityEngine;
 
-namespace Puzzle
+namespace Puzzle.Switch_Sequence
 {
    public class SwitchSequence : MonoBehaviour
    {

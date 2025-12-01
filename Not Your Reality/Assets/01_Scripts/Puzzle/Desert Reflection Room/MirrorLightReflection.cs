@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 using Interactions.Interaction_System.Interactions;
+using UnityEngine;
 
-namespace Puzzle
+namespace Puzzle.Desert_Reflection_Room
 {
    public class MirrorLightReflection : MonoBehaviour
    {

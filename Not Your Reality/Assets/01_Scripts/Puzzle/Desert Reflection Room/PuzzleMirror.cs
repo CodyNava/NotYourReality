@@ -1,7 +1,7 @@
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 
-namespace Interactions.Interaction_System.Interactions
+namespace Puzzle.Desert_Reflection_Room
 {
    public class PuzzleMirror : InteractableBase
    {

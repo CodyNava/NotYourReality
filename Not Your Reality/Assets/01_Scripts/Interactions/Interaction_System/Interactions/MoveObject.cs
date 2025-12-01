@@ -40,8 +40,8 @@ namespace Interactions.Interaction_System.Interactions
       private void MoveItem()
       {
           var velocity = Vector3.zero;
-          var smoothlerp = Vector3.SmoothDamp(_rb.position, _cachedTarget, ref velocity, 0.05f);
-          _rb.MovePosition(smoothlerp);
+          var smoothLerp = Vector3.SmoothDamp(_rb.position, _cachedTarget, ref velocity, 0.05f);
+          _rb.MovePosition(smoothLerp);
       }*/
       
       private void FixedUpdate()
