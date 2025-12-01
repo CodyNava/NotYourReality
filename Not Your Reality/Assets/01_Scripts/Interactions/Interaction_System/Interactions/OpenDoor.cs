@@ -32,8 +32,6 @@ namespace Interactions.Interaction_System.Interactions
          _joint = GetComponent<HingeJoint>();
          _lockRotation = _rb.transform.rotation;
          TooltipMessage = "Hold E to Interact";
-         
-         
       }
 
       private IEnumerator Start()
@@ -55,12 +53,20 @@ namespace Interactions.Interaction_System.Interactions
 
       private void Update()
       {
-         if (!_isHeld)
-         {
-            LockDoor();
-            return;
-         }
-         RotateDoor();
+          if (!IsInteractable)
+          {
+              _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+          }
+          else
+          {
+              _rb.constraints = RigidbodyConstraints.None;
+          }
+          if (!_isHeld)
+          {
+              LockDoor(); 
+              return;
+          }
+          RotateDoor();
       }
 
       private void RotateDoor()
