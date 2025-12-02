@@ -10,6 +10,7 @@ namespace Puzzle.Wordle
       private PlayerController _playerController;
       [SerializeField] private GameObject computerCamera;
       [SerializeField] private Canvas crosshairCanvas;
+      [SerializeField] private CanvasGroup wordleCanvas;
 
       public void Start()
       {
@@ -34,6 +35,7 @@ namespace Puzzle.Wordle
 
       private void EnterTerminal()
       {
+          wordleCanvas.blocksRaycasts = true;
          _isActive = true;
          _playerController.CameraActive = false;
          computerCamera.SetActive(true);
@@ -44,6 +46,7 @@ namespace Puzzle.Wordle
 
       public void ExitTerminal()
       {
+          wordleCanvas.blocksRaycasts = false;
          _isActive = false;
          _playerController.CameraActive = true;
          computerCamera.SetActive(false);
