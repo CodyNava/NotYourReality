@@ -1,7 +1,6 @@
 ﻿using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
-using System.Collections;
-using System.Linq;
+using Player.PlayerMovement.Movement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -12,69 +11,74 @@ namespace Interactions.Interaction_System.Interactions
         [Tooltip("The speed at which the Item goes into focus")]
         [SerializeField] private float duration = 1f;
         
+        [Tooltip("The camera for this inspectable item")]
+        [SerializeField] private GameObject inspectCamera;
+        
+        private PlayerController _playerController;
+
+        private Canvas _crosshairCanvas;
+        
         private Volume _volume;
-        private Camera _camera;
-        private Vector3 _originalTransform;
-        private Quaternion _originalRotation;
-        private Transform _anchorTransform;
-        private Quaternion _anchorRotation;
         private bool _isInspecting;
         private Vignette _vignette;
         private Coroutine _inspect;
+        
+        [SerializeField] private CanvasGroup canvasGroup;
 
         private void Awake()
         {
-            _camera = Camera.main;
-            _anchorTransform = GetComponentsInChildren<Transform>().FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
-            _anchorRotation = GetComponentsInChildren<Transform>().FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
             _volume = FindFirstObjectByType<Volume>();
             _volume.profile.TryGet(out _vignette);
             TooltipMessage = "Press E to Inspect";
         }
-        
+
+        private void Start()
+        {
+            _playerController = FindFirstObjectByType<PlayerController>();
+            var crosshair = GameObject.FindWithTag("Crosshair");
+            _crosshairCanvas = crosshair.GetComponentInChildren<Canvas>();
+        }
+
         public override void OnInteract()
         {
             base.OnInteract();
-            if (_inspect != null) StopCoroutine(_inspect);
-            _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
+            if (_isInspecting)
+            {
+                Release();
+            }
+            else
+            {
+                Inspect();
+            }
         }
         
-        private IEnumerator Inspect()
+        private void Inspect()
         {
+            canvasGroup.blocksRaycasts = true;
             InputManager.Input.Player.Disable();
             InputManager.Input.UI.Disable();
+            _crosshairCanvas.enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _isInspecting = true;
             TooltipMessage = "";
-            _originalTransform = _camera.transform.position;
-            _originalRotation = _camera.transform.rotation;
-            var t = 0f;
             _vignette.intensity.value = 0.2f;
-            while (t < duration)
-            {
-                t += Time.deltaTime;
-                _camera.transform.position = Vector3.Lerp(_camera.transform.position, _anchorTransform.position, t / duration);
-                _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _anchorRotation, t/duration);
-                yield return null;
-            }
+
+            _playerController.CameraActive = false;
+            inspectCamera.SetActive(true);
         }
 
-        private IEnumerator Release()
+        private void Release()
         {
+            canvasGroup.blocksRaycasts = false;
+            inspectCamera.SetActive(false);
+            _playerController.CameraActive = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            _crosshairCanvas.enabled = true;
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
             _vignette.intensity.value = 0f;
-            var t = 0f;
-            while (t < duration)
-            {
-                t += Time.deltaTime;
-                _camera.transform.position = Vector3.Lerp(_camera.transform.position, _originalTransform, t/duration);
-                _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _originalRotation, t/duration);
-                yield return null;
-            }
             InputManager.Input.Player.Enable();
             InputManager.Input.UI.Enable();
         }

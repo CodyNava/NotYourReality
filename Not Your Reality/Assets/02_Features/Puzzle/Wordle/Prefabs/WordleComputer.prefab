@@ -208,6 +208,7 @@ MonoBehaviour:
   isInteractable: 1
   computerCamera: {fileID: 205821555995269302}
   crosshairCanvas: {fileID: 0}
+  wordleCanvas: {fileID: 7807058756505181635}
 --- !u!65 &8190433308119116353
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -330,6 +331,7 @@ GameObject:
   - component: {fileID: 2892572020156601537}
   - component: {fileID: 5142224503588730614}
   - component: {fileID: 8092907507160106923}
+  - component: {fileID: 7807058756505181635}
   m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
@@ -423,6 +425,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &7807058756505181635
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113167434996156576}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5995554808548882243
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,13 +659,6 @@ MonoBehaviour:
       Data3: 408106686
       Data4: 1837295602
     Path: event:/Coloring Sound
-  doorOpenSound:
-    Guid:
-      Data1: 577123290
-      Data2: 1333586409
-      Data3: -348259649
-      Data4: 1600281846
-    Path: event:/Door Open
   correctColor: {r: 0, g: 1, b: 0, a: 1}
   presentColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   incorrectColor: {r: 1, g: 0, b: 0, a: 1}
