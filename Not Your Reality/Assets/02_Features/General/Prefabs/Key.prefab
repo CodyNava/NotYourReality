@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6464665208632292427}
   - component: {fileID: 2039946419903692346}
   - component: {fileID: 1989429264184586887}
+  - component: {fileID: -2192076313991664873}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -170,3 +171,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2192076313991664873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2363374388372541277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1071947531
+      Data2: 1169202803
+      Data3: 133349287
+      Data4: -1745445739
+    Path: event:/KeydropNYR
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
