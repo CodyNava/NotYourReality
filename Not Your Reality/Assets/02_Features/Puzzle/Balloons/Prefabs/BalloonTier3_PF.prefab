@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2689972686704369195}
   - component: {fileID: 2847645473669957101}
   - component: {fileID: 5976858182032112353}
+  - component: {fileID: 1378635861876766812}
   m_Layer: 0
   m_Name: BalloonTier3_PF
   m_TagString: Tier 3 Balloon
@@ -178,3 +179,34 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1378635861876766812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014509562062503177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1100332061
+      Data2: 1101098356
+      Data3: 651462841
+      Data4: 1759828034
+    Path: event:/Balloon BurstNYR
+  Event: 
+  EventPlayTrigger: 2
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
