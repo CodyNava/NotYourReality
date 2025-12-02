@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{72ac115c-6b12-4552-aeb1-29e144638e56}">
 		<relationship name="sounds">
-			<destination>{f33fd90a-3eb3-41e9-be38-78a4e21b74eb}</destination>
+			<destination>{6f011ecd-d4a9-496b-b39f-46c9ec8941c1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{fbd7ee80-66d4-4f75-97a1-b1ad287f9912}">
@@ -104,9 +104,15 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e6278bc2-c0b9-4f84-a366-51013a259d36}" />
-	<object class="SingleSound" id="{f33fd90a-3eb3-41e9-be38-78a4e21b74eb}">
+	<object class="SingleSound" id="{6f011ecd-d4a9-496b-b39f-46c9ec8941c1}">
+		<property name="volume">
+			<value>-14.5</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{7de1acea-7f2f-404f-8333-e41cbc6c1f7d}</destination>
+		</relationship>
 		<relationship name="audioFile">
-			<destination>{c9e7ec0a-09a8-46aa-8df8-df8eb6f181af}</destination>
+			<destination>{7d3b73d1-404e-43e4-9f9b-f08222b8b420}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{f6a73d0d-0a9f-47a3-b8e6-c92d2daf454d}" />
@@ -115,6 +121,14 @@
 	<object class="SFXReverbEffect" id="{7329021e-9bf8-4e9e-8cc8-55def9bf79af}">
 		<property name="decayTime">
 			<value>650</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{7de1acea-7f2f-404f-8333-e41cbc6c1f7d}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>14.5</value>
 		</property>
 	</object>
 </objects>
