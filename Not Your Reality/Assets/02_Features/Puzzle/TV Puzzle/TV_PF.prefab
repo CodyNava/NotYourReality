@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 6869111028101062305}
   - component: {fileID: 3653808336671790005}
   - component: {fileID: 1179159128643398086}
+  - component: {fileID: 9140894430514724531}
   m_Layer: 6
   m_Name: TV_PF
   m_TagString: Untagged
@@ -300,6 +301,37 @@ MonoBehaviour:
   duration: 0.7
   inspectCamera: {fileID: 576650003735511315}
   canvasGroup: {fileID: 1146094409760401053}
+--- !u!114 &9140894430514724531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959364568776087929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1442371355
+      Data2: 1256223114
+      Data3: -1381845589
+      Data4: -1797485284
+    Path: event:/TV-Static
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &3131044673189621188
 PrefabInstance:
   m_ObjectHideFlags: 0
