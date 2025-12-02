@@ -30,7 +30,6 @@ namespace Interactions.Interaction_System.Interactions
 
         private bool _isHeld;
         private Rigidbody _rb;
-        private Vector3 _initialCamForward;
         private Quaternion _lockRotation;
         private Vector3 _torque;
         private HingeJoint _joint;
@@ -61,10 +60,10 @@ namespace Interactions.Interaction_System.Interactions
 
 
         // Optional Edit if you want the text to change based on status
-        /*private void Update()
+        private void Update()
         {
             TooltipMessage = IsInteractable ? "Hold E to Interact" : "";
-        }*/
+        }
 
         private void FixedUpdate()
         {
