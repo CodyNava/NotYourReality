@@ -9,7 +9,7 @@ namespace Puzzle.General
       {
          if (!other.gameObject.CompareTag("Door")) return;
          var door = other.gameObject.GetComponent<OpenDoor>();
-         door.IsInteractable = true;
+         door.UnlockDoor();
          Destroy(gameObject);
       }
    }

@@ -62,7 +62,7 @@ namespace Puzzle.Desert_Reflection_Room
 
          if (!AllHit() || _puzzleCompleted) return;
          _puzzleCompleted = true;
-         door.IsInteractable = _puzzleCompleted;
+         door.UnlockDoor();
       }
 
       private bool AllHit()
