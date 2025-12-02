@@ -1,4 +1,5 @@
 using System.Collections;
+using FMODUnity;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Interactions.Interaction_System.Interactions
         [Space]
         [Tooltip("The drag of the door")]
         [SerializeField] private float drag = 5;
-        
+
         [Tooltip("The speed at which the door follows the mouse")]
         [SerializeField] private float pullStrength = 8;
 
@@ -22,6 +23,10 @@ namespace Interactions.Interaction_System.Interactions
 
         [Tooltip("The handle of the door")]
         [SerializeField] private Transform handleTransform;
+
+        [Header("Audio Reference")]
+        [Tooltip("The sound that is played when you unlock a door")]
+        [SerializeField] private EventReference unlockSound;
 
         private bool _isHeld;
         private Rigidbody _rb;
@@ -54,7 +59,7 @@ namespace Interactions.Interaction_System.Interactions
             _isHeld = true;
         }
 
-        
+
         // Optional Edit if you want the text to change based on status
         /*private void Update()
         {
@@ -93,18 +98,18 @@ namespace Interactions.Interaction_System.Interactions
             var playerToHinge = transform.position - _camera.transform.position;
             playerToHinge.y = 0;
             playerToHinge.Normalize();
-            
+
             var dot = Vector3.Dot(playerToHinge, hingeToHandle);
             var side = (Mathf.Abs(dot) < 0.0001f) ? 1f : Mathf.Sign(dot);
             var lookInput = InputManager.Input.Player.Look.ReadValue<Vector2>();
             var lookX = lookInput.x;
             var moveAngle = lookX * side;
-            
+
             _torque = Vector3.up * (moveAngle * pullStrength);
             _torque -= _rb.angularVelocity * drag;
             const float maxTorque = 10000f;
-            if (_torque.sqrMagnitude > maxTorque * maxTorque) _torque =  _torque.normalized * maxTorque;
-            
+            if (_torque.sqrMagnitude > maxTorque * maxTorque) _torque = _torque.normalized * maxTorque;
+
             _rb.AddTorque(_torque, ForceMode.Acceleration);
         }
 
@@ -123,6 +128,12 @@ namespace Interactions.Interaction_System.Interactions
             {
                 _joint.useLimits = true;
             }
+        }
+
+        public void UnlockDoor()
+        {
+            IsInteractable = true;
+            RuntimeManager.PlayOneShot(unlockSound, transform.position);
         }
 
         public void Release()

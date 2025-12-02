@@ -28,7 +28,7 @@ namespace Puzzle.TVFrequencyMatch
         {
             var winCounter = _tvManagers.Count(tvManager => tvManager.Completed);
             if (winCounter != _tvManagers.Count) return;
-            if (door) door.IsInteractable = true;
+            if (door) door.UnlockDoor();
         }
     }
 }

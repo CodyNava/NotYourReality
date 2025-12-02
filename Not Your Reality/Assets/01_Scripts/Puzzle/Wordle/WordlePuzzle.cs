@@ -619,7 +619,7 @@ namespace Puzzle.Wordle
             {
                 Debug.Log("Word Knitter: All tiles are correct.");
                 _isGameOver = true;
-                door.IsInteractable = true;
+                door.UnlockDoor();
                 //RuntimeManager.PlayOneShot(doorOpenSound, door.transform.position);
                 RuntimeManager.PlayOneShot(allCorrectSound, transform.position);
             }
