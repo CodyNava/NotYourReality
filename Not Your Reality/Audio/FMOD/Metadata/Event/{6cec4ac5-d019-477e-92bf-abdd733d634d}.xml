@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{6cec4ac5-d019-477e-92bf-abdd733d634d}">
+		<property name="color">
+			<value>Purple</value>
+		</property>
 		<property name="name">
 			<value>784344__klankbeeld__horror-ambiance-4430-150329_01-track-110</value>
 		</property>
@@ -9,6 +12,9 @@
 		</property>
 		<relationship name="folder">
 			<destination>{19ea16ce-5e61-4ef9-8012-32d2c5f8d19f}</destination>
+		</relationship>
+		<relationship name="tags">
+			<destination>{b8c8a237-1c69-475a-89a6-8f9aee43d9b0}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{818ec637-24bc-4486-b9c0-eaae097b883f}</destination>
@@ -30,6 +36,9 @@
 		</relationship>
 		<relationship name="timeline">
 			<destination>{02bec9f7-1fc4-40c1-8120-5b10acbcb7a5}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{20b91c7d-b685-4c4a-a431-c58243960160}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{818ec637-24bc-4486-b9c0-eaae097b883f}">
@@ -66,6 +75,9 @@
 	<object class="Timeline" id="{02bec9f7-1fc4-40c1-8120-5b10acbcb7a5}">
 		<relationship name="modules">
 			<destination>{ff075c8b-fa73-4535-855c-7a2bd9370bd8}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{fd5f69ef-559e-4d4a-9f25-e2c63a8b6706}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{5d28952d-a64d-4500-aa42-6921d57d5cef}">
@@ -108,6 +120,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{5d28952d-a64d-4500-aa42-6921d57d5cef}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{fd5f69ef-559e-4d4a-9f25-e2c63a8b6706}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>198.03814583333335</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{02bec9f7-1fc4-40c1-8120-5b10acbcb7a5}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{147b5ce2-ae1c-43a0-bc58-d9341e991694}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{14c1cb5e-9473-4539-b775-1d906cd7fa93}">

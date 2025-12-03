@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{570a5e6c-1ac7-484c-8bee-9fa8b72cf634}">
 		<property name="color">
-			<value>Blue</value>
+			<value>Purple</value>
 		</property>
 		<property name="name">
 			<value>833346__eskvy__small-room-ambience-pc-on</value>
@@ -12,6 +12,9 @@
 		</property>
 		<relationship name="folder">
 			<destination>{19ea16ce-5e61-4ef9-8012-32d2c5f8d19f}</destination>
+		</relationship>
+		<relationship name="tags">
+			<destination>{b8c8a237-1c69-475a-89a6-8f9aee43d9b0}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{8f2ed0f6-e321-4a00-82ae-c0a481bbb2e7}</destination>
@@ -73,6 +76,9 @@
 		<relationship name="modules">
 			<destination>{a44178d0-f07d-422d-bb12-9936d5944083}</destination>
 		</relationship>
+		<relationship name="markers">
+			<destination>{ee40e1aa-1863-4c90-b4df-913b7fef8562}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{2150e362-c59a-40d0-928f-1dbceb426eee}">
 		<property name="volume">
@@ -114,6 +120,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{2150e362-c59a-40d0-928f-1dbceb426eee}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{ee40e1aa-1863-4c90-b4df-913b7fef8562}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>60</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2edfb2ec-cbd1-4e88-a6b3-14687905fda8}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{71a67429-e3e9-4b9a-b0b1-b7dfc0e87246}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{09abd6a3-eece-4d1c-864e-3bfbb98896e3}">

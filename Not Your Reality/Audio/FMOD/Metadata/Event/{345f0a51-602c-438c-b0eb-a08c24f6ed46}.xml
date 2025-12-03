@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{345f0a51-602c-438c-b0eb-a08c24f6ed46}">
+		<property name="color">
+			<value>Red</value>
+		</property>
 		<property name="name">
 			<value>831993__akkaittou__dreamyambient_MainMenu</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{19ea16ce-5e61-4ef9-8012-32d2c5f8d19f}</destination>
+		</relationship>
+		<relationship name="tags">
+			<destination>{05a839a0-f091-410c-be70-c194cb537888}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{94c4d034-fb52-48b0-b94d-d6a1aab091dc}</destination>
@@ -74,6 +80,9 @@
 		<relationship name="modules">
 			<destination>{786eacc1-0efb-4348-89ed-c4f8ebc80931}</destination>
 		</relationship>
+		<relationship name="markers">
+			<destination>{f96ccc91-b9fb-4ee7-b4e8-43a61c780b68}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{a3550049-2505-4101-a3be-3fe84cb2e390}">
 		<property name="volume">
@@ -120,10 +129,23 @@
 			<destination>{a3550049-2505-4101-a3be-3fe84cb2e390}</destination>
 		</relationship>
 	</object>
+	<object class="LoopRegion" id="{f96ccc91-b9fb-4ee7-b4e8-43a61c780b68}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>106</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{6ef2ec0f-c691-4c9f-ac33-e256aef5c14e}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{c6027dbf-eb31-4ac7-8871-85a13c33d8cb}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{921995f4-c547-4ea2-bf42-e3f6dee76625}">
 		<relationship name="effects">
 			<destination>{913f1ebe-70e8-4b9d-9b49-c1ba5f661bfb}</destination>
-			<destination>{1890da87-09f5-48b1-a030-de62851f0c59}</destination>
 			<destination>{8246cf88-3ccf-4073-b6cf-f9acb2c05558}</destination>
 			<destination>{9bba9dea-ccba-48a0-ad66-88415aad9dd2}</destination>
 		</relationship>
@@ -137,7 +159,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{12dc0a0d-075e-4539-b341-e83825ba43f2}" />
 	<object class="MixerBusFader" id="{913f1ebe-70e8-4b9d-9b49-c1ba5f661bfb}" />
-	<object class="SpatialiserEffect" id="{1890da87-09f5-48b1-a030-de62851f0c59}" />
 	<object class="SFXReverbEffect" id="{8246cf88-3ccf-4073-b6cf-f9acb2c05558}">
 		<property name="decayTime">
 			<value>3000</value>

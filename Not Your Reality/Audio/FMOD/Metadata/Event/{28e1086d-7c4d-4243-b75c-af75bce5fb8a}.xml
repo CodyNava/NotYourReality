@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{28e1086d-7c4d-4243-b75c-af75bce5fb8a}">
+		<property name="color">
+			<value>Purple</value>
+		</property>
 		<property name="name">
 			<value>709498__w_ortiz__murmures-1</value>
 		</property>
@@ -9,6 +12,9 @@
 		</property>
 		<relationship name="folder">
 			<destination>{19ea16ce-5e61-4ef9-8012-32d2c5f8d19f}</destination>
+		</relationship>
+		<relationship name="tags">
+			<destination>{b8c8a237-1c69-475a-89a6-8f9aee43d9b0}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{4cca37b0-017a-4d9c-9a63-6d2862e5a40a}</destination>
@@ -30,6 +36,9 @@
 		</relationship>
 		<relationship name="timeline">
 			<destination>{740b71ed-34f1-41cb-94ed-e54628e00506}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{20b91c7d-b685-4c4a-a431-c58243960160}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{4cca37b0-017a-4d9c-9a63-6d2862e5a40a}">
@@ -66,6 +75,9 @@
 	<object class="Timeline" id="{740b71ed-34f1-41cb-94ed-e54628e00506}">
 		<relationship name="modules">
 			<destination>{47be1b66-bfa6-4aa4-808a-e56d5e9f1416}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{0264a826-77cf-448c-b468-a1bb3718e2c6}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fc997f5c-b8b3-4fdf-9a25-199008f745ab}">
@@ -117,6 +129,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{fc997f5c-b8b3-4fdf-9a25-199008f745ab}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{0264a826-77cf-448c-b468-a1bb3718e2c6}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>10.661937500000001</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{740b71ed-34f1-41cb-94ed-e54628e00506}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{cd39ca3f-6213-43a1-8c16-f70d44845f2a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{dd9c3613-744d-4245-bcb3-2c20ff1408cb}">
