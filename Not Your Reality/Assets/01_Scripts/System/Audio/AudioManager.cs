@@ -6,7 +6,7 @@ namespace System.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        private static AudioManager _instance;
+        public static AudioManager instance;
 
         [SerializeField] private EventReference mainMenu;
 
@@ -14,13 +14,13 @@ namespace System.Audio
 
         private void Awake()
         {
-            if (_instance && _instance != this)
+            if (instance && instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            _instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
 
             _mainMenuInstance = RuntimeManager.CreateInstance(mainMenu);
