@@ -108,7 +108,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -133,7 +133,8 @@ MonoBehaviour:
   isHolding: 0
   multipleUse: 0
   isInteractable: 1
-  dragSpeed: 900
+  sensitivity: 0
+  rotationSpeed: 0
   zRotation: 0
 --- !u!65 &432824691966589578
 BoxCollider:
