@@ -6460,11 +6460,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6bb372582a2e4743849345e85f4b1f0, type: 3}
---- !u!1 &1016686529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 205821555995269302, guid: 118517650622c0444b56e0b050e38871, type: 3}
-  m_PrefabInstance: {fileID: 1242738676625201067}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1031062397
 Mesh:
   m_ObjectHideFlags: 0
@@ -7150,23 +7145,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1088603380 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4113167434996156576, guid: 118517650622c0444b56e0b050e38871, type: 3}
-  m_PrefabInstance: {fileID: 1242738676625201067}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &1088603385
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088603380}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1001 &1108939684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20601,25 +20579,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3664784955713767758}
     m_Modifications:
-    - target: {fileID: 1739222770480150374, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_StaticShadowCaster
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813477994508413261, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.009648621
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813477994508413261, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.13330248
-      objectReference: {fileID: 0}
     - target: {fileID: 2006763580313730560, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_Name
       value: WordleComputer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006763580313730560, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2030546308493394650, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20661,57 +20623,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2329444517277018344, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.143
-      objectReference: {fileID: 0}
-    - target: {fileID: 2329444517277018344, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.138
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249101704377444241, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: wordleCanvas
-      value: 
-      objectReference: {fileID: 1088603385}
     - target: {fileID: 4249101704377444241, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: crosshairCanvas
       value: 
       objectReference: {fileID: 5828156722546778156}
-    - target: {fileID: 6905530800217926772, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_Intensity
-      value: 20.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7938294244607489343, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_Antialiasing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7938294244607489343, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_RendererIndex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8233867558340989803, guid: 118517650622c0444b56e0b050e38871, type: 3}
       propertyPath: door
       value: 
       objectReference: {fileID: 7933912260927483213}
-    - target: {fileID: 8233867558340989803, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: wordlCamera
-      value: 
-      objectReference: {fileID: 1016686529}
-    - target: {fileID: 8960707558606671209, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960707558606671209, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4113167434996156576, guid: 118517650622c0444b56e0b050e38871, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1088603385}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 118517650622c0444b56e0b050e38871, type: 3}
 --- !u!4 &1242738676625201068 stripped
 Transform:
