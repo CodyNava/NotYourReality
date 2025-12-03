@@ -7687,6 +7687,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause_Menu_PF
       objectReference: {fileID: 0}
+    - target: {fileID: 1054839229456586928, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
+      propertyPath: m_Color.a
+      value: 0.42352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054839229456586928, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054839229456586928, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
+      propertyPath: m_Color.g
+      value: 0.41960788
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054839229456586928, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
+      propertyPath: m_Color.r
+      value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498408384881458184, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3660125455420847738, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
       propertyPath: volume
       value: 
@@ -11089,8 +11109,8 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 5.7
   OverrideMaxDistance: 20
 --- !u!1001 &1797396536
 PrefabInstance:
