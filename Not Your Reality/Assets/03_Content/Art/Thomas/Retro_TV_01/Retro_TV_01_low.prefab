@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 986096020998621422}
   - component: {fileID: 8133745515895763591}
   - component: {fileID: 4429457906983054971}
+  - component: {fileID: 3143484689743214492}
   m_Layer: 6
   m_Name: Retro_TV_01_low
   m_TagString: TV
@@ -79,6 +80,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1598454, y: 0.7171391, z: 1}
   m_Center: {x: 0.079922676, y: 0.804784, z: 0}
+--- !u!114 &3143484689743214492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496664485599957588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1442371355
+      Data2: 1256223114
+      Data3: -1381845589
+      Data4: -1797485284
+    Path: event:/TV-Static
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 0.5
+  OverrideMaxDistance: 3
 --- !u!1 &2476387472276354716
 GameObject:
   m_ObjectHideFlags: 0
