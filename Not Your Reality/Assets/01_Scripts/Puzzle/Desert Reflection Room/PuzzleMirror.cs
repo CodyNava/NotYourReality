@@ -39,9 +39,9 @@ namespace Puzzle.Desert_Reflection_Room
             _rigidbody.constraints = zRotation switch
             {
                 true => RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX |
-                        RigidbodyConstraints.FreezePositionY,
+                        RigidbodyConstraints.FreezeRotationY,
                 false => RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX |
-                         RigidbodyConstraints.FreezePositionZ
+                         RigidbodyConstraints.FreezeRotationZ
             };
             _isHeld = true;
         }
