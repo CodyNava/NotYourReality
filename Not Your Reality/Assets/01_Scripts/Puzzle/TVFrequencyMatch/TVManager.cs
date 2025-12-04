@@ -8,7 +8,7 @@ namespace Puzzle.TVFrequencyMatch
     public class TVManager : MonoBehaviour
     {
         private TVWordManager _tvWordManager;
-        private TVFrequencyMatch _tvFrequencyMatch;
+        [SerializeField] private TVFrequencyMatch tvFrequencyMatch;
 
         [SerializeField] private List<GameObject> tvLetters;
         private readonly List<GameObject> _actualLetters = new();
@@ -25,7 +25,6 @@ namespace Puzzle.TVFrequencyMatch
 
         private void Awake()
         {
-            _tvFrequencyMatch = GetComponentInParent<TVFrequencyMatch>();
             _tvWordManager = FindFirstObjectByType<TVWordManager>();
         }
 
@@ -122,7 +121,7 @@ namespace Puzzle.TVFrequencyMatch
             }
             
             Completed = true;
-            _tvFrequencyMatch.Status();
+            tvFrequencyMatch.Status();
         }
     }
 }
