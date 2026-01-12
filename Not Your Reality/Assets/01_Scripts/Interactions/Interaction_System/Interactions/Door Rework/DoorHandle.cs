@@ -9,9 +9,14 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         [Header("Door Reference")] [SerializeField]
         private Door door;
 
-        [Header("Handle configurations")]
-        [Tooltip("Is the handle on the side of the hinge or not")]
-        [SerializeField] private bool isHingeSide;
+        [Header("Handle configurations")] [Tooltip("Is the handle on the side of the hinge or not")] [SerializeField]
+        private bool isHingeSide;
+        
+        public bool IsHingeSide
+        {
+            get => isHingeSide;
+            set => isHingeSide = value;
+        }
 
         private bool _isHeld;
         private float DirectionMultiplier => isHingeSide ? -1 : 1;
