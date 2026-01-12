@@ -1,4 +1,3 @@
-using System.Collections;
 using System.DialogueSystem.SO;
 using TMPro;
 using UnityEngine;
@@ -6,148 +5,115 @@ using UnityEngine.UI;
 
 namespace System.DialogueSystem
 {
-   public class TextRenderer : MonoBehaviour
-   {
-      [Space(15f)]
-      [Header("UI Refs")]
-      [SerializeField] private TMP_Text subtitleTextUI;
-      [SerializeField] private TMP_Text speakerNameUI;
-      [SerializeField] private Image subtitleImageUI;
+    public class TextRenderer : MonoBehaviour
+    {
+        [Header("Root visibility")]
+        [SerializeField] private CanvasGroup subtitleGroup;   // <- das ist dein “SubBox CanvasGroup”
+        [SerializeField] private bool toggleRaycast = true;
 
-      [Space(15f)]
-      [Header("Fade")]
-      [SerializeField] private CanvasGroup rootGroup;
-      [SerializeField] private float fadeInTime;
-      [SerializeField] private float fadeOutTime;
+        [Header("UI Refs")]
+        [SerializeField] private TMP_Text subtitleTextUI;
+        [SerializeField] private TMP_Text speakerNameUI;
+        [SerializeField] private Image subtitleImageUI;
 
-      private Coroutine _fadeRoutine;
-      private SubtitleSettingsData _currentSetting;
+        private SubtitleSettingsData _settings;
 
-      private void OnEnable() { }
-
-      private void Start()
-      {
-         if (SubtitleSettingsManager.Instance != null)
-         {
-            _currentSetting = SubtitleSettingsManager.Instance.currentSettings;
-            ApplySettings(_currentSetting);
-            SubtitleSettingsManager.Instance.OnSettingsChanged += ApplySettings;
-         }
-      }
-
-      private void OnDisable() { SubtitleSettingsManager.Instance.OnSettingsChanged -= ApplySettings; }
-
-      private void ApplySettings(SubtitleSettingsData settings)
-      {
-         if (!settings) return;
-
-         _currentSetting = settings;
-
-         subtitleTextUI.fontSize = settings.fontSizeMain;
-         subtitleTextUI.color = settings.textDefaultColor;
-         subtitleTextUI.alignment = settings.alignment;
-         subtitleTextUI.outlineColor = settings.outlineColor;
-         subtitleTextUI.outlineWidth = settings.outlineThickness;
-         subtitleTextUI.fontStyle = settings.fontStyleMain;
-
-         speakerNameUI.fontSize = settings.fontSizeName;
-         speakerNameUI.color = settings.textDefaultColor;
-         speakerNameUI.alignment = settings.alignment;
-         speakerNameUI.outlineColor = settings.outlineColor;
-         speakerNameUI.outlineWidth = settings.outlineThickness;
-         speakerNameUI.fontStyle = settings.fontStyleName;
-
-         subtitleImageUI.color = settings.backgroundColor;
-      }
-
-      public void ShowSubtitle(DialogueText line)
-      {
-         if (!line)
-         {
+        
+        private void Awake()
+        {
             HideSubtitle();
-            return;
-         }
+        }
 
-         subtitleTextUI.text = TruncateToMaxLines(line.subText, _currentSetting.maxLines);
-
-         if (line.currentSpeaker)
-         {
-            subtitleTextUI.color = line.currentSpeaker.textColor;
-            speakerNameUI.color = line.currentSpeaker.textColor;
-            subtitleImageUI.enabled = true;
-
-            if (line.currentSpeaker.characterID == 0 && !_currentSetting.displayFowlersName)
+        private void OnEnable()
+        {
+            if (SubtitleSettingsManager.Instance != null)
             {
-               speakerNameUI.text = "";
-               return;
+                SubtitleSettingsManager.Instance.OnSettingsChanged += ApplySettings;
+                ApplySettings(SubtitleSettingsManager.Instance.currentSettings);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (SubtitleSettingsManager.Instance != null)
+                SubtitleSettingsManager.Instance.OnSettingsChanged -= ApplySettings;
+        }
+
+        public void ApplySettings(SubtitleSettingsData settings)
+        {
+            _settings = settings;
+        }
+
+        public void ShowSubtitle(DialogueText line)
+        {
+            if (!line) return;
+
+            SetVisible(true);
+
+            // Speaker
+            if (speakerNameUI)
+            {
+                if (line.currentSpeaker)
+                {
+                    speakerNameUI.gameObject.SetActive(true);
+                    speakerNameUI.text = line.currentSpeaker.characterName; 
+                    speakerNameUI.color = line.currentSpeaker.textColor;
+                }
+                else
+                {
+                    speakerNameUI.gameObject.SetActive(false);
+                }
             }
 
-            speakerNameUI.text = line.currentSpeaker.name;
-         }
-         else
-         {
-            subtitleTextUI.color = _currentSetting.textDefaultColor;
-            speakerNameUI.color = _currentSetting.textDefaultColor;
-            speakerNameUI.text = "";
-         }
+            // Text
+            if (subtitleTextUI)
+            {
+                subtitleTextUI.gameObject.SetActive(true);
+                subtitleTextUI.text = line.subText;
 
-         Fade(1f, fadeInTime);
-      }
+                if (line.currentSpeaker)
+                    subtitleTextUI.color = line.currentSpeaker.textColor;
+                else if (_settings)
+                    subtitleTextUI.color = _settings.textDefaultColor;
+            }
 
-      private void Fade(float targetAlpha, float duration)
-      {
-         if (_fadeRoutine != null) { StopCoroutine(_fadeRoutine); }
+            // Background
+            if (subtitleImageUI)
+            {
+                subtitleImageUI.gameObject.SetActive(true);
 
-         _fadeRoutine = StartCoroutine(FadeRoutine(targetAlpha, duration));
-      }
+                if (_settings)
+                    subtitleImageUI.color = _settings.backgroundColor;
+            }
+        }
 
-      private IEnumerator ClearAfterFade()
-      {
-         yield return new WaitForSeconds(fadeOutTime);
-         subtitleTextUI.text = "";
-         speakerNameUI.text = "";
-         subtitleImageUI.enabled = false;
-      }
+        public void HideSubtitle()
+        {
+            SetVisible(false);
+        }
 
-      private IEnumerator FadeRoutine(float target, float duration)
-      {
-         float start = rootGroup.alpha;
-         float time = 0f;
+        public void ClearInstant()
+        {
+            if (subtitleTextUI) subtitleTextUI.text = "";
+        }
 
-         while (time < duration)
-         {
-            time += Time.deltaTime;
-            float lerp = time / duration;
-            rootGroup.alpha = Mathf.Lerp(start, target, lerp);
-            yield return null;
-         }
+        private void SetVisible(bool visible)
+        {
+            if (!subtitleGroup)
+            {
+                if (subtitleTextUI) subtitleTextUI.gameObject.SetActive(visible);
+                if (speakerNameUI) speakerNameUI.gameObject.SetActive(visible);
+                if (subtitleImageUI) subtitleImageUI.gameObject.SetActive(visible);
+                return;
+            }
 
-         rootGroup.alpha = target;
-      }
+            subtitleGroup.alpha = visible ? 1f : 0f;
 
-      public void HideSubtitle()
-      {
-         Fade(0f, fadeOutTime);
-         StartCoroutine(ClearAfterFade());
-      }
-
-      public void ClearInstant() { subtitleTextUI.text = ""; }
-
-      private string TruncateToMaxLines(string text, int maxLines)
-      {
-         if (maxLines <= 0) return text;
-
-         string[] lines = text.Split('\n');
-         if (lines.Length <= maxLines) return text;
-
-         string result = "";
-         for (int i = 0; i < maxLines; i++)
-         {
-            result += lines[i];
-            if (i < maxLines - 1) result += "\n";
-         }
-
-         return result;
-      }
-   }
+            if (toggleRaycast)
+            {
+                subtitleGroup.interactable = visible;
+                subtitleGroup.blocksRaycasts = visible;
+            }
+        }
+    }
 }

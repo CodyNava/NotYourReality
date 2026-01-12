@@ -11,6 +11,10 @@ namespace System.DialogueSystem.SO
       public string subText;
       [Space(15)]
       public float duration;
+      [Space(15)]
+      public string showOnMarker;
+      [Space(15)]
+      public string advanceOnMarker;
 
       //todo Here Audio//
    }

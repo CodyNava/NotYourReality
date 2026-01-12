@@ -46,7 +46,7 @@ namespace FMOD.Studio
     [StructLayout(LayoutKind.Sequential)]
     public struct TIMELINE_MARKER_PROPERTIES
     {
-        public StringWrapper name;
+        public IntPtr name;
         public int position;
     }
 

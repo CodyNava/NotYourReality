@@ -1,98 +1,236 @@
+using System;
 using System.Collections;
+using System.Runtime.InteropServices;
 using System.DialogueSystem.SO;
+using FMOD;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
+using Debug = UnityEngine.Debug;
 
 namespace System.DialogueSystem
 {
    public class DialogueManager : MonoBehaviour
    {
-      [Header("Refs")]
-      //todo audio
+      [Header("UI")]
       [SerializeField] private TextRenderer textRenderer;
-      [SerializeField] private DialogueSequence sequenceData;
-      [SerializeField] private float delayBetweenLines;
 
-      [SerializeField] private bool playOnStart;
+      [Header("Flow")]
+      [SerializeField] private float delayBetweenLines = 0f;
 
-      private DialogueSequence _currentSequence;
-      private int _currentSequenceIndex;
+      private DialogueSequence _seq;
+      private int _index;
       private bool _isPlaying;
-      private Coroutine _runningCoroutine;
 
-      public void Start()
+      private StudioEventEmitter _emitter;
+      private EventInstance _inst;
+
+      private EVENT_CALLBACK _cb;
+      private GCHandle _handle;
+      
+      private int _part1StartMs = -1;
+      private int _part2StartMs = -1;
+
+      private volatile bool _markerQueued;
+      private string _queuedMarkerName;
+      private int _queuedMarkerPosMs;
+
+      private volatile bool _stoppedQueued;
+
+      private class CallbackState
       {
-         if (playOnStart && sequenceData) { PlaySequence(sequenceData); }
+         public DialogueManager Owner;
       }
 
-      public void PlaySequence(DialogueSequence sequence)
+      public void PlaySequenceWithEmitter(DialogueSequence sequence, StudioEventEmitter emitter)
       {
-         if (!sequence) { return; }
+         if (!sequence || !emitter) return;
 
-         if (_runningCoroutine != null)
-         {
-            StopCoroutine(_runningCoroutine);
-            _runningCoroutine = null;
-         }
+         Stop();
 
-         _currentSequence = sequence;
-         _currentSequenceIndex = 0;
+         _seq = sequence;
+         _index = 0;
          _isPlaying = true;
 
-         PlayCurrentLine();
-      }
+         _emitter = emitter;
+         _inst = _emitter.EventInstance;
 
-      private void Stop()
-      {
-         _isPlaying = false;
-         if (_runningCoroutine != null)
+         if (!_inst.isValid())
          {
-            StopCoroutine(_runningCoroutine);
-            _runningCoroutine = null;
+            Debug.LogWarning("Emitter EventInstance not valid");
+            return;
          }
 
-         //todo sound stop here
+         _cb = FmodCallback;
+         _handle = GCHandle.Alloc(new CallbackState { Owner = this }, GCHandleType.Normal);
 
-         if (textRenderer) { textRenderer.HideSubtitle(); }
+         _inst.setUserData(GCHandle.ToIntPtr(_handle));
+         _inst.setCallback(_cb, EVENT_CALLBACK_TYPE.TIMELINE_MARKER | EVENT_CALLBACK_TYPE.STOPPED);
+         
+         textRenderer?.HideSubtitle();
+         TryShowCurrentIfNoMarker();
       }
 
-      private void PlayCurrentLine()
+      private void Update()
       {
-         if (!_isPlaying || !_currentSequence || _currentSequenceIndex >= _currentSequence.dialogueTexts.Length)
+         if (!_isPlaying) return;
+
+         if (_stoppedQueued)
+         {
+            _stoppedQueued = false;
+            Stop();
+            return;
+         }
+
+         if (_markerQueued)
+         {
+            _markerQueued = false;
+            HandleMarker(_queuedMarkerName, _queuedMarkerPosMs);
+         }
+      }
+
+      private void HandleMarker(string markerName, int posMs)
+      {
+         
+         if (_part1StartMs >= 0 && _part2StartMs >= 0)
+         {
+            int part1Len = _part2StartMs - _part1StartMs;
+            Debug.Log($"[Dialogue] Part1 Länge = {part1Len} ms");
+         }
+
+         if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
+
+         var line = _seq.dialogueTexts[_index];
+         if (!line)
+         {
+            AdvanceLine();
+            return;
+         }
+         
+         if (!string.IsNullOrWhiteSpace(line.showOnMarker) && line.showOnMarker == markerName)
+         {
+            textRenderer?.ShowSubtitle(line);
+         }
+         
+         if (!string.IsNullOrWhiteSpace(line.advanceOnMarker) && line.advanceOnMarker == markerName)
+         {
+            _index++;
+
+            if (_seq != null && _seq.dialogueTexts != null && _index < _seq.dialogueTexts.Length)
+            {
+               var next = _seq.dialogueTexts[_index];
+               
+               if (next && (!string.IsNullOrWhiteSpace(next.showOnMarker) && next.showOnMarker == markerName))
+               {
+                  textRenderer?.ShowSubtitle(next);
+                  return;
+               }
+            }
+            
+            StartCoroutine(AdvanceRoutine());
+         }
+      }
+
+      private void TryShowCurrentIfNoMarker()
+      {
+         if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
+
+         var line = _seq.dialogueTexts[_index];
+         if (!line)
+         {
+            AdvanceLine();
+            return;
+         }
+
+         if (string.IsNullOrWhiteSpace(line.showOnMarker))
+         {
+            textRenderer?.ShowSubtitle(line);
+
+            if (string.IsNullOrWhiteSpace(line.advanceOnMarker) && line.duration > 0f)
+               StartCoroutine(DurationFallback(line.duration));
+         }
+      }
+
+      private IEnumerator AdvanceRoutine()
+      {
+         if (textRenderer) textRenderer.ClearInstant();
+         if (delayBetweenLines > 0f) yield return new WaitForSeconds(delayBetweenLines);
+         AdvanceLine();
+      }
+
+      private void AdvanceLine()
+      {
+         _index++;
+
+         if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length)
          {
             Stop();
             return;
          }
 
-         var line = _currentSequence.dialogueTexts[_currentSequenceIndex];
-         if (!line)
-         {
-            _currentSequenceIndex++;
-            PlayCurrentLine();
-            return;
-         }
-
-         if (textRenderer) textRenderer.ShowSubtitle(line);
-
-         float duration = CalculateLineDuration(line);
-
-         //todo sound here
-
-         if (_runningCoroutine != null) { StopCoroutine(_runningCoroutine); }
-
-         _runningCoroutine = StartCoroutine(LineRoutine(duration));
+         textRenderer?.HideSubtitle();
+         TryShowCurrentIfNoMarker();
       }
 
-      private float CalculateLineDuration(DialogueText line) { return Mathf.Max(line.duration, 0.01f); }
-
-      private IEnumerator LineRoutine(float duration)
+      private IEnumerator DurationFallback(float seconds)
       {
-         yield return new WaitForSeconds(duration);
-         
-         if (textRenderer) textRenderer.ClearInstant();
-         if (delayBetweenLines > 0) yield return new WaitForSeconds(delayBetweenLines);
-         
-         _currentSequenceIndex++;
-         PlayCurrentLine();
+         yield return new WaitForSeconds(seconds);
+         yield return AdvanceRoutine();
+      }
+
+      public void Stop()
+      {
+         _isPlaying = false;
+
+         if (_inst.isValid())
+         {
+            _inst.setCallback(null);
+            _inst.setUserData(IntPtr.Zero);
+         }
+
+         if (_handle.IsAllocated) _handle.Free();
+
+         _seq = null;
+         _index = 0;
+         _emitter = null;
+         _inst.clearHandle();
+
+         _part1StartMs = -1;
+         _part2StartMs = -1;
+
+         textRenderer?.HideSubtitle();
+      }
+
+      [AOT.MonoPInvokeCallback(typeof(EVENT_CALLBACK))]
+      private static RESULT FmodCallback(EVENT_CALLBACK_TYPE type, IntPtr eventInstancePtr, IntPtr parameterPtr)
+      {
+         var inst = new EventInstance(eventInstancePtr);
+
+         inst.getUserData(out var ud);
+         if (ud == IntPtr.Zero) return RESULT.OK;
+
+         var state = (CallbackState)GCHandle.FromIntPtr(ud).Target;
+         var owner = state.Owner;
+
+         if (type == EVENT_CALLBACK_TYPE.STOPPED)
+         {
+            owner._stoppedQueued = true;
+            return RESULT.OK;
+         }
+
+         if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)
+         {
+            var props = (TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(
+               parameterPtr,
+               typeof(TIMELINE_MARKER_PROPERTIES)
+            );
+
+            owner._queuedMarkerName = Marshal.PtrToStringAnsi(props.name);
+            owner._queuedMarkerPosMs = props.position;
+            owner._markerQueued = true;
+         }
+
+         return RESULT.OK;
       }
    }
 }
