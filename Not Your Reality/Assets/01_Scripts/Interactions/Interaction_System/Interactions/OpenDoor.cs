@@ -28,6 +28,10 @@ namespace Interactions.Interaction_System.Interactions
         [Tooltip("The sound that is played when you unlock a door")]
         [SerializeField] private EventReference unlockSound;
 
+        [Tooltip("Voice line played together with the unlock sound")]
+        [SerializeField] private EventReference voiceLine;
+
+
         private bool _isHeld;
         private Rigidbody _rb;
         private Quaternion _lockRotation;
@@ -133,6 +137,7 @@ namespace Interactions.Interaction_System.Interactions
         {
             IsInteractable = true;
             RuntimeManager.PlayOneShot(unlockSound, transform.position);
+            RuntimeManager.PlayOneShot(voiceLine, transform.position);
         }
 
         public void Release()
