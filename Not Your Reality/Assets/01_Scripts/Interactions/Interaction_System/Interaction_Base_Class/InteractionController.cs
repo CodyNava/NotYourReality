@@ -1,4 +1,5 @@
 using Interactions.Interaction_System.Interactions;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using Puzzle.Desert_Reflection_Room;
 using UnityEngine;
 
@@ -117,7 +118,7 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
                 {
                     case MoveObject moveObject: moveObject.Release(); break;
                     case PuzzleMirror mirror: mirror.Release(); break;
-                    case OpenDoor door: door.Release(); break;
+                    case DoorHandle door: door.Release(); break;
                 }
 
                 _selectedObject = null;
