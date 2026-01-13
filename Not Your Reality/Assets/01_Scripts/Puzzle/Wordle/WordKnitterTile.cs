@@ -8,11 +8,7 @@ namespace Puzzle.Wordle
         [SerializeField] private WordlePuzzle wordlePuzzle;
         [SerializeField] private Image frame;
 
-        public void HandleClick()
-        {
-            wordlePuzzle.SelectTile(this);
-        }
-
+     
         public void SetFrameColor(Color color)
         {
             frame.color = color;
