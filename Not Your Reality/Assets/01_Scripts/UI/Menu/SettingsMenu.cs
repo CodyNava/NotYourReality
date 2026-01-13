@@ -6,134 +6,173 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+namespace UI.Menu
 {
-    [Header("Graphics")]
-    [SerializeField] private TMP_Dropdown resDropDown;
-    private Resolution[] _resolutions;
-    private List<Resolution> _uniqueRes;
-    private List<string> _resOptions;
-    private string _resOption;
-    private int _resIndex;
-
-    [SerializeField] private Toggle fullScreenToggle;
-    private int _fullScreenInt;
-
-    [SerializeField] private Toggle vSyncToggle;
-    private int _vSyncInt;
-
-    [SerializeField] private Volume volume;
-    [SerializeField] private Toggle motionBlurToggle;
-    private MotionBlur _motionBlur;
-    private int _motionBlurInt;
-
-    [Header("Audio")]
-    [SerializeField] private Slider masterSlider;
-    private Bus _masterBus; 
-
-    private const string MotionBlur = "Motion Blur";
-    private const string Vsync = "Vsync";
-    private const string Fullscreen = "Fullscreen";
-    private const string ResolutionIndex = "ResolutionIndex";
-    private const string Master = "Master";
-
-    private void Awake()
+    public class SettingsMenu : MonoBehaviour
     {
-        _masterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
-        volume.profile.TryGet(out _motionBlur);
-    }
+        [Header("Graphics")]
+        [SerializeField] private TMP_Dropdown resDropDown;
+        private Resolution[] _resolutions;
+        private List<Resolution> _uniqueRes;
+        private List<string> _resOptions;
+        private string _resOption;
+        private int _resIndex;
 
-    private void Start()
-    {
-        _resOptions = new List<string>();
-        _uniqueRes = new List<Resolution>();
-        _resolutions = Screen.resolutions;
-        resDropDown.ClearOptions();
+        [SerializeField] private Toggle fullScreenToggle;
+        private int _fullScreenInt;
 
-        for (var i = 0; i < _resolutions.Length; i++)
+        [SerializeField] private Toggle vSyncToggle;
+        private int _vSyncInt;
+
+        [SerializeField] private Volume volume;
+        [SerializeField] private Toggle motionBlurToggle;
+        private MotionBlur _motionBlur;
+        private int _motionBlurInt;
+
+        [Header("Audio")]
+        [SerializeField] private Slider masterSlider;
+        private Bus _masterBus;
+
+        [SerializeField] private Slider musicSlider;
+        private Bus _musicBus;
+    
+        [SerializeField] private Slider sfxSlider;
+        private Bus _sfxBus;
+
+        [SerializeField] private Slider voiceSlider;
+        private Bus _voiceBus;
+
+        [SerializeField] private Slider ambientSlider;
+        private Bus _ambientBus;
+
+        private const string MotionBlur = "Motion Blur";
+        private const string Vsync = "Vsync";
+        private const string Fullscreen = "Fullscreen";
+        private const string ResolutionIndex = "ResolutionIndex";
+        private const string Master = "Master";
+
+        private void Awake()
         {
-            _resOption = $"{_resolutions[i].width} x {_resolutions[i].height}";
-            if (_resOptions.Contains(_resOption))
-                continue;
-
-            _resOptions.Add(_resOption);
-            _uniqueRes.Add(_resolutions[i]);
+            _masterBus = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+            _musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
+            _sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
+            _voiceBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Voice");
+            _ambientBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Ambient");
+            volume.profile.TryGet(out _motionBlur);
         }
 
-        resDropDown.AddOptions(_resOptions);
+        private void Start()
+        {
+            _resOptions = new List<string>();
+            _uniqueRes = new List<Resolution>();
+            _resolutions = Screen.resolutions;
+            resDropDown.ClearOptions();
 
-        LoadSettings();
-        ApplySettings();
-    }
+            for (var i = 0; i < _resolutions.Length; i++)
+            {
+                _resOption = $"{_resolutions[i].width} x {_resolutions[i].height}";
+                if (_resOptions.Contains(_resOption))
+                    continue;
 
-    #region Graphics
-    public void SetResolution(int resIndex)
-    {
-        _resIndex = resIndex;
-        var resolution = _uniqueRes[resIndex];
-        Screen.SetResolution(resolution.width, resolution.height, _fullScreenInt == 1);
-        PlayerPrefs.SetInt(ResolutionIndex, _resIndex);
-    }
+                _resOptions.Add(_resOption);
+                _uniqueRes.Add(_resolutions[i]);
+            }
 
-    public void SetFullscreen()
-    {
-        _fullScreenInt = fullScreenToggle.isOn ? 1 : 0;
-        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-        Screen.fullScreen = fullScreenToggle.isOn;
-        PlayerPrefs.SetInt(Fullscreen, _fullScreenInt);
-    }
+            resDropDown.AddOptions(_resOptions);
 
-    public void SetVsync()
-    {
-        _vSyncInt = vSyncToggle.isOn ? 1 : 0;
-        QualitySettings.vSyncCount = _vSyncInt;
-        PlayerPrefs.SetInt(Vsync, _vSyncInt);
-    }
+            LoadSettings();
+            ApplySettings();
+        }
 
-    public void SetMotionBlur()
-    {
-        _motionBlurInt = motionBlurToggle.isOn ? 1 : 0;
-        _motionBlur.active = motionBlurToggle.isOn;
-        PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
-    }
-    #endregion
+        #region Graphics
+        public void SetResolution(int resIndex)
+        {
+            _resIndex = resIndex;
+            var resolution = _uniqueRes[resIndex];
+            Screen.SetResolution(resolution.width, resolution.height, _fullScreenInt == 1);
+            PlayerPrefs.SetInt(ResolutionIndex, _resIndex);
+        }
 
-    #region Sound
-    public void MasterVolume()
-    {
-        ApplyVolume(_masterBus, masterSlider.value);
-    }
+        public void SetFullscreen()
+        {
+            _fullScreenInt = fullScreenToggle.isOn ? 1 : 0;
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.fullScreen = fullScreenToggle.isOn;
+            PlayerPrefs.SetInt(Fullscreen, _fullScreenInt);
+        }
 
-    private void ApplyVolume(Bus bus, float newValue)
-    {
-        bus.setVolume(newValue);
-        PlayerPrefs.SetFloat(Master, newValue);
-    }
-    #endregion
+        public void SetVsync()
+        {
+            _vSyncInt = vSyncToggle.isOn ? 1 : 0;
+            QualitySettings.vSyncCount = _vSyncInt;
+            PlayerPrefs.SetInt(Vsync, _vSyncInt);
+        }
 
-    private void LoadSettings()
-    {
-        _motionBlurInt = PlayerPrefs.GetInt(MotionBlur, 1);
-        motionBlurToggle.SetIsOnWithoutNotify(_motionBlurInt == 1);
+        public void SetMotionBlur()
+        {
+            _motionBlurInt = motionBlurToggle.isOn ? 1 : 0;
+            _motionBlur.active = motionBlurToggle.isOn;
+            PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
+        }
+        #endregion
 
-        _vSyncInt = PlayerPrefs.GetInt(Vsync, 1);
-        vSyncToggle.SetIsOnWithoutNotify(_vSyncInt == 1);
+        #region Sound
+        public void MasterVolume()
+        {
+            ApplyVolume(_masterBus, masterSlider.value);
+        }
 
-        _fullScreenInt = PlayerPrefs.GetInt(Fullscreen, 1);
-        fullScreenToggle.SetIsOnWithoutNotify(_fullScreenInt == 1);
+        public void MusicVolume()
+        {
+            ApplyVolume(_musicBus, musicSlider.value);
+        }
 
-        _resIndex = PlayerPrefs.GetInt(ResolutionIndex, _uniqueRes.Count - 1);
-        resDropDown.SetValueWithoutNotify(_resIndex);
+        public void SfxVolume()
+        {
+            ApplyVolume(_sfxBus, sfxSlider.value);
+        }
 
-        masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
-    }
+        public void VoiceVolume()
+        {
+            ApplyVolume(_voiceBus, voiceSlider.value);
+        }
 
-    private void ApplySettings()
-    {
-        SetResolution(_resIndex);
-        SetFullscreen();
-        SetVsync();
-        SetMotionBlur();
-        MasterVolume();
+        public void AmbienceVolume()
+        {
+            ApplyVolume(_ambientBus, ambientSlider.value);
+        }
+
+        private void ApplyVolume(Bus bus, float newValue)
+        {
+            bus.setVolume(newValue);
+            PlayerPrefs.SetFloat(Master, newValue);
+        }
+        #endregion
+
+        private void LoadSettings()
+        {
+            _motionBlurInt = PlayerPrefs.GetInt(MotionBlur, 1);
+            motionBlurToggle.SetIsOnWithoutNotify(_motionBlurInt == 1);
+
+            _vSyncInt = PlayerPrefs.GetInt(Vsync, 1);
+            vSyncToggle.SetIsOnWithoutNotify(_vSyncInt == 1);
+
+            _fullScreenInt = PlayerPrefs.GetInt(Fullscreen, 1);
+            fullScreenToggle.SetIsOnWithoutNotify(_fullScreenInt == 1);
+
+            _resIndex = PlayerPrefs.GetInt(ResolutionIndex, _uniqueRes.Count - 1);
+            resDropDown.SetValueWithoutNotify(_resIndex);
+
+            masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
+        }
+
+        private void ApplySettings()
+        {
+            SetResolution(_resIndex);
+            SetFullscreen();
+            SetVsync();
+            SetMotionBlur();
+            MasterVolume();
+        }
     }
 }
