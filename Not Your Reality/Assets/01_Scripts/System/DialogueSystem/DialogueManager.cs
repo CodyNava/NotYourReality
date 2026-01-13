@@ -23,13 +23,13 @@ namespace System.DialogueSystem
       private bool _isPlaying;
 
       private StudioEventEmitter _emitter;
+      private static StudioEventEmitter _currentlyPlayingEmitter;
       private EventInstance _inst;
 
       private EVENT_CALLBACK _cb;
       private GCHandle _handle;
       
-      private int _part1StartMs = -1;
-      private int _part2StartMs = -1;
+      
 
       private volatile bool _markerQueued;
       private string _queuedMarkerName;
@@ -46,6 +46,15 @@ namespace System.DialogueSystem
       {
          if (!sequence || !emitter) return;
 
+         if (_currentlyPlayingEmitter && _currentlyPlayingEmitter != emitter)
+         {
+            _currentlyPlayingEmitter.Stop();
+         }
+         
+        
+
+         _currentlyPlayingEmitter = emitter;
+         
          Stop();
 
          _seq = sequence;
@@ -92,11 +101,6 @@ namespace System.DialogueSystem
       private void HandleMarker(string markerName, int posMs)
       {
          
-         if (_part1StartMs >= 0 && _part2StartMs >= 0)
-         {
-            int part1Len = _part2StartMs - _part1StartMs;
-            Debug.Log($"[Dialogue] Part1 Länge = {part1Len} ms");
-         }
 
          if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
 
@@ -114,14 +118,15 @@ namespace System.DialogueSystem
          
          if (!string.IsNullOrWhiteSpace(line.advanceOnMarker) && line.advanceOnMarker == markerName)
          {
-            _index++;
+            int nextIndex = _index + 1;
 
             if (_seq != null && _seq.dialogueTexts != null && _index < _seq.dialogueTexts.Length)
             {
-               var next = _seq.dialogueTexts[_index];
+               var next = _seq.dialogueTexts[nextIndex];
                
-               if (next && (!string.IsNullOrWhiteSpace(next.showOnMarker) && next.showOnMarker == markerName))
+               if (next && !string.IsNullOrWhiteSpace(next.showOnMarker) && next.showOnMarker == markerName)
                {
+                  _index = nextIndex;
                   textRenderer?.ShowSubtitle(next);
                   return;
                }
@@ -153,8 +158,14 @@ namespace System.DialogueSystem
 
       private IEnumerator AdvanceRoutine()
       {
-         if (textRenderer) textRenderer.ClearInstant();
+            Debug.LogWarning("ClearInstantB");
+         if (textRenderer)
+         {
+            Debug.LogWarning("ClearInstant");
+            textRenderer.ClearInstant();
+         }
          if (delayBetweenLines > 0f) yield return new WaitForSeconds(delayBetweenLines);
+         
          AdvanceLine();
       }
 
@@ -180,8 +191,15 @@ namespace System.DialogueSystem
 
       public void Stop()
       {
+         if (!_isPlaying && !_inst.isValid() && !_handle.IsAllocated)
+         {
+            textRenderer?.HideSubtitle();
+            return;
+         } 
          _isPlaying = false;
-
+         _stoppedQueued = false;
+         _markerQueued = false;
+         
          if (_inst.isValid())
          {
             _inst.setCallback(null);
@@ -194,9 +212,7 @@ namespace System.DialogueSystem
          _index = 0;
          _emitter = null;
          _inst.clearHandle();
-
-         _part1StartMs = -1;
-         _part2StartMs = -1;
+         
 
          textRenderer?.HideSubtitle();
       }
