@@ -5898,6 +5898,7 @@ Transform:
   - {fileID: 715854951544357892}
   - {fileID: 6998134971082096792}
   - {fileID: 4094427802909786719}
+  - {fileID: 4458616254236554630}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4746330194751711691
@@ -6757,6 +6758,37 @@ CapsuleCollider:
   m_Height: 0.17
   m_Direction: 1
   m_Center: {x: 0, y: 0.06, z: 0}
+--- !u!1 &6078057462484577417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4458616254236554630}
+  m_Layer: 0
+  m_Name: Teleportation_Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4458616254236554630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6078057462484577417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.926, y: 1.75, z: 4.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7435360541340912676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6197624347422152520
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,7 +6904,7 @@ Transform:
   m_GameObject: {fileID: 6333342223868555461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.71, y: 0.53, z: 7.32}
+  m_LocalPosition: {x: -7.313, y: 0.53, z: 5.812}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6897,8 +6929,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.3152654, z: 2.7427192}
-  m_Center: {x: 0, y: 0.49608076, z: -0.32124162}
+  m_Size: {x: 3.292738, y: 2.3152654, z: 0.8586402}
+  m_Center: {x: -0.30521488, y: 0.49608076, z: -0.04199624}
 --- !u!114 &1787616513218690707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6919,6 +6951,7 @@ MonoBehaviour:
   - {fileID: 8651453398833041728}
   - {fileID: 4816385759951361726}
   - {fileID: 778686413423114672}
+  targetLocation: {fileID: 4458616254236554630}
 --- !u!1 &6692804139334321810
 GameObject:
   m_ObjectHideFlags: 0
