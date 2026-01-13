@@ -1,8 +1,8 @@
+using System.Collections;
 using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using Puzzle.Desert_Reflection_Room;
 using UnityEngine;
-
 namespace Interactions.Interaction_System.Interaction_Base_Class
 {
     public class InteractionController : MonoBehaviour
@@ -51,14 +51,16 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
 
         private void CheckForInteractable()
         {
+       
             var ray = new Ray(_camera.transform.position, _camera.transform.forward);
             var hitSomething = Physics.SphereCast(ray, raySphereRadius, out var hit, rayDistance, interactableLayer);
+            
             if (hitSomething)
             {
                 var dirToHit = hit.point - _camera.transform.position;
                 var distanceToHit = dirToHit.magnitude;
-                if (Physics.Raycast(_camera.transform.position, dirToHit.normalized, out var obstructionHit,
-                        distanceToHit, ~interactableLayer))
+                if (Physics.Raycast(_camera.transform.position, 
+                                    _camera.transform.TransformDirection(Vector3.forward), distanceToHit, ~interactableLayer))
                 {
                     _hoveredObject = null;
                     if (!_interacting)
@@ -80,15 +82,15 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
                     interactionUIPanel.SetTooltip(interactableBase.TooltipMessage);
                 }
             }
-            else
+            else if (!_interacting)
             {
-                if (!_interacting)
-                {
-                    interactionUIPanel.Reset();
-                    _interactionData.ResetData();
-                }
+                interactionUIPanel.Reset();
+                _interactionData.ResetData();
+
             }
         }
+
+       
 
         private void CheckForInput()
         {
