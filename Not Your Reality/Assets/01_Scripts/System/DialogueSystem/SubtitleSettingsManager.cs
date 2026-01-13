@@ -22,6 +22,7 @@ namespace System.DialogueSystem
             Destroy(gameObject);
             return;
          }
+         
          SettingsInit();
       }
       private void SettingsInit()
@@ -29,8 +30,7 @@ namespace System.DialogueSystem
          Instance = this;
          currentSettings = defaultSettings;
       }
-
-      //@MENU For Changing Preset In Menus
+      
       private void ApplySettings(SubtitleSettingsData newSetting)
       {
          if (!newSetting) { return; }
