@@ -10,13 +10,17 @@ namespace UI.Menu
 {
     public class SettingsMenu : MonoBehaviour
     {
-        [Header("Graphics")]
-        [SerializeField] private TMP_Dropdown resDropDown;
+        [Header("Graphics")] [SerializeField] private TMP_Dropdown resDropDown;
         private Resolution[] _resolutions;
         private List<Resolution> _uniqueRes;
         private List<string> _resOptions;
         private string _resOption;
         private int _resIndex;
+
+        [SerializeField] private TMP_Dropdown qualityDropDown;
+        [SerializeField] private List<RenderPipelineAsset> rpa;
+        private List<string> _qualityOptions;
+        private int _qualityIndex;
 
         [SerializeField] private Toggle fullScreenToggle;
         private int _fullScreenInt;
@@ -49,6 +53,7 @@ namespace UI.Menu
         private const string Vsync = "Vsync";
         private const string Fullscreen = "Fullscreen";
         private const string ResolutionIndex = "ResolutionIndex";
+        private const string QualityIndex = "QualityIndex";
         private const string Master = "Master";
         private const string Music = "Music";
         private const string Sfx = "Sfx";
@@ -70,7 +75,9 @@ namespace UI.Menu
             _resOptions = new List<string>();
             _uniqueRes = new List<Resolution>();
             _resolutions = Screen.resolutions;
+            _qualityOptions = new List<string>();
             resDropDown.ClearOptions();
+            qualityDropDown.ClearOptions();
 
             for (var i = 0; i < _resolutions.Length; i++)
             {
@@ -84,6 +91,13 @@ namespace UI.Menu
 
             resDropDown.AddOptions(_resOptions);
 
+            foreach (var option in rpa)
+            {
+                _qualityOptions.Add(option.name);
+            }
+            
+            qualityDropDown.AddOptions(_qualityOptions);
+
             LoadSettings();
             ApplySettings();
         }
@@ -95,6 +109,13 @@ namespace UI.Menu
             var resolution = _uniqueRes[resIndex];
             Screen.SetResolution(resolution.width, resolution.height, _fullScreenInt == 1);
             PlayerPrefs.SetInt(ResolutionIndex, _resIndex);
+        }
+
+        public void SetQuality(int qualityIndex)
+        {
+            _qualityIndex = qualityIndex;
+            QualitySettings.renderPipeline = rpa[_qualityIndex];
+            PlayerPrefs.SetInt(QualityIndex, _qualityIndex);
         }
 
         public void SetFullscreen()
@@ -166,6 +187,9 @@ namespace UI.Menu
 
             _resIndex = PlayerPrefs.GetInt(ResolutionIndex, _uniqueRes.Count - 1);
             resDropDown.SetValueWithoutNotify(_resIndex);
+            
+            _qualityIndex = PlayerPrefs.GetInt(QualityIndex, _qualityOptions.Count - 1);
+            qualityDropDown.SetValueWithoutNotify(_qualityIndex);
 
             masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Music, 0.5f));
