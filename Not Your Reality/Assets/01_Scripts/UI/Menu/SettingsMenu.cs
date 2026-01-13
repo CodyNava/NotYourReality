@@ -50,14 +50,18 @@ namespace UI.Menu
         private const string Fullscreen = "Fullscreen";
         private const string ResolutionIndex = "ResolutionIndex";
         private const string Master = "Master";
+        private const string Music = "Music";
+        private const string Sfx = "Sfx";
+        private const string Voice = "Voice";
+        private const string Ambience = "Ambience";
 
         private void Awake()
         {
-            _masterBus = FMODUnity.RuntimeManager.GetBus("bus:/Master");
-            _musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
-            _sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
-            _voiceBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Voice");
-            _ambientBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Ambient");
+            _masterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
+            _musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Music");
+            _sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/SFX");
+            _voiceBus = FMODUnity.RuntimeManager.GetBus("bus:/Voice");
+            _ambientBus = FMODUnity.RuntimeManager.GetBus("bus:/Ambient");
             volume.profile.TryGet(out _motionBlur);
         }
 
@@ -164,6 +168,10 @@ namespace UI.Menu
             resDropDown.SetValueWithoutNotify(_resIndex);
 
             masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
+            musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Music, 0.5f));
+            sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Sfx, 0.5f));
+            voiceSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Voice, 0.5f));
+            ambientSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Ambience, 0.5f));
         }
 
         private void ApplySettings()
