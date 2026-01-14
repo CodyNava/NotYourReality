@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,16 @@ namespace Puzzle.TVFrequencyMatch
         private readonly List<GameObject> _actualLetters = new();
 
         [SerializeField] private List<Button> buttons;
+        
+        [SerializeField] private GameObject leftButton;
+        [SerializeField] private GameObject rightButton;
+        [SerializeField] private GameObject confirmButton;
+
+        [SerializeField] private Vector3 rotationVector;
+
+        [SerializeField] private EventReference leftSound;
+        [SerializeField] private EventReference rightSound;
+        [SerializeField] private EventReference confirmSound;
 
         private string _original;
         private string _scrambled;
@@ -82,6 +93,8 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Left End Reached");
                 return;
             }
+            leftButton.gameObject.transform.Rotate(-rotationVector, Space.Self);
+            RuntimeManager.PlayOneShot(leftSound, leftButton.gameObject.transform.position);
             _letterA--;
             _letterB--;
             DisplaySelection();
@@ -94,6 +107,8 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Right End Reached");
                 return;
             }
+            rightButton.gameObject.transform.Rotate(rotationVector, Space.Self);
+            RuntimeManager.PlayOneShot(rightSound, rightButton.gameObject.transform.position);
             _letterA++;
             _letterB++;
             DisplaySelection();
@@ -104,6 +119,7 @@ namespace Puzzle.TVFrequencyMatch
             var chars = _scrambled.ToCharArray();
             (chars[_letterB], chars[_letterA]) = (chars[_letterA], chars[_letterB]);
             _scrambled = new string(chars);
+            RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
             DisplayLetters();
             CheckWin();
         }
