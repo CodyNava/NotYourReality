@@ -11,6 +11,8 @@ namespace Interactions.Interaction_System.Interactions
     {
         [Tooltip("The speed at which the Item goes into focus")]
         [SerializeField] private float duration = 1.5f;
+
+        [SerializeField] private bool mouseToggle;
         
         private Volume _volume;
         private Camera _cam;
@@ -24,6 +26,7 @@ namespace Interactions.Interaction_System.Interactions
 
         private void Awake()
         {
+            InputManager.Input.Inspection.Disable();
             _cam = Camera.main;
             _transform = transform.position;
             _rotation = transform.rotation;
@@ -39,7 +42,26 @@ namespace Interactions.Interaction_System.Interactions
             _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
             Debug.Log(_isInspecting);
         }
-        
+
+        private void Update()
+        {
+            if (!_isInspecting) return;
+            switch (mouseToggle)
+            {
+                case true:
+                    if (InputManager.Input.UI.Click.IsPressed())
+                    {
+                        var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>() * 0.05f;
+                        gameObject.transform.Rotate(0, -rawMouse.x, rawMouse.y);
+                    }
+                    break;
+                case false:
+                    var rawMouse2 = InputManager.Input.Inspection.Look.ReadValue<Vector2>() * 0.05f;
+                    gameObject.transform.Rotate(0, -rawMouse2.x, rawMouse2.y);
+                    break;
+            }
+        }
+
         private IEnumerator Inspect()
         {
             _isInspecting = true;
@@ -47,6 +69,7 @@ namespace Interactions.Interaction_System.Interactions
             _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
             _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
             InputManager.Input.Player.Disable();
+            InputManager.Input.Inspection.Enable();
             var t = 0f;
             _vignette.intensity.value = 0.2f;
             while (t < duration)
@@ -64,6 +87,7 @@ namespace Interactions.Interaction_System.Interactions
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
             InputManager.Input.Player.Enable();
+            InputManager.Input.Inspection.Disable();
             _vignette.intensity.value = 0f;
             var t = 0f;
             while (t < duration)

@@ -1,4 +1,3 @@
-using System;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using Player.PlayerMovement.Movement;
 using UnityEngine;
@@ -26,7 +25,7 @@ namespace UI.Menu
         private void Update()
         {
             crosshairCanvas.SetActive(!_isPaused);
-            if (InputManager.Input.UI.Pause.WasPressedThisFrame())
+            if (InputManager.Input.UI.Pause.WasPressedThisFrame() && !InputManager.Input.Inspection.enabled)
             {
                 if (_isPaused)
                 {
