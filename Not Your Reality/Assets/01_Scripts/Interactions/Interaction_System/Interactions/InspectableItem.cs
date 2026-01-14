@@ -10,10 +10,15 @@ namespace Interactions.Interaction_System.Interactions
     public class InspectableItem : InteractableBase
     {
         [Tooltip("The speed at which the Item goes into focus")]
-        [SerializeField] private float duration = 1.5f;
+        [SerializeField] private float duration = 0.25f;
 
         [SerializeField] private bool mouseToggle;
-        
+        [SerializeField] private float sensitivity;
+        [SerializeField] private float clampMin ;
+        [SerializeField] private float clampMax ;
+       
+        private float _horizontal;
+        private float _vertical;
         private Volume _volume;
         private Camera _cam;
         private Transform _anchorTransform;
@@ -23,9 +28,21 @@ namespace Interactions.Interaction_System.Interactions
         private Vector3 _transform;
         private Quaternion _rotation;
         private Coroutine _inspect;
+        private bool _justPickedUp;
+        private Quaternion _baseRotation;
+
+        private Transform _pivot;
+        private Transform _originalParent;
+        private Vector3 _itemLocalPosInPivot;
 
         private void Awake()
         {
+            StartCoroutine(WaitForLoadingCoreScripts());
+        }
+
+        private IEnumerator WaitForLoadingCoreScripts()
+        {
+            yield return new WaitForSeconds(0.5f);
             if (InputManager.Input.Inspection.enabled)
             {
                 InputManager.Input.Inspection.Disable();
@@ -48,42 +65,60 @@ namespace Interactions.Interaction_System.Interactions
 
         private void Update()
         {
-            if (!_isInspecting) return;
-            switch (mouseToggle)
+            RotateItem();
+        }
+
+        private void RotateItem()
+        {
+            if (!_isInspecting || _justPickedUp) return;
+            
+            var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>() ; 
+            rawMouse *= sensitivity;
+            _horizontal += rawMouse.x;
+            _vertical -= rawMouse.y;
+            _vertical = Mathf.Clamp(_vertical, clampMin, clampMax);
+
+            if (_pivot)
             {
-                case true:
-                    if (InputManager.Input.UI.Click.IsPressed())
-                    {
-                        var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>() * 0.05f;
-                        gameObject.transform.Rotate(0, -rawMouse.x, rawMouse.y);
-                    }
-                    break;
-                case false:
-                    var rawMouse2 = InputManager.Input.Inspection.Look.ReadValue<Vector2>() * 0.05f;
-                    gameObject.transform.Rotate(0, -rawMouse2.x, rawMouse2.y);
-                    break;
+                
+                var offset = Quaternion.Euler(_vertical, _horizontal, 0);
+                _pivot.rotation = _baseRotation * offset;
             }
+            
         }
 
         private IEnumerator Inspect()
         {
             _isInspecting = true;
+            _justPickedUp = true;
             TooltipMessage = "";
             _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
             _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
             InputManager.Input.Player.Disable();
             InputManager.Input.Inspection.Enable();
-            var t = 0f;
+
+            CreatePivotAtBoundsCenter();
+            
             _vignette.intensity.value = 0.2f;
-            while (t < duration)
+            var t = 0f;
+            while (t < duration * 0.2f)
             {
                 t += Time.deltaTime;
-                if (_anchorTransform != null)
-                    transform.position = Vector3.Lerp(transform.position, _anchorTransform.position, t / duration);
-                transform.rotation = Quaternion.Lerp(transform.rotation, _anchorRotation, t/duration);
+                float a = t / duration;
+                if (_anchorTransform)
+                    _pivot.position = Vector3.Lerp(_pivot.position, _anchorTransform.position, a);
+                if (_pivot)
+                    _pivot.rotation = Quaternion.Lerp(_pivot.rotation, _anchorRotation, a);
                 yield return null;
             }
+
+            _baseRotation = _pivot ? _pivot.rotation : transform.rotation;
+            _horizontal = 0;
+            _vertical = 0;
+            _justPickedUp = false;
+            
         }
+        
 
         private IEnumerator Release()
         {
@@ -92,14 +127,66 @@ namespace Interactions.Interaction_System.Interactions
             InputManager.Input.Player.Enable();
             InputManager.Input.Inspection.Disable();
             _vignette.intensity.value = 0f;
-            var t = 0f;
-            while (t < duration)
+
+            if (_pivot)
             {
-                t += Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, _transform, t/duration);
-                transform.rotation = Quaternion.Lerp(transform.rotation, _rotation, t/duration);
-                yield return null;
+                var targetPivotRot = _rotation;
+                var targetPivotPos = _transform - targetPivotRot * _itemLocalPosInPivot;
+                var t = 0f;
+                while (t < duration)
+                {
+                 t += Time.deltaTime;
+                 float a = t / duration;
+                 _pivot.position = Vector3.Lerp(_pivot.position, targetPivotPos, a);
+                 _pivot.rotation = Quaternion.Lerp(_pivot.rotation, targetPivotRot, a);
+                 yield return null;
+                }
+
+                DestroyPivot();
             }
+        }
+        
+        private void CreatePivotAtBoundsCenter()
+        {
+            if (_pivot) return;
+
+            _originalParent = transform.parent;
+            
+            Vector3 center = transform.position;
+            var renderers = GetComponentsInChildren<Renderer>();
+            if (renderers != null && renderers.Length > 0)
+            {
+                Bounds b = renderers[0].bounds;
+                for (int i = 1; i < renderers.Length; i++)
+                    b.Encapsulate(renderers[i].bounds);
+                center = b.center;
+            }
+
+            var go = new GameObject($"{name}_InspectPivot");
+            _pivot = go.transform;
+            
+            _pivot.position = center;
+            _pivot.rotation = transform.rotation;
+            
+            _pivot.SetParent(_originalParent, true);
+            
+            transform.SetParent(_pivot, true);
+            
+            _itemLocalPosInPivot = transform.localPosition;
+            
+            _baseRotation = _pivot.rotation;
+        }
+
+        private void DestroyPivot()
+        {
+            if (!_pivot) return;
+            
+            transform.SetParent(_originalParent, true);
+
+            var pivotGo = _pivot.gameObject;
+            _pivot = null;
+
+            Destroy(pivotGo);
         }
     }
 }
