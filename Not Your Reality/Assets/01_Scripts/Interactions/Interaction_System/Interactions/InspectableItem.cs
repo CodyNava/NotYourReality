@@ -26,7 +26,10 @@ namespace Interactions.Interaction_System.Interactions
 
         private void Awake()
         {
-            InputManager.Input.Inspection.Disable();
+            if (InputManager.Input.Inspection.enabled)
+            {
+                InputManager.Input.Inspection.Disable();
+            }
             _cam = Camera.main;
             _transform = transform.position;
             _rotation = transform.rotation;
