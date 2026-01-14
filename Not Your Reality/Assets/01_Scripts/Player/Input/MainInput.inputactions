@@ -329,6 +329,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "efc7bd2a-014c-4a61-ac67-a58447c0c2ea",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Submit",
                     "type": "Button",
                     "id": "97ff9911-2118-497c-bcb2-0c54c7d6af3e",
@@ -686,6 +695,28 @@
                 },
                 {
                     "name": "",
+                    "id": "444de888-0494-4de5-b01b-c6f5a27aae90",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fedc7dd-a2e4-4bdc-9a71-6b99546e2e50",
+                    "path": "<Joystick>/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e43eb73f-3dc9-4f3f-958f-a33f0392e36b",
                     "path": "*/{Submit}",
                     "interactions": "",
@@ -874,6 +905,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "OnInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inspection",
+            "id": "608590de-af71-457b-9066-51bae42b9f9a",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "a86e350d-39ff-4b5a-9b58-4c525a0b8fa4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c91b7529-c860-47b5-ac79-fe1f33567542",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "936b67b3-9e2b-4490-9745-89a0fd2757ac",
+                    "path": "<Joystick>/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
