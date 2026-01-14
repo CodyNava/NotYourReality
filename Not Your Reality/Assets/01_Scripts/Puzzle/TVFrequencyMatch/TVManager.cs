@@ -93,8 +93,8 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Left End Reached");
                 return;
             }
-            leftButton.gameObject.transform.Rotate(-rotationVector, Space.Self);
-            RuntimeManager.PlayOneShot(leftSound, leftButton.gameObject.transform.position);
+            leftButton.gameObject.transform.Rotate(-rotationVector, Space.World);
+            //RuntimeManager.PlayOneShot(leftSound, leftButton.gameObject.transform.position);
             _letterA--;
             _letterB--;
             DisplaySelection();
@@ -107,8 +107,8 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Right End Reached");
                 return;
             }
-            rightButton.gameObject.transform.Rotate(rotationVector, Space.Self);
-            RuntimeManager.PlayOneShot(rightSound, rightButton.gameObject.transform.position);
+            rightButton.gameObject.transform.Rotate(rotationVector, Space.World);
+            //RuntimeManager.PlayOneShot(rightSound, rightButton.gameObject.transform.position);
             _letterA++;
             _letterB++;
             DisplaySelection();
@@ -119,7 +119,7 @@ namespace Puzzle.TVFrequencyMatch
             var chars = _scrambled.ToCharArray();
             (chars[_letterB], chars[_letterA]) = (chars[_letterA], chars[_letterB]);
             _scrambled = new string(chars);
-            RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
+            //RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
             DisplayLetters();
             CheckWin();
         }
