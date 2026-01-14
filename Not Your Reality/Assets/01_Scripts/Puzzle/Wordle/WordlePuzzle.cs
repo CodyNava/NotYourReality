@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using Interactions.Interaction_System.Interactions;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
 namespace Puzzle.Wordle
@@ -12,12 +13,14 @@ namespace Puzzle.Wordle
 
         [Header("References")]
         [SerializeField] private WordListManager wordList;
+
         [SerializeField] private Transform wordleBoard;
         [SerializeField] private Transform wordKnitterBoard;
         [SerializeField] private int maxGuesses = 6;
 
         [Header("Audio References")]
         [SerializeField] private EventReference keyboardSound;
+
         [SerializeField] private EventReference allCorrectSound;
         [SerializeField] private EventReference coloringSound;
 
@@ -32,11 +35,11 @@ namespace Puzzle.Wordle
         [Header("Animation")]
         [SerializeField] private float revealDuration = 1.5f;
 
-        [SerializeField] private OpenDoor door;
+        [SerializeField] private DoorHandle door;
 
         private bool _isRevealing;
         private float _perLetterDelay;
-        
+
         private int _currentGuess;
         private string _currentInput;
         private bool _isGameOver;
@@ -101,19 +104,19 @@ namespace Puzzle.Wordle
         public void OnSpecialKey(string action)
         {
             if (_isGameOver) return;
-            
-                if (action == "BACK")
+
+            if (action == "BACK")
+            {
+                if (_currentInput.Length > 0)
                 {
-                    if (_currentInput.Length > 0)
-                    {
-                        _currentInput = _currentInput[..^1];
-                        UpdateCurrentRow();
-                    }
+                    _currentInput = _currentInput[..^1];
+                    UpdateCurrentRow();
                 }
-                else if (action == "ENTER")
-                {
-                    SubmitGuess();
-                }
+            }
+            else if (action == "ENTER")
+            {
+                SubmitGuess();
+            }
 
             RuntimeManager.PlayOneShot(keyboardSound, transform.position);
         }
@@ -165,10 +168,7 @@ namespace Puzzle.Wordle
             {
                 Debug.Log("You Win");
                 _isGameOver = true;
-                /*if (doorCollider != null)
-                {
-                    doorCollider.enabled = true;
-                }*/
+                door.IsInteractable = true;
 
                 return;
             }

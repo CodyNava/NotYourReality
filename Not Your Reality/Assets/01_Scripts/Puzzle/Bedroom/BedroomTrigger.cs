@@ -5,7 +5,9 @@ using UnityEngine;
 public class BedroomTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject[] propSets;
+    
     [SerializeField] private Transform targetLocation;
+    [SerializeField] private GameObject walltoHideDoor;
 
     private int _counter = 0;
     private GameObject _player;
@@ -22,6 +24,9 @@ public class BedroomTrigger : MonoBehaviour
         propSets[_counter].SetActive(false);
         _counter++;
         propSets[_counter].SetActive(true);
+        
+        if(!walltoHideDoor.activeInHierarchy)
+            walltoHideDoor.SetActive(true);
 
         StartCoroutine(StartTeleport(transform, targetLocation, other));
     }
