@@ -81,7 +81,7 @@ namespace Interactions.Interaction_System.Interactions
             if (_pivot)
             {
                 
-                var offset = Quaternion.Euler(_vertical, _horizontal, 0);
+                var offset = Quaternion.Euler(0, _horizontal, -_vertical);
                 _pivot.rotation = _baseRotation * offset;
             }
             
