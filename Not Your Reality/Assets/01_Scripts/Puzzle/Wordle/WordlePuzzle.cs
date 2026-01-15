@@ -5,6 +5,7 @@ using FMODUnity;
 using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using Random = UnityEngine.Random;
 
 namespace Puzzle.Wordle
@@ -19,6 +20,7 @@ namespace Puzzle.Wordle
         [SerializeField] private Transform wordleBoard;
         [SerializeField] private int maxGuesses = 6;
         [SerializeField] private List<ItemLetterInteract> interactables;
+        [SerializeField] private int amountFakeLetters = 2;
 
         [Header("Audio References")]
         [SerializeField] private EventReference keyboardSound;
@@ -46,6 +48,12 @@ namespace Puzzle.Wordle
         private string _currentInput;
         private bool _isGameOver;
 
+        private int _randomIntForChar;
+        private char _randomchar;
+        private string _randomletter;
+        private int _randomIndex;
+
+
         private readonly List<List<LetterTile>> _board = new();
         private List<int> randoms = new List<int>();
 
@@ -61,13 +69,23 @@ namespace Puzzle.Wordle
             {
                 SetRandomCharToItem(c);
             }
+
+            for (int i = 0; i < 2; i++)
+            {
+                _randomIntForChar = Random.Range('a', 'z');
+                _randomchar = Convert.ToChar(_randomIntForChar);
+                _randomletter = Convert.ToString(_randomchar).ToUpper();
+
+                _randomIndex = Random.Range(0, interactables.Count);
+                
+                SetFakeCharToItem(_randomletter, _randomIndex);
+            }
         }
 
-        
-        // TODO: FIX THIS SHIT 
+
         private void SetRandomCharToItem(char c)
         {
-            int random = Random.Range(0, interactables.Count-1);
+            int random = Random.Range(0, interactables.Count);
             if (!randoms.Contains(random))
             {
                 interactables[random].LetterChar = c;
@@ -78,7 +96,29 @@ namespace Puzzle.Wordle
                 SetRandomCharToItem(c);
             }
         }
-        
+
+        private void SetFakeCharToItem(string randomletter, int randomNumber)
+        {
+            Debug.Log("random char is :" + randomletter);
+            if (randoms.Contains(randomNumber))
+            {
+                randomNumber = Random.Range(0, interactables.Count);
+                SetFakeCharToItem(randomletter, randomNumber);
+            }
+            else if (wordList.targetWord.Contains(randomletter))
+            {
+                _randomIntForChar = Random.Range('a', 'z');
+                _randomchar = Convert.ToChar(_randomIntForChar);
+                randomletter = Convert.ToString(_randomchar).ToUpper();
+                SetFakeCharToItem(randomletter, randomNumber);
+            }
+            else
+            {
+                interactables[randomNumber].LetterChar = randomletter[0];
+                randoms.Add(randomNumber);
+            }
+        }
+
         // ---------------------------
         // RESET PUZZLE BOARD
         // ---------------------------
