@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Puzzle.Wordle
 {
@@ -15,8 +17,8 @@ namespace Puzzle.Wordle
         [SerializeField] private WordListManager wordList;
 
         [SerializeField] private Transform wordleBoard;
-        [SerializeField] private Transform wordKnitterBoard;
         [SerializeField] private int maxGuesses = 6;
+        [SerializeField] private List<ItemLetterInteract> interactables;
 
         [Header("Audio References")]
         [SerializeField] private EventReference keyboardSound;
@@ -45,6 +47,7 @@ namespace Puzzle.Wordle
         private bool _isGameOver;
 
         private readonly List<List<LetterTile>> _board = new();
+        private List<int> randoms = new List<int>();
 
         // ---------------------------
         // UNITY LIFECYCLE
@@ -52,9 +55,30 @@ namespace Puzzle.Wordle
         private void Start()
         {
             ResetWordl();
-            door.IsInteractable = false;
+            //door.IsInteractable = false;
+            Debug.Log("word is :" + wordList.targetWord);
+            foreach (char c in wordList.targetWord)
+            {
+                SetRandomCharToItem(c);
+            }
         }
 
+        
+        // TODO: FIX THIS SHIT 
+        private void SetRandomCharToItem(char c)
+        {
+            int random = Random.Range(0, interactables.Count-1);
+            if (!randoms.Contains(random))
+            {
+                interactables[random].LetterChar = c;
+                randoms.Add(random);
+            }
+            else
+            {
+                SetRandomCharToItem(c);
+            }
+        }
+        
         // ---------------------------
         // RESET PUZZLE BOARD
         // ---------------------------
@@ -233,6 +257,11 @@ namespace Puzzle.Wordle
             char letter = char.ToUpper(key.buttonLetter.text[0]);
             if (!_keyboardButtons.ContainsKey(letter))
                 _keyboardButtons.Add(letter, key);
+        }
+
+        public void KeyEnable(char c)
+        {
+            _keyboardButtons[c].ActivateLetter();
         }
     }
 }
