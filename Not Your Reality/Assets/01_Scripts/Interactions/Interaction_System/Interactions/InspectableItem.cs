@@ -11,8 +11,7 @@ namespace Interactions.Interaction_System.Interactions
     {
         [Tooltip("The speed at which the Item goes into focus")]
         [SerializeField] private float duration = 0.25f;
-
-        [SerializeField] private bool mouseToggle;
+        
         [SerializeField] private float sensitivity;
         [SerializeField] private float clampMin ;
         [SerializeField] private float clampMax ;
@@ -29,7 +28,7 @@ namespace Interactions.Interaction_System.Interactions
         private Vector3 _transform;
         private Quaternion _rotation;
         private Coroutine _inspect;
-        private bool _justPickedUp;
+        
         private Quaternion _baseRotation;
 
         private Transform _pivot;
@@ -71,7 +70,7 @@ namespace Interactions.Interaction_System.Interactions
 
         private void RotateItem()
         {
-            if (!_isInspecting || _justPickedUp) return;
+            if (!_isInspecting) return;
             
             var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>() ; 
             rawMouse *= sensitivity;
@@ -90,13 +89,10 @@ namespace Interactions.Interaction_System.Interactions
 
         private IEnumerator Inspect()
         {
-            _isInspecting = true;
-            _justPickedUp = true;
             TooltipMessage = "";
             _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
             _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
             InputManager.Input.Player.Disable();
-            InputManager.Input.Inspection.Enable();
 
             CreatePivotAtBoundsCenter();
             
@@ -113,11 +109,11 @@ namespace Interactions.Interaction_System.Interactions
                 yield return null;
             }
 
+            _isInspecting = true;
+            InputManager.Input.Inspection.Enable();
             _baseRotation = _pivot ? _pivot.rotation : transform.rotation;
             _horizontal = 0;
             _vertical = 0;
-            _justPickedUp = false;
-            
         }
         
 
