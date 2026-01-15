@@ -8,6 +8,8 @@ namespace Puzzle.Wordle
    {
       private char _letter;
       private Image _background;
+      
+      [SerializeField]private GameObject letterChild;
 
       public TextMeshProUGUI buttonLetter;
       public WordlePuzzle wordlePuzzle;
@@ -23,5 +25,10 @@ namespace Puzzle.Wordle
       private void OnClick() { wordlePuzzle.OnKeyboardClick(_letter); }
 
       public void SetColor(Color color) { _background.color = color; }
+
+      public void ActivateLetter()
+      {
+         letterChild.SetActive(true);
+      }
    }
 }
