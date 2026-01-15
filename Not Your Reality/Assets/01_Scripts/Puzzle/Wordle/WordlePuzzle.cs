@@ -1,22 +1,23 @@
+using System;
 using System.Collections.Generic;
-using FMOD.Studio;
 using FMODUnity;
-using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Puzzle.Wordle
 {
     public class WordlePuzzle : MonoBehaviour
     {
-        private Dictionary<char, KeyboardButton> _keyboardButtons = new();
+        private readonly Dictionary<char, KeyboardButton> _keyboardButtons = new();
 
         [Header("References")]
         [SerializeField] private WordListManager wordList;
 
         [SerializeField] private Transform wordleBoard;
-        [SerializeField] private Transform wordKnitterBoard;
         [SerializeField] private int maxGuesses = 6;
+        [SerializeField] private List<ItemLetterInteract> letterItems;
+        [SerializeField] private int amountFakeLetters = 2;
 
         [Header("Audio References")]
         [SerializeField] private EventReference keyboardSound;
@@ -44,21 +45,81 @@ namespace Puzzle.Wordle
         private string _currentInput;
         private bool _isGameOver;
 
+        private int _randomIntForChar;
+        private char _randomChar;
+        private string _randomLetter;
+        private int _randomIndex;
+
+
         private readonly List<List<LetterTile>> _board = new();
+        private readonly List<int> _randomItems = new List<int>();
 
         // ---------------------------
         // UNITY LIFECYCLE
         // ---------------------------
         private void Start()
         {
-            ResetWordl();
-            door.IsInteractable = false;
+            ResetWordle();
+            //door.IsInteractable = false;
+            Debug.Log("word is :" + wordList.targetWord);
+            foreach (char c in wordList.targetWord)
+            {
+                SetRandomCharToItem(c);
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                _randomIntForChar = Random.Range('a', 'z');
+                _randomChar = Convert.ToChar(_randomIntForChar);
+                _randomLetter = Convert.ToString(_randomChar).ToUpper();
+
+                _randomIndex = Random.Range(0, letterItems.Count);
+                
+                SetFakeCharToItem(_randomLetter, _randomIndex);
+            }
+        }
+
+
+        private void SetRandomCharToItem(char c)
+        {
+            int random = Random.Range(0, letterItems.Count);
+            if (!_randomItems.Contains(random))
+            {
+                letterItems[random].LetterChar = c;
+                _randomItems.Add(random);
+            }
+            else
+            {
+                SetRandomCharToItem(c);
+            }
+        }
+
+        private void SetFakeCharToItem(string randomLetter, int randomNumber)
+        {
+            Debug.Log("random char is :" + randomLetter);
+            if (_randomItems.Contains(randomNumber))
+            {
+                randomNumber = Random.Range(0, letterItems.Count);
+                SetFakeCharToItem(randomLetter, randomNumber);
+            }
+            else if (wordList.targetWord.Contains(randomLetter))
+            {
+                _randomIntForChar = Random.Range('a', 'z');
+                _randomChar = Convert.ToChar(_randomIntForChar);
+                randomLetter = Convert.ToString(_randomChar).ToUpper();
+                SetFakeCharToItem(randomLetter, randomNumber);
+            }
+            else
+            {
+                letterItems[randomNumber].LetterChar = randomLetter[0];
+                _randomItems.Add(randomNumber);
+            }
         }
 
         // ---------------------------
         // RESET PUZZLE BOARD
         // ---------------------------
-        private void ResetWordl()
+        private void ResetWordle()
         {
             _currentGuess = 0;
             _isGameOver = false;
@@ -123,12 +184,9 @@ namespace Puzzle.Wordle
 
         private void UpdateCurrentRow()
         {
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
-                if (i < _currentInput.Length)
-                    _board[_currentGuess][i].SetLetter(_currentInput[i]);
-                else
-                    _board[_currentGuess][i].SetLetter(' ');
+                _board[_currentGuess][i].SetLetter(i < _currentInput.Length ? _currentInput[i] : ' ');
             }
         }
 
@@ -233,6 +291,11 @@ namespace Puzzle.Wordle
             char letter = char.ToUpper(key.buttonLetter.text[0]);
             if (!_keyboardButtons.ContainsKey(letter))
                 _keyboardButtons.Add(letter, key);
+        }
+
+        public void KeyEnable(char c)
+        {
+            _keyboardButtons[c].ActivateLetter();
         }
     }
 }
