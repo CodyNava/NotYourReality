@@ -30,6 +30,8 @@ namespace UI.Menu
 
         [SerializeField] private Volume volume;
         [SerializeField] private Toggle motionBlurToggle;
+        [SerializeField] private Slider gammaSlider;
+        private LiftGammaGain _gamma;
         private MotionBlur _motionBlur;
         private int _motionBlurInt;
 
@@ -54,6 +56,7 @@ namespace UI.Menu
         private const string Fullscreen = "Fullscreen";
         private const string ResolutionIndex = "ResolutionIndex";
         private const string QualityIndex = "QualityIndex";
+        private const string GammaValue = "GammaValue";
         private const string Master = "Master";
         private const string Music = "Music";
         private const string Sfx = "Sfx";
@@ -68,6 +71,7 @@ namespace UI.Menu
             _voiceBus = FMODUnity.RuntimeManager.GetBus("bus:/Voice");
             _ambientBus = FMODUnity.RuntimeManager.GetBus("bus:/Ambient");
             volume.profile.TryGet(out _motionBlur);
+            volume.profile.TryGet(out _gamma);
         }
 
         private void Start()
@@ -139,6 +143,12 @@ namespace UI.Menu
             _motionBlur.active = motionBlurToggle.isOn;
             PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
         }
+
+        public void AdjustGamma()
+        {
+            _gamma.gamma.value = new Vector4(1f, 1f, 1f, gammaSlider.value);
+            PlayerPrefs.SetFloat(GammaValue, gammaSlider.value);
+        }
         #endregion
 
         #region Sound
@@ -190,6 +200,8 @@ namespace UI.Menu
             
             _qualityIndex = PlayerPrefs.GetInt(QualityIndex, _qualityOptions.Count - 1);
             qualityDropDown.SetValueWithoutNotify(_qualityIndex);
+            
+            gammaSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(GammaValue, 0.5f));
 
             masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Music, 0.5f));
@@ -201,10 +213,16 @@ namespace UI.Menu
         private void ApplySettings()
         {
             SetResolution(_resIndex);
+            SetQuality(_qualityIndex);
             SetFullscreen();
             SetVsync();
             SetMotionBlur();
+            AdjustGamma();
             MasterVolume();
+            MusicVolume();
+            SfxVolume();
+            VoiceVolume();
+            AmbienceVolume();
         }
     }
 }

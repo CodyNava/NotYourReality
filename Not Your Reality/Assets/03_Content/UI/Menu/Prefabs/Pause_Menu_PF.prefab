@@ -128,6 +128,7 @@ MonoBehaviour:
   vSyncToggle: {fileID: 6395887895572904242}
   volume: {fileID: 0}
   motionBlurToggle: {fileID: 2959207951370868254}
+  gammaSlider: {fileID: 4561799081218520455}
   masterSlider: {fileID: 7673760044831148763}
   musicSlider: {fileID: 5547328848540049536}
   sfxSlider: {fileID: 2305727662995623919}
@@ -909,6 +910,18 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UI.Menu.SettingsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5841046195862147781, guid: bafbc59cdf740304eaf595d9efee1300, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3660125455420847738}
+    - target: {fileID: 5841046195862147781, guid: bafbc59cdf740304eaf595d9efee1300, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdjustGamma
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841046195862147781, guid: bafbc59cdf740304eaf595d9efee1300, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.Menu.SettingsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6568765203435444651, guid: bafbc59cdf740304eaf595d9efee1300, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1050,6 +1063,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4561799081218520455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5841046195862147781, guid: bafbc59cdf740304eaf595d9efee1300, type: 3}
+  m_PrefabInstance: {fileID: 7944724165745518402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &4935788440020698996 stripped
