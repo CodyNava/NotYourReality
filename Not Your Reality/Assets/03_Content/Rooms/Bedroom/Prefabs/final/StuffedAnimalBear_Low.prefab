@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 5281430516268392769}
   - component: {fileID: 9143629439615823588}
   - component: {fileID: 6413202621112916526}
-  m_Layer: 0
+  - component: {fileID: 643830510406941521}
+  - component: {fileID: 6386597286215037166}
+  m_Layer: 6
   m_Name: StuffedAnimalBear_Low
-  m_TagString: Untagged
+  m_TagString: Misc Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5281430516268392769
 Transform:
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4756005432712346619}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.6749337, y: -14.6631565, z: -4.9536543}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -86,3 +88,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &643830510406941521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756005432712346619}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.42072785, y: 0.35834646, z: 0.21527314}
+  m_Center: {x: 0.011458874, y: 0.38462305, z: 0.0038343668}
+--- !u!114 &6386597286215037166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756005432712346619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  isHolding: 0
+  multipleUse: 0
+  isInteractable: 1
+  duration: 2
+  mouseToggle: 0
+  sensitivity: 0.2
+  clampMin: -90
+  clampMax: 90
