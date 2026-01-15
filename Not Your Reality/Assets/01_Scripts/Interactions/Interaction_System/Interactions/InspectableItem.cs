@@ -16,6 +16,7 @@ namespace Interactions.Interaction_System.Interactions
         [SerializeField] private float sensitivity;
         [SerializeField] private float clampMin ;
         [SerializeField] private float clampMax ;
+        [SerializeField] private bool rotationClamping ;
        
         private float _horizontal;
         private float _vertical;
@@ -76,7 +77,7 @@ namespace Interactions.Interaction_System.Interactions
             rawMouse *= sensitivity;
             _horizontal += rawMouse.x;
             _vertical -= rawMouse.y;
-            _vertical = Mathf.Clamp(_vertical, clampMin, clampMax);
+            if (rotationClamping) _vertical = Mathf.Clamp(_vertical, clampMin, clampMax);
 
             if (_pivot)
             {
