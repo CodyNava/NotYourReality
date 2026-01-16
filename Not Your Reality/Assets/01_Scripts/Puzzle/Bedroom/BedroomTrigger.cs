@@ -1,32 +1,41 @@
 using System.Collections;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using Player.PlayerMovement.Movement;
 using UnityEngine;
 
 public class BedroomTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject[] propSets;
-    
-    [SerializeField] private Transform targetLocation;
-    [SerializeField] private GameObject walltoHideDoor;
 
-    private int _counter = 0;
+    [SerializeField] private Transform targetLocation;
+    [SerializeField] private GameObject wallToHideDoor;
+    [SerializeField] private Transform mirrorPuzzle; 
+    
+    
+    private int _counter;
     private GameObject _player;
 
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        propSets[1].SetActive(false);
+        propSets[2].SetActive(false);
+        propSets[3].SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_counter >= propSets.Length) return;
+        if (_counter >= propSets.Length)
+            StartCoroutine(StartTeleport(transform, mirrorPuzzle, other));
+        
 
         propSets[_counter].SetActive(false);
         _counter++;
         propSets[_counter].SetActive(true);
-        
-        if(!walltoHideDoor.activeInHierarchy)
-            walltoHideDoor.SetActive(true);
+
+
+        if (!wallToHideDoor.activeInHierarchy)
+            wallToHideDoor.SetActive(true);
 
         StartCoroutine(StartTeleport(transform, targetLocation, other));
     }
