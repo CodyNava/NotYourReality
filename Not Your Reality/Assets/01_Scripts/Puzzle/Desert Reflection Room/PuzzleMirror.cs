@@ -3,96 +3,86 @@ using UnityEngine;
 
 namespace Puzzle.Desert_Reflection_Room
 {
+    public enum RotationAxis
+    {
+        X,
+        Y,
+        Z
+    }
+
     public class PuzzleMirror : InteractableBase
     {
         [Header("Mirror Settings")]
-        [Tooltip("How sensitive the mirror reacts to the mouse movement")]
-        [SerializeField] private float sensitivity = 4f;
+        [Tooltip("The value of the mirror rotation")]
+        [SerializeField] private float rotationValue;
+        [Tooltip("Each mirror can have 3 Positions: 0, 1 and 2.\nPut in the value here, in which the mirror has it's correct position")]
+        [SerializeField] private int correctRotationIndex;
+        private int _rotationIndex;
 
-        [Tooltip("The speed at which the mirror rotates")]
-        [SerializeField] private float rotationSpeed = 360f;
+        [Tooltip("The rotation axis of the mirror")]
+        [SerializeField] private RotationAxis rotationAxis;
+        private Quaternion _startRotation;
 
-        [Tooltip("<b>On</b>: Mirror rotates Up and Down \n" + "<b>Off</b>: Mirror rotates Left and Right")]
-        [SerializeField] private bool zRotation;
-
-        private bool _isHeld;
-        private Rigidbody _rigidbody;
-
-        private float _initialZRotation;
-        private float _initialYRotation;
-        private float _accumulatedAngle;
+        private void Awake()
+        {
+            _startRotation = transform.rotation;
+            RandomStarter();
+            TooltipMessage = "Press E to Interact";
+        }
 
         private void Start()
         {
-            TooltipMessage = "Hold E to Rotate";
-            _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.isKinematic = false;
-            _rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+            switch (rotationAxis)
+            {
+                case RotationAxis.X:
+                    transform.Rotate(Vector3.right, rotationValue * _rotationIndex);
+                    break;
+                case RotationAxis.Y:
+                    transform.Rotate(Vector3.up, rotationValue * _rotationIndex);
+                    break;
+                case RotationAxis.Z:
+                    transform.Rotate(Vector3.forward, rotationValue * _rotationIndex);
+                    break;
+            }
         }
 
         public override void OnInteract()
         {
             base.OnInteract();
-            _initialYRotation = transform.eulerAngles.y;
-            _initialZRotation = transform.eulerAngles.z;
-            _accumulatedAngle = 0f;
-            _rigidbody.constraints = zRotation switch
-            {
-                true => RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX |
-                        RigidbodyConstraints.FreezeRotationY,
-                false => RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX |
-                         RigidbodyConstraints.FreezeRotationZ
-            };
-            _isHeld = true;
-        }
-
-        private void FixedUpdate()
-        {
-            if (!_isHeld) return;
             RotateMirror();
         }
 
         private void RotateMirror()
         {
-            _rigidbody.isKinematic = false;
-            switch (zRotation)
+            if (_rotationIndex == 2)
             {
-                case true:
-                { 
-                    var rawInput = InputManager.Input.Player.Look.ReadValue<Vector2>().y;
-                    var delta = rawInput * sensitivity * Time.fixedDeltaTime;
-                    _accumulatedAngle += delta;
-                    var targetAngle = _initialZRotation + _accumulatedAngle;
-                    var targetRotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, targetAngle);
-                    
-                    var rotationStep = rotationSpeed * Time.fixedDeltaTime;
-                    
-                    var newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep);
-                    _rigidbody.MoveRotation(newRotation);
-                    break;
-                }
-                case false:
-                {
-                    var rawInput = InputManager.Input.Player.Look.ReadValue<Vector2>().x;
-                    var delta = rawInput * sensitivity * Time.fixedDeltaTime;
-                    _accumulatedAngle += delta;
-                    var targetAngle = _initialYRotation + _accumulatedAngle;
-                    var targetRotation = Quaternion.Euler(transform.eulerAngles.x, targetAngle, transform.eulerAngles.z);
-                    
-                    var rotationStep = rotationSpeed * Time.fixedDeltaTime;
-                    
-                    var newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep);
-                    _rigidbody.MoveRotation(newRotation);
-                    break;
-                }
+                transform.rotation = _startRotation;
+                _rotationIndex = 0;
+                return;
             }
+
+            switch (rotationAxis)
+            {
+                case RotationAxis.X:
+                    transform.Rotate(Vector3.right, rotationValue);
+                    break;
+                case RotationAxis.Y:
+                    transform.Rotate(Vector3.up, rotationValue);
+                    break;
+                case RotationAxis.Z:
+                    transform.Rotate(Vector3.forward, rotationValue);
+                    break;
+            }
+            _rotationIndex++;
         }
 
-        public void Release()
+        private void RandomStarter()
         {
-            _isHeld = false;
-            _rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-            _rigidbody.isKinematic = true;
+            _rotationIndex = Random.Range(0, 3);
+            if (_rotationIndex == correctRotationIndex)
+            {
+                RandomStarter();
+            }
         }
     }
 }
