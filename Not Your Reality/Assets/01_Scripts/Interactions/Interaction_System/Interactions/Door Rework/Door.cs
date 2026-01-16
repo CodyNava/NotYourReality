@@ -20,7 +20,6 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         [SerializeField] private EventReference voiceLine;
 
         private Rigidbody _rb;
-        private HingeJoint _joint;
 
         private Quaternion _lockRotation;
         private float _input;
@@ -29,7 +28,6 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            _joint = GetComponent<HingeJoint>();
             _lockRotation = transform.rotation;
         }
 
@@ -88,13 +86,11 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 
             if (hingeVelocity < lockThreshold && angle < lockAngle)
             {
-                _joint.useLimits = false;
                 _rb.angularVelocity = Vector3.zero;
                 _rb.rotation = _lockRotation;
             }
             else
             {
-                _joint.useLimits = true;
             }
         }
 
