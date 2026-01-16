@@ -1,15 +1,18 @@
 using System.Collections;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using Player.PlayerMovement.Movement;
 using UnityEngine;
 
 public class BedroomTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject[] propSets;
-    
-    [SerializeField] private Transform targetLocation;
-    [SerializeField] private GameObject walltoHideDoor;
 
-    private int _counter = 0;
+    [SerializeField] private Transform targetLocation;
+    [SerializeField] private GameObject wallToHideDoor;
+
+    [SerializeField] private DoorHandle doorHandle;
+    
+    private int _counter;
     private GameObject _player;
 
     private void Start()
@@ -24,9 +27,10 @@ public class BedroomTrigger : MonoBehaviour
         propSets[_counter].SetActive(false);
         _counter++;
         propSets[_counter].SetActive(true);
-        
-        if(!walltoHideDoor.activeInHierarchy)
-            walltoHideDoor.SetActive(true);
+
+
+        if (!wallToHideDoor.activeInHierarchy)
+            wallToHideDoor.SetActive(true);
 
         StartCoroutine(StartTeleport(transform, targetLocation, other));
     }
