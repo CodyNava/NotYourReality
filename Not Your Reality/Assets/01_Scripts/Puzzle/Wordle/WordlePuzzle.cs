@@ -67,6 +67,8 @@ namespace Puzzle.Wordle
                 SetRandomCharToItem(c);
             }
 
+            door.IsInteractable = false;
+
             for (int i = 0; i < 2; i++)
             {
                 _randomIntForChar = Random.Range('a', 'z');

@@ -6,11 +6,12 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 {
     public class DoorHandle : InteractableBase
     {
-        [Header("Door Reference")] [SerializeField]
-        private Door door;
+        [Header("Door Reference")]
+        [SerializeField] private Door door;
 
-        [Header("Handle configurations")] [Tooltip("Is the handle on the side of the hinge or not")] [SerializeField]
-        private bool isHingeSide;
+        [Header("Handle configurations")]
+        [Tooltip("Is the handle on the side of the hinge or not")]
+        [SerializeField] private bool isHingeSide;
         
         public bool IsHingeSide
         {
@@ -36,6 +37,13 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 
         private void Update()
         {
+            if (!IsInteractable)
+            {
+                TooltipMessage = "";
+                return;
+            }
+
+            TooltipMessage = "Hold E to Interact";
             if (!_isHeld) return;
 
             var mouseDeltaX = Mouse.current.delta.ReadValue().x;
