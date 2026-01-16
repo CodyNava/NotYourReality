@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Interactions.Interaction_System.Interactions;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
 namespace Puzzle.Desert_Reflection_Room
@@ -21,7 +21,7 @@ namespace Puzzle.Desert_Reflection_Room
       [SerializeField] private Material targetDefaultMaterial;
 
       [Tooltip("The door that is supposed to be activated once the Goal is hit")]
-      [SerializeField] private OpenDoor door ;
+      [SerializeField] private DoorHandle door ;
 
       private bool _puzzleCompleted;
       private readonly List<GameObject> _objectsToReset = new();
@@ -62,7 +62,7 @@ namespace Puzzle.Desert_Reflection_Room
 
          if (!AllHit() || _puzzleCompleted) return;
          _puzzleCompleted = true;
-         door.UnlockDoor();
+         door.IsInteractable = true;
       }
 
       private bool AllHit()
