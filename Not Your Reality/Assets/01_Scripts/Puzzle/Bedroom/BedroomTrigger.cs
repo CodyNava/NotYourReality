@@ -18,26 +18,31 @@ public class BedroomTrigger : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        propSets[1].SetActive(false);
-        propSets[2].SetActive(false);
-        propSets[3].SetActive(false);
+        for (int i = 1; i < propSets.Length; i++)
+        {
+            propSets[i].SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_counter >= propSets.Length)
-            StartCoroutine(StartTeleport(transform, mirrorPuzzle, other));
         
-
         propSets[_counter].SetActive(false);
         _counter++;
+        if (_counter == propSets.Length)
+        {
+            StartCoroutine(StartTeleport(transform, mirrorPuzzle, other));
+            return;
+        }
         propSets[_counter].SetActive(true);
 
 
         if (!wallToHideDoor.activeInHierarchy)
             wallToHideDoor.SetActive(true);
-
+        
         StartCoroutine(StartTeleport(transform, targetLocation, other));
+
+        
     }
 
     private IEnumerator StartTeleport(Transform entryPortal, Transform exitPortal, Collider other)

@@ -41,6 +41,11 @@ namespace Interactions.Interaction_System.Interactions
             StartCoroutine(WaitForLoadingCoreScripts());
         }
 
+        private void OnEnable()
+        {
+            StartCoroutine(WaitForLoadingCoreScripts());
+        }
+
         private IEnumerator WaitForLoadingCoreScripts()
         {
             yield return new WaitForSeconds(0.5f);
