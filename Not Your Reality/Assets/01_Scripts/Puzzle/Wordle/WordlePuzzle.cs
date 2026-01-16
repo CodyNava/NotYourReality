@@ -18,6 +18,7 @@ namespace Puzzle.Wordle
         [SerializeField] private int maxGuesses = 6;
         [SerializeField] private List<ItemLetterInteract> letterItems;
         [SerializeField] private int amountFakeLetters = 2;
+        [SerializeField] private EventReference unlockSound;
 
         [Header("Audio References")]
         [SerializeField] private EventReference keyboardSound;
@@ -229,7 +230,7 @@ namespace Puzzle.Wordle
                 Debug.Log("You Win");
                 _isGameOver = true;
                 door.IsInteractable = true;
-
+                RuntimeManager.PlayOneShot(unlockSound, door.transform.position);
                 return;
             }
 

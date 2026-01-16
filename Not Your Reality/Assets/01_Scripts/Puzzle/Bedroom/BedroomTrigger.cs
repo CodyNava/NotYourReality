@@ -9,8 +9,8 @@ public class BedroomTrigger : MonoBehaviour
 
     [SerializeField] private Transform targetLocation;
     [SerializeField] private GameObject wallToHideDoor;
-
-    [SerializeField] private DoorHandle doorHandle;
+    [SerializeField] private Transform mirrorPuzzle; 
+    
     
     private int _counter;
     private GameObject _player;
@@ -18,11 +18,16 @@ public class BedroomTrigger : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        propSets[1].SetActive(false);
+        propSets[2].SetActive(false);
+        propSets[3].SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_counter >= propSets.Length) return;
+        if (_counter >= propSets.Length)
+            StartCoroutine(StartTeleport(transform, mirrorPuzzle, other));
+        
 
         propSets[_counter].SetActive(false);
         _counter++;

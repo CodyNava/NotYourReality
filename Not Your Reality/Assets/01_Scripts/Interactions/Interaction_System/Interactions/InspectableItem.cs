@@ -16,6 +16,7 @@ namespace Interactions.Interaction_System.Interactions
         [SerializeField] private float clampMin ;
         [SerializeField] private float clampMax ;
         [SerializeField] private bool rotationClamping ;
+        [SerializeField] private BedroomUnlock bedroomUnlock;
        
         private float _horizontal;
         private float _vertical;
@@ -137,6 +138,11 @@ namespace Interactions.Interaction_System.Interactions
                  _pivot.position = Vector3.Lerp(_pivot.position, targetPivotPos, a);
                  _pivot.rotation = Quaternion.Lerp(_pivot.rotation, targetPivotRot, a);
                  yield return null;
+                }
+                
+                if (bedroomUnlock != null)
+                {
+                    bedroomUnlock.AddItem(this);
                 }
 
                 DestroyPivot();
