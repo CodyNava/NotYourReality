@@ -69,7 +69,7 @@ namespace Puzzle.Wordle
 
             door.IsInteractable = false;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < amountFakeLetters; i++)
             {
                 _randomIntForChar = Random.Range('a', 'z');
                 _randomChar = Convert.ToChar(_randomIntForChar);
@@ -297,6 +297,9 @@ namespace Puzzle.Wordle
 
         public void KeyEnable(char c)
         {
+            if(c == ' ')
+                return;
+            
             _keyboardButtons[c].ActivateLetter();
         }
     }

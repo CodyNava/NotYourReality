@@ -27,7 +27,7 @@ namespace Puzzle.Wordle
 
         private float _horizontal;
         private float _vertical;
-        private char _letterChar;
+        private char _letterChar = ' ';
         private bool _isInspecting;
         private Transform _anchorTransform;
         private Transform _letterTransform;
@@ -110,7 +110,7 @@ namespace Puzzle.Wordle
         private bool FacingLetter()
         {
             var toCamera = (_cam.transform.position - _letterTransform.position).normalized;
-            return Vector3.Dot(transform.forward, toCamera) > 0.5f;
+            return Vector3.Dot(transform.forward, toCamera) > 0.3f;
         }
 
         private IEnumerator Inspect()
