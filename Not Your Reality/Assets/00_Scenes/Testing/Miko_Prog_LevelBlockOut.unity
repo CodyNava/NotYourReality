@@ -6853,7 +6853,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5503796991583672414, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.04
+      value: 36.65
       objectReference: {fileID: 0}
     - target: {fileID: 5503796991583672414, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6861,7 +6861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503796991583672414, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.89
+      value: -67.55
       objectReference: {fileID: 0}
     - target: {fileID: 5503796991583672414, guid: 3f5e758d1358a4841a524fc70a1e6d06, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11335,7 +11335,7 @@ PrefabInstance:
       objectReference: {fileID: 609591263}
     - target: {fileID: 3182577815415935117, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
       propertyPath: m_VersionIndex
-      value: 321
+      value: 333
       objectReference: {fileID: 0}
     - target: {fileID: 3699994434760958972, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
       propertyPath: m_Mesh
@@ -11359,7 +11359,7 @@ PrefabInstance:
       objectReference: {fileID: 1089068856}
     - target: {fileID: 5646517436278435986, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
       propertyPath: m_VersionIndex
-      value: 20
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 6193974621087886451, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
       propertyPath: m_Name
@@ -24912,21 +24912,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 54209865200170017, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_Color.a
-      value: 0.07450981
-      objectReference: {fileID: 0}
     - target: {fileID: 91102782902998698, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 740c9f4f018dc2043bfb8b36d4474440, type: 2}
-    - target: {fileID: 91102782902998698, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8681441856167036385, guid: 740c9f4f018dc2043bfb8b36d4474440, type: 2}
-    - target: {fileID: 91102782902998698, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+      propertyPath: m_text
+      value: "\u201Ca basement\u2026? How the hell did I end up here?\u201D "
       objectReference: {fileID: 0}
     - target: {fileID: 501395478040902749, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
       propertyPath: m_Alpha
@@ -25010,18 +24998,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1972905688614539844, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988742075049692148, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 740c9f4f018dc2043bfb8b36d4474440, type: 2}
-    - target: {fileID: 4988742075049692148, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8681441856167036385, guid: 740c9f4f018dc2043bfb8b36d4474440, type: 2}
-    - target: {fileID: 4988742075049692148, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
-      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8587859627245279982, guid: bd5d32949fcf86644b986e66585381a7, type: 3}
@@ -30908,6 +30884,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 21746680942085951, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 21746680942085951, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672218901664377420, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 373382680, guid: feadb8900982ff84e94a83779168e8a2, type: 3}
+    - target: {fileID: 2672218901664377420, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672218901664377420, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4505021646914691753, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
       propertyPath: m_Pivot.x
       value: 0

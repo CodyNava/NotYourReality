@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Puzzle.Desert_Reflection_Room
 {
+   
    public class LightSource : MonoBehaviour
    {
       [Tooltip("The length of the light beam")]

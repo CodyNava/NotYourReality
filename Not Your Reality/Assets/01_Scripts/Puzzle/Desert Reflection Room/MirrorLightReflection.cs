@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Puzzle.Desert_Reflection_Room
 {
+   
    public class MirrorLightReflection : MonoBehaviour
    {
       [Tooltip("The light source of this riddle")]
