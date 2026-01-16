@@ -1,4 +1,4 @@
-using Interactions.Interaction_System.Interactions;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
 namespace Puzzle.General
@@ -8,8 +8,8 @@ namespace Puzzle.General
       private void OnCollisionEnter(Collision other)
       {
          if (!other.gameObject.CompareTag("Door")) return;
-         var door = other.gameObject.GetComponent<OpenDoor>();
-         door.UnlockDoor();
+         var door = other.gameObject.GetComponentInChildren<DoorHandle>();
+         door.IsInteractable = true;
          Destroy(gameObject);
       }
    }
