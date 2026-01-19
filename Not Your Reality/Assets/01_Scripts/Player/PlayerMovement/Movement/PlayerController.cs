@@ -1,3 +1,4 @@
+using System.GlobalEventSystem;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,9 +19,10 @@ namespace Player.PlayerMovement.Movement
 
       [Header("Camera Settings")]
       [SerializeField] private Transform cameraHolder;
-      [SerializeField] private float mouseSensitivity = 2f;
       [SerializeField] private float maxLookAngle = 80f;
+      [SerializeField] private float mouseSensitivity = 2f;
       [SerializeField, Range(0f, 0.5f)] private float mouseSmoothTime = 0.03f;
+      [SerializeField] private PlayerLookSettings playerLookSettings;
       [SerializeField] private bool cameraActive = true;
 
       [Header("Headbob Settings")]
@@ -72,9 +74,16 @@ namespace Player.PlayerMovement.Movement
 
          if (cameraHolder) _originalCamLocalPos = cameraHolder.localPosition;
 
+         ApplyLookData();
          CameraActive = true;
          Cursor.lockState = CursorLockMode.Locked;
          Cursor.visible = false;
+      }
+
+      private void ApplyLookData()
+      {
+         mouseSmoothTime = playerLookSettings.mouseSmoothTime;
+         mouseSensitivity = playerLookSettings.mouseSensitivity;
       }
 
       private void OnEnable()
@@ -89,6 +98,7 @@ namespace Player.PlayerMovement.Movement
          _input.Player.Sprint.performed += Sprint;
          _input.Player.Sprint.canceled += Sprint;
          _input.Player.ToggleLook.performed += ToggleLook;
+         GlobalEventManager.MouseSettingsChanged += ApplyLookData;
       }
 
       private void OnDisable()
@@ -100,6 +110,7 @@ namespace Player.PlayerMovement.Movement
          _input.Player.Sprint.performed -= Sprint;
          _input.Player.Sprint.canceled -= Sprint;
          _input.Player.ToggleLook.performed -= ToggleLook;
+         GlobalEventManager.MouseSettingsChanged -= ApplyLookData;
          _input.Player.Disable();
       }
 
