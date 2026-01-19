@@ -147,7 +147,6 @@ namespace UI.Menu
         public void AdjustGamma()
         {
             _gamma.gamma.value = new Vector4(1f, 1f, 1f, gammaSlider.value);
-            PlayerPrefs.SetFloat(GammaValue, gammaSlider.value);
         }
         #endregion
 
@@ -180,7 +179,7 @@ namespace UI.Menu
         private void ApplyVolume(Bus bus, float newValue)
         {
             bus.setVolume(newValue);
-            PlayerPrefs.SetFloat(Master, newValue);
+            Save();
         }
         #endregion
 
@@ -223,6 +222,15 @@ namespace UI.Menu
             SfxVolume();
             VoiceVolume();
             AmbienceVolume();
+        }
+
+        private void Save()
+        {
+            PlayerPrefs.SetFloat(Master, masterSlider.value);
+            PlayerPrefs.SetFloat(Music, musicSlider.value);
+            PlayerPrefs.SetFloat(Sfx, sfxSlider.value);
+            PlayerPrefs.SetFloat(Voice, voiceSlider.value);
+            PlayerPrefs.SetFloat(Ambience, ambientSlider.value);
         }
     }
 }
