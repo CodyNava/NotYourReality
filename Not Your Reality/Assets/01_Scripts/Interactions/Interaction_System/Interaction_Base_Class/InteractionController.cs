@@ -1,3 +1,4 @@
+using System.GlobalEventSystem;
 using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
@@ -41,6 +42,23 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
             UpdateCrosshair();
         }
 
+        private void OnEnable()
+        {
+            GlobalEventManager.OnKey += ResetInteractionStateAfterEvent;
+        }
+
+        private void OnDisable()
+        {
+            GlobalEventManager.OnKey -= ResetInteractionStateAfterEvent;
+        }
+
+        private void ResetInteractionStateAfterEvent()
+        {
+            _interacting = false;
+            _selectedObject = null;
+            interactionUIPanel.Reset();
+            _interactionData.ResetData();
+        }
         private void UpdateCrosshair()
         {
             crosshair.localScale = _interacting ? Vector3.one * 1.5f : Vector3.one;
