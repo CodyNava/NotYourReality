@@ -93,7 +93,11 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Left End Reached");
                 return;
             }
-            leftButton.gameObject.transform.Rotate(-rotationVector, Space.World);
+            leftButton.gameObject.transform.Rotate(Vector3.right, -rotationVector.x, Space.World);
+            var euler = leftButton.transform.localEulerAngles;
+            euler.y = -90f;
+            euler.z = 90f;
+            leftButton.transform.localEulerAngles = euler;
             //RuntimeManager.PlayOneShot(leftSound, leftButton.gameObject.transform.position);
             _letterA--;
             _letterB--;
@@ -107,7 +111,11 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Right End Reached");
                 return;
             }
-            rightButton.gameObject.transform.Rotate(rotationVector, Space.World);
+            rightButton.gameObject.transform.Rotate(Vector3.right, rotationVector.x, Space.World);
+            var euler = rightButton.transform.localEulerAngles;
+            euler.y = -90f;
+            euler.z = 90f;
+            rightButton.transform.localEulerAngles = euler;
             //RuntimeManager.PlayOneShot(rightSound, rightButton.gameObject.transform.position);
             _letterA++;
             _letterB++;
