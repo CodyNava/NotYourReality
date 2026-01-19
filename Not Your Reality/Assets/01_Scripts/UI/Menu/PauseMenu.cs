@@ -2,6 +2,7 @@ using Interactions.Interaction_System.Interaction_Base_Class;
 using Player.PlayerMovement.Movement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UI.Menu
 {
@@ -9,6 +10,7 @@ namespace UI.Menu
     {
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject settingsMenu;
+        [SerializeField] private Button backButton;
         [SerializeField] private GameObject crosshairCanvas;
         [SerializeField] private string menuScene;
         private bool _isPaused;
@@ -42,6 +44,7 @@ namespace UI.Menu
         {
             Time.timeScale = 1f;
             _isPaused = false;
+            backButton.onClick.Invoke();
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(false); 
             _playerController.CameraActive = true;
