@@ -239,7 +239,7 @@ namespace Puzzle.Wordle
 
             if (_currentGuess >= maxGuesses)
             {
-                Debug.Log("You Lose");
+                ResetWordle();
             }
         }
 
