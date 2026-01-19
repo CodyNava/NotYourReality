@@ -198,10 +198,10 @@ namespace UI.Menu
             _resIndex = PlayerPrefs.GetInt(ResolutionIndex, _uniqueRes.Count - 1);
             resDropDown.SetValueWithoutNotify(_resIndex);
             
-            _qualityIndex = PlayerPrefs.GetInt(QualityIndex, _qualityOptions.Count - 1);
+            _qualityIndex = PlayerPrefs.GetInt(QualityIndex, 1);
             qualityDropDown.SetValueWithoutNotify(_qualityIndex);
             
-            gammaSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(GammaValue, 0.5f));
+            gammaSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(GammaValue, 0f));
 
             masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Music, 0.5f));
