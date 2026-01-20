@@ -76,6 +76,11 @@ namespace Interactions.Interaction_System.Interactions
         private void Update()
         {
             RotateItem();
+            if (_isInspecting && InputManager.Input.Inspection.OnInteract.WasPressedThisFrame())
+            {
+                Debug.Log("Pressed");
+                StartCoroutine(Release());
+            }
         }
 
         private void RotateItem()
