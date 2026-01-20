@@ -155,24 +155,27 @@ namespace UI.Menu
             _motionBlur.active = motionBlurToggle.isOn;
             PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
         }
+
+        public void AdjustGamma()
+        {
+            _gamma.gamma.value = new Vector4(1f, 1f, 1f, gammaSlider.value);
+            PlayerPrefs.SetFloat(GammaValue, gammaSlider.value);
+        }
+        #endregion
         
+        #region Controls
         public void SetMouseSensitivity()
         {
             settings.mouseSensitivity = mouseSensitivitySlider.value;
-            PlayerPrefs.SetFloat(MouseSensitivity, settings.mouseSensitivity);
+            PlayerPrefs.SetFloat(MouseSensitivity, mouseSensitivitySlider.value);
             GlobalEventManager.OnMouseSettingsChange();
         }
         
         public void SetMouseSmoothing()
         {
             settings.mouseSmoothTime = mouseSmoothingSlider.value;
-            PlayerPrefs.SetFloat(MouseSmoothing, settings.mouseSmoothTime);
+            PlayerPrefs.SetFloat(MouseSmoothing, mouseSmoothingSlider.value);
             GlobalEventManager.OnMouseSettingsChange();
-        }
-
-        public void AdjustGamma()
-        {
-            _gamma.gamma.value = new Vector4(1f, 1f, 1f, gammaSlider.value);
         }
         #endregion
 

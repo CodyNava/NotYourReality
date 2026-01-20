@@ -17,6 +17,9 @@ namespace Interactions.Interaction_System.Interactions
         [SerializeField] private float clampMax ;
         [SerializeField] private bool rotationClamping ;
         [SerializeField] private BedroomUnlock bedroomUnlock;
+        
+        [Tooltip("The LayerMask used by the Player")]
+        [SerializeField] private int playerLayerMask = 9;
        
         private float _horizontal;
         private float _vertical;
@@ -67,6 +70,7 @@ namespace Interactions.Interaction_System.Interactions
             if (_inspect != null) StopCoroutine(_inspect);
             _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
             Debug.Log(_isInspecting);
+            Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, true);
         }
 
         private void Update()
@@ -149,9 +153,9 @@ namespace Interactions.Interaction_System.Interactions
                 {
                     bedroomUnlock.AddItem(this);
                 }
-
                 DestroyPivot();
             }
+            Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, false);
         }
         
         private void CreatePivotAtBoundsCenter()
