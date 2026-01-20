@@ -11,6 +11,12 @@ namespace Interactions.Interaction_System.Interactions
       [SerializeField] private float dragSpeed;
       [Tooltip("OPTIONAL: Weight for interacting with trigger plates")]
       [SerializeField] private float weight;
+      [Tooltip("The LayerMask used by the Player")]
+      [SerializeField] private int playerLayerMask = 9;
+
+      [SerializeField] private float spring = 150f;
+      [SerializeField] private float damping = 25f;
+      [SerializeField] private float maxVelocity = 10f;
 
       public float Weight => weight;
 
@@ -30,6 +36,10 @@ namespace Interactions.Interaction_System.Interactions
          base.OnInteract();
          _isHeld = true;
          _rb.useGravity = false;
+         _rb.interpolation = RigidbodyInterpolation.Interpolate;
+         _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+         
+         Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, true);
       }
 
      /* private void LateUpdate()
@@ -52,11 +62,14 @@ namespace Interactions.Interaction_System.Interactions
 
       private void MoveItem()
       {
-         var currentPosition = gameObject.transform.position;
          var targetPosition = _cam.transform.position + _cam.transform.forward * holdingDistance;
-         var time = Time.deltaTime * dragSpeed;
-         var lerp = Vector3.Lerp(currentPosition, targetPosition, time);
-         _rb.MovePosition(lerp);
+         var displacement = targetPosition - _rb.position;
+
+         var force = displacement * spring;
+         
+         force -= _rb.linearVelocity * damping;
+         _rb.AddForce(force, ForceMode.Acceleration);
+         _rb.linearVelocity = Vector3.ClampMagnitude(_rb.linearVelocity, maxVelocity);
       }
 
       public void Release()
@@ -64,6 +77,8 @@ namespace Interactions.Interaction_System.Interactions
          _isHeld = false;
          if (!_rb) return;
          _rb.useGravity = true;
+         
+         Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, false);
       }
    }
 }

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.GlobalEventSystem;
 using FMOD.Studio;
+using Player.PlayerMovement.Movement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -31,6 +33,14 @@ namespace UI.Menu
         [SerializeField] private Volume volume;
         [SerializeField] private Toggle motionBlurToggle;
         [SerializeField] private Slider gammaSlider;
+        
+        [SerializeField] private Slider mouseSensitivitySlider;
+        [SerializeField] private Slider mouseSmoothingSlider;
+        [SerializeField] private PlayerLookSettings settings;
+        
+        private float _mouseSensitivity;
+        private float _mouseSmoothing;
+        
         private LiftGammaGain _gamma;
         private MotionBlur _motionBlur;
         private int _motionBlurInt;
@@ -62,6 +72,8 @@ namespace UI.Menu
         private const string Sfx = "Sfx";
         private const string Voice = "Voice";
         private const string Ambience = "Ambience";
+        private const string MouseSensitivity = "MouseSensitivity";
+        private const string MouseSmoothing = "MouseSmoothing";
 
         private void Awake()
         {
@@ -105,7 +117,7 @@ namespace UI.Menu
             LoadSettings();
             ApplySettings();
         }
-
+        
         #region Graphics
         public void SetResolution(int resIndex)
         {
@@ -143,11 +155,24 @@ namespace UI.Menu
             _motionBlur.active = motionBlurToggle.isOn;
             PlayerPrefs.SetInt(MotionBlur, _motionBlurInt);
         }
+        
+        public void SetMouseSensitivity()
+        {
+            settings.mouseSensitivity = mouseSensitivitySlider.value;
+            PlayerPrefs.SetFloat(MouseSensitivity, settings.mouseSensitivity);
+            GlobalEventManager.OnMouseSettingsChange();
+        }
+        
+        public void SetMouseSmoothing()
+        {
+            settings.mouseSmoothTime = mouseSmoothingSlider.value;
+            PlayerPrefs.SetFloat(MouseSmoothing, settings.mouseSmoothTime);
+            GlobalEventManager.OnMouseSettingsChange();
+        }
 
         public void AdjustGamma()
         {
             _gamma.gamma.value = new Vector4(1f, 1f, 1f, gammaSlider.value);
-            PlayerPrefs.SetFloat(GammaValue, gammaSlider.value);
         }
         #endregion
 
@@ -180,7 +205,7 @@ namespace UI.Menu
         private void ApplyVolume(Bus bus, float newValue)
         {
             bus.setVolume(newValue);
-            PlayerPrefs.SetFloat(Master, newValue);
+            Save();
         }
         #endregion
 
@@ -198,10 +223,13 @@ namespace UI.Menu
             _resIndex = PlayerPrefs.GetInt(ResolutionIndex, _uniqueRes.Count - 1);
             resDropDown.SetValueWithoutNotify(_resIndex);
             
-            _qualityIndex = PlayerPrefs.GetInt(QualityIndex, _qualityOptions.Count - 1);
+            _qualityIndex = PlayerPrefs.GetInt(QualityIndex, 1);
             qualityDropDown.SetValueWithoutNotify(_qualityIndex);
             
-            gammaSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(GammaValue, 0.5f));
+            gammaSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(GammaValue, 0f));
+            
+            mouseSensitivitySlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(MouseSensitivity, 1.5f));
+            mouseSmoothingSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(MouseSmoothing, 0.001f));
 
             masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Master, 0.5f));
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Music, 0.5f));
@@ -209,7 +237,7 @@ namespace UI.Menu
             voiceSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Voice, 0.5f));
             ambientSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat(Ambience, 0.5f));
         }
-
+        
         private void ApplySettings()
         {
             SetResolution(_resIndex);
@@ -223,6 +251,15 @@ namespace UI.Menu
             SfxVolume();
             VoiceVolume();
             AmbienceVolume();
+        }
+
+        private void Save()
+        {
+            PlayerPrefs.SetFloat(Master, masterSlider.value);
+            PlayerPrefs.SetFloat(Music, musicSlider.value);
+            PlayerPrefs.SetFloat(Sfx, sfxSlider.value);
+            PlayerPrefs.SetFloat(Voice, voiceSlider.value);
+            PlayerPrefs.SetFloat(Ambience, ambientSlider.value);
         }
     }
 }

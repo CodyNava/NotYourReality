@@ -1,3 +1,4 @@
+using System.GlobalEventSystem;
 using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
@@ -23,8 +24,7 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
 
         private InteractionInputData _interactionInputData;
         private InteractionData _interactionData;
-
-        private InteractableBase _hoveredObject;
+        
         private InteractableBase _selectedObject;
 
         private void Awake()
@@ -42,6 +42,23 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
             UpdateCrosshair();
         }
 
+        private void OnEnable()
+        {
+            GlobalEventManager.OnKey += ResetInteractionStateAfterEvent;
+        }
+
+        private void OnDisable()
+        {
+            GlobalEventManager.OnKey -= ResetInteractionStateAfterEvent;
+        }
+
+        private void ResetInteractionStateAfterEvent()
+        {
+            _interacting = false;
+            _selectedObject = null;
+            interactionUIPanel.Reset();
+            _interactionData.ResetData();
+        }
         private void UpdateCrosshair()
         {
             crosshair.localScale = _interacting ? Vector3.one * 1.5f : Vector3.one;
@@ -49,7 +66,7 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
 
         private void CheckForInteractable()
         {
-       
+            if (_interacting) return;
             var ray = new Ray(_camera.transform.position, _camera.transform.forward);
             var hitSomething = Physics.SphereCast(ray, raySphereRadius, out var hit, rayDistance, interactableLayer);
             
@@ -60,7 +77,6 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
                 if (Physics.Raycast(_camera.transform.position, 
                                     _camera.transform.TransformDirection(Vector3.forward), distanceToHit, ~interactableLayer))
                 {
-                    _hoveredObject = null;
                     if (!_interacting)
                     {
                         interactionUIPanel.Reset();
@@ -73,7 +89,6 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
                 var interactableBase = hit.transform.GetComponent<InteractableBase>();
                 if (!interactableBase) return;
                 
-                _hoveredObject = interactableBase;
                 if (_interactionData.IsEmpty() || !_interactionData.IsSameInteractable(interactableBase))
                 {
                     _interactionData.InteractableBase = interactableBase;
@@ -97,11 +112,11 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
             var interactable = _interactionData.InteractableBase;
             if (!interactable.IsInteractable) return;
 
-            if (_interactionInputData.InteractedClicked && _hoveredObject)
+            if (_interactionInputData.InteractedClicked && !_interacting)
             {
                 _interacting = true;
                 interactionUIPanel.Reset();
-                _selectedObject = _hoveredObject;
+                _selectedObject = _interactionData.InteractableBase;
 
                 if (_selectedObject.HoldInteract && _selectedObject.HoldDuration > 0f)
                 {
@@ -109,7 +124,7 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
                 }
             }
 
-            if (_interactionInputData.InteractedReleased)
+            if (_interactionInputData.InteractedReleased && _interacting)
             {
                 _interacting = false;
                 interactionUIPanel.SetTooltip(interactable.TooltipMessage);
