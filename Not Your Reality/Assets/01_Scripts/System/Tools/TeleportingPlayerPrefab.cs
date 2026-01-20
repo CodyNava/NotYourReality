@@ -29,6 +29,8 @@ namespace System.Tools
 
       [CusButton]
       public void BalloonTp() { playerPf.transform.position = roomTransforms[6].position; }
+      [CusButton]
+      public void TvTp() { playerPf.transform.position = roomTransforms[7].position; }
    }
 }
 #endif
