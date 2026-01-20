@@ -83,6 +83,11 @@ namespace Puzzle.Wordle
             if (!_cam) return;
             RotateItem();
             
+            if (_isInspecting && InputManager.Input.Inspection.OnInteract.WasPressedThisFrame())
+            {
+                StartCoroutine(Release());
+            }
+            
             
             if (FacingLetter() && _isInspecting && _letterChar != ' ')
             {
