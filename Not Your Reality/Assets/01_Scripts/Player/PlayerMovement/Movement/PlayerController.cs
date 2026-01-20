@@ -12,6 +12,7 @@ namespace Player.PlayerMovement.Movement
       [SerializeField] private float walkSpeed = 5f;
       [SerializeField] private float sprintSpeed = 8f;
       [SerializeField] private bool moveActive = true;
+      [SerializeField] private bool lookActive = true;
 
       [SerializeField, Range(0f, 50f)] private float acceleration = 10f;
       [SerializeField, Range(0f, 50f)] private float deceleration = 20f;
@@ -56,6 +57,7 @@ namespace Player.PlayerMovement.Movement
       private Vector3 _originalCamLocalPos;
 
       public bool MoveActive { get => moveActive; set => moveActive = value; }
+      public bool LookActive { get => lookActive; set => lookActive = value; }
 
       public bool CameraActive
       {
@@ -113,16 +115,18 @@ namespace Player.PlayerMovement.Movement
          GlobalEventManager.MouseSettingsChanged -= ApplyLookData;
          _input.Player.Disable();
       }
+      
 
       private void Update()
       {
          if (!cameraHolder) return;
          if (!_cc || !_cc.enabled) return;
-
+         if (!lookActive) return;
          HandleMouseLook();
+         HandleCameraClipping();
+         if (!moveActive) return;
          HandleHeadBob();
          HandleMovement();
-         HandleCameraClipping();
          ApplyGravity();
       }
 
