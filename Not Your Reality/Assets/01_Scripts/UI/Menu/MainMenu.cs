@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
 
         AudioManager.instance.StopMainMenu();
         SceneManager.LoadScene(gameScene);
+        AudioManager.instance.PlayBasement();
     }
 
     public void QuitGame()
