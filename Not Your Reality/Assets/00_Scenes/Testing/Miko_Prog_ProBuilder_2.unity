@@ -185,6 +185,67 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 720932801423781120, guid: f0b6a6029cfd48745a075c99903c039f, type: 3}
   m_PrefabInstance: {fileID: 844472323}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &228024854
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.27
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5575374078479397663, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 249ed9e1853751747bb02ee23df5c3cf, type: 2}
+    - target: {fileID: 919132149155446097, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
+      propertyPath: m_Name
+      value: JesterAnimation1.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a41705d79c555154cbeea5a6cbb150bb, type: 3}
 --- !u!224 &376825795 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 21746680942085951, guid: d7314852731cfec4ea85cdb75475a903, type: 3}
@@ -2957,6 +3018,7 @@ MonoBehaviour:
   clampMax: 90
   rotationClamping: 0
   bedroomUnlock: {fileID: 0}
+  playerLayerMask: 9
 --- !u!65 &613006266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4907,6 +4969,7 @@ MonoBehaviour:
   clampMax: 90
   rotationClamping: 0
   bedroomUnlock: {fileID: 0}
+  playerLayerMask: 9
 --- !u!65 &1932162769
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5186,6 +5249,7 @@ MonoBehaviour:
   clampMax: 90
   rotationClamping: 0
   bedroomUnlock: {fileID: 0}
+  playerLayerMask: 9
 --- !u!1 &2003936870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5063068574606149040, guid: 70b99abf3703d424b82a257147dbbdee, type: 3}
@@ -5214,6 +5278,7 @@ MonoBehaviour:
   clampMax: 90
   rotationClamping: 0
   bedroomUnlock: {fileID: 0}
+  playerLayerMask: 9
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5239,3 +5304,4 @@ SceneRoots:
   - {fileID: 580206814}
   - {fileID: 551482699}
   - {fileID: 1468346147}
+  - {fileID: 228024854}
