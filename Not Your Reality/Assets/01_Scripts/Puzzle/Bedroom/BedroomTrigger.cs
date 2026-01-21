@@ -9,9 +9,9 @@ public class BedroomTrigger : MonoBehaviour
 
     [SerializeField] private Transform targetLocation;
     [SerializeField] private GameObject wallToHideDoor;
-    [SerializeField] private Transform mirrorPuzzle; 
-    
-    
+    [SerializeField] private Transform mirrorPuzzle;
+
+
     private int _counter;
     private GameObject _player;
 
@@ -26,23 +26,20 @@ public class BedroomTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
         propSets[_counter].SetActive(false);
         _counter++;
-        if (_counter == propSets.Length)
+        /*if (_counter == propSets.Length)
         {
             StartCoroutine(StartTeleport(transform, mirrorPuzzle, other));
             return;
-        }
+        }*/
         propSets[_counter].SetActive(true);
 
 
         if (!wallToHideDoor.activeInHierarchy)
             wallToHideDoor.SetActive(true);
-        
-        StartCoroutine(StartTeleport(transform, targetLocation, other));
 
-        
+        StartCoroutine(StartTeleport(transform, targetLocation, other));
     }
 
     private IEnumerator StartTeleport(Transform entryPortal, Transform exitPortal, Collider other)
