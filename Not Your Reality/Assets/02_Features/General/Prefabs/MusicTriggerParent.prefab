@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6008447662418008609}
   - component: {fileID: 1197053251324024299}
-  - component: {fileID: 2722545684093801561}
-  - component: {fileID: 4401089436230583607}
+  - component: {fileID: 7159402022789386678}
   m_Layer: 0
   m_Name: TriggerTVRoomToBirthdayRoom
   m_TagString: Untagged
@@ -55,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.3658924, y: 3.0649052, z: 2.2703285}
   m_Center: {x: -0.15697384, y: 1.0324526, z: -0.14810848}
---- !u!114 &2722545684093801561
+--- !u!114 &7159402022789386678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,59 +63,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1410575216586711351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: 537628981
-      Data2: 1221822794
-      Data3: 1259537596
-      Data4: -1266600433
-    Path: event:/Background Music Done/08_TV Room
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &4401089436230583607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410575216586711351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: -2063593714
       Data2: 1319912953
       Data3: 489860250
       Data4: -741332266
     Path: event:/Background Music Done/09_birthday room and birthday hallway
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &2047225378748777739
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,8 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321409389333584996}
   - component: {fileID: 3147430324963157847}
-  - component: {fileID: 4493904511251251967}
-  - component: {fileID: 252403222533052220}
+  - component: {fileID: 7383694345413792859}
   m_Layer: 0
   m_Name: TriggerBedroomToDesert
   m_TagString: Untagged
@@ -172,7 +127,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.1474037, y: 4.0099506, z: 7.5261345}
   m_Center: {x: -0.27983856, y: 0.5380869, z: 0.14372826}
---- !u!114 &4493904511251251967
+--- !u!114 &7383694345413792859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,59 +136,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2047225378748777739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: 1865024684
-      Data2: 1314634253
-      Data3: -1550323806
-      Data4: -1000175211
-    Path: event:/Background Music Done/02_bedroom prop 4
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &252403222533052220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047225378748777739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: 2068672354
       Data2: 1081058152
       Data3: 122611857
       Data4: -1185289359
     Path: event:/Background Music Done/03_desert (1)
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &3731285181080694421
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4495521424519909026}
+  - component: {fileID: 5317525500316013002}
   m_Layer: 0
   m_Name: MusicTriggerParent
   m_TagString: Untagged
@@ -263,14 +176,29 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 643510812777796090}
   - {fileID: 8972575785892784236}
   - {fileID: 321409389333584996}
   - {fileID: 6583964915004040983}
   - {fileID: 8960167925053196982}
   - {fileID: 6393781335186844224}
   - {fileID: 6008447662418008609}
+  - {fileID: 3624923211624147242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5317525500316013002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3731285181080694421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e605250053e5438971dceb78d647b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 1
 --- !u!1 &4748815812099198390
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,8 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6583964915004040983}
   - component: {fileID: 908133888918042925}
-  - component: {fileID: 1243580885712912663}
-  - component: {fileID: 603460532504272104}
+  - component: {fileID: 572687925644827674}
   m_Layer: 0
   m_Name: TriggerDesertToPNGRoom
   m_TagString: Untagged
@@ -326,7 +253,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8339138, y: 3.015895, z: 0.7546692}
   m_Center: {x: -0.35867405, y: 0.041059017, z: -1.219223}
---- !u!114 &1243580885712912663
+--- !u!114 &572687925644827674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,59 +262,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4748815812099198390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: 2068672354
-      Data2: 1081058152
-      Data3: 122611857
-      Data4: -1185289359
-    Path: event:/Background Music Done/03_desert (1)
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &603460532504272104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4748815812099198390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: -1669540570
       Data2: 1179721950
       Data3: 1076981435
       Data4: 88836259
     Path: event:/Background Music Done/05_PNG Room
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &5274633406774784429
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,8 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8972575785892784236}
   - component: {fileID: 2706759966773456799}
-  - component: {fileID: 3434655905062285164}
-  - component: {fileID: 8297312993021028343}
+  - component: {fileID: 5517136304390108214}
   m_Layer: 0
   m_Name: TriggerBasementToBedroom
   m_TagString: Untagged
@@ -443,7 +326,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.021442, y: 2.4705746, z: 1}
   m_Center: {x: 0.1920666, y: 0.7352874, z: 0}
---- !u!114 &3434655905062285164
+--- !u!114 &5517136304390108214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,59 +335,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5274633406774784429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: -1828188613
-      Data2: 1211056811
-      Data3: -1651740014
-      Data4: -165844183
-    Path: event:/Background Music Done/01_basement
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &8297312993021028343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5274633406774784429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: 1890538838
       Data2: 1189820104
       Data3: -1554307424
       Data4: -1222038159
     Path: event:/Background Music Done/02_bedroom prop 1
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &5514916450406283479
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,8 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6393781335186844224}
   - component: {fileID: 3174148625665849357}
-  - component: {fileID: 5319161122454915007}
-  - component: {fileID: 8257863534331669368}
+  - component: {fileID: 562599226005445164}
   m_Layer: 0
   m_Name: TriggerBathroomToTVRoom
   m_TagString: Untagged
@@ -560,7 +399,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.4366226, y: 3.015895, z: 5.255518}
   m_Center: {x: -0.6371231, y: 0.041059017, z: -0.3791151}
---- !u!114 &5319161122454915007
+--- !u!114 &562599226005445164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -569,59 +408,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5514916450406283479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: -1699198714
-      Data2: 1332244474
-      Data3: 1558002358
-      Data4: -1457066022
-    Path: event:/Background Music Done/06_bathroom background
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &8257863534331669368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5514916450406283479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: 537628981
       Data2: 1221822794
       Data3: 1259537596
       Data4: -1266600433
     Path: event:/Background Music Done/08_TV Room
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &5552836524626361871
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,8 +428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8960167925053196982}
   - component: {fileID: 901154058472068622}
-  - component: {fileID: 3643604962688510676}
-  - component: {fileID: 6426546012202827677}
+  - component: {fileID: 8133341672133782692}
   m_Layer: 0
   m_Name: TriggerPNGToBathroom
   m_TagString: Untagged
@@ -677,7 +472,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8074303, y: 2.901414, z: 1.7486773}
   m_Center: {x: 0.2985134, y: 0.95070696, z: 0.37433863}
---- !u!114 &3643604962688510676
+--- !u!114 &8133341672133782692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -686,56 +481,159 @@ MonoBehaviour:
   m_GameObject: {fileID: 5552836524626361871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: -1669540570
-      Data2: 1179721950
-      Data3: 1076981435
-      Data4: 88836259
-    Path: event:/Background Music Done/05_PNG Room
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &6426546012202827677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5552836524626361871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: -1699198714
       Data2: 1332244474
       Data3: 1558002358
       Data4: -1457066022
     Path: event:/Background Music Done/06_bathroom background
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+--- !u!1 &6135040678614113740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3624923211624147242}
+  - component: {fileID: 8929074500188643519}
+  - component: {fileID: 6643687602429823417}
+  m_Layer: 0
+  m_Name: TriggerBirthdayRoomToCreditsFall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3624923211624147242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135040678614113740}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.9, y: -1.39, z: 15.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4495521424519909026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8929074500188643519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135040678614113740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.81, y: 3.74, z: 7.27}
+  m_Center: {x: -0.26, y: 0.13, z: -0.14810848}
+--- !u!114 &6643687602429823417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135040678614113740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music:
+    Guid:
+      Data1: 654074536
+      Data2: 1319025776
+      Data3: -1851033930
+      Data4: 917534328
+    Path: event:/Background Music Done/Credits
+--- !u!1 &7789615128178807534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 643510812777796090}
+  - component: {fileID: 195823125143554690}
+  - component: {fileID: 4451549728105603879}
+  m_Layer: 0
+  m_Name: TriggerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &643510812777796090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789615128178807534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.98, y: -2.94, z: 14.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4495521424519909026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &195823125143554690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789615128178807534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.021442, y: 2.4705746, z: 1}
+  m_Center: {x: 0.1920666, y: 0.7352874, z: 0}
+--- !u!114 &4451549728105603879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789615128178807534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music:
+    Guid:
+      Data1: -1828188613
+      Data2: 1211056811
+      Data3: -1651740014
+      Data4: -165844183
+    Path: event:/Background Music Done/01_basement

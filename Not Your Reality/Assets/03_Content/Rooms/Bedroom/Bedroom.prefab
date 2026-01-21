@@ -14773,8 +14773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7473729210370474496}
   - component: {fileID: 959135037936693455}
-  - component: {fileID: 2049017292898817040}
-  - component: {fileID: 6386868980405004844}
+  - component: {fileID: 4139002029877014080}
   m_Layer: 0
   m_Name: MusicTrigger (1)
   m_TagString: Untagged
@@ -14818,7 +14817,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0799685, y: 2.559471, z: 3.1373906}
   m_Center: {x: 0.27465492, y: 0.77973545, z: -0.38336682}
---- !u!114 &2049017292898817040
+--- !u!114 &4139002029877014080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14827,59 +14826,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2644841458294966402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: 228961907
-      Data2: 1082728916
-      Data3: 1107894185
-      Data4: -1703946063
-    Path: event:/Background Music Done/02_bedroom prop 2
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &6386868980405004844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644841458294966402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: -1725411796
       Data2: 1079402922
       Data3: -940072525
       Data4: -1083743108
     Path: event:/Background Music Done/02_bedroom prop 3 (1)
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &2668575025257233847
 GameObject:
   m_ObjectHideFlags: 0
@@ -18858,8 +18814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5844552678840558270}
   - component: {fileID: 684577143627851678}
-  - component: {fileID: 5353263524600110005}
-  - component: {fileID: 2092863471796873941}
+  - component: {fileID: 3913139493995969990}
   m_Layer: 0
   m_Name: MusicTrigger
   m_TagString: Untagged
@@ -18903,7 +18858,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0799685, y: 2.559471, z: 3.1373906}
   m_Center: {x: 0.27465492, y: 0.77973545, z: -0.38336682}
---- !u!114 &5353263524600110005
+--- !u!114 &3913139493995969990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18912,59 +18867,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3275847989541932403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: -1725411796
-      Data2: 1079402922
-      Data3: -940072525
-      Data4: -1083743108
-    Path: event:/Background Music Done/02_bedroom prop 3 (1)
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &2092863471796873941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275847989541932403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: 1865024684
       Data2: 1314634253
       Data3: -1550323806
       Data4: -1000175211
     Path: event:/Background Music Done/02_bedroom prop 4
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &3280450530365563588
 GameObject:
   m_ObjectHideFlags: 0
@@ -23486,7 +23398,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4553
+  m_VersionIndex: 4559
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -29236,8 +29148,8 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 8.87
   OverrideMaxDistance: 20
 --- !u!114 &3817398790318566749
 MonoBehaviour:
@@ -34293,8 +34205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4838225480786529912}
   - component: {fileID: 1879908561882468573}
-  - component: {fileID: 2043100268144944291}
-  - component: {fileID: 6324475461288071281}
+  - component: {fileID: 7853478190087972570}
   m_Layer: 0
   m_Name: MusicTrigger
   m_TagString: Untagged
@@ -34338,7 +34249,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0799685, y: 2.559471, z: 3.1373906}
   m_Center: {x: 0.27465492, y: 0.77973545, z: -0.38336682}
---- !u!114 &2043100268144944291
+--- !u!114 &7853478190087972570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34347,59 +34258,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5219924740441432231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 5061eaaa0f9637447bcfadedafbc3564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: 1890538838
-      Data2: 1189820104
-      Data3: -1554307424
-      Data4: -1222038159
-    Path: event:/Background Music Done/02_bedroom prop 1
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 3
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!114 &6324475461288071281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5219924740441432231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  music:
     Guid:
       Data1: 228961907
       Data2: 1082728916
       Data3: 1107894185
       Data4: -1703946063
     Path: event:/Background Music Done/02_bedroom prop 2
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &5222516334029293257
 GameObject:
   m_ObjectHideFlags: 0
@@ -44914,7 +44782,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4165
+  m_VersionIndex: 4171
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -52695,7 +52563,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6135
+  m_VersionIndex: 6141
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -61538,7 +61406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2609
+      value: 2615
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -65742,7 +65610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2585
+      value: 2591
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -68592,7 +68460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2618
+      value: 2624
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -69793,7 +69661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2603
+      value: 2609
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -71569,7 +71437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2618
+      value: 2624
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -73077,7 +72945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2609
+      value: 2615
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -84078,7 +83946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2603
+      value: 2609
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -91873,7 +91741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2585
+      value: 2591
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
