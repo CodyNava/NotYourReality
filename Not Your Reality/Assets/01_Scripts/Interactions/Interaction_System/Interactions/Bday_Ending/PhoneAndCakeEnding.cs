@@ -1,0 +1,123 @@
+using System;
+using System.Collections;
+using System.GlobalEventSystem;
+using Player.PlayerMovement.Movement;
+using UnityEditor;
+using UnityEngine;
+
+namespace Interactions.Interaction_System.Interactions.Bday_Ending
+{
+   public class PhoneAndCakeEnding : MonoBehaviour
+   {
+      [SerializeField] private GameObject phone;
+      [SerializeField] private GameObject cake;
+      [SerializeField] private Animator fallingAnimation;
+      [SerializeField] private GameObject creditsScreen;
+      [SerializeField] private GameObject crossHair;
+      [SerializeField] private GameObject player;
+      [SerializeField] private PlayerController ps;
+      [SerializeField] private float delayAfterCake;
+      [SerializeField] private float delayAfterPhone;
+      [SerializeField] private float delayAfterFogHasGrown;
+      [SerializeField] private float fogTargetDensity;
+      [SerializeField] private float fogGrowTime;
+      [SerializeField] private Transform newTransformFrontTable;
+      private Transform _playerTransform;
+
+      private void OnEnable()
+      {
+         GlobalEventManager.OnCake += CakeCake;
+         GlobalEventManager.OnPhone += PhoneTouched;
+      }
+
+      private void OnDisable()
+      {
+         GlobalEventManager.OnCake -= CakeCake;
+         GlobalEventManager.OnPhone -= PhoneTouched;
+      }
+
+      private void OnTriggerEnter(Collider other)
+      {
+         StartCoroutine(SetPlayerTransform());
+         _playerTransform = player.gameObject.transform;
+         Debug.Log(_playerTransform);
+      }
+
+      private void CakeCake()
+      {
+         cake.layer = LayerMask.NameToLayer("Default");
+         StartCoroutine(DelayAfterTouching(delayAfterCake, "cake"));
+      }
+
+      private void PhoneTouched()
+      {
+         phone.layer = LayerMask.NameToLayer("Default");
+         StartCoroutine(DelayAfterTouching(delayAfterPhone, "phone"));
+      }
+
+      private void EndingSequence()
+      {
+         ps.LookActive = false;
+         crossHair.gameObject.SetActive(false);
+         fallingAnimation.enabled = true;
+         StartCoroutine(EnableCredits());
+         //todo credits music here
+      }
+
+      private IEnumerator EnableCredits()
+      {
+         yield return new WaitForSeconds(1f);
+         creditsScreen.gameObject.SetActive(true);
+      }
+
+      private IEnumerator SetPlayerTransform()
+      {
+         var t = 0f;
+         ps.MoveActive = false;
+         while (t < 1f)
+         {
+            t += Time.deltaTime;
+            float lerp = t / 1f;
+
+            player.gameObject.transform.position = Vector3.Lerp(
+               player.gameObject.transform.position,
+               newTransformFrontTable.transform.position,
+               lerp
+            );
+            yield return null;
+         }
+      }
+
+      
+
+      private IEnumerator FogStartsGrowing()
+      {
+         float startDensity = RenderSettings.fogDensity;
+         var t = 0f;
+
+         while (t < fogGrowTime)
+         {
+            t += Time.deltaTime;
+            float lerp = t / fogGrowTime;
+
+            RenderSettings.fogDensity = Mathf.Lerp(startDensity, fogTargetDensity, lerp);
+
+            yield return null;
+         }
+
+         RenderSettings.fogDensity = fogTargetDensity;
+         StartCoroutine(DelayAfterTouching(delayAfterFogHasGrown, "EndingSequence"));
+      }
+
+      private IEnumerator DelayAfterTouching(float time, string obj)
+      {
+         yield return new WaitForSeconds(time);
+         switch (obj)
+         {
+            case "cake":           phone.layer = LayerMask.NameToLayer("Interactable"); break;
+            case "phone":          StartCoroutine(FogStartsGrowing()); break;
+            case "EndingSequence": EndingSequence(); break;
+         }
+      }
+   }
+}

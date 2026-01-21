@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 7604080607814834838}
   - component: {fileID: 7415491272098474915}
   - component: {fileID: 515194107437298156}
+  - component: {fileID: 7649213890281662277}
   m_Layer: 9
   m_Name: Player_PF
   m_TagString: Player
@@ -167,15 +168,16 @@ MonoBehaviour:
   walkSpeed: 1.5
   sprintSpeed: 2.75
   moveActive: 1
+  lookActive: 1
   acceleration: 10
   deceleration: 20
   stopThreshold: 0.2
   cameraHolder: {fileID: 2362332136989335655}
-  mouseSensitivity: 2
   maxLookAngle: 80
+  mouseSensitivity: 2
   mouseSmoothTime: 0.02
-  cameraActive: 1
   playerLookSettings: {fileID: 11400000, guid: dba8a6a5dcc0d344d815e88cd65acadf, type: 2}
+  cameraActive: 1
   bobFrequency: 10
   bobAmplitude: 0.02
   bobSway: 0.01
@@ -209,7 +211,7 @@ CharacterController:
   m_Height: 1.75
   m_Radius: 0.3
   m_SlopeLimit: 90
-  m_StepOffset: 0.2
+  m_StepOffset: 0.05
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -257,6 +259,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef96e7b6ec9e8a42a1be5ed11932de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7649213890281662277
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900628979139198040}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4777bc1976a82a047a423f0ba9fa1187, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6253172860204063525
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +450,7 @@ Transform:
   m_GameObject: {fileID: 8621761301409714723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.003, y: 0.002, z: 0.5}
+  m_LocalPosition: {x: -0.003, y: 0.002, z: 0.425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
