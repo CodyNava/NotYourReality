@@ -39,6 +39,7 @@ namespace Lighting
 
         private void Update()
         {
+            if (!_illuminatingObject) return;
             Flicker();
         }
 
