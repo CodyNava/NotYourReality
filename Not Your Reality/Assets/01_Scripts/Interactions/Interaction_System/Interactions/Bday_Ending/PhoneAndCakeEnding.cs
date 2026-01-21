@@ -11,7 +11,9 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
    {
       [SerializeField] private GameObject phone;
       [SerializeField] private GameObject cake;
-      [SerializeField] private Animator fallingAnimation;
+      [SerializeField] private Vector3 fallOffsetPos;
+      [SerializeField] private Vector3 finalPositionAfterFalling;
+      [SerializeField] private Quaternion finalRotationAfterFalling;
       [SerializeField] private GameObject creditsScreen;
       [SerializeField] private GameObject crossHair;
       [SerializeField] private GameObject player;
@@ -21,6 +23,7 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       [SerializeField] private float delayAfterFogHasGrown;
       [SerializeField] private float fogTargetDensity;
       [SerializeField] private float fogGrowTime;
+      [SerializeField] private float fallDuration;
       [SerializeField] private Transform newTransformFrontTable;
       private Transform _playerTransform;
 
@@ -57,17 +60,38 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
 
       private void EndingSequence()
       {
-         ps.LookActive = false;
+         
          crossHair.gameObject.SetActive(false);
-         fallingAnimation.enabled = true;
+         ps.LookActive = false;
+         StartCoroutine(FallingThroughFloor(fallOffsetPos, fallDuration));
          StartCoroutine(EnableCredits());
          //todo credits music here
       }
-
+   
       private IEnumerator EnableCredits()
       {
-         yield return new WaitForSeconds(1f);
+         yield return new WaitForSeconds(fallDuration * 0.8f);
          creditsScreen.gameObject.SetActive(true);
+      }
+
+      private IEnumerator FallingThroughFloor(Vector3 offSet, float fallingTime)
+      {
+         var pT = player.transform;
+         var startPos = pT.position;
+         var endPos = startPos + offSet;
+
+         float time = 0f;
+
+         while (time < fallingTime)
+         {
+            time += Time.deltaTime;
+            float a = time / fallingTime;
+            pT.position = Vector3.Lerp(startPos, endPos, a);
+            yield return null;
+         }
+         pT.position = endPos;
+         player.transform.position = finalPositionAfterFalling;
+         player.transform.rotation = finalRotationAfterFalling;
       }
 
       private IEnumerator SetPlayerTransform()
