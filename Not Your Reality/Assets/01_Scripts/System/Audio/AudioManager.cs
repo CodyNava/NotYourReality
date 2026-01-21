@@ -47,15 +47,6 @@ namespace System.Audio
 
             _mainMenuInstance = RuntimeManager.CreateInstance(mainMenu);
             _creditsInstance = RuntimeManager.CreateInstance(credits);
-            _birthdayRoomInstance = RuntimeManager.CreateInstance(birthdayRoom);
-            _tvRoomInstance = RuntimeManager.CreateInstance(tvRoom);
-            _bathroomInstance = RuntimeManager.CreateInstance(bathroom);
-            _pngRoomInstance = RuntimeManager.CreateInstance(pngRoom);
-            _desertInstance = RuntimeManager.CreateInstance(desert);
-            _bedroomR1Instance = RuntimeManager.CreateInstance(bedroomR1);
-            _bedroomR2Instance = RuntimeManager.CreateInstance(bedroomR2);
-            _bedroomR3Instance = RuntimeManager.CreateInstance(bedroomR3);
-            _bedroomR4Instance = RuntimeManager.CreateInstance(bedroomR4);
             _basementInstance = RuntimeManager.CreateInstance(basement);
         }
 
@@ -79,107 +70,9 @@ namespace System.Audio
             _creditsInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
-        public void PlayBirthdayRoom()
-        {
-            _birthdayRoomInstance.start();
-        }
-
-        public void stopBirthdayRoom()
-        {
-            _birthdayRoomInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
-        public void PlayTVRoom()
-        {
-            _tvRoomInstance.start();
-        }
-
-        public void stopTVRoom()
-        {
-            _tvRoomInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
-        public void PlayBathroom()
-        {
-            _bathroomInstance.start();
-        }
-
-        public void stopBathroom()
-        {
-            _bathroomInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
-        public void PlayPngRoom()
-        {
-            _pngRoomInstance.start();
-        }
-
-        public void stopPngRoom()
-        {
-            _pngRoomInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
-        public void PlayDesert()
-        {
-            _desertInstance.start();
-        }
-
-        public void stopDesert()
-        {
-            _desertInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
-        public void PlayBedroomR1()
-        {
-            _bedroomR1Instance.start();
-        }
-
-        public void stopBedroomR1()
-        {
-            _bedroomR1Instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            PlayBedroomR2();
-        }
-
-        public void PlayBedroomR2()
-        {
-            _bedroomR2Instance.start();
-        }
-
-        public void stopBedroomR2()
-        {
-            _bedroomR2Instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            PlayBedroomR3();
-        }
-
-        public void PlayBedroomR3()
-        {
-            _bedroomR3Instance.start();
-        }
-
-        public void stopBedroomR3()
-        {
-            _bedroomR3Instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            PlayBedroomR4();
-        }
-
-        public void PlayBedroomR4()
-        {
-            _bedroomR4Instance.start();
-        }
-
-        public void stopBedroomR4()
-        {
-            _bedroomR4Instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
         public void PlayBasement()
         {
             _basementInstance.start();
-        }
-
-        public void stopBasement()
-        {
-            _basementInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 }
