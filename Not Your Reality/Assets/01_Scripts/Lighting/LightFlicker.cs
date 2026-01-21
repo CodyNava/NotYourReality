@@ -49,10 +49,16 @@ namespace Lighting
             if (_timer >= _delay)
             {
                 _illuminatingObject.intensity = _illuminatingObject.intensity == _originalIntensity ? strength : _originalIntensity;
-                lightBulb.SetActive(_illuminatingObject.intensity == _originalIntensity);
+                TurnOffBulb();
                 _timer = 0;
                 GenerateDelay();
             }
+        }
+
+        private void TurnOffBulb()
+        {
+            if (lightBulb == null) return;
+            lightBulb.SetActive(_illuminatingObject.intensity == _originalIntensity);
         }
 
         private void GenerateDelay()
