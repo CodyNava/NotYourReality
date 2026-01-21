@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using FMODUnity;
 
 namespace Interactions.Interaction_System.Interactions
 {
@@ -11,16 +12,16 @@ namespace Interactions.Interaction_System.Interactions
     {
         [Tooltip("The speed at which the Item goes into focus")]
         [SerializeField] private float duration = 0.25f;
-        
+
         [SerializeField] private float sensitivity;
-        [SerializeField] private float clampMin ;
-        [SerializeField] private float clampMax ;
-        [SerializeField] private bool rotationClamping ;
+        [SerializeField] private float clampMin;
+        [SerializeField] private float clampMax;
+        [SerializeField] private bool rotationClamping;
         [SerializeField] private BedroomUnlock bedroomUnlock;
-        
+
         [Tooltip("The LayerMask used by the Player")]
         [SerializeField] private int playerLayerMask = 9;
-       
+
         private float _horizontal;
         private float _vertical;
         private Volume _volume;
@@ -32,12 +33,17 @@ namespace Interactions.Interaction_System.Interactions
         private Vector3 _transform;
         private Quaternion _rotation;
         private Coroutine _inspect;
-        
+
         private Quaternion _baseRotation;
 
         private Transform _pivot;
         private Transform _originalParent;
         private Vector3 _itemLocalPosInPivot;
+
+        [Header("FMOD")]
+        [SerializeField] private StudioEventEmitter emitter;
+
+        [SerializeField] private RoomVoiceManager manager; 
 
         private void Awake()
         {
@@ -63,13 +69,19 @@ namespace Interactions.Interaction_System.Interactions
             _volume.profile.TryGet(out _vignette);
             TooltipMessage = "Press E to Inspect";
         }
-        
+
         public override void OnInteract()
         {
             base.OnInteract();
             if (_inspect != null) StopCoroutine(_inspect);
             _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
-            Debug.Log(_isInspecting);
+
+            if (emitter != null)
+                emitter.Play(); 
+
+            if (manager != null)
+                manager.OnVoiceTriggered(gameObject); 
+
             Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, true);
         }
 
@@ -85,8 +97,8 @@ namespace Interactions.Interaction_System.Interactions
         private void RotateItem()
         {
             if (!_isInspecting) return;
-            
-            var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>() ; 
+
+            var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>();
             rawMouse *= sensitivity;
             _horizontal += rawMouse.x;
             _vertical -= rawMouse.y;
@@ -94,11 +106,9 @@ namespace Interactions.Interaction_System.Interactions
 
             if (_pivot)
             {
-                
                 var offset = Quaternion.Euler(0, _horizontal, -_vertical);
                 _pivot.rotation = _baseRotation * offset;
             }
-            
         }
 
         private IEnumerator Inspect()
@@ -109,7 +119,7 @@ namespace Interactions.Interaction_System.Interactions
             InputManager.Input.Player.Disable();
 
             CreatePivotAtBoundsCenter();
-            
+
             _vignette.intensity.value = 0.2f;
             var t = 0f;
             while (t < duration * 0.2f)
@@ -129,7 +139,7 @@ namespace Interactions.Interaction_System.Interactions
             _horizontal = 0;
             _vertical = 0;
         }
-        
+
 
         private IEnumerator Release()
         {
@@ -146,13 +156,13 @@ namespace Interactions.Interaction_System.Interactions
                 var t = 0f;
                 while (t < duration)
                 {
-                 t += Time.deltaTime;
-                 float a = t / duration;
-                 _pivot.position = Vector3.Lerp(_pivot.position, targetPivotPos, a);
-                 _pivot.rotation = Quaternion.Lerp(_pivot.rotation, targetPivotRot, a);
-                 yield return null;
+                    t += Time.deltaTime;
+                    float a = t / duration;
+                    _pivot.position = Vector3.Lerp(_pivot.position, targetPivotPos, a);
+                    _pivot.rotation = Quaternion.Lerp(_pivot.rotation, targetPivotRot, a);
+                    yield return null;
                 }
-                
+
                 if (bedroomUnlock != null)
                 {
                     bedroomUnlock.AddItem(this);
@@ -161,13 +171,13 @@ namespace Interactions.Interaction_System.Interactions
             }
             Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, false);
         }
-        
+
         private void CreatePivotAtBoundsCenter()
         {
             if (_pivot) return;
 
             _originalParent = transform.parent;
-            
+
             Vector3 center = transform.position;
             var renderers = GetComponentsInChildren<Renderer>();
             if (renderers != null && renderers.Length > 0)
@@ -180,23 +190,23 @@ namespace Interactions.Interaction_System.Interactions
 
             var go = new GameObject($"{name}_InspectPivot");
             _pivot = go.transform;
-            
+
             _pivot.position = center;
             _pivot.rotation = transform.rotation;
-            
+
             _pivot.SetParent(_originalParent, true);
-            
+
             transform.SetParent(_pivot, true);
-            
+
             _itemLocalPosInPivot = transform.localPosition;
-            
+
             _baseRotation = _pivot.rotation;
         }
 
         private void DestroyPivot()
         {
             if (!_pivot) return;
-            
+
             transform.SetParent(_originalParent, true);
 
             var pivotGo = _pivot.gameObject;

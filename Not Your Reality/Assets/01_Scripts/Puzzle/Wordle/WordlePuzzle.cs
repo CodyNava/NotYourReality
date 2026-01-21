@@ -25,6 +25,7 @@ namespace Puzzle.Wordle
 
         [SerializeField] private EventReference allCorrectSound;
         [SerializeField] private EventReference coloringSound;
+        [SerializeField] private EventReference voiceLine;
 
 
         [Header("Colors")]
@@ -231,6 +232,7 @@ namespace Puzzle.Wordle
                 _isGameOver = true;
                 door.IsInteractable = true;
                 RuntimeManager.PlayOneShot(unlockSound, door.transform.position);
+                RuntimeManager.PlayOneShot(voiceLine, transform.position);
                 return;
             }
 
