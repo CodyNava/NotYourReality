@@ -6,6 +6,10 @@ namespace System.GlobalEventSystem
         public static event Action OnKey;
         public static event Action OnCake;
         public static event Action OnPhone;
+        public static event Action OnBeanBag;
+        public static event Action OnBed;
+        public static event Action OnRecord;
+        public static event Action OnDoor;
 
         public static void OnMouseSettingsChange()
         {
@@ -24,6 +28,23 @@ namespace System.GlobalEventSystem
         {
             OnPhone?.Invoke();
         }
+        public static void OnBeanBagTouched()
+        {
+            OnBeanBag?.Invoke();
+        }
+        public static void OnBedTouched()
+        {
+            OnBed?.Invoke();
+        }
+        public static void OnRecordTouched()
+        {
+            OnRecord?.Invoke();
+        }
+        public static void OnDoorTouched()
+        {
+            OnDoor?.Invoke();
+        }
+        
     
     }
 }
