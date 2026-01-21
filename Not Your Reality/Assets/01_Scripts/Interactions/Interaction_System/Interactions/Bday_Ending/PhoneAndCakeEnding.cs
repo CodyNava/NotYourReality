@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.GlobalEventSystem;
+using NUnit.Framework;
 using Player.PlayerMovement.Movement;
 using UnityEditor;
 using UnityEngine;
@@ -19,12 +21,15 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       [SerializeField] private GameObject player;
       [SerializeField] private PlayerController ps;
       [SerializeField] private float delayAfterCake;
+      [SerializeField] private float delayAfterMonologue;
       [SerializeField] private float delayAfterPhone;
       [SerializeField] private float delayAfterFogHasGrown;
+      [SerializeField] private float delayFogStartsGrowing;
       [SerializeField] private float fogTargetDensity;
       [SerializeField] private float fogGrowTime;
       [SerializeField] private float fallDuration;
       [SerializeField] private Transform newTransformFrontTable;
+      [SerializeField] private List<GameObject> fmodEmitter;
       private Transform _playerTransform;
 
       private void OnEnable()
@@ -49,14 +54,17 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       private void CakeCake()
       {
          cake.layer = LayerMask.NameToLayer("Default");
+         fmodEmitter[0].SetActive(true);
          StartCoroutine(DelayAfterTouching(delayAfterCake, "cake"));
       }
 
       private void PhoneTouched()
       {
          phone.layer = LayerMask.NameToLayer("Default");
+         fmodEmitter[1].SetActive(true);
          StartCoroutine(DelayAfterTouching(delayAfterPhone, "phone"));
       }
+      
 
       private void EndingSequence()
       {
@@ -66,6 +74,13 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          StartCoroutine(FallingThroughFloor(fallOffsetPos, fallDuration));
          StartCoroutine(EnableCredits());
          //todo credits music here
+      }
+
+      private IEnumerator DelayAfterPhone()
+      {
+         fmodEmitter[2].SetActive(true);
+         yield return new WaitForSeconds(delayFogStartsGrowing);
+         StartCoroutine(FogStartsGrowing());
       }
    
       private IEnumerator EnableCredits()
@@ -139,7 +154,7 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          switch (obj)
          {
             case "cake":           phone.layer = LayerMask.NameToLayer("Interactable"); break;
-            case "phone":          StartCoroutine(FogStartsGrowing()); break;
+            case "phone":          StartCoroutine(DelayAfterPhone()); break;
             case "EndingSequence": EndingSequence(); break;
          }
       }
