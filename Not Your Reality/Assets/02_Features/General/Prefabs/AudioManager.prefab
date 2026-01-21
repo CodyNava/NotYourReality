@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1963191407446820697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7089861866364436685}
+  - component: {fileID: 3291066268393648374}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7089861866364436685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963191407446820697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.861807, y: -10.626827, z: 0.76485145}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3291066268393648374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963191407446820697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e54191a4dc111459572f89ccbc7bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu:
+    Guid:
+      Data1: 2080581330
+      Data2: 1228905475
+      Data3: 231173293
+      Data4: -462716534
+    Path: "event:/Background Music Done/main men\xFC"
+  credits:
+    Guid:
+      Data1: 654074536
+      Data2: 1319025776
+      Data3: -1851033930
+      Data4: 917534328
+    Path: event:/Background Music Done/Credits
+  birthdayRoom:
+    Guid:
+      Data1: 537628981
+      Data2: 1221822794
+      Data3: 1259537596
+      Data4: -1266600433
+    Path: event:/Background Music Done/08_TV Room
+  tvRoom:
+    Guid:
+      Data1: 537628981
+      Data2: 1221822794
+      Data3: 1259537596
+      Data4: -1266600433
+    Path: event:/Background Music Done/08_TV Room
+  bathroom:
+    Guid:
+      Data1: -1699198714
+      Data2: 1332244474
+      Data3: 1558002358
+      Data4: -1457066022
+    Path: event:/Background Music Done/06_bathroom background
+  pngRoom:
+    Guid:
+      Data1: -1669540570
+      Data2: 1179721950
+      Data3: 1076981435
+      Data4: 88836259
+    Path: event:/Background Music Done/05_PNG Room
+  desert:
+    Guid:
+      Data1: 2068672354
+      Data2: 1081058152
+      Data3: 122611857
+      Data4: -1185289359
+    Path: event:/Background Music Done/03_desert (1)
+  bedroomR1:
+    Guid:
+      Data1: 1890538838
+      Data2: 1189820104
+      Data3: -1554307424
+      Data4: -1222038159
+    Path: event:/Background Music Done/02_bedroom prop 1
+  bedroomR2:
+    Guid:
+      Data1: 228961907
+      Data2: 1082728916
+      Data3: 1107894185
+      Data4: -1703946063
+    Path: event:/Background Music Done/02_bedroom prop 2
+  bedroomR3:
+    Guid:
+      Data1: -1725411796
+      Data2: 1079402922
+      Data3: -940072525
+      Data4: -1083743108
+    Path: event:/Background Music Done/02_bedroom prop 3 (1)
+  bedroomR4:
+    Guid:
+      Data1: 1865024684
+      Data2: 1314634253
+      Data3: -1550323806
+      Data4: -1000175211
+    Path: event:/Background Music Done/02_bedroom prop 4
+  basement:
+    Guid:
+      Data1: -1828188613
+      Data2: 1211056811
+      Data3: -1651740014
+      Data4: -165844183
+    Path: event:/Background Music Done/01_basement
