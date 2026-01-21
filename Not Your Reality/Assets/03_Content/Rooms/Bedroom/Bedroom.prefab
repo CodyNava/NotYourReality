@@ -1115,7 +1115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3671456884730947810
 Transform:
   m_ObjectHideFlags: 0
@@ -8671,7 +8671,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IntensityMultiplier: 11.11
+  m_IntensityMultiplier: 5.87
   m_BlendDistance: 1.67
   m_HDR: 1
   m_BoxProjection: 1
@@ -18692,7 +18692,6 @@ Transform:
   - {fileID: 9171483586034391802}
   - {fileID: 4595620864169342828}
   - {fileID: 964414829736349969}
-  - {fileID: 6142216586843808944}
   - {fileID: 5653018203518262514}
   - {fileID: 5844552678840558270}
   m_Father: {fileID: 7435360541340912676}
@@ -30067,11 +30066,11 @@ Transform:
   - {fileID: 1797976582965694191}
   - {fileID: 8154056175969405453}
   - {fileID: 4938079456275702625}
-  - {fileID: 5022769279737789388}
   - {fileID: 7886719042611136372}
   - {fileID: 3671456884730947810}
   - {fileID: 1431625307904374156}
   - {fileID: 1956012839735931977}
+  - {fileID: 7513579062193214262}
   - {fileID: 715854951544357892}
   - {fileID: 6998134971082096792}
   - {fileID: 4094427802909786719}
@@ -32326,8 +32325,8 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IntensityMultiplier: 31.78
-  m_BlendDistance: 5.31
+  m_IntensityMultiplier: 36.43
+  m_BlendDistance: 2.2
   m_HDR: 1
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
@@ -39098,11 +39097,11 @@ Transform:
   m_GameObject: {fileID: 5761113725174681118}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.518, y: 1.668, z: 3.974}
+  m_LocalPosition: {x: -2.5179996, y: 1.668, z: 3.974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7435360541340912676}
+  m_Father: {fileID: 4938079456275702625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4616858373280736
 MonoBehaviour:
@@ -39510,6 +39509,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03359232, y: 0.22985804, z: 0.20771539}
   m_Center: {x: 0.0000000055879354, y: 0.11517775, z: 0}
+--- !u!1 &5854437965242015393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7513579062193214262}
+  - component: {fileID: 1829468735724333828}
+  m_Layer: 0
+  m_Name: JesterTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7513579062193214262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854437965242015393}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.19855982, z: -0, w: 0.98008883}
+  m_LocalPosition: {x: -2.323, y: 0.53, z: 0.627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7435360541340912676}
+  m_LocalEulerAnglesHint: {x: 0, y: -22.905, z: 0}
+--- !u!65 &1829468735724333828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854437965242015393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.849267, y: 1.3277531, z: 1.9944229}
+  m_Center: {x: -0.083480775, y: 0.5722115, z: -0.34185335}
 --- !u!1 &5860571426138853546
 GameObject:
   m_ObjectHideFlags: 0
@@ -43216,7 +43268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7886719042611136372
 Transform:
   m_ObjectHideFlags: 0
@@ -48239,7 +48291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4938079456275702625
 Transform:
   m_ObjectHideFlags: 0
@@ -48306,6 +48358,7 @@ Transform:
   - {fileID: 1866168605238053742}
   - {fileID: 526025455883175830}
   - {fileID: 7816409574280261611}
+  - {fileID: 5022769279737789388}
   m_Father: {fileID: 7435360541340912676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7313190304317955925
@@ -56406,71 +56459,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03359232, y: 0.22985804, z: 0.20771539}
   m_Center: {x: 0.0000000055879354, y: 0.11517775, z: 0}
---- !u!1 &8609654378799321387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6142216586843808944}
-  - component: {fileID: 5377289449691109682}
-  m_Layer: 0
-  m_Name: Reflection Probe (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6142216586843808944
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8609654378799321387}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7399998, y: 2, z: 1.546}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1431625307904374156}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!215 &5377289449691109682
-ReflectionProbe:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8609654378799321387}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Type: 0
-  m_Mode: 1
-  m_RefreshMode: 0
-  m_TimeSlicingMode: 0
-  m_Resolution: 64
-  m_UpdateFrequency: 0
-  m_BoxSize: {x: 8.1, y: 3.1, z: 8.13}
-  m_BoxOffset: {x: 0, y: 0, z: 0}
-  m_NearClip: 0.01
-  m_FarClip: 1000
-  m_ShadowDistance: 50
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IntensityMultiplier: 31.78
-  m_BlendDistance: 5.31
-  m_HDR: 1
-  m_BoxProjection: 1
-  m_RenderDynamicObjects: 0
-  m_UseOcclusionCulling: 1
-  m_Importance: 2
-  m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &8613809965809312506
 GameObject:
   m_ObjectHideFlags: 0
