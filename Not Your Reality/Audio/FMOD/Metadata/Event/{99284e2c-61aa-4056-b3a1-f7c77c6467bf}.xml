@@ -53,7 +53,7 @@
 			<destination>{b6bcc1af-6f73-479a-8ac3-93876cb69f33}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{7f2a8337-6986-469c-ad7c-9225146ec0df}</destination>
+			<destination>{ffb10c2a-89dc-4b2b-bef8-786727b0002d}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{4cd750e0-1a70-46f9-aabc-884abc82e29b}" />
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{91a27679-64d7-49a3-b5cc-f56cac3afe31}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{821c32ed-14e5-429a-9d92-d7ca564af95a}</destination>
 		</relationship>
@@ -97,6 +100,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{9b74c595-5c95-48d2-b71f-008091ae084d}">
+		<property name="volume">
+			<value>-2.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -113,6 +119,7 @@
 	<object class="MixerBusEffectChain" id="{821c32ed-14e5-429a-9d92-d7ca564af95a}">
 		<relationship name="effects">
 			<destination>{1346fc22-a943-4c8d-a4d3-12ccdd863a24}</destination>
+			<destination>{b0c0d9d8-8cac-4dc6-8944-05cca85806e2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6a7ce059-6f98-4829-a02b-2dd1a6a9e8f6}" />
@@ -124,5 +131,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{d1a42b94-b465-4186-8e9d-2efb110648f8}" />
 	<object class="MixerBusFader" id="{1346fc22-a943-4c8d-a4d3-12ccdd863a24}" />
+	<object class="SFXReverbEffect" id="{b0c0d9d8-8cac-4dc6-8944-05cca85806e2}">
+		<property name="decayTime">
+			<value>20000</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{bddd4b2b-dd4c-44e4-a74a-2cba3bf10f6a}" />
 </objects>
