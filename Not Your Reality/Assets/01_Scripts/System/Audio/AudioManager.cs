@@ -47,7 +47,6 @@ namespace System.Audio
 
             _mainMenuInstance = RuntimeManager.CreateInstance(mainMenu);
             _creditsInstance = RuntimeManager.CreateInstance(credits);
-            _basementInstance = RuntimeManager.CreateInstance(basement);
         }
 
         public void PlayMainMenu()
