@@ -2989,6 +2989,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &594751195772578375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,6 +4632,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &910118593982759072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,6 +5312,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &1011258199565462705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7762,6 +7768,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &1339868268630204364
 GameObject:
   m_ObjectHideFlags: 0
@@ -13241,6 +13249,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &2292208320805087734
 GameObject:
   m_ObjectHideFlags: 0
@@ -16961,6 +16971,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &2955129075413612552
 GameObject:
   m_ObjectHideFlags: 0
@@ -20641,6 +20653,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &3488560703802165690
 GameObject:
   m_ObjectHideFlags: 0
@@ -29158,6 +29172,87 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
+--- !u!1 &4506065114153277523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6854204693988447710}
+  - component: {fileID: 6529544203107889819}
+  - component: {fileID: 3817398790318566749}
+  m_Layer: 6
+  m_Name: Stuffedbear Emitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6854204693988447710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506065114153277523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2071664774875737853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6529544203107889819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506065114153277523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 621160162
+      Data2: 1090417002
+      Data3: 425531028
+      Data4: -162699389
+    Path: event:/BdR-04 - TimeLine
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 1
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3817398790318566749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506065114153277523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25212f919578b584c82778c1aca9e878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequence: {fileID: 11400000, guid: e16b147762c4f92448635ed1b69e1fb1, type: 2}
+  dialogueManager: {fileID: 0}
+  eventEmitter: {fileID: 6529544203107889819}
 --- !u!1 &4512978629648543251
 GameObject:
   m_ObjectHideFlags: 0
@@ -37068,6 +37163,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &5570202242314999411
 GameObject:
   m_ObjectHideFlags: 0
@@ -37203,6 +37300,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &5582903861526871278
 GameObject:
   m_ObjectHideFlags: 0
@@ -37662,6 +37761,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &5653481594104354701
 GameObject:
   m_ObjectHideFlags: 0
@@ -50970,6 +51071,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &7839431487623425623
 GameObject:
   m_ObjectHideFlags: 0
@@ -54817,6 +54920,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &8299679055844610004
 GameObject:
   m_ObjectHideFlags: 0
@@ -62059,41 +62164,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 31b7935658a0db149929c98550f8dc54, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 657053412478890691, guid: d88d1e564fabdb940bb0eb118a8aea30, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1488528522937156161, guid: d88d1e564fabdb940bb0eb118a8aea30, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 591836556995075681}
+      addedObject: {fileID: 6854204693988447710}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d88d1e564fabdb940bb0eb118a8aea30, type: 3}
---- !u!1 &105283135140241023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 657053412478890691, guid: d88d1e564fabdb940bb0eb118a8aea30, type: 3}
-  m_PrefabInstance: {fileID: 605831924536880316}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &591836556995075681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105283135140241023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
 --- !u!4 &2071664774875737853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488528522937156161, guid: d88d1e564fabdb940bb0eb118a8aea30, type: 3}
@@ -74746,6 +74822,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!136 &6108159288436400046
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -90370,6 +90448,8 @@ MonoBehaviour:
   rotationClamping: 0
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
+  emitter: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!65 &5131471945218981292
 BoxCollider:
   m_ObjectHideFlags: 0
