@@ -27,6 +27,11 @@ namespace System.DialogueSystem
          Trigger();
       }
 
+      private void Start()
+      {
+         dialogueManager = FindObjectOfType<DialogueManager>();
+      }
+
       private void Trigger()
       {
          if (!sequence || !dialogueManager || !eventEmitter) return;
