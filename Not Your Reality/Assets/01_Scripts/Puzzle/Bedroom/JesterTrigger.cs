@@ -125,7 +125,7 @@ namespace Puzzle.Bedroom
 
          //Fade to black
          if (screenFader) yield return screenFader.FadeTo(1f, fadeToBlackTime);
-
+         cam.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
          // Hold black
          yield return new WaitForSeconds(blackHoldTime);
 
