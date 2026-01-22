@@ -32,6 +32,6 @@ namespace Interactions.Interaction_System.Interactions
          if (gameObject.name.Equals("Cake")) { GlobalEventManager.OnCakeTouched(); }
       }
 
-      private void Update() { TooltipMessage = IsInteractable ? "Hold E to Touch" : ""; }
+      private void Update() { TooltipMessage = IsInteractable ? "Press E to Touch" : ""; }
    }
 }
