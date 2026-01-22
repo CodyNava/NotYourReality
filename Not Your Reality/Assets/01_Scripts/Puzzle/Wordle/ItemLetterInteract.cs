@@ -115,7 +115,7 @@ namespace Puzzle.Wordle
         private bool FacingLetter()
         {
             var toCamera = (_cam.transform.position - _letterTransform.position).normalized;
-            return Vector3.Dot(transform.forward, toCamera) > 0.3f;
+            return Vector3.Dot(transform.forward, toCamera) > 0f;
         }
 
         private IEnumerator Inspect()
