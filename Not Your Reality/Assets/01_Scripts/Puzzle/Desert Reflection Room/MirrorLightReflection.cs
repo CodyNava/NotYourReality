@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
@@ -21,10 +22,12 @@ namespace Puzzle.Desert_Reflection_Room
       [Tooltip("The material the Goal should have when it is not hit by the Light")]
       [SerializeField] private Material targetDefaultMaterial;
 
-      [Tooltip("The door that is supposed to be activated once the Goal is hit")]
-      [SerializeField] private DoorHandle door ;
+        [Tooltip("The door that is supposed to be activated once the Goal is hit")]
+        [SerializeField] private DoorHandle door;
 
-      private bool _puzzleCompleted;
+        [SerializeField] private EventReference unlockSound;
+
+        private bool _puzzleCompleted;
       private readonly List<GameObject> _objectsToReset = new();
       private readonly List<Vector3> _initialPosition = new();
       private readonly List<Quaternion> _initialRotation = new();
@@ -47,26 +50,28 @@ namespace Puzzle.Desert_Reflection_Room
 
          if (!door) return;
          door.IsInteractable = false;
-      }
-      
+        }
 
-      public void CheckWin()
-      {
-         for (int i = 0; i < goals.Count; i++)
-         {
-            _targetRenderer[i].material = goals[i].BeenHit()? targetWinMaterial: targetDefaultMaterial;
-         }
 
-         if (!door) return;
+        public void CheckWin()
+        {
+            for (int i = 0; i < goals.Count; i++)
+            {
+                _targetRenderer[i].material = goals[i].BeenHit() ? targetWinMaterial : targetDefaultMaterial;
+            }
 
-         //todo: more feedback for winning
+            if (!door) return;
 
-         if (!AllHit() || _puzzleCompleted) return;
-         _puzzleCompleted = true;
-         door.IsInteractable = true;
-      }
+            //todo: more feedback for winning
 
-      private bool AllHit()
+            if (!AllHit() || _puzzleCompleted) return;
+            _puzzleCompleted = true;
+            door.IsInteractable = true;
+
+            RuntimeManager.PlayOneShot(unlockSound, transform.position);
+        }
+
+        private bool AllHit()
       {
          var winCounter = goals.Count(goal => goal.BeenHit());
          return winCounter == goals.Count;

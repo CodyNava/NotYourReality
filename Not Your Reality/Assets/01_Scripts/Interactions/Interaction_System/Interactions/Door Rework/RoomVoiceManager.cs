@@ -3,6 +3,7 @@ using FMODUnity;
 using FMOD.Studio;
 using UnityEngine;
 using Interactions.Interaction_System.Interactions.Door_Rework;
+using System.Collections;
 
 public class RoomVoiceManager : MonoBehaviour
 {
@@ -14,7 +15,15 @@ public class RoomVoiceManager : MonoBehaviour
     [SerializeField] private EventReference finalVoiceEvent;
 
     [Header("Door")]
-    [SerializeField] private DoorHandle doorHandle; 
+    [SerializeField] private DoorHandle doorHandle;
+
+    [Header("Door Unlock Delay")]
+    [SerializeField] private float doorUnlockDelay = 0.5f;
+
+
+    [Header("Audio Reference")]
+    [Tooltip("The sound that is played when you unlock a door")]
+    [SerializeField] private EventReference unlockSound;
 
     private HashSet<GameObject> playedVoices = new HashSet<GameObject>();
     private bool finalPlaying = false;
@@ -68,9 +77,19 @@ public class RoomVoiceManager : MonoBehaviour
         if (state == PLAYBACK_STATE.STOPPED)
         {
             finalPlaying = false;
-
-            if (doorHandle != null)
-                doorHandle.IsInteractable = true;
+            StartCoroutine(UnlockDoorDelayed());
         }
     }
+
+
+    private IEnumerator UnlockDoorDelayed()
+    {
+        yield return new WaitForSeconds(doorUnlockDelay);
+
+        if (doorHandle != null)
+            doorHandle.IsInteractable = true;
+
+        RuntimeManager.PlayOneShot(unlockSound, transform.position);
+    }
+
 }
