@@ -64,6 +64,7 @@ namespace UI.Menu
         public void BackToMenu()
         {
             Destroy(_player);
+            Time.timeScale = 1f;
             SceneManager.LoadScene(menuScene);
         }
     }
