@@ -1,3 +1,4 @@
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
 public class VoiceColliderTrigger : MonoBehaviour

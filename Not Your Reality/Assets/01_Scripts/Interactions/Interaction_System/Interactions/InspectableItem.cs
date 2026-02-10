@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using FMODUnity;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 
 namespace Interactions.Interaction_System.Interactions
 {

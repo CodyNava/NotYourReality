@@ -2,6 +2,7 @@ using System;
 using System.GlobalEventSystem;
 using FMODUnity;
 using Interactions.Interaction_System.Interaction_Base_Class;
+using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
 namespace Interactions.Interaction_System.Interactions
