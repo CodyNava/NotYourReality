@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 13156
+  m_VersionIndex: 13162
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 13156
+  m_VersionIndex: 13162
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9442,7 +9442,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 49
+  m_VersionIndex: 55
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9695,7 +9695,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 11498
+  m_VersionIndex: 11504
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10047,7 +10047,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 11641
+  m_VersionIndex: 11647
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -18653,7 +18653,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 49
+  m_VersionIndex: 55
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -27015,7 +27015,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 49
+  m_VersionIndex: 55
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -35333,7 +35333,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 49
+  m_VersionIndex: 55
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -43655,7 +43655,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 49
+  m_VersionIndex: 55
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -43816,6 +43816,7 @@ MonoBehaviour:
   crossHair: {fileID: 0}
   player: {fileID: 0}
   ps: {fileID: 0}
+  playerToTableTransformSpeed: 3
   delayAfterCake: 7
   delayAfterMonologue: 0
   delayAfterPhone: 58
@@ -43823,7 +43824,7 @@ MonoBehaviour:
   delayFogStartsGrowing: 7
   fogTargetDensity: 1
   fogGrowTime: 2
-  fallDuration: 1
+  fallDuration: 2
   newTransformFrontTable: {fileID: 8556178510907175284}
   fmodEmitter:
   - {fileID: 5049499855504137108}
@@ -43848,8 +43849,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2602572, y: 0.7567233, z: 2.6856117}
-  m_Center: {x: -0.13012862, y: -0.12163836, z: 0.019032478}
+  m_Size: {x: 1.8153076, y: 0.7567233, z: 8.688594}
+  m_Center: {x: -0.4076538, y: -0.12163836, z: 0.2979598}
 --- !u!1 &8649148209784957533
 GameObject:
   m_ObjectHideFlags: 0
@@ -44177,7 +44178,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 13156
+  m_VersionIndex: 13162
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -44875,7 +44876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2977550879520341259, guid: 73f67ca4f29ace64991f11d3f4027978, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3583416418406339566, guid: 73f67ca4f29ace64991f11d3f4027978, type: 3}
       propertyPath: m_Name
@@ -44888,6 +44889,12 @@ PrefabInstance:
     - target: {fileID: 3690331818382878317, guid: 73f67ca4f29ace64991f11d3f4027978, type: 3}
       propertyPath: m_LocalPosition.y
       value: -20.551
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232872656357188053, guid: 73f67ca4f29ace64991f11d3f4027978, type: 3}
+      propertyPath: m_text
+      value: 'Manu Loewenau
+
+        Production'
       objectReference: {fileID: 0}
     - target: {fileID: 7810712312396822461, guid: 73f67ca4f29ace64991f11d3f4027978, type: 3}
       propertyPath: m_LocalPosition.y

@@ -20,6 +20,7 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       [SerializeField] private GameObject crossHair;
       [SerializeField] private GameObject player;
       [SerializeField] private PlayerController ps;
+      [SerializeField] private float playerToTableTransformSpeed;
       [SerializeField] private float delayAfterCake;
       [SerializeField] private float delayAfterMonologue;
       [SerializeField] private float delayAfterPhone;
@@ -113,10 +114,10 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       {
          var t = 0f;
          ps.MoveActive = false;
-         while (t < 1f)
+         while (t < playerToTableTransformSpeed)
          {
             t += Time.deltaTime;
-            float lerp = t / 1f;
+            float lerp = t / playerToTableTransformSpeed;
 
             player.gameObject.transform.position = Vector3.Lerp(
                player.gameObject.transform.position,
