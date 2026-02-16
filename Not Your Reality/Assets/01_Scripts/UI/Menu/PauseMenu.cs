@@ -42,7 +42,6 @@ namespace UI.Menu
 
         public void ResumeGame()
         {
-            Time.timeScale = 1f;
             _isPaused = false;
             backButton.onClick.Invoke();
             pauseMenu.SetActive(false);
@@ -55,7 +54,6 @@ namespace UI.Menu
         {
             InputManager.Input.Player.Disable();
             _isPaused = true;
-            Time.timeScale = 0f;
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(true);
             _playerController.CameraActive = false;
@@ -64,7 +62,6 @@ namespace UI.Menu
         public void BackToMenu()
         {
             Destroy(_player);
-            Time.timeScale = 1f;
             SceneManager.LoadScene(menuScene);
         }
     }
