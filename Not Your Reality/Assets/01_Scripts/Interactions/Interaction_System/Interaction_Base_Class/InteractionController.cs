@@ -112,6 +112,29 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
             var interactable = _interactionData.InteractableBase;
             if (!interactable.IsInteractable) return;
 
+            if (interactable is MoveObject moveableObject)
+            {
+                if (_interactionInputData.InteractedClicked)
+                {
+                    if (_interacting && _selectedObject == moveableObject)
+                    {
+                        moveableObject.Release();
+                        _interacting = false;
+                        _selectedObject = null;
+                        interactionUIPanel.SetTooltip(moveableObject.TooltipMessage);
+                    }
+                    else
+                    {
+                        _interacting = true;
+                        _selectedObject = moveableObject;
+                        interactionUIPanel.Reset();
+                        moveableObject.OnInteract();
+                    }
+                }
+
+                return;
+            }
+
             if (_interactionInputData.InteractedClicked && !_interacting)
             {
                 _interacting = true;
@@ -131,7 +154,6 @@ namespace Interactions.Interaction_System.Interaction_Base_Class
                 _holdTimer = 0f;
                 switch (_selectedObject)
                 {
-                    case MoveObject moveObject: moveObject.Release(); break;
                     case DoorHandle door: door.Release(); break;
                 }
 
