@@ -1,3 +1,4 @@
+using FMODUnity;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using Player.PlayerMovement.Movement;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace UI.Menu
         private bool _isPaused;
         private PlayerController _playerController;
         private GameObject _player;
+
+        public EventReference mainMenuMusic;
 
         private void Start()
         {
@@ -42,11 +45,10 @@ namespace UI.Menu
 
         public void ResumeGame()
         {
-            Time.timeScale = 1f;
             _isPaused = false;
             backButton.onClick.Invoke();
             pauseMenu.SetActive(false);
-            settingsMenu.SetActive(false); 
+            settingsMenu.SetActive(false);
             _playerController.CameraActive = true;
             InputManager.Input.Player.Enable();
         }
@@ -55,7 +57,6 @@ namespace UI.Menu
         {
             InputManager.Input.Player.Disable();
             _isPaused = true;
-            Time.timeScale = 0f;
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(true);
             _playerController.CameraActive = false;
@@ -63,8 +64,8 @@ namespace UI.Menu
 
         public void BackToMenu()
         {
+            MusicManager.I.PlayMusic(mainMenuMusic);
             Destroy(_player);
-            Time.timeScale = 1f;
             SceneManager.LoadScene(menuScene);
         }
     }

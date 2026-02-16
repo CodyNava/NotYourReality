@@ -12,11 +12,12 @@ namespace Puzzle.Wordle
     {
         [Tooltip("The speed at which the Item goes into focus")]
         [SerializeField] private float duration = 0.25f;
+
         [SerializeField] private float sensitivity;
         [SerializeField] private float clampMin;
         [SerializeField] private float clampMax;
         [SerializeField] private bool rotationClamping;
-        
+
         [SerializeField] private WordlePuzzle wordlePuzzle;
 
         public char LetterChar
@@ -43,7 +44,6 @@ namespace Puzzle.Wordle
         private Coroutine _inspect;
         private Vignette _vignette;
         private TextMeshPro _letter;
-        
 
 
         private void Awake()
@@ -82,14 +82,14 @@ namespace Puzzle.Wordle
         {
             if (!_cam) return;
             RotateItem();
-            
+
             if (_isInspecting && InputManager.Input.Inspection.OnInteract.WasPressedThisFrame())
             {
                 StartCoroutine(Release());
             }
-            
-            
-            if (FacingLetter() && _isInspecting && _letterChar != ' ')
+
+
+            if (FacingLetter() && _isInspecting && _letterChar != ' ' && wordlePuzzle != null)
             {
                 wordlePuzzle.KeyEnable(_letterChar);
             }
@@ -127,9 +127,9 @@ namespace Puzzle.Wordle
             _anchorRotation = _cam.GetComponentsInChildren<Transform>(true)
                 .FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
             InputManager.Input.Player.Disable();
-            
+
             CreatePivotAtBoundsCenter();
-            
+
             var t = 0f;
             _vignette.intensity.value = 0.2f;
             while (t < duration * 0.2f)
@@ -181,7 +181,7 @@ namespace Puzzle.Wordle
             if (_pivot) return;
 
             _originalParent = transform.parent;
-            
+
             Vector3 center = transform.position;
             var renderers = GetComponentsInChildren<Renderer>();
             if (renderers != null && renderers.Length > 0)
@@ -191,26 +191,26 @@ namespace Puzzle.Wordle
                     b.Encapsulate(renderers[i].bounds);
                 center = b.center;
             }
-            
+
             var go = new GameObject($"{name}_InspectPivot");
             _pivot = go.transform;
-            
+
             _pivot.position = center;
             _pivot.rotation = transform.rotation;
-            
+
             _pivot.SetParent(_originalParent, true);
-            
+
             transform.SetParent(_pivot, true);
-            
+
             _itemLocalPosInPivot = transform.localPosition;
-            
+
             _baseRotation = _pivot.rotation;
         }
-        
+
         private void DestroyPivot()
         {
             if (!_pivot) return;
-            
+
             transform.SetParent(_originalParent, true);
 
             var pivotGo = _pivot.gameObject;

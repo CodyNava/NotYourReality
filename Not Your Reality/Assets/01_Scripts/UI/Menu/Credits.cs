@@ -24,7 +24,6 @@ namespace UI.Menu
 
         private void OnEnable()
         {
-            Time.timeScale = 1f;
             ResetCredits();
         }
         private void ResetCredits()
