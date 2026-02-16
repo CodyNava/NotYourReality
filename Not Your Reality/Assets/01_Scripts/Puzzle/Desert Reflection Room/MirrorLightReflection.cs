@@ -28,6 +28,8 @@ namespace Puzzle.Desert_Reflection_Room
         [Tooltip("The intensity of the light")]
         [Range(50f, 100f)]
         [SerializeField] private float lightIntensity = 50f;
+
+        [SerializeField] private List<GameObject> allDoorHandles;
         
         private bool _puzzleCompleted;
         private readonly List<GameObject> _objectsToReset = new();
@@ -49,7 +51,14 @@ namespace Puzzle.Desert_Reflection_Room
             }
 
             if (!door) return;
-            door.IsInteractable = false;
+            foreach (var handle in allDoorHandles)
+            {
+                handle.layer = LayerMask.NameToLayer("Default");
+                if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
+                {
+                    doorHandle.IsInteractable = false;
+                }
+            }
         }
 
 
@@ -77,7 +86,14 @@ namespace Puzzle.Desert_Reflection_Room
 
             if (!AllHit() || _puzzleCompleted) return;
             _puzzleCompleted = true;
-            door.IsInteractable = true;
+            foreach (var handle in allDoorHandles)
+            {
+                handle.layer = LayerMask.NameToLayer("Interactable");
+                if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
+                {
+                    doorHandle.IsInteractable = true;
+                }
+            }
 
             RuntimeManager.PlayOneShot(unlockSound, transform.position);
         }

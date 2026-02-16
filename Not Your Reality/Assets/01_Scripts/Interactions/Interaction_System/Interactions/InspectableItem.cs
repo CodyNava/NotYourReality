@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using FMODUnity;
 using Interactions.Interaction_System.Interactions.Door_Rework;
+using Puzzle.Bedroom;
 
 namespace Interactions.Interaction_System.Interactions
 {
