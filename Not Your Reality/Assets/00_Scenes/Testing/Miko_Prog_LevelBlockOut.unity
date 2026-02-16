@@ -6911,7 +6911,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1563678560}
-  m_VersionIndex: 23
+  m_VersionIndex: 32
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11692,6 +11692,22 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1428295174}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: hitColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: hitColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: hitColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: lightIntensity
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
       propertyPath: unlockSound.Path
       value: event:/Door Open
@@ -20678,7 +20694,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1160369609}
-  m_VersionIndex: 491
+  m_VersionIndex: 500
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
