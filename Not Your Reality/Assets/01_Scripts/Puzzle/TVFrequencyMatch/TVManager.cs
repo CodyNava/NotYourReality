@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using FMODUnity;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Puzzle.TVFrequencyMatch
         private readonly List<GameObject> _actualLetters = new();
 
         [SerializeField] private List<Button> buttons;
-        
+
         [SerializeField] private GameObject leftButton;
         [SerializeField] private GameObject rightButton;
         [SerializeField] private GameObject confirmButton;
@@ -62,6 +63,7 @@ namespace Puzzle.TVFrequencyMatch
                     _actualLetters.Add(child.gameObject);
                 }
             }
+
             DisplayLetters();
         }
 
@@ -82,6 +84,7 @@ namespace Puzzle.TVFrequencyMatch
             {
                 letter.GetComponent<TextMeshProUGUI>().color = Color.white;
             }
+
             _actualLetters[_letterA].GetComponent<TextMeshProUGUI>().color = Color.red;
             _actualLetters[_letterB].GetComponent<TextMeshProUGUI>().color = Color.red;
         }
@@ -93,6 +96,7 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Left End Reached");
                 return;
             }
+
             leftButton.gameObject.transform.Rotate(Vector3.right, -rotationVector.x, Space.World);
             var euler = leftButton.transform.localEulerAngles;
             euler.y = -90f;
@@ -111,6 +115,7 @@ namespace Puzzle.TVFrequencyMatch
                 Debug.Log("Right End Reached");
                 return;
             }
+
             rightButton.gameObject.transform.Rotate(Vector3.right, rotationVector.x, Space.World);
             var euler = rightButton.transform.localEulerAngles;
             euler.y = -90f;
@@ -124,12 +129,29 @@ namespace Puzzle.TVFrequencyMatch
 
         public void SwapLetters()
         {
+            StartCoroutine(PushButton());
+        }
+
+        private IEnumerator PushButton()
+        {
+            foreach (var button in buttons)
+            {
+                button.interactable = false;
+            }
+            var initialValue = confirmButton.transform.localPosition;
+            confirmButton.transform.localPosition = new Vector3(initialValue.x, initialValue.y, 0.2f);
             var chars = _scrambled.ToCharArray();
             (chars[_letterB], chars[_letterA]) = (chars[_letterA], chars[_letterB]);
             _scrambled = new string(chars);
             //RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
             DisplayLetters();
             CheckWin();
+            yield return new WaitForSeconds(0.5f);
+            confirmButton.gameObject.transform.localPosition =  initialValue;
+            foreach (var button in buttons)
+            {
+                button.interactable = true;
+            }
         }
 
         private void CheckWin()
@@ -139,11 +161,12 @@ namespace Puzzle.TVFrequencyMatch
             {
                 button.interactable = false;
             }
+
             foreach (var letter in _actualLetters)
             {
                 letter.GetComponent<TextMeshProUGUI>().color = Color.green;
             }
-            
+
             Completed = true;
             tvFrequencyMatch.Status();
         }
