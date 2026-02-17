@@ -114,18 +114,19 @@ namespace Puzzle.Bedroom
             yield return null;
          }
 
-         yield return FaintingRoutine();
 
-         // Jester disappears 
-         TeleportJesterOut();
 
          // Fog UP
          RenderSettings.fog = true;
          yield return FogTo(fogMaxDensity, fogInTime);
-
+         
+         //Faint
+         yield return FaintingRoutine();
+         
          //Fade to black
          if (screenFader) yield return screenFader.FadeTo(1f, fadeToBlackTime);
          cam.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+         
          // Hold black
          yield return new WaitForSeconds(blackHoldTime);
 
@@ -133,6 +134,9 @@ namespace Puzzle.Bedroom
          Vector3 desertStandPos = desertTransform ? desertTransform.position : player.transform.position;
          TeleportToDesertLying(desertStandPos);
 
+         // Jester disappears 
+         TeleportJesterOut();
+         
          //Fog to original density
          yield return FogTo(originalFog, fogOutTime);
 
