@@ -138,16 +138,39 @@ namespace Puzzle.TVFrequencyMatch
             {
                 button.interactable = false;
             }
-            var initialValue = confirmButton.transform.localPosition;
-            confirmButton.transform.localPosition = new Vector3(initialValue.x, initialValue.y, 0.2f);
+            var initialVector = confirmButton.transform.localPosition;
+            var pressedVector = new Vector3(initialVector.x, initialVector.y, 0.2f);
+            var duration = 0.1f;
+            var elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                confirmButton.transform.localPosition = Vector3.Lerp(initialVector, pressedVector, elapsed / duration);
+                yield return null;
+            }
+            
+            confirmButton.transform.localPosition = pressedVector;
+            
             var chars = _scrambled.ToCharArray();
             (chars[_letterB], chars[_letterA]) = (chars[_letterA], chars[_letterB]);
             _scrambled = new string(chars);
             //RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
             DisplayLetters();
             CheckWin();
+            
             yield return new WaitForSeconds(0.5f);
-            confirmButton.gameObject.transform.localPosition =  initialValue;
+            
+            elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                confirmButton.transform.localPosition = Vector3.Lerp(pressedVector, initialVector, elapsed / duration);
+                yield return null;
+            }
+            
+            confirmButton.transform.localPosition = initialVector;
+            
             foreach (var button in buttons)
             {
                 button.interactable = true;
