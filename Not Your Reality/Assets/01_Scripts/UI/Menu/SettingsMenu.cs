@@ -254,6 +254,8 @@ namespace UI.Menu
             SfxVolume();
             VoiceVolume();
             AmbienceVolume();
+            SetMouseSensitivity();
+            SetMouseSmoothing();
         }
 
         private void Save()
