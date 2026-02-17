@@ -6,8 +6,6 @@ namespace Puzzle.General
 {
    public class Key : MonoBehaviour
    {
-      
-      
       private void OnCollisionEnter(Collision other)
       {
          if (!other.gameObject.CompareTag("Door")) return;

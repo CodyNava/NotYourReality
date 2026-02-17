@@ -26,7 +26,7 @@ namespace Interactions.Interaction_System.Interactions
 
       private void Awake()
       {
-          TooltipMessage = "Hold E to Move Object";
+          TooltipMessage = "Press E to Move Object";
          _cam = Camera.main;
          _rb = GetComponent<Rigidbody>();
       }
@@ -59,10 +59,12 @@ namespace Interactions.Interaction_System.Interactions
          if (!_isHeld) return;
          MoveItem();
       }
+      
 
       private void MoveItem()
       {
          var targetPosition = _cam.transform.position + _cam.transform.forward * holdingDistance;
+         var targetRotation = Quaternion.LookRotation(_cam.transform.forward, Vector3.up) * Quaternion.Euler(0f, 180f, 0f);
          var displacement = targetPosition - _rb.position;
 
          var force = displacement * spring;
@@ -70,6 +72,7 @@ namespace Interactions.Interaction_System.Interactions
          force -= _rb.linearVelocity * damping;
          _rb.AddForce(force, ForceMode.Acceleration);
          _rb.linearVelocity = Vector3.ClampMagnitude(_rb.linearVelocity, maxVelocity);
+         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, weight);
       }
 
       public void Release()

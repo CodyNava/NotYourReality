@@ -1,75 +1,120 @@
-using System;
 using System.Collections.Generic;
 using FMODUnity;
 using Interactions.Interaction_System.Interactions;
 using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
-public class BedroomUnlock : MonoBehaviour
+namespace Puzzle.Bedroom
 {
-    [SerializeField] private List<InspectableItem> itemsToUnlock;
-
-    [SerializeField] private EventReference unlockSound;
-    
-    [SerializeField] private DoorHandle doorHandle1;
-    [SerializeField] private DoorHandle doorHandle2;
-    [SerializeField] private DoorHandle doorHandle3;
-    [SerializeField] private DoorHandle doorHandle4;
-
-    private int _loops;
-
-    private void Awake()
+    public class BedroomUnlock : MonoBehaviour
     {
-        itemsToUnlock = new List<InspectableItem>();
-    }
+        [SerializeField] private List<InspectableItem> itemsToUnlock;
 
-    public void AddItem(InspectableItem item)
-    {
-        if (itemsToUnlock.Contains(item)) return;
-        
-        itemsToUnlock.Add(item);
-        CheckForAllItems();
-    }
+        [SerializeField] private EventReference unlockSound;
 
-    private void CheckForAllItems()
-    {
-        switch (_loops)
+        [SerializeField] private DoorHandle doorHandle1;
+        [SerializeField] private DoorHandle doorHandle2;
+        [SerializeField] private DoorHandle doorHandle3;
+        [SerializeField] private DoorHandle doorHandle4;
+
+        [SerializeField] private List<GameObject> allDoorHandles;
+
+        private int _loops;
+
+        private void Awake()
         {
-            case 0:
-                if (itemsToUnlock.Count == 4)
+            itemsToUnlock = new List<InspectableItem>();
+            foreach (var handle in allDoorHandles)
+            {
+                handle.layer = LayerMask.NameToLayer("Default");
+                if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
                 {
-                    doorHandle1.IsInteractable = true;
-                    RuntimeManager.PlayOneShot(unlockSound, doorHandle1.transform.position);
-                    itemsToUnlock.Clear();
-                    _loops++;
+                    doorHandle.IsInteractable = false;
                 }
-                break;
-            case 1:
-                if (itemsToUnlock.Count == 4)
-                {
-                    doorHandle2.IsInteractable = true;
-                    RuntimeManager.PlayOneShot(unlockSound, doorHandle2.transform.position);
-                    itemsToUnlock.Clear();
-                    _loops++;
-                }
-                break;
-            case 2:
-                if (itemsToUnlock.Count == 4)
-                {
-                    doorHandle3.IsInteractable = true;
-                    RuntimeManager.PlayOneShot(unlockSound, doorHandle3.transform.position);
-                    itemsToUnlock.Clear();
-                    _loops++;
-                }
-                break;
-            case 3:
-                if (itemsToUnlock.Count == 3)
-                {
-                    doorHandle4.IsInteractable = true;
-                    RuntimeManager.PlayOneShot(unlockSound, doorHandle4.transform.position);
-                    itemsToUnlock.Clear();
-                }
-                break;
+            }
+        }
+
+        public void AddItem(InspectableItem item)
+        {
+            if (itemsToUnlock.Contains(item)) return;
+
+            itemsToUnlock.Add(item);
+            CheckForAllItems();
+        }
+
+        private void CheckForAllItems()
+        {
+            switch (_loops)
+            {
+                case 0:
+                    if (itemsToUnlock.Count == 4)
+                    {
+                        for (var i = 0; i < 4; i++)
+                        {
+                            allDoorHandles[i].layer = LayerMask.NameToLayer("Interactable");
+                            if (allDoorHandles[i].TryGetComponent<DoorHandle>(out var doorHandle))
+                            {
+                                doorHandle.IsInteractable = true;
+                            }
+                        }
+                        RuntimeManager.PlayOneShot(unlockSound, doorHandle1.transform.position);
+                        itemsToUnlock.Clear();
+                        _loops++;
+                    }
+
+                    break;
+                case 1:
+                    if (itemsToUnlock.Count == 4)
+                    {
+                        for (var i = 4; i < 8; i++)
+                        {
+                            allDoorHandles[i].layer = LayerMask.NameToLayer("Interactable");
+                            if (allDoorHandles[i].TryGetComponent<DoorHandle>(out var doorHandle))
+                            {
+                                doorHandle.IsInteractable = true;
+                            }
+                        }
+                    
+                        RuntimeManager.PlayOneShot(unlockSound, doorHandle2.transform.position);
+                        itemsToUnlock.Clear();
+                        _loops++;
+                    }
+
+                    break;
+                case 2:
+                    if (itemsToUnlock.Count == 4)
+                    {
+                        for (var i = 8; i < 12; i++)
+                        {
+                            allDoorHandles[i].layer = LayerMask.NameToLayer("Interactable");
+                            if (allDoorHandles[i].TryGetComponent<DoorHandle>(out var doorHandle))
+                            {
+                                doorHandle.IsInteractable = true;
+                            }
+                        }
+                        RuntimeManager.PlayOneShot(unlockSound, doorHandle3.transform.position);
+                        itemsToUnlock.Clear();
+                        _loops++;
+                    }
+
+                    break;
+                case 3:
+                    if (itemsToUnlock.Count == 3)
+                    {
+                        for (var i = 12; i < 16; i++)
+                        {
+                            allDoorHandles[i].layer = LayerMask.NameToLayer("Interactable");
+                            if (allDoorHandles[i].TryGetComponent<DoorHandle>(out var doorHandle))
+                            {
+                                doorHandle.IsInteractable = true;
+                            }
+                        }
+                        RuntimeManager.PlayOneShot(unlockSound, doorHandle4.transform.position);
+                        itemsToUnlock.Clear();
+                    }
+
+                    break;
+            }
         }
     }
 }

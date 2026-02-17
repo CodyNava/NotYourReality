@@ -39,6 +39,7 @@ namespace Puzzle.Wordle
         [SerializeField] private float revealDuration = 1.5f;
 
         [SerializeField] private DoorHandle door;
+        [SerializeField] private List<GameObject> doorHandles;
 
         private bool _isRevealing;
         private float _perLetterDelay;
@@ -69,7 +70,14 @@ namespace Puzzle.Wordle
                 SetRandomCharToItem(c);
             }
 
-            door.IsInteractable = false;
+            foreach (var handle in doorHandles)
+            {
+                handle.layer = LayerMask.NameToLayer("Default");
+                if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
+                {
+                    doorHandle.IsInteractable = false;
+                }
+            }
 
             for (int i = 0; i < amountFakeLetters; i++)
             {
@@ -230,7 +238,14 @@ namespace Puzzle.Wordle
             {
                 Debug.Log("You Win");
                 _isGameOver = true;
-                door.IsInteractable = true;
+                foreach (var handle in doorHandles)
+                {
+                    handle.layer = LayerMask.NameToLayer("Interactable");
+                    if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
+                    {
+                        doorHandle.IsInteractable = true;
+                    }
+                }
                 RuntimeManager.PlayOneShot(unlockSound, door.transform.position);
                 winVl.gameObject.SetActive(true);
                 return;
