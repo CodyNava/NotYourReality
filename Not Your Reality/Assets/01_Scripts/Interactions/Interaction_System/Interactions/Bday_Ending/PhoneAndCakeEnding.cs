@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.GlobalEventSystem;
 using NUnit.Framework;
 using Player.PlayerMovement.Movement;
+using Puzzle.Bedroom;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,10 +17,13 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       [SerializeField] private Vector3 fallOffsetPos;
       [SerializeField] private Vector3 finalPositionAfterFalling;
       [SerializeField] private Quaternion finalRotationAfterFalling;
+      [SerializeField] private Quaternion finalCamRotationAfterFalling;
       [SerializeField] private GameObject creditsScreen;
       [SerializeField] private GameObject crossHair;
       [SerializeField] private GameObject player;
+      [SerializeField] private CanvasGroup screenFader;
       [SerializeField] private PlayerController ps;
+      [SerializeField] private GameObject cameraHolder;
       [SerializeField] private float playerToTableTransformSpeed;
       [SerializeField] private float delayAfterCake;
       [SerializeField] private float delayAfterMonologue;
@@ -50,6 +54,7 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          StartCoroutine(SetPlayerTransform());
          _playerTransform = player.gameObject.transform;
          Debug.Log(_playerTransform);
+         this.GetComponent<Collider>().enabled = false;
       }
 
       private void CakeCake()
@@ -65,6 +70,12 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          fmodEmitter[1].SetActive(true);
          StartCoroutine(DelayAfterTouching(delayAfterPhone, "phone"));
       }
+
+      private IEnumerator FadeToBlack(int alpha, float delay)
+      {
+         yield return new WaitForSeconds(delay);
+         screenFader.alpha = alpha;
+      }
       
 
       private void EndingSequence()
@@ -72,8 +83,9 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          
          crossHair.gameObject.SetActive(false);
          ps.LookActive = false;
-         StartCoroutine(FallingThroughFloor(fallOffsetPos, fallDuration));
          StartCoroutine(EnableCredits());
+         StartCoroutine(FallingThroughFloor(fallOffsetPos, fallDuration));
+         
          //todo credits music here
       }
 
@@ -92,6 +104,8 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
 
       private IEnumerator FallingThroughFloor(Vector3 offSet, float fallingTime)
       {
+         StopCoroutine(SetPlayerTransform());
+         StartCoroutine(FadeToBlack(1, 0.25f));
          var pT = player.transform;
          var startPos = pT.position;
          var endPos = startPos + offSet;
@@ -108,6 +122,9 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          pT.position = endPos;
          player.transform.position = finalPositionAfterFalling;
          player.transform.rotation = finalRotationAfterFalling;
+         cameraHolder.transform.localRotation = finalCamRotationAfterFalling;
+         StartCoroutine(FadeToBlack(0, 0.2f));
+         RenderSettings.fogDensity = 0;
       }
 
       private IEnumerator SetPlayerTransform()
