@@ -29,8 +29,9 @@ namespace Puzzle.Desert_Reflection_Room
         [Range(50f, 100f)]
         [SerializeField] private float lightIntensity = 50f;
 
+
         [SerializeField] private List<GameObject> allDoorHandles;
-        
+
         private bool _puzzleCompleted;
         private readonly List<GameObject> _objectsToReset = new();
         private readonly List<Vector3> _initialPosition = new();
@@ -116,4 +117,5 @@ namespace Puzzle.Desert_Reflection_Room
             reflectionGoal.ClearHits();
         }
     }
+
 }

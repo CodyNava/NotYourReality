@@ -7505,6 +7505,42 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &746278261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2061557211367796428, guid: d3cab0416dd2f6e4dbd87beb8f26b851, type: 3}
+  m_PrefabInstance: {fileID: 3660895522399581250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &746278264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746278261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1239492256
+      Data2: 1160785915
+      Data3: -44105327
+      Data4: 474376468
+    Path: event:/Fridge Sound
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1.2
+  OverrideMaxDistance: 22.59
 --- !u!43 &781027535
 Mesh:
   m_ObjectHideFlags: 0
@@ -9603,6 +9639,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1428295174}
     - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: unlockSound.Path
+      value: event:/DoorOpen2D Action
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: unlockSound.Guid.Data1
+      value: -315013329
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: unlockSound.Guid.Data2
+      value: 1165618481
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: unlockSound.Guid.Data3
+      value: 1095284360
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
+      propertyPath: unlockSound.Guid.Data4
+      value: 1601190268
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918249093962181748, guid: a2d882db7d14833439798e50ca353c1c, type: 3}
       propertyPath: 'allDoorHandles.Array.data[0]'
       value: 
       objectReference: {fileID: 2670333710554108181}
@@ -10061,6 +10117,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 594921599453276523, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 150.00024
+      objectReference: {fileID: 0}
     - target: {fileID: 983611759445680657, guid: b6f8c54d3ae87aa4ca3e055d359ac970, type: 3}
       propertyPath: m_Name
       value: Pause_Menu_PF
@@ -19653,6 +19713,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 5069
       objectReference: {fileID: 0}
+    - target: {fileID: 8550112027669308549, guid: fc981cca6f4458d429dd255a1553a881, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8870549404649993332, guid: fc981cca6f4458d429dd255a1553a881, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -20637,6 +20701,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4601036564290848459, guid: d3cab0416dd2f6e4dbd87beb8f26b851, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2061557211367796428, guid: d3cab0416dd2f6e4dbd87beb8f26b851, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 746278264}
   m_SourcePrefab: {fileID: 100100000, guid: d3cab0416dd2f6e4dbd87beb8f26b851, type: 3}
 --- !u!23 &3862948922972004215
 MeshRenderer:
@@ -20957,7 +21024,7 @@ PrefabInstance:
       objectReference: {fileID: 1437880630}
     - target: {fileID: 8998821219095043933, guid: 941d22fcf02affb4fa329e3294b6e04d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.441
+      value: 30.43
       objectReference: {fileID: 0}
     - target: {fileID: 8998821219095043933, guid: 941d22fcf02affb4fa329e3294b6e04d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20965,7 +21032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8998821219095043933, guid: 941d22fcf02affb4fa329e3294b6e04d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -85.852005
+      value: -85.85
       objectReference: {fileID: 0}
     - target: {fileID: 8998821219095043933, guid: 941d22fcf02affb4fa329e3294b6e04d, type: 3}
       propertyPath: m_LocalRotation.w
