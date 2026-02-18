@@ -33,6 +33,9 @@ namespace Puzzle.TVFrequencyMatch
         private int _letterA;
         private int _letterB = 1;
 
+        private float _leftRotationX;
+        private float _rightRotationX;
+
         public bool Completed { get; private set; }
 
         private void Awake()
@@ -93,16 +96,16 @@ namespace Puzzle.TVFrequencyMatch
         {
             if (_letterA == 0)
             {
-                Debug.Log("Left End Reached");
                 return;
             }
 
-            leftButton.gameObject.transform.Rotate(Vector3.right, -rotationVector.x, Space.World);
-            var euler = leftButton.transform.localEulerAngles;
-            euler.y = -90f;
-            euler.z = 90f;
-            leftButton.transform.localEulerAngles = euler;
-            //RuntimeManager.PlayOneShot(leftSound, leftButton.gameObject.transform.position);
+            _leftRotationX -= 5f;
+            leftButton.transform.localRotation =
+                Quaternion.Euler(_leftRotationX, -90f, 90f);
+            if (!leftSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(leftSound, leftButton.gameObject.transform.position);
+            }
             _letterA--;
             _letterB--;
             DisplaySelection();
@@ -112,16 +115,17 @@ namespace Puzzle.TVFrequencyMatch
         {
             if (_letterB == _scrambled.Length - 1)
             {
-                Debug.Log("Right End Reached");
                 return;
             }
 
-            rightButton.gameObject.transform.Rotate(Vector3.right, rotationVector.x, Space.World);
-            var euler = rightButton.transform.localEulerAngles;
-            euler.y = -90f;
-            euler.z = 90f;
-            rightButton.transform.localEulerAngles = euler;
-            //RuntimeManager.PlayOneShot(rightSound, rightButton.gameObject.transform.position);
+            _rightRotationX += 5f;
+            rightButton.transform.localRotation =
+                Quaternion.Euler(_rightRotationX, -90f, 90f);
+            
+            if (!rightSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(rightSound, rightButton.gameObject.transform.position);
+            }
             _letterA++;
             _letterB++;
             DisplaySelection();
@@ -138,16 +142,42 @@ namespace Puzzle.TVFrequencyMatch
             {
                 button.interactable = false;
             }
-            var initialValue = confirmButton.transform.localPosition;
-            confirmButton.transform.localPosition = new Vector3(initialValue.x, initialValue.y, 0.2f);
+            var initialVector = confirmButton.transform.localPosition;
+            var pressedVector = new Vector3(initialVector.x, initialVector.y, 0.2f);
+            var duration = 0.1f;
+            var elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                confirmButton.transform.localPosition = Vector3.Lerp(initialVector, pressedVector, elapsed / duration);
+                yield return null;
+            }
+            
+            confirmButton.transform.localPosition = pressedVector;
+            
             var chars = _scrambled.ToCharArray();
             (chars[_letterB], chars[_letterA]) = (chars[_letterA], chars[_letterB]);
             _scrambled = new string(chars);
-            //RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
+            if (!confirmSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(confirmSound, confirmButton.gameObject.transform.position);
+            }
             DisplayLetters();
             CheckWin();
+            
             yield return new WaitForSeconds(0.5f);
-            confirmButton.gameObject.transform.localPosition =  initialValue;
+            
+            elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                confirmButton.transform.localPosition = Vector3.Lerp(pressedVector, initialVector, elapsed / duration);
+                yield return null;
+            }
+            
+            confirmButton.transform.localPosition = initialVector;
+            
             foreach (var button in buttons)
             {
                 button.interactable = true;
