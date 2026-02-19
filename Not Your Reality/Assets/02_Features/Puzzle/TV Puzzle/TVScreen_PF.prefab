@@ -364,7 +364,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6335022960008567875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70191583e2dd43c88106808cd54d51cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tvFrequencyMatch: {fileID: 0}
   tvLetters:
   - {fileID: 3556293938212562332}
   - {fileID: 8325100528895962977}
@@ -406,6 +407,31 @@ MonoBehaviour:
   - {fileID: 257552377794116923}
   - {fileID: 8777519341822714647}
   - {fileID: 1924835558113342480}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  confirmButton: {fileID: 0}
+  rotationVector: {x: 0, y: 0, z: 0}
+  leftSound:
+    Guid:
+      Data1: 389121693
+      Data2: 1249058993
+      Data3: -1321252166
+      Data4: 1025211259
+    Path: event:/MoveTvKnob
+  rightSound:
+    Guid:
+      Data1: 389121693
+      Data2: 1249058993
+      Data3: -1321252166
+      Data4: 1025211259
+    Path: event:/MoveTvKnob
+  confirmSound:
+    Guid:
+      Data1: 389121693
+      Data2: 1249058993
+      Data3: -1321252166
+      Data4: 1025211259
+    Path: event:/MoveTvKnob
 --- !u!225 &2635742958582549337
 CanvasGroup:
   m_ObjectHideFlags: 0
