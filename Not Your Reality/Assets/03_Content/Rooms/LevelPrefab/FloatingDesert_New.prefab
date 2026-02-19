@@ -1228,6 +1228,7 @@ Transform:
   - {fileID: 506921365965919302}
   - {fileID: 63803088200385989}
   - {fileID: 8179526621727601306}
+  - {fileID: 7961930506635157250}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6438746422397178773
@@ -1254,13 +1255,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6438746422397178773}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.82, y: 1.25, z: -24.78}
+  m_LocalRotation: {x: -0, y: 0.7696464, z: -0, w: 0.63847035}
+  m_LocalPosition: {x: 18.82, y: 0.955, z: -24.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8508537070984510818}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 100.644, z: 0}
 --- !u!1 &6578238933066887262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2779,6 +2780,68 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &90421620745065335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8508537070984510818}
+    m_Modifications:
+    - target: {fileID: 778976951445827755, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_Name
+      value: SKM_Scarab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -36.487
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.010364487
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.008556333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.77109784
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6365748
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 79.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 178.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+--- !u!4 &7961930506635157250 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8016205442098383989, guid: c18c98e5c76d8fb4a9e40d51183f0ac1, type: 3}
+  m_PrefabInstance: {fileID: 90421620745065335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &533700673854546478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2831,6 +2894,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9e14dcaeb64bff84f9b0a3e8ac535a21, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 71f72edca5bb42b418b7d53158ed26fe, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -5754084199372789682, guid: 71f72edca5bb42b418b7d53158ed26fe, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5171,7 +5238,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 500
+  m_VersionIndex: 533
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -96444,7 +96511,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 32
+  m_VersionIndex: 65
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -97999,23 +98066,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6350519137545859802, guid: 6b54f8932dc1b144b8cf0eacb643d9e3, type: 3}
       propertyPath: unlockSound.Path
-      value: event:/Door Open
+      value: event:/DoorOpen2D Action
       objectReference: {fileID: 0}
     - target: {fileID: 6350519137545859802, guid: 6b54f8932dc1b144b8cf0eacb643d9e3, type: 3}
       propertyPath: unlockSound.Guid.Data1
-      value: 577123290
+      value: -315013329
       objectReference: {fileID: 0}
     - target: {fileID: 6350519137545859802, guid: 6b54f8932dc1b144b8cf0eacb643d9e3, type: 3}
       propertyPath: unlockSound.Guid.Data2
-      value: 1333586409
+      value: 1165618481
       objectReference: {fileID: 0}
     - target: {fileID: 6350519137545859802, guid: 6b54f8932dc1b144b8cf0eacb643d9e3, type: 3}
       propertyPath: unlockSound.Guid.Data3
-      value: -348259649
+      value: 1095284360
       objectReference: {fileID: 0}
     - target: {fileID: 6350519137545859802, guid: 6b54f8932dc1b144b8cf0eacb643d9e3, type: 3}
       propertyPath: unlockSound.Guid.Data4
-      value: 1600281846
+      value: 1601190268
       objectReference: {fileID: 0}
     - target: {fileID: 6350519137545859802, guid: 6b54f8932dc1b144b8cf0eacb643d9e3, type: 3}
       propertyPath: allDoorHandles.Array.size
