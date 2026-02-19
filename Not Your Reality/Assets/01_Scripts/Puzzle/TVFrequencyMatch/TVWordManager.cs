@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Puzzle.TVFrequencyMatch
 {
@@ -23,7 +22,10 @@ namespace Puzzle.TVFrequencyMatch
 
         private void ScrambleWords()
         {
-            var pairs = words.text.Split('\n');
+            var groups = words.text.Split('-');
+            var groupChosen = Random.Range(0, 3);
+            
+            var pairs = groups[groupChosen].Split(',');
             foreach (var pair in pairs)
             {
                 var line = pair.Trim();
