@@ -159,6 +159,21 @@ namespace Player.PlayerMovement.Movement
          _lookInput = Vector2.zero;
       }
 
+      public void SyncLookToCurrentTransform()
+      {
+         
+         float playerRoot = transform.eulerAngles.y;
+
+         float cameraRoot = cameraHolder.localEulerAngles.x;
+         
+         if (cameraRoot > 180f) cameraRoot -= 360f;
+         
+         _xRotation = Mathf.Clamp(cameraRoot, -maxLookAngle, maxLookAngle);
+         
+         transform.rotation = Quaternion.Euler(0f, playerRoot, 0f);
+         cameraHolder.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+      }
+
       private void HandleMovement()
       {
          if (!moveActive)
