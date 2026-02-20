@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{5eddbe86-15c1-4541-931e-df1f4be54b57}">
 		<property name="name">
-			<value>BdR-09</value>
+			<value>BdR-09 - TimeLine</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>
@@ -30,6 +30,9 @@
 		</relationship>
 		<relationship name="timeline">
 			<destination>{616c934b-38a0-462d-9b69-0668e687043a}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{c842054f-3bfe-4790-953f-ac97c5ed08b5}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{0307fe68-6646-4a89-9992-27d2cec12fa4}">
@@ -66,6 +69,11 @@
 	<object class="Timeline" id="{616c934b-38a0-462d-9b69-0668e687043a}">
 		<relationship name="modules">
 			<destination>{65c9c504-bb87-471d-97e7-242aa12d4b73}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{bcd6ec57-7c56-446b-be49-883a551692eb}</destination>
+			<destination>{4d2d5ff4-e4e7-4e71-b82f-1b43e2b62ec0}</destination>
+			<destination>{a187c58a-059a-4443-80c7-b0d4b32a755b}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{4c78d0f0-6baa-48c4-a3bd-acb1714a6dca}">
@@ -111,6 +119,48 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{4c78d0f0-6baa-48c4-a3bd-acb1714a6dca}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{bcd6ec57-7c56-446b-be49-883a551692eb}">
+		<property name="position">
+			<value>0.80000000000000004</value>
+		</property>
+		<property name="name">
+			<value>bdR-09a</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{616c934b-38a0-462d-9b69-0668e687043a}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{fe1e0c8b-e3d0-4fac-9c7c-8c6bcd7aa05e}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{4d2d5ff4-e4e7-4e71-b82f-1b43e2b62ec0}">
+		<property name="position">
+			<value>2</value>
+		</property>
+		<property name="name">
+			<value>bdR-09b</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{616c934b-38a0-462d-9b69-0668e687043a}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{fe1e0c8b-e3d0-4fac-9c7c-8c6bcd7aa05e}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{a187c58a-059a-4443-80c7-b0d4b32a755b}">
+		<property name="position">
+			<value>3.8000000000000003</value>
+		</property>
+		<property name="name">
+			<value>bdR-09c</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{616c934b-38a0-462d-9b69-0668e687043a}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{fe1e0c8b-e3d0-4fac-9c7c-8c6bcd7aa05e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{0e29ef7c-e60d-4fee-9c96-00b9912e4e7c}">
