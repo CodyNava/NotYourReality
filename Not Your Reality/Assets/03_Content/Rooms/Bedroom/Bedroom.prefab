@@ -2985,10 +2985,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &594751195772578375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4628,10 +4632,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &910118593982759072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,10 +5316,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &1011258199565462705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7935,10 +7947,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &1339868268630204364
 GameObject:
   m_ObjectHideFlags: 0
@@ -13537,10 +13553,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &2292208320805087734
 GameObject:
   m_ObjectHideFlags: 0
@@ -17280,10 +17300,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &2955129075413612552
 GameObject:
   m_ObjectHideFlags: 0
@@ -20919,10 +20943,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
-  emitter: {fileID: 0}
-  manager: {fileID: 0}
+  emitter: {fileID: 7060973327860994039}
 --- !u!1 &3488560703802165690
 GameObject:
   m_ObjectHideFlags: 0
@@ -23753,7 +23781,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4653
+  m_VersionIndex: 4617
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -27351,7 +27379,6 @@ GameObject:
   - component: {fileID: 6399091563504950500}
   - component: {fileID: 2375324669517441154}
   - component: {fileID: 1816698458132010017}
-  - component: {fileID: 1473166864595080008}
   m_Layer: 0
   m_Name: BdR-02 VoiceLine
   m_TagString: Untagged
@@ -27441,37 +27468,6 @@ MonoBehaviour:
   sequence: {fileID: 11400000, guid: 30706f02016f9d948b56c4ffdf7794df, type: 2}
   dialogueManager: {fileID: 0}
   eventEmitter: {fileID: 6399091563504950500}
---- !u!114 &1473166864595080008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4140186605423819950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1677492260
-      Data2: 1286890729
-      Data3: 650073496
-      Data4: 1617571719
-    Path: event:/Horror Ambience
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &4140245262394874871
 GameObject:
   m_ObjectHideFlags: 0
@@ -29438,10 +29434,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &4506065114153277523
 GameObject:
   m_ObjectHideFlags: 0
@@ -37626,10 +37626,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &5570202242314999411
 GameObject:
   m_ObjectHideFlags: 0
@@ -37763,10 +37767,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &5582903861526871278
 GameObject:
   m_ObjectHideFlags: 0
@@ -38223,10 +38231,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &5653481594104354701
 GameObject:
   m_ObjectHideFlags: 0
@@ -39717,11 +39729,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -2121268942
-      Data2: 1112910468
-      Data3: 1921867944
-      Data4: -317020982
-    Path: event:/BdR-01 - 2D -TimeLine
+      Data1: -297546449
+      Data2: 1335285044
+      Data3: 486968463
+      Data4: 328362168
+    Path: event:/BdR-01 Neu
   Event: 
   EventPlayTrigger: 3
   EventStopTrigger: 0
@@ -39766,7 +39778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25212f919578b584c82778c1aca9e878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequence: {fileID: 11400000, guid: a04b1640a5179a54fb6c5d85b133c05b, type: 2}
+  sequence: {fileID: 11400000, guid: 8e6eb61ab3b1ca148accb9ae9d24ac35, type: 2}
   dialogueManager: {fileID: 0}
   eventEmitter: {fileID: 4616858373280736}
 --- !u!1 &5779041384776494529
@@ -44532,6 +44544,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03359232, y: 0.22985804, z: 0.20771539}
   m_Center: {x: 0.0000000055879354, y: 0.11517775, z: 0}
+--- !u!1 &6531968728972469808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4722549062977893974}
+  - component: {fileID: 7952241693441904370}
+  - component: {fileID: 8560146149568099096}
+  m_Layer: 0
+  m_Name: VC BdR-06
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4722549062977893974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531968728972469808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4938079456275702625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7952241693441904370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531968728972469808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1629853146
+      Data2: 1278215629
+      Data3: 1178731931
+      Data4: -1114795814
+    Path: event:/BdR-06 - TimeLine
+  Event: 
+  EventPlayTrigger: 3
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8560146149568099096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531968728972469808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25212f919578b584c82778c1aca9e878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequence: {fileID: 11400000, guid: 8c05ef1d0ad7ee440a885500c7c0361c, type: 2}
+  dialogueManager: {fileID: 0}
+  eventEmitter: {fileID: 7952241693441904370}
 --- !u!1 &6559876466009269516
 GameObject:
   m_ObjectHideFlags: 0
@@ -45400,7 +45491,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4261
+  m_VersionIndex: 4225
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -49118,6 +49209,8 @@ Transform:
   - {fileID: 7816409574280261611}
   - {fileID: 5022769279737789388}
   - {fileID: 114579298570223011}
+  - {fileID: 4722549062977893974}
+  - {fileID: 8080947579965493500}
   m_Father: {fileID: 7435360541340912676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7313190304317955925
@@ -51571,10 +51664,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &7839431487623425623
 GameObject:
   m_ObjectHideFlags: 0
@@ -53197,7 +53294,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6231
+  m_VersionIndex: 6195
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -54411,6 +54508,85 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8133000632197628952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8080947579965493500}
+  - component: {fileID: 7060973327860994039}
+  - component: {fileID: 7317995745513500838}
+  m_Layer: 0
+  m_Name: 'VC BdR-09 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8080947579965493500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8133000632197628952}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4938079456275702625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7060973327860994039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8133000632197628952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1591590534
+      Data2: 1161893313
+      Data3: 534716051
+      Data4: 1464591691
+    Path: event:/BdR-09 - TimeLine
+  Event: 
+  EventPlayTrigger: 3
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 1
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7317995745513500838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8133000632197628952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25212f919578b584c82778c1aca9e878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequence: {fileID: 11400000, guid: 3cbbad3d288714540a03fbd95d1e3f79, type: 2}
+  dialogueManager: {fileID: 0}
+  eventEmitter: {fileID: 7060973327860994039}
 --- !u!1 &8134249901862688190
 GameObject:
   m_ObjectHideFlags: 0
@@ -55420,10 +55596,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!1 &8299679055844610004
 GameObject:
   m_ObjectHideFlags: 0
@@ -62726,10 +62906,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 6529544203107889819}
-  manager: {fileID: 0}
 --- !u!4 &2071664774875737853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488528522937156161, guid: d88d1e564fabdb940bb0eb118a8aea30, type: 3}
@@ -66926,7 +67110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2642
+      value: 2645
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -70309,6 +70493,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3309717835360693294, guid: aec1844495a98c8438e705d938d829fb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309717835360693294, guid: aec1844495a98c8438e705d938d829fb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -70755,6 +70943,10 @@ PrefabInstance:
     - target: {fileID: 4060253190644348520, guid: aec1844495a98c8438e705d938d829fb, type: 3}
       propertyPath: m_Name
       value: Basement_Creature_0.5Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060253190644348520, guid: aec1844495a98c8438e705d938d829fb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4060253190644348520, guid: aec1844495a98c8438e705d938d829fb, type: 3}
       propertyPath: m_IsActive
@@ -73175,8 +73367,59 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4060253190644348520, guid: aec1844495a98c8438e705d938d829fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2709293187985136723}
+    - targetCorrespondingSourceObject: {fileID: 4060253190644348520, guid: aec1844495a98c8438e705d938d829fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 618945599037644981}
   m_SourcePrefab: {fileID: 100100000, guid: aec1844495a98c8438e705d938d829fb, type: 3}
+--- !u!1 &2652019706872700298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4060253190644348520, guid: aec1844495a98c8438e705d938d829fb, type: 3}
+  m_PrefabInstance: {fileID: 2059613000473193442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2709293187985136723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652019706872700298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933787afdd28dac40a6be75fca607d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  isHolding: 0
+  multipleUse: 0
+  isInteractable: 1
+  emitter: {fileID: 7952241693441904370}
+  manager: {fileID: 0}
+--- !u!65 &618945599037644981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652019706872700298}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.6902173, z: 4.658265}
+  m_Center: {x: 0.0000010046566, y: 0.84510815, z: -0.15116908}
 --- !u!4 &3424439357720479536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3680349570454318290, guid: aec1844495a98c8438e705d938d829fb, type: 3}
@@ -80518,10 +80761,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!136 &6108159288436400046
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -96554,10 +96801,14 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  lockPlayerUntilEmitterFinished: 0
+  useVignette: 1
+  inspectVignetteIntensity: 0.25
+  lockedVignetteIntensity: 0.4
+  vignetteLerpSpeed: 4
   bedroomUnlock: {fileID: 638755747091210779}
   playerLayerMask: 9
   emitter: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!65 &5131471945218981292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97991,7 +98242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2642
+      value: 2645
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,84 +5,90 @@ using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using FMODUnity;
-using Interactions.Interaction_System.Interactions.Door_Rework;
+using FMOD.Studio;
 using Puzzle.Bedroom;
 
 namespace Interactions.Interaction_System.Interactions
 {
     public class InspectableItem : InteractableBase
     {
-        [Tooltip("The speed at which the Item goes into focus")]
+        [Header("Inspect Settings")]
         [SerializeField] private float duration = 0.25f;
+        [SerializeField] private float sensitivity = 3f;
+        [SerializeField] private float clampMin = -80f;
+        [SerializeField] private float clampMax = 80f;
+        [SerializeField] private bool rotationClamping = true;
 
-        [SerializeField] private float sensitivity;
-        [SerializeField] private float clampMin;
-        [SerializeField] private float clampMax;
-        [SerializeField] private bool rotationClamping;
+        [Header("Audio Lock")]
+        [SerializeField] private bool lockPlayerUntilEmitterFinished;
+
+        [Header("Vignette Settings")]
+        [SerializeField] private bool useVignette = true;
+        [SerializeField][Range(0f, 1f)] private float inspectVignetteIntensity = 0.25f;
+        [SerializeField][Range(0f, 1f)] private float lockedVignetteIntensity = 0.4f;
+        [SerializeField] private float vignetteLerpSpeed = 4f;
+
+        [Header("References")]
         [SerializeField] private BedroomUnlock bedroomUnlock;
-
-        [Tooltip("The LayerMask used by the Player")]
         [SerializeField] private int playerLayerMask = 9;
-
-        private float _horizontal;
-        private float _vertical;
-        private Volume _volume;
-        private Camera _cam;
-        private Transform _anchorTransform;
-        private Quaternion _anchorRotation;
-        private bool _isInspecting;
-        private Vignette _vignette;
-        private Vector3 _transform;
-        private Quaternion _rotation;
-        private Coroutine _inspect;
-
-        private Quaternion _baseRotation;
-
-        private Transform _pivot;
-        private Transform _originalParent;
-        private Vector3 _itemLocalPosInPivot;
 
         [Header("FMOD")]
         [SerializeField] private StudioEventEmitter emitter;
 
-        [SerializeField] private RoomVoiceManager manager; 
+        private float _horizontal;
+        private float _vertical;
+
+        private bool _isInspecting;
+        private bool _audioFinished;
+
+        private Volume _volume;
+        private Vignette _vignette;
+        private float _targetVignette;
+
+        private Camera _cam;
+
+        private Vector3 _startPos;
+        private Quaternion _startRot;
+
+        private Transform _pivot;
+        private Transform _originalParent;
+        private Vector3 _itemLocalPosInPivot;
+        private Quaternion _baseRotation;
+
+        private Coroutine _inspectRoutine;
 
         private void Awake()
         {
-            StartCoroutine(WaitForLoadingCoreScripts());
+            StartCoroutine(Init());
         }
 
-        private void OnEnable()
+        private IEnumerator Init()
         {
-            StartCoroutine(WaitForLoadingCoreScripts());
-        }
+            yield return new WaitForSeconds(0.3f);
 
-        private IEnumerator WaitForLoadingCoreScripts()
-        {
-            yield return new WaitForSeconds(0.5f);
-            if (InputManager.Input.Inspection.enabled)
-            {
-                InputManager.Input.Inspection.Disable();
-            }
             _cam = Camera.main;
-            _transform = transform.position;
-            _rotation = transform.rotation;
+            _startPos = transform.position;
+            _startRot = transform.rotation;
+
             _volume = FindFirstObjectByType<Volume>();
-            _volume.profile.TryGet(out _vignette);
+
+            if (_volume && _volume.profile.TryGet(out _vignette))
+                _vignette.intensity.value = 0f;
+
             TooltipMessage = "Press E to Inspect";
         }
 
         public override void OnInteract()
         {
             base.OnInteract();
-            if (_inspect != null) StopCoroutine(_inspect);
-            _inspect = StartCoroutine(!_isInspecting ? Inspect() : Release());
+
+            if (_inspectRoutine != null)
+                StopCoroutine(_inspectRoutine);
+
+            _inspectRoutine = StartCoroutine(!_isInspecting ? Inspect() : TryRelease());
 
             if (emitter != null)
-                emitter.Play(); 
-
-            if (manager != null)
-                manager.OnVoiceTriggered(gameObject); 
+                emitter.Play();
 
             Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, true);
         }
@@ -90,10 +96,13 @@ namespace Interactions.Interaction_System.Interactions
         private void Update()
         {
             RotateItem();
+
             if (_isInspecting && InputManager.Input.Inspection.OnInteract.WasPressedThisFrame())
             {
-                StartCoroutine(Release());
+                StartCoroutine(TryRelease());
             }
+
+            UpdateVignette();
         }
 
         private void RotateItem()
@@ -102,9 +111,12 @@ namespace Interactions.Interaction_System.Interactions
 
             var rawMouse = InputManager.Input.Inspection.Look.ReadValue<Vector2>();
             rawMouse *= sensitivity;
+
             _horizontal += rawMouse.x;
             _vertical -= rawMouse.y;
-            if (rotationClamping) _vertical = Mathf.Clamp(_vertical, clampMin, clampMax);
+
+            if (rotationClamping)
+                _vertical = Mathf.Clamp(_vertical, clampMin, clampMax);
 
             if (_pivot)
             {
@@ -116,93 +128,137 @@ namespace Interactions.Interaction_System.Interactions
         private IEnumerator Inspect()
         {
             TooltipMessage = "";
-            _anchorTransform = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
-            _anchorRotation = _cam.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.CompareTag("Inspection Anchor"))!.rotation;
+            _audioFinished = false;
+
             InputManager.Input.Player.Disable();
+            InputManager.Input.Inspection.Enable();
 
-            CreatePivotAtBoundsCenter();
+            CreatePivot();
 
-            _vignette.intensity.value = 0.2f;
-            var t = 0f;
-            while (t < duration * 0.2f)
+            Transform anchor = _cam.GetComponentsInChildren<Transform>(true)
+                .FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
+
+            float t = 0f;
+            while (t < duration)
             {
                 t += Time.deltaTime;
                 float a = t / duration;
-                if (_anchorTransform)
-                    _pivot.position = Vector3.Lerp(_pivot.position, _anchorTransform.position, a);
-                if (_pivot)
-                    _pivot.rotation = Quaternion.Lerp(_pivot.rotation, _anchorRotation, a);
+
+                if (anchor)
+                {
+                    _pivot.position = Vector3.Lerp(_pivot.position, anchor.position, a);
+                    _pivot.rotation = Quaternion.Lerp(_pivot.rotation, anchor.rotation, a);
+                }
+
                 yield return null;
             }
 
             _isInspecting = true;
-            InputManager.Input.Inspection.Enable();
-            _baseRotation = _pivot ? _pivot.rotation : transform.rotation;
-            _horizontal = 0;
-            _vertical = 0;
+            _baseRotation = _pivot.rotation;
+
+            if (useVignette)
+                _targetVignette = inspectVignetteIntensity;
+
+            if (lockPlayerUntilEmitterFinished)
+                StartCoroutine(WaitForEmitter());
         }
 
+        private IEnumerator TryRelease()
+        {
+            if (lockPlayerUntilEmitterFinished && !_audioFinished)
+                yield break;
+
+            yield return StartCoroutine(Release());
+        }
 
         private IEnumerator Release()
         {
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
-            InputManager.Input.Player.Enable();
+
             InputManager.Input.Inspection.Disable();
-            _vignette.intensity.value = 0f;
 
-            if (_pivot)
+            float t = 0f;
+            while (t < duration)
             {
-                var targetPivotRot = _rotation;
-                var targetPivotPos = _transform - targetPivotRot * _itemLocalPosInPivot;
-                var t = 0f;
-                while (t < duration)
-                {
-                    t += Time.deltaTime;
-                    float a = t / duration;
-                    _pivot.position = Vector3.Lerp(_pivot.position, targetPivotPos, a);
-                    _pivot.rotation = Quaternion.Lerp(_pivot.rotation, targetPivotRot, a);
-                    yield return null;
-                }
+                t += Time.deltaTime;
+                float a = t / duration;
 
-                if (bedroomUnlock != null)
-                {
-                    bedroomUnlock.AddItem(this);
-                }
-                DestroyPivot();
+                _pivot.position = Vector3.Lerp(_pivot.position,
+                    _startPos - _startRot * _itemLocalPosInPivot, a);
+
+                _pivot.rotation = Quaternion.Lerp(_pivot.rotation, _startRot, a);
+
+                yield return null;
             }
+
+            if (bedroomUnlock != null)
+                bedroomUnlock.AddItem(this);
+
+            DestroyPivot();
+
+            InputManager.Input.Player.Enable();
             Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, false);
+
+            _targetVignette = 0f;
         }
 
-        private void CreatePivotAtBoundsCenter()
+        private IEnumerator WaitForEmitter()
+        {
+            if (emitter == null)
+            {
+                _audioFinished = true;
+                yield break;
+            }
+
+            if (useVignette)
+                _targetVignette = lockedVignetteIntensity;
+
+            var instance = emitter.EventInstance;
+
+            PLAYBACK_STATE state;
+            instance.getPlaybackState(out state);
+
+            while (state != PLAYBACK_STATE.STOPPED)
+            {
+                yield return null;
+                instance.getPlaybackState(out state);
+            }
+
+            _audioFinished = true;
+
+            if (useVignette)
+                _targetVignette = inspectVignetteIntensity;
+        }
+
+        private void UpdateVignette()
+        {
+            if (!useVignette || _vignette == null) return;
+
+            _vignette.intensity.value = Mathf.Lerp(
+                _vignette.intensity.value,
+                _targetVignette,
+                Time.deltaTime * vignetteLerpSpeed
+            );
+        }
+
+        private void CreatePivot()
         {
             if (_pivot) return;
 
             _originalParent = transform.parent;
 
-            Vector3 center = transform.position;
-            var renderers = GetComponentsInChildren<Renderer>();
-            if (renderers != null && renderers.Length > 0)
-            {
-                Bounds b = renderers[0].bounds;
-                for (int i = 1; i < renderers.Length; i++)
-                    b.Encapsulate(renderers[i].bounds);
-                center = b.center;
-            }
+            Bounds b = GetComponentsInChildren<Renderer>()[0].bounds;
+            foreach (var r in GetComponentsInChildren<Renderer>())
+                b.Encapsulate(r.bounds);
 
-            var go = new GameObject($"{name}_InspectPivot");
-            _pivot = go.transform;
-
-            _pivot.position = center;
+            _pivot = new GameObject($"{name}_InspectPivot").transform;
+            _pivot.position = b.center;
             _pivot.rotation = transform.rotation;
-
             _pivot.SetParent(_originalParent, true);
 
             transform.SetParent(_pivot, true);
-
             _itemLocalPosInPivot = transform.localPosition;
-
-            _baseRotation = _pivot.rotation;
         }
 
         private void DestroyPivot()
@@ -210,11 +266,8 @@ namespace Interactions.Interaction_System.Interactions
             if (!_pivot) return;
 
             transform.SetParent(_originalParent, true);
-
-            var pivotGo = _pivot.gameObject;
+            Destroy(_pivot.gameObject);
             _pivot = null;
-
-            Destroy(pivotGo);
         }
     }
 }
