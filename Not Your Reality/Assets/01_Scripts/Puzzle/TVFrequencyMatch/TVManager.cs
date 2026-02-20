@@ -27,6 +27,9 @@ namespace Puzzle.TVFrequencyMatch
         [SerializeField] private EventReference rightSound;
         [SerializeField] private EventReference confirmSound;
 
+        [SerializeField] private EventReference doneSound;
+
+
         private string _original;
         private string _scrambled;
 
@@ -187,6 +190,7 @@ namespace Puzzle.TVFrequencyMatch
         private void CheckWin()
         {
             if (_scrambled != _original) return;
+
             foreach (var button in buttons)
             {
                 button.interactable = false;
@@ -197,8 +201,14 @@ namespace Puzzle.TVFrequencyMatch
                 letter.GetComponent<TextMeshProUGUI>().color = Color.green;
             }
 
+            if (!doneSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(doneSound, transform.position);
+            }
+
             Completed = true;
             tvFrequencyMatch.Status();
         }
+
     }
 }
