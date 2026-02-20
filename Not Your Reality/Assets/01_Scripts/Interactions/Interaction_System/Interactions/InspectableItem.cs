@@ -59,12 +59,13 @@ namespace Interactions.Interaction_System.Interactions
 
         private void Awake()
         {
-            StartCoroutine(Init());
+            //StartCoroutine(Init());
+            Init();
         }
 
-        private IEnumerator Init()
+        private void Init()
         {
-            yield return new WaitForSeconds(0.3f);
+            //yield return new WaitForSeconds(0.21f);
 
             _cam = Camera.main;
             _startPos = transform.position;

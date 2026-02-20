@@ -23,6 +23,8 @@ public class BedroomTrigger : MonoBehaviour
             propSets[i].SetActive(false);
         }
     }
+    
+    
 
     private void OnTriggerEnter(Collider other)
     {
