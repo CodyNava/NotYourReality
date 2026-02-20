@@ -98,7 +98,7 @@ namespace Puzzle.Desert_Reflection_Room
             }
          }
 
-         mirrorLightReflection.CheckWin();
+        // mirrorLightReflection.CheckWin();
          if (_reflectionPoints.Count > 1)
          {
             var lastPoint = _reflectionPoints[^1];

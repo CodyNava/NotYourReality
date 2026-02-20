@@ -13,5 +13,5 @@ namespace Puzzle.Desert_Reflection_Room
         {
             hits.Add(hit);
         }
-    }
+    }       
 }

@@ -8,6 +8,8 @@ namespace Puzzle.Desert_Reflection_Room
     public class MirrorLightReflection : MonoBehaviour
     {
         private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+        private static readonly int Active = Animator.StringToHash("Activate");
+        private static readonly int Inactive = Animator.StringToHash("Deactivate");
 
         [Tooltip("The light source of this riddle")]
         [SerializeField] private LightSource lightSource;
@@ -55,14 +57,19 @@ namespace Puzzle.Desert_Reflection_Room
                 var hit = goals[i].BeenHit();
                 var mat = _targetRenderer[i].materials;
 
+                   var goal = goals[i].GetComponent<Animator>();
                 if (hit)
                 {
                     mat[1].SetColor(EmissionColor, hitColor * lightIntensity);
-                    goals[i].GetComponent<Animator>().enabled = true;
+                    goal.ResetTrigger(Inactive);
+                    goal.SetTrigger(Active);
+                    
                 }
                 else
                 {
                     mat[1].SetColor(EmissionColor, Color.black);
+                    goal.ResetTrigger(Active);
+                    goal.SetTrigger(Inactive);
                 }
             }
 
@@ -70,7 +77,6 @@ namespace Puzzle.Desert_Reflection_Room
             if (!AllHit() || _puzzleCompleted) return;
             _puzzleCompleted = true;
             door.enabled = true;
-
             RuntimeManager.PlayOneShot(unlockSound, transform.position);
         }
 
