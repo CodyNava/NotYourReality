@@ -98,11 +98,6 @@ namespace Puzzle.Desert_Reflection_Room
 
                                 break;
 
-                            case "Death Trap":
-                                StartCoroutine(mirrorLightReflection.ResetRiddle());
-                                _continueTracing = false;
-                                break;
-
                             case "Skull":
                                 _continueTracing = false;
                                 _otherSkull = hit.collider.GetComponent<Skull>();

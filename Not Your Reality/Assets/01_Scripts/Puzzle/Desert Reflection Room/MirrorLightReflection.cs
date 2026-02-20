@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
-using Interactions.Interaction_System.Interactions.Door_Rework;
 using UnityEngine;
 
 namespace Puzzle.Desert_Reflection_Room
@@ -18,7 +16,7 @@ namespace Puzzle.Desert_Reflection_Room
         [SerializeField] private ReflectionGoal reflectionGoal;
 
         [Tooltip("The door that is supposed to be activated once the Goal is hit")]
-        [SerializeField] private DoorHandle door;
+        [SerializeField] private Animator door;
 
         [Tooltip("The door unlock sound once the puzzle is finished")]
         [SerializeField] private EventReference unlockSound;
@@ -29,13 +27,7 @@ namespace Puzzle.Desert_Reflection_Room
         [Range(50f, 100f)]
         [SerializeField] private float lightIntensity = 50f;
 
-
-        [SerializeField] private List<GameObject> allDoorHandles;
-
         private bool _puzzleCompleted;
-        private readonly List<GameObject> _objectsToReset = new();
-        private readonly List<Vector3> _initialPosition = new();
-        private readonly List<Quaternion> _initialRotation = new();
         private readonly List<Renderer> _targetRenderer = new();
         public List<ReflectionGoal> goals = new();
 
@@ -43,21 +35,14 @@ namespace Puzzle.Desert_Reflection_Room
         {
             foreach (Transform child in transform)
             {
-                _initialPosition.Add(child.position);
-                _initialRotation.Add(child.rotation);
-                _objectsToReset.Add(child.gameObject);
                 if (!child.CompareTag("Goal")) continue;
                 goals.Add(child.gameObject.GetComponent<ReflectionGoal>());
-                _targetRenderer.Add(child.gameObject.GetComponent<Renderer>());
-            }
-
-            if (!door) return;
-            foreach (var handle in allDoorHandles)
-            {
-                handle.layer = LayerMask.NameToLayer("Default");
-                if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
+                foreach (Transform child2 in child)
                 {
-                    doorHandle.IsInteractable = false;
+                    if (child2.TryGetComponent(out Renderer rend))
+                    {
+                        _targetRenderer.Add(rend);
+                    }
                 }
             }
         }
@@ -68,33 +53,23 @@ namespace Puzzle.Desert_Reflection_Room
             for (int i = 0; i < goals.Count; i++)
             {
                 var hit = goals[i].BeenHit();
-                var mat = _targetRenderer[i].material;
+                var mat = _targetRenderer[i].materials;
 
                 if (hit)
                 {
-                    mat.EnableKeyword("_EMISSION");
-                    mat.SetColor(EmissionColor, hitColor * lightIntensity);
+                    mat[1].SetColor(EmissionColor, hitColor * lightIntensity);
+                    goals[i].GetComponent<Animator>().enabled = true;
                 }
                 else
                 {
-                    mat.SetColor(EmissionColor, Color.black);
+                    mat[1].SetColor(EmissionColor, Color.black);
                 }
             }
 
             if (!door) return;
-
-            //todo: more feedback for winning
-
             if (!AllHit() || _puzzleCompleted) return;
             _puzzleCompleted = true;
-            foreach (var handle in allDoorHandles)
-            {
-                handle.layer = LayerMask.NameToLayer("Interactable");
-                if (handle.TryGetComponent<DoorHandle>(out var doorHandle))
-                {
-                    doorHandle.IsInteractable = true;
-                }
-            }
+            door.enabled = true;
 
             RuntimeManager.PlayOneShot(unlockSound, transform.position);
         }
@@ -105,17 +80,6 @@ namespace Puzzle.Desert_Reflection_Room
             return winCounter == goals.Count;
         }
 
-        public IEnumerator ResetRiddle()
-        {
-            for (var i = 0; i < _objectsToReset.Count; i++)
-            {
-                _objectsToReset[i].transform.position = _initialPosition[i];
-                _objectsToReset[i].transform.rotation = _initialRotation[i];
-                yield return null;
-            }
-
-            reflectionGoal.ClearHits();
-        }
     }
 
 }
