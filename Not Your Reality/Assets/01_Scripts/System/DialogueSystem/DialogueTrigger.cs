@@ -29,7 +29,7 @@ namespace System.DialogueSystem
 
       private void Start()
       {
-         dialogueManager = FindObjectOfType<DialogueManager>();
+         dialogueManager = FindFirstObjectByType<DialogueManager>();
       }
 
       private void Trigger()

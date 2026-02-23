@@ -49,9 +49,7 @@ namespace Puzzle.Bedroom
       [SerializeField, Range(0f, 1f)] private float fogMaxDensity = 1f;
 
       [Header("Fade")]
-      [SerializeField] private float fadeToBlackTime = 0.8f;
       [SerializeField] private float blackHoldTime = 1.5f;
-      [SerializeField] private float fadeFromBlackTime = 0.8f;
 
       [Header("Stand Up")]
       [SerializeField] private float standUpDelay = 0.8f;

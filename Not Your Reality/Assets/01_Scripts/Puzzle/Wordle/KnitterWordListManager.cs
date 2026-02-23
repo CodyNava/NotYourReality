@@ -58,7 +58,6 @@ namespace Puzzle.Wordle
         {
             if (bundle.Count != 6)
             {
-                Debug.LogWarning("[KNITTER] Ignored bundle with wrong size: " + bundle.Count);
                 return;
             }
 

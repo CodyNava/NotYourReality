@@ -8,8 +8,8 @@ namespace Interactions.Interaction_System.Interactions
 {
     public class MoveToInspectableItem : InteractableBase
     {
-        [Tooltip("The speed at which the Item goes into focus")]
-        [SerializeField] private float duration = 1f;
+        //[Tooltip("The speed at which the Item goes into focus")]
+        //[SerializeField] private float duration = 1f;
         
         [Tooltip("The camera for this inspectable item")]
         [SerializeField] private GameObject inspectCamera;

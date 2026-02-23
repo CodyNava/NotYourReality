@@ -35,8 +35,8 @@ namespace Puzzle.Wordle
         [SerializeField] private Color incorrectColor = Color.red;
         [SerializeField] private Color defaultColor = Color.white;
 
-        [Header("Animation")]
-        [SerializeField] private float revealDuration = 1.5f;
+        //[Header("Animation")]
+        //[SerializeField] private float revealDuration = 1.5f;
 
         [SerializeField] private DoorHandle door;
         [SerializeField] private List<GameObject> doorHandles;
