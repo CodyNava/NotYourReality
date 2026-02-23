@@ -1207,7 +1207,6 @@ Transform:
   - {fileID: 3053338920603204016}
   - {fileID: 2345745168827259221}
   - {fileID: 6916946747146235734}
-  - {fileID: 9023666715587181081}
   - {fileID: 4870239378180593495}
   - {fileID: 6405748753361540142}
   - {fileID: 1287915329361854164}
@@ -2987,6 +2986,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 60
   lockPlayerUntilEmitterFinished: 1
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -4634,6 +4634,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 60
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -5197,13 +5198,12 @@ GameObject:
   - component: {fileID: 1033901339701814706}
   - component: {fileID: 7235385570548357676}
   - component: {fileID: 5112664324072449607}
-  - component: {fileID: 4629649193658548963}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnergyCan_Low_PF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2298039243058275522
 Transform:
@@ -5296,36 +5296,6 @@ CapsuleCollider:
   m_Height: 0.19006562
   m_Direction: 1
   m_Center: {x: 0, y: 0.09572151, z: -0.00043359026}
---- !u!114 &4629649193658548963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992126457696190635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  lockPlayerUntilEmitterFinished: 0
-  useVignette: 1
-  inspectVignetteIntensity: 0.25
-  lockedVignetteIntensity: 0.4
-  vignetteLerpSpeed: 4
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
-  emitter: {fileID: 0}
 --- !u!1 &1011258199565462705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7722,13 +7692,12 @@ GameObject:
   - component: {fileID: 6642282053499538893}
   - component: {fileID: 5989840797729405889}
   - component: {fileID: 8956557009510337476}
-  - component: {fileID: 1073237370108362882}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Bookbig_low_PF (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7574033863343531555
 Transform:
@@ -7819,36 +7788,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03359232, y: 0.22985804, z: 0.20771539}
   m_Center: {x: 0.0000000055879354, y: 0.11517775, z: 0}
---- !u!114 &1073237370108362882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321650138901401099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  lockPlayerUntilEmitterFinished: 0
-  useVignette: 1
-  inspectVignetteIntensity: 0.25
-  lockedVignetteIntensity: 0.4
-  vignetteLerpSpeed: 4
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
-  emitter: {fileID: 0}
 --- !u!1 &1339868268630204364
 GameObject:
   m_ObjectHideFlags: 0
@@ -13294,13 +13233,12 @@ GameObject:
   - component: {fileID: 9204877940731595275}
   - component: {fileID: 4929903948210441545}
   - component: {fileID: 7209999334318406697}
-  - component: {fileID: 8071408651170225900}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Bedroom_Lamp_small_PF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5307460419004494443
 Transform:
@@ -13396,36 +13334,6 @@ CapsuleCollider:
   m_Height: 0.39216658
   m_Direction: 1
   m_Center: {x: 0, y: 0.19608329, z: 0}
---- !u!114 &8071408651170225900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264417538654433028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  lockPlayerUntilEmitterFinished: 0
-  useVignette: 1
-  inspectVignetteIntensity: 0.25
-  lockedVignetteIntensity: 0.4
-  vignetteLerpSpeed: 4
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
-  emitter: {fileID: 0}
 --- !u!1 &2292208320805087734
 GameObject:
   m_ObjectHideFlags: 0
@@ -15290,8 +15198,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1053892, y: 1.6322663, z: 0.42178977}
-  m_Center: {x: 0, y: 0.81494665, z: 0}
+  m_Size: {x: 1.1053892, y: 1.9255604, z: 0.4819762}
+  m_Center: {x: -0.0000000013236008, y: 0.6683004, z: 0.030096162}
 --- !u!1 &2673400967948411074
 GameObject:
   m_ObjectHideFlags: 0
@@ -17165,6 +17073,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 60
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -20779,6 +20688,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 40
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -23617,7 +23527,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4641
+  m_VersionIndex: 4710
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -29250,13 +29160,12 @@ GameObject:
   - component: {fileID: 2174766049535126988}
   - component: {fileID: 1495428929587163686}
   - component: {fileID: 6535216753745209108}
-  - component: {fileID: 6064025351785314400}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnergyCan_Low_PF (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4284739721443357802
 Transform:
@@ -29349,36 +29258,6 @@ CapsuleCollider:
   m_Height: 0.19006562
   m_Direction: 1
   m_Center: {x: 0, y: 0.09572151, z: -0.00043359026}
---- !u!114 &6064025351785314400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495552733868408356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  lockPlayerUntilEmitterFinished: 0
-  useVignette: 1
-  inspectVignetteIntensity: 0.25
-  lockedVignetteIntensity: 0.4
-  vignetteLerpSpeed: 4
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
-  emitter: {fileID: 0}
 --- !u!1 &4506065114153277523
 GameObject:
   m_ObjectHideFlags: 0
@@ -37336,13 +37215,12 @@ GameObject:
   - component: {fileID: 8111833720941901502}
   - component: {fileID: 6302772850664538740}
   - component: {fileID: 5449698445890185826}
-  - component: {fileID: 1962216024010923779}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Bookbig_low_PF (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5133222175767656731
 Transform:
@@ -37433,36 +37311,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03359232, y: 0.22985804, z: 0.20771539}
   m_Center: {x: 0.0000000055879354, y: 0.11517775, z: 0}
---- !u!114 &1962216024010923779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5509889108794254241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  lockPlayerUntilEmitterFinished: 0
-  useVignette: 1
-  inspectVignetteIntensity: 0.25
-  lockedVignetteIntensity: 0.4
-  vignetteLerpSpeed: 4
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
-  emitter: {fileID: 0}
 --- !u!1 &5570202242314999411
 GameObject:
   m_ObjectHideFlags: 0
@@ -37596,6 +37444,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 60
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -38060,6 +37909,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 40
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -39412,7 +39262,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5734922775174258604}
-  m_Mesh: {fileID: 6214075564158970103, guid: 088d0a00279165545bc816ad08c81f2b, type: 3}
+  m_Mesh: {fileID: 6214075564158970103, guid: e23de785033acd04f83047e96408edd9, type: 3}
 --- !u!23 &2627212216645865184
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39436,7 +39286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2ca238c3c757e114395fc303f8eddce2, type: 2}
+  - {fileID: -6478536213147159724, guid: e23de785033acd04f83047e96408edd9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39815,7 +39665,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3285296276431711905
 Transform:
@@ -40153,9 +40003,7 @@ MonoBehaviour:
   fogInTime: 1.2
   fogOutTime: 1
   fogMaxDensity: 0
-  fadeToBlackTime: 0.01
   blackHoldTime: 3
-  fadeFromBlackTime: 1.5
   standUpDelay: 1
 --- !u!114 &6720421273936394400
 MonoBehaviour:
@@ -43926,7 +43774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7886719042611136372
 Transform:
   m_ObjectHideFlags: 0
@@ -45402,7 +45250,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4249
+  m_VersionIndex: 4318
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -49034,7 +48882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4938079456275702625
 Transform:
   m_ObjectHideFlags: 0
@@ -51546,6 +51394,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 40
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -53176,7 +53025,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6219
+  m_VersionIndex: 6288
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -55478,6 +55327,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 60
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -66471,7 +66321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2627
+      value: 2636
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -67145,6 +66995,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 70
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -71349,7 +71200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2666
+      value: 2699
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -78615,7 +78466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2666
+      value: 2675
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79856,7 +79707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2624
+      value: 2630
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81730,7 +81581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2666
+      value: 2675
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -83270,7 +83121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2627
+      value: 2636
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -89472,6 +89323,7 @@ MonoBehaviour:
   clampMin: 0
   clampMax: 0
   rotationClamping: 0
+  zoomFOV: 60
   lockPlayerUntilEmitterFinished: 0
   useVignette: 1
   inspectVignetteIntensity: 0.25
@@ -99335,7 +99187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2624
+      value: 2630
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -105697,146 +105549,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2874808577274121475, guid: 7ef148a87c4f7504f8c611fa0467f58c, type: 3}
   m_PrefabInstance: {fileID: 8563896135443863119}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8595307312426497457
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3671456884730947810}
-    m_Modifications:
-    - target: {fileID: 88378508096115986, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_Name
-      value: Mug_Low (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 88378508096115986, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.040000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.040000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.169
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.429
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.179
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9994748
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.000000028328595
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.032404885
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.000000045937504
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 88378508096115986, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8501679294246201961}
-    - targetCorrespondingSourceObject: {fileID: 88378508096115986, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5131471945218981292}
-  m_SourcePrefab: {fileID: 100100000, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
---- !u!1 &8534692641448042659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 88378508096115986, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-  m_PrefabInstance: {fileID: 8595307312426497457}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8501679294246201961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534692641448042659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2839bcbb3864e0b851adcb8105445c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  duration: 0.25
-  sensitivity: 0.2
-  clampMin: 0
-  clampMax: 0
-  rotationClamping: 0
-  lockPlayerUntilEmitterFinished: 0
-  useVignette: 1
-  inspectVignetteIntensity: 0.25
-  lockedVignetteIntensity: 0.4
-  vignetteLerpSpeed: 4
-  bedroomUnlock: {fileID: 638755747091210779}
-  playerLayerMask: 9
-  emitter: {fileID: 0}
---- !u!65 &5131471945218981292
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534692641448042659}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.9960535, y: 2.011507, z: 2.8595152}
-  m_Center: {x: 0.00050726533, y: 1.0057755, z: -0.4381811}
---- !u!4 &9023666715587181081 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 752711798207631272, guid: ae5c9246fe267414bbf47f59b33696de, type: 3}
-  m_PrefabInstance: {fileID: 8595307312426497457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8639398443705494444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107244,7 +106956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2666
+      value: 2699
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

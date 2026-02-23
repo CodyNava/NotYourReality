@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8135908857100556695}
   - component: {fileID: 5167485459994379641}
   - component: {fileID: 920389009844806275}
+  - component: {fileID: 8975960829297517367}
   m_Layer: 0
   m_Name: Record
   m_TagString: Untagged
@@ -134,6 +135,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 1, z: 6.123235e-17}
   m_Center: {x: -0.0000076293945, y: 0, z: 0}
+--- !u!114 &8975960829297517367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14265563872745055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933787afdd28dac40a6be75fca607d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  isHolding: 0
+  multipleUse: 0
+  isInteractable: 1
+  emitter: {fileID: 5857289752393673358}
+  manager: {fileID: 2909009956888252397}
 --- !u!1 &195215273770228961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,7 +1564,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8009
+  m_VersionIndex: 8021
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2037,7 +2057,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7824
+  m_VersionIndex: 7836
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2405,7 +2425,6 @@ GameObject:
   - component: {fileID: 6131625719375746828}
   - component: {fileID: 7588678212478783163}
   - component: {fileID: 6610790200387674341}
-  - component: {fileID: 7620477703574318354}
   m_Layer: 6
   m_Name: Table
   m_TagString: Untagged
@@ -2422,8 +2441,8 @@ Transform:
   m_GameObject: {fileID: 3209158784835257380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.375993, y: 0.42099953, z: 2.7510006}
-  m_LocalScale: {x: 0.71126, y: 1, z: 1}
+  m_LocalPosition: {x: -6.376, y: 0.42099953, z: 2.7369}
+  m_LocalScale: {x: 0.8898757, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4537846848321233522}
@@ -2459,7 +2478,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4218046cb163c4b458d1db5ac9de9dff, type: 2}
+  - {fileID: 2100000, guid: 58c65c0716f83944ead02574ea3e6be0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2527,25 +2546,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.44, y: 1, z: 6.123236e-17}
   m_Center: {x: -0.0000019073486, y: 0, z: -0.0000076293945}
---- !u!114 &7620477703574318354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3209158784835257380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 933787afdd28dac40a6be75fca607d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  isHolding: 0
-  multipleUse: 0
-  isInteractable: 1
-  emitter: {fileID: 5857289752393673358}
-  manager: {fileID: 2909009956888252397}
 --- !u!1 &3387561912426528238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,7 +3579,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8236
+  m_VersionIndex: 8248
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3907,7 +3907,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5580
+  m_VersionIndex: 5592
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4674,7 +4674,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7173
+  m_VersionIndex: 7185
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5315,7 +5315,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5320
+  m_VersionIndex: 5332
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6022,7 +6022,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6016
+  m_VersionIndex: 6028
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6755,7 +6755,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5320
+  m_VersionIndex: 5332
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8368,7 +8368,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2797
+  m_VersionIndex: 2809
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8618,7 +8618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2652
+      value: 2664
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Tangents.Array.data[0].x
@@ -9612,7 +9612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2797
+      value: 2809
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Faces.Array.size
