@@ -131,7 +131,7 @@ namespace Puzzle.Wordle
         private IEnumerator Inspect()
         {
             _isInspecting = true;
-            InteractionUI.Instance.Show();
+            InteractionUI.Instance.Show("Inspection");
             TooltipMessage = "";
             _anchorTransform = _cam.GetComponentsInChildren<Transform>(true)
                 .FirstOrDefault(t => t.CompareTag("Inspection Anchor"));

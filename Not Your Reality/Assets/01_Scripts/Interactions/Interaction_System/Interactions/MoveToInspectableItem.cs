@@ -1,6 +1,7 @@
 ﻿using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using Player.PlayerMovement.Movement;
+using UI.Menu;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -54,6 +55,7 @@ namespace Interactions.Interaction_System.Interactions
         
         private void Inspect()
         {
+            InteractionUI.Instance.Show("TV");
             canvasGroup.blocksRaycasts = true;
             InputManager.Input.Player.Disable();
             InputManager.Input.UI.Disable();
@@ -71,6 +73,7 @@ namespace Interactions.Interaction_System.Interactions
         private void Release()
         {
             canvasGroup.blocksRaycasts = false;
+            InteractionUI.Instance.Hide();
             inspectCamera.SetActive(false);
             _playerController.CameraActive = true;
             Cursor.visible = false;

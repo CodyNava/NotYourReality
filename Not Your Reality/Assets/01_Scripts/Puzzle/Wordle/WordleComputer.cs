@@ -1,5 +1,6 @@
 using Interactions.Interaction_System.Interaction_Base_Class;
 using Player.PlayerMovement.Movement;
+using UI.Menu;
 using UnityEngine;
 
 namespace Puzzle.Wordle
@@ -36,6 +37,7 @@ namespace Puzzle.Wordle
       private void EnterTerminal()
       {
           wordleCanvas.blocksRaycasts = true;
+          InteractionUI.Instance.Show("TV");
          _isActive = true;
          _playerController.CameraActive = false;
          computerCamera.SetActive(true);
@@ -47,6 +49,7 @@ namespace Puzzle.Wordle
       public void ExitTerminal()
       {
           wordleCanvas.blocksRaycasts = false;
+          InteractionUI.Instance.Hide();
          _isActive = false;
          _playerController.CameraActive = true;
          computerCamera.SetActive(false);

@@ -141,7 +141,7 @@ namespace Interactions.Interaction_System.Interactions
         {
             TooltipMessage = "";
             _audioFinished = false;
-            InteractionUI.Instance.Show();
+            InteractionUI.Instance.Show("Inspection");
 
             InputManager.Input.Player.Disable();
             InputManager.Input.Inspection.Enable();
