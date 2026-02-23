@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using TMPro;
+using UI.Menu;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -130,6 +131,7 @@ namespace Puzzle.Wordle
         private IEnumerator Inspect()
         {
             _isInspecting = true;
+            InteractionUI.Instance.Show();
             TooltipMessage = "";
             _anchorTransform = _cam.GetComponentsInChildren<Transform>(true)
                 .FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
@@ -162,6 +164,7 @@ namespace Puzzle.Wordle
         private IEnumerator Release()
         {
             _cam.fieldOfView = _initialFOV;
+            InteractionUI.Instance.Hide();
             _isZoomed = false;
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";

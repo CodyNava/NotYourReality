@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 using FMODUnity;
 using FMOD.Studio;
 using Puzzle.Bedroom;
+using UI.Menu;
 
 namespace Interactions.Interaction_System.Interactions
 {
@@ -140,6 +141,7 @@ namespace Interactions.Interaction_System.Interactions
         {
             TooltipMessage = "";
             _audioFinished = false;
+            InteractionUI.Instance.Show();
 
             InputManager.Input.Player.Disable();
             InputManager.Input.Inspection.Enable();
@@ -188,6 +190,7 @@ namespace Interactions.Interaction_System.Interactions
             _isZoomed = false;
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
+            InteractionUI.Instance.Hide();
 
             InputManager.Input.Inspection.Disable();
 
