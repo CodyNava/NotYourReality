@@ -169,7 +169,7 @@ namespace Puzzle.TVFrequencyMatch
             DisplayLetters();
             CheckWin();
             
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
             
             elapsed = 0f;
             while (elapsed < duration)
@@ -193,7 +193,7 @@ namespace Puzzle.TVFrequencyMatch
 
             foreach (var button in buttons)
             {
-                button.interactable = false;
+                button.enabled = false;
             }
 
             foreach (var letter in _actualLetters)
