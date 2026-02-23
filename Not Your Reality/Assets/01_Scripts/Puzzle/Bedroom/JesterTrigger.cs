@@ -26,9 +26,11 @@ namespace Puzzle.Bedroom
       [SerializeField] private float standUpAnimFallbackDuration = 1.2f;
 
       [Header("Jester")]
-      [SerializeField] private Transform jesterTransform;
-      [SerializeField] private Animator jesterAnimation;
-      [SerializeField] private Transform jesterAppearPoint;
+      [SerializeField] private Transform jesterTransformStanding;
+      [SerializeField] private Transform jesterTransformSitting;
+      [SerializeField] private Animator jesterAnimationStanding;
+      [SerializeField] private Transform jesterAppearPointStanding;
+      [SerializeField] private Transform jesterAppearPointSitting;
       [SerializeField] private Transform jesterDisappearPoint;
 
       [Tooltip("Nach wie vielen Sekunden der Jester erscheint")]
@@ -98,7 +100,7 @@ namespace Puzzle.Bedroom
 
             if (jesterSpawned && !crackTriggered && timer >= jesterCrackDelay)
             {
-               if (jesterAnimation) jesterAnimation.SetTrigger("Crack");
+               if (jesterAnimationStanding) jesterAnimationStanding.SetTrigger("Crack");
                crackTriggered = true;
             }
 
@@ -110,7 +112,7 @@ namespace Puzzle.Bedroom
          RenderSettings.fog = true;
          yield return FogTo(fogMaxDensity, fogInTime);
 
-         if (screenFader) yield return screenFader.FadeTo(1f, 2f);
+         if (screenFader) yield return screenFader.FadeTo(1f, 1f);
          // Faint Animation
          yield return PlayFaintAnimation();
 
@@ -217,9 +219,9 @@ namespace Puzzle.Bedroom
       
       private void ForceLookAtJester()
       {
-         if (!jesterTransform || !camRig) return;
+         if (!jesterTransformStanding || !camRig) return;
 
-         Vector3 target = jesterTransform.position + new Vector3(0f, 1.5f, 0f);
+         Vector3 target = jesterTransformStanding.position + new Vector3(0f, 1.5f, 0f);
 
          Vector3 flatDir = target - player.transform.position;
          flatDir.y = 0f;
@@ -240,33 +242,35 @@ namespace Puzzle.Bedroom
 
       private void TeleportJesterIn()
       {
-         if (!jesterTransform) return;
+         if (!jesterTransformStanding) return;
 
-         if (jesterAppearPoint)
+         if (jesterAppearPointStanding)
          {
-            jesterTransform.position = jesterAppearPoint.position;
-            jesterTransform.rotation = jesterAppearPoint.rotation;
-            jesterTransform.gameObject.SetActive(true);
+            jesterTransformStanding.position = jesterAppearPointStanding.position;
+            jesterTransformStanding.rotation = jesterAppearPointStanding.rotation;
+            jesterTransformStanding.gameObject.SetActive(true);
          }
          else
          {
-            jesterTransform.gameObject.SetActive(true);
+            jesterTransformStanding.gameObject.SetActive(true);
          }
       }
 
       private void TeleportJesterOut()
       {
-         if (!jesterTransform) return;
+         if (!jesterTransformStanding) return;
 
          if (jesterDisappearPoint)
          {
-            jesterTransform.position = jesterDisappearPoint.position;
-            jesterTransform.rotation = jesterDisappearPoint.rotation;
-            jesterTransform.gameObject.SetActive(true);
+            jesterTransformStanding.position = jesterDisappearPoint.position;
+            jesterTransformStanding.rotation = jesterDisappearPoint.rotation;
+            jesterTransformStanding.gameObject.SetActive(true);
+            jesterTransformSitting.position = jesterAppearPointSitting.position;
+            jesterTransformSitting.rotation = jesterAppearPointSitting.rotation;
          }
          else
          {
-            jesterTransform.gameObject.SetActive(false);
+            jesterTransformStanding.gameObject.SetActive(false);
          }
       }
 
