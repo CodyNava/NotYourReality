@@ -1,24 +1,32 @@
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Interactions.Interaction_System.Interactions.Door_Rework
 {
     public class DoorHandle : InteractableBase
     {
-        [Header("Door Reference")]
-        [SerializeField] private Door door;
+        [Header("Door Reference")] [SerializeField]
+        private Door door;
 
-        [SerializeField] private HingeJoint hinge;
-        
         private bool _isHeld;
+
         private float _directionMultiplier;
+
         private GameObject _player;
-        
+        private Vector3 _playerPosition;
+        private Vector3 _playerForward;
+        private Vector3 _handleForward;
+        private Vector3 _doorPosition;
+        private Vector3 _doorForward;
+
 
         private void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
+            _doorPosition = door.transform.position;
+            _doorForward = door.transform.forward;
         }
 
         public override void OnInteract()
@@ -30,19 +38,27 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 
         private void CalculateDirectionMultiplier()
         {
-            var hingePos = door.transform.TransformPoint(hinge.anchor);
-            var hingeAxis = door.transform.TransformDirection(hinge.axis);
-            
-            var toPlayer = _player.transform.position - hingePos;
-            toPlayer -= Vector3.Dot(toPlayer, hingeAxis) * hingeAxis;
-            toPlayer.Normalize();
-            
-            var doorForward = door.transform.forward;
-            doorForward -= Vector3.Dot(doorForward, hingeAxis) * hingeAxis;
-            doorForward.Normalize();
-            
-            var side = Vector3.Dot(Vector3.Cross(doorForward, toPlayer), hingeAxis);
-            _directionMultiplier = side >= 0f ? 1f : -1f;
+            _playerPosition = _player.transform.position;
+            _playerForward = _player.transform.forward;
+            _handleForward = transform.forward;
+
+            var side = Vector3.Dot(_handleForward, _playerForward);
+
+            var playerToDoor = _playerPosition - _doorPosition;
+            var playerToDoorDot = Vector3.Dot(_doorForward, playerToDoor);
+
+            switch (side)
+            {
+                case > 0 when playerToDoorDot > 0://Player on Door-forward looking along handle forward
+                case < 0 when playerToDoorDot > 0://Player on Door-forward looking away from door handle forward
+                    _directionMultiplier = -1f;
+                    break;
+                case < 0 when playerToDoorDot < 0://Player behind Door-forward looking away from door handle forward
+                case > 0 when playerToDoorDot < 0://Player behind Door-forward looking along handle forward
+                    _directionMultiplier = 1f;
+                    break;
+                
+            }
         }
 
         public void Release()
