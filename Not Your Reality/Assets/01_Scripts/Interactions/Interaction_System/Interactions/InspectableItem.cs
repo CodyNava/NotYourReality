@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 using FMODUnity;
 using FMOD.Studio;
 using Puzzle.Bedroom;
+using UI.Menu;
 
 namespace Interactions.Interaction_System.Interactions
 {
@@ -18,6 +19,7 @@ namespace Interactions.Interaction_System.Interactions
         [SerializeField] private float clampMin = -80f;
         [SerializeField] private float clampMax = 80f;
         [SerializeField] private bool rotationClamping = true;
+        [SerializeField] private float zoomFOV = 60f;
 
         [Header("Audio Lock")]
         [SerializeField] private bool lockPlayerUntilEmitterFinished;
@@ -46,6 +48,8 @@ namespace Interactions.Interaction_System.Interactions
         private float _targetVignette;
 
         private Camera _cam;
+        private float _initialFOV;
+        private bool _isZoomed;
 
         private Vector3 _startPos;
         private Quaternion _startRot;
@@ -68,6 +72,7 @@ namespace Interactions.Interaction_System.Interactions
             //yield return new WaitForSeconds(0.21f);
 
             _cam = Camera.main;
+            if (_cam != null) _initialFOV = _cam.fieldOfView;
             _startPos = transform.position;
             _startRot = transform.rotation;
 
@@ -103,6 +108,12 @@ namespace Interactions.Interaction_System.Interactions
                 StartCoroutine(TryRelease());
             }
 
+            if (_isInspecting && InputManager.Input.Inspection.Zoom.WasPressedThisFrame())
+            {
+                _isZoomed = !_isZoomed;
+                _cam.fieldOfView = _isZoomed? zoomFOV : _initialFOV;
+            }
+
             UpdateVignette();
         }
 
@@ -130,6 +141,7 @@ namespace Interactions.Interaction_System.Interactions
         {
             TooltipMessage = "";
             _audioFinished = false;
+            InteractionUI.Instance.Show();
 
             InputManager.Input.Player.Disable();
             InputManager.Input.Inspection.Enable();
@@ -174,8 +186,11 @@ namespace Interactions.Interaction_System.Interactions
 
         private IEnumerator Release()
         {
+            _cam.fieldOfView = _initialFOV;
+            _isZoomed = false;
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
+            InteractionUI.Instance.Hide();
 
             InputManager.Input.Inspection.Disable();
 

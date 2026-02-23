@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using TMPro;
+using UI.Menu;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -17,7 +18,8 @@ namespace Puzzle.Wordle
         [SerializeField] private float clampMin;
         [SerializeField] private float clampMax;
         [SerializeField] private bool rotationClamping;
-
+        [SerializeField] private float zoomFOV = 60f;
+        
         [SerializeField] private WordlePuzzle wordlePuzzle;
 
         public char LetterChar
@@ -41,6 +43,8 @@ namespace Puzzle.Wordle
         private Vector3 _itemLocalPosInPivot;
         private Volume _volume;
         private Camera _cam;
+        private float _initialFOV;
+        private bool _isZoomed;
         private Coroutine _inspect;
         private Vignette _vignette;
         private TextMeshPro _letter;
@@ -60,6 +64,7 @@ namespace Puzzle.Wordle
             }
 
             _cam = Camera.main;
+            if (_cam != null) _initialFOV = _cam.fieldOfView;
             _transform = transform.position;
             _rotation = transform.rotation;
             _letterTransform = transform.GetChild(0);
@@ -86,6 +91,11 @@ namespace Puzzle.Wordle
             if (_isInspecting && InputManager.Input.Inspection.OnInteract.WasPressedThisFrame())
             {
                 StartCoroutine(Release());
+            }
+            if (_isInspecting && InputManager.Input.Inspection.Zoom.WasPressedThisFrame())
+            {
+                _isZoomed = !_isZoomed;
+                _cam.fieldOfView = _isZoomed? zoomFOV : _initialFOV;
             }
 
 
@@ -121,6 +131,7 @@ namespace Puzzle.Wordle
         private IEnumerator Inspect()
         {
             _isInspecting = true;
+            InteractionUI.Instance.Show();
             TooltipMessage = "";
             _anchorTransform = _cam.GetComponentsInChildren<Transform>(true)
                 .FirstOrDefault(t => t.CompareTag("Inspection Anchor"));
@@ -152,6 +163,9 @@ namespace Puzzle.Wordle
 
         private IEnumerator Release()
         {
+            _cam.fieldOfView = _initialFOV;
+            InteractionUI.Instance.Hide();
+            _isZoomed = false;
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
             InputManager.Input.Player.Enable();
