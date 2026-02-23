@@ -184,6 +184,8 @@ namespace Interactions.Interaction_System.Interactions
 
         private IEnumerator Release()
         {
+            _cam.fieldOfView = _initialFOV;
+            _isZoomed = false;
             _isInspecting = false;
             TooltipMessage = "Press E to Inspect";
 
