@@ -10022,6 +10022,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 3486
+  m_VersionIndex: 3411
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10755,6 +10756,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 8477
+  m_VersionIndex: 8402
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11529,6 +11531,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 9360
+  m_VersionIndex: 9285
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11857,6 +11860,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 7199
+  m_VersionIndex: 7124
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12209,6 +12213,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 9470
+  m_VersionIndex: 9395
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12775,6 +12780,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 6034
+  m_VersionIndex: 5959
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -13528,11 +13534,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1865145871
-      Data2: 1251947866
-      Data3: -833071470
-      Data4: -272736782
-    Path: event:/BSM-03 - TimeLine
+      Data1: -1447427947
+      Data2: 1255160518
+      Data3: -1350051198
+      Data4: -2040232661
+    Path: event:/BSM-03 Neu
   Event: 
   EventPlayTrigger: 11
   EventStopTrigger: 0
@@ -14336,6 +14342,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 7782
+  m_VersionIndex: 7707
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14948,6 +14955,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 3148
+  m_VersionIndex: 3073
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15687,6 +15695,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 3148
+  m_VersionIndex: 3073
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -17931,6 +17940,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 7147
+  m_VersionIndex: 7072
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -19385,6 +19395,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2006763580313730560, guid: 118517650622c0444b56e0b050e38871, type: 3}
       insertIndex: -1
       addedObject: {fileID: 608912120331566550}
+    - targetCorrespondingSourceObject: {fileID: 2006763580313730560, guid: 118517650622c0444b56e0b050e38871, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 873750127338772406}
     - targetCorrespondingSourceObject: {fileID: 205821555995269302, guid: 118517650622c0444b56e0b050e38871, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6523043565598575075}
@@ -19459,6 +19472,37 @@ GameObject:
   m_PrefabInstance: {fileID: 523943148006838476}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &608912120331566550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061557211367796428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1239492256
+      Data2: 1160785915
+      Data3: -44105327
+      Data4: 474376468
+    Path: event:/Fridge Sound
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1.2
+  OverrideMaxDistance: 22.59
+--- !u!114 &873750127338772406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20941,6 +20985,7 @@ PrefabInstance:
     - target: {fileID: 7100638544463124512, guid: 69e829707985ced46bdbca77ae8a3625, type: 3}
       propertyPath: m_VersionIndex
       value: 2696
+      value: 2621
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21097,6 +21142,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1631853693718065175, guid: d7506b22639060e43b605585b5681ab2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3446316777115246326}
+    - targetCorrespondingSourceObject: {fileID: 1631853693718065175, guid: d7506b22639060e43b605585b5681ab2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 651966673342554188}
   m_SourcePrefab: {fileID: 100100000, guid: d7506b22639060e43b605585b5681ab2, type: 3}
 --- !u!1 &3953347992610928804 stripped
 GameObject:
@@ -21104,6 +21152,37 @@ GameObject:
   m_PrefabInstance: {fileID: 2339795122678040755}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3446316777115246326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953347992610928804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -204210686
+      Data2: 1103422366
+      Data3: 1746223029
+      Data4: -905909497
+    Path: event:/LightBulbs
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2.5
+  OverrideMaxDistance: 4
+--- !u!114 &651966673342554188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25326,6 +25405,7 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_VersionIndex: 780
+  m_VersionIndex: 705
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
