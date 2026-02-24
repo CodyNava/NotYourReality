@@ -1114,7 +1114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3671456884730947810
 Transform:
   m_ObjectHideFlags: 0
@@ -18735,7 +18735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1431625307904374156
 Transform:
   m_ObjectHideFlags: 0
@@ -23527,7 +23527,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4725
+  m_VersionIndex: 4740
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -27242,7 +27242,7 @@ Transform:
   m_GameObject: {fileID: 4140186605423819950}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.336, y: 1.473, z: 0.538}
+  m_LocalPosition: {x: -6.748, y: 1.473, z: 2.605}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43780,7 +43780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7886719042611136372
 Transform:
   m_ObjectHideFlags: 0
@@ -45256,7 +45256,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4333
+  m_VersionIndex: 4348
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -53062,7 +53062,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6303
+  m_VersionIndex: 6318
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -53967,7 +53967,7 @@ ReflectionProbe:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IntensityMultiplier: 13.96
-  m_BlendDistance: 6.42
+  m_BlendDistance: 11.93
   m_HDR: 1
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
@@ -66075,6 +66075,8 @@ MonoBehaviour:
   emitter: {fileID: 5646678310732069461}
   manager: {fileID: 0}
   bedroomUnlock: {fileID: 638755747091210779}
+  targetRenderer: {fileID: 0}
+  newMaterial: {fileID: 0}
 --- !u!1001 &246365542337641063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66359,7 +66361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2639
+      value: 2642
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -71305,8 +71307,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
+      propertyPath: drag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: lockAngle
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
+      propertyPath: pullStrength
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: lockThreshold
@@ -71318,7 +71328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2705
+      value: 2720
       objectReference: {fileID: 0}
     - target: {fileID: 9115077055828007396, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Interpolate
@@ -77661,6 +77671,8 @@ MonoBehaviour:
   emitter: {fileID: 7952241693441904370}
   manager: {fileID: 0}
   bedroomUnlock: {fileID: 638755747091210779}
+  targetRenderer: {fileID: 0}
+  newMaterial: {fileID: 0}
 --- !u!65 &618945599037644981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78585,7 +78597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2687
+      value: 2690
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79826,7 +79838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2633
+      value: 2636
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81700,7 +81712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2687
+      value: 2690
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -83240,7 +83252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2639
+      value: 2642
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -88547,6 +88559,8 @@ MonoBehaviour:
   emitter: {fileID: 1007472327584087459}
   manager: {fileID: 0}
   bedroomUnlock: {fileID: 638755747091210779}
+  targetRenderer: {fileID: 0}
+  newMaterial: {fileID: 0}
 --- !u!1001 &3877794619878385139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99307,7 +99321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2633
+      value: 2636
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -107059,8 +107073,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
+      propertyPath: drag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: lockAngle
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
+      propertyPath: pullStrength
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5034459926367079956, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: lockThreshold
@@ -107076,7 +107098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2705
+      value: 2720
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

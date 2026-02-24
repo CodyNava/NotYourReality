@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 920389009844806275}
   - component: {fileID: 8975960829297517367}
   - component: {fileID: 984812605006156434}
+  - component: {fileID: 7671249639130950335}
   m_Layer: 6
   m_Name: Record
   m_TagString: Untagged
@@ -179,6 +180,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 1, z: 6.123235e-17}
   m_Center: {x: -0.0000076293945, y: 0, z: 0}
+--- !u!114 &7671249639130950335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14265563872745055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1457ff6cf3a4ab743a527dab52890dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 2909009956888252397}
 --- !u!1 &195215273770228961
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,12 +224,12 @@ Transform:
   m_GameObject: {fileID: 195215273770228961}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.19599202, y: 1.7059994, z: -3.0490022}
+  m_LocalPosition: {x: -0.19599202, y: 1.7059994, z: -3.049004}
   m_LocalScale: {x: 1.5373996, y: 1.5374, z: 1.5373996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4537846848321233522}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &9149756618877191424
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -491,11 +505,13 @@ MonoBehaviour:
   normalVoices:
   - {fileID: 6732950980955733413}
   - {fileID: 8391335762873691696}
+  - {fileID: 14265563872745055}
   - {fileID: 7023913140247916370}
   - {fileID: 2025285961253794786}
+  - {fileID: 1057181658379601768}
   - {fileID: 1095565476903345351}
-  - {fileID: 3209158784835257380}
-  finalVoice: {fileID: 7816158181577841359}
+  useFinalVoice: 0
+  finalVoice: {fileID: 0}
   finalVoiceEvent:
     Guid:
       Data1: -455096805
@@ -504,7 +520,7 @@ MonoBehaviour:
       Data4: -357649629
     Path: event:/PNG-08 - TimeLine
   doorHandle: {fileID: 2395355840457878968}
-  doorUnlockDelay: 1
+  doorUnlockDelay: 5
   unlockSound:
     Guid:
       Data1: 577123290
@@ -527,6 +543,7 @@ GameObject:
   - component: {fileID: 6633253616142441138}
   - component: {fileID: 6198438728719126642}
   - component: {fileID: 5799560913614114909}
+  - component: {fileID: 5540579870795082223}
   m_Layer: 6
   m_Name: Bed
   m_TagString: Untagged
@@ -665,7 +682,7 @@ MonoBehaviour:
   isHolding: 0
   multipleUse: 0
   isInteractable: 1
-  emitter: {fileID: 2124189080885259357}
+  emitter: {fileID: 7242847339232310227}
   manager: {fileID: 2909009956888252397}
   bedroomUnlock: {fileID: 0}
   targetRenderer: {fileID: 3370683065434163056}
@@ -691,6 +708,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.69, y: 0.99999994, z: 6.1232356e-17}
   m_Center: {x: 0.02, y: -0.00000023841858, z: -0.0000038146973}
+--- !u!114 &5540579870795082223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057181658379601768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1457ff6cf3a4ab743a527dab52890dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 2909009956888252397}
 --- !u!1 &1095565476903345351
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +736,7 @@ GameObject:
   - component: {fileID: 5472849230422143583}
   - component: {fileID: 6663333097976719777}
   - component: {fileID: 696769472894905835}
+  - component: {fileID: 2781127259397965067}
   m_Layer: 6
   m_Name: Beanbag
   m_TagString: Untagged
@@ -870,6 +901,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.71, y: 0.68, z: 0.008621214}
   m_Center: {x: -0.0000018937899, y: 0, z: -0.0043182364}
+--- !u!114 &2781127259397965067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095565476903345351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1457ff6cf3a4ab743a527dab52890dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 2909009956888252397}
 --- !u!1 &1513437693199884462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1352,7 @@ Transform:
   m_GameObject: {fileID: 2025285961253794786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.454, y: 0.638, z: -3.528}
+  m_LocalPosition: {x: -6.612, y: 0.638, z: -1.493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1642,7 +1686,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8027
+  m_VersionIndex: 8045
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2135,7 +2179,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7842
+  m_VersionIndex: 7860
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3657,7 +3701,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8254
+  m_VersionIndex: 8272
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3985,7 +4029,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5598
+  m_VersionIndex: 5616
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4752,7 +4796,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7191
+  m_VersionIndex: 7209
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4968,11 +5012,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 509366511
-      Data2: 1157392493
-      Data3: 1659428797
-      Data4: 1000164256
-    Path: event:/PNG-04  - TimeLine
+      Data1: -1050525975
+      Data2: 1195215439
+      Data3: 499904959
+      Data4: 412405588
+    Path: event:/PNG-4 New
   Event: 
   EventPlayTrigger: 3
   EventStopTrigger: 0
@@ -5393,7 +5437,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5338
+  m_VersionIndex: 5356
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5568,11 +5612,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1362412808
-      Data2: 1090249904
-      Data3: -2108302928
-      Data4: 428174159
-    Path: event:/PNG-01 - TimeLine
+      Data1: -1511694039
+      Data2: 1153167883
+      Data3: -1056706427
+      Data4: 1407849614
+    Path: event:/PNG-01 New
   Event: 
   EventPlayTrigger: 3
   EventStopTrigger: 0
@@ -6103,7 +6147,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6034
+  m_VersionIndex: 6052
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6322,7 +6366,7 @@ Transform:
   m_GameObject: {fileID: 7816158181577841359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.688662, z: -0, w: 0.7250826}
-  m_LocalPosition: {x: -6.006, y: 0.638, z: -5.501}
+  m_LocalPosition: {x: -7.355, y: 0.638, z: -3.893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6345,7 +6389,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.4932177, y: 1, z: 1}
   m_Center: {x: 0.6059066, y: 0, z: 1.5050251e-15}
@@ -6836,7 +6880,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5338
+  m_VersionIndex: 5356
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8449,7 +8493,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2815
+  m_VersionIndex: 2833
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8699,7 +8743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2670
+      value: 2688
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Tangents.Array.data[0].x
@@ -9693,7 +9737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2815
+      value: 2833
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Faces.Array.size
