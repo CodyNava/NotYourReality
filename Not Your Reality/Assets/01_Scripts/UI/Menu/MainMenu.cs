@@ -18,7 +18,6 @@ public class MainMenu : MonoBehaviour
     {
         if (gameScene == String.Empty)
         {
-            Debug.Log("No Scene Found");
             return;
         }
 

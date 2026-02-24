@@ -67,11 +67,6 @@ namespace Puzzle.Desert_Reflection_Room
                      _tracing = false;
                   break;
 
-                  case "Death Trap":
-                     _tracing = false;
-                     StartCoroutine(mirrorLightReflection.ResetRiddle());
-                  break;
-
                   case "Skull":
                      _tracing = false;
                      _skull = hit.collider.GetComponent<Skull>();
@@ -103,7 +98,7 @@ namespace Puzzle.Desert_Reflection_Room
             }
          }
 
-         mirrorLightReflection.CheckWin();
+        // mirrorLightReflection.CheckWin();
          if (_reflectionPoints.Count > 1)
          {
             var lastPoint = _reflectionPoints[^1];

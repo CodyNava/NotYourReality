@@ -35,8 +35,8 @@ namespace Puzzle.Wordle
         [SerializeField] private Color incorrectColor = Color.red;
         [SerializeField] private Color defaultColor = Color.white;
 
-        [Header("Animation")]
-        [SerializeField] private float revealDuration = 1.5f;
+        //[Header("Animation")]
+        //[SerializeField] private float revealDuration = 1.5f;
 
         [SerializeField] private DoorHandle door;
         [SerializeField] private List<GameObject> doorHandles;
@@ -64,7 +64,6 @@ namespace Puzzle.Wordle
         {
             ResetWordle();
             //door.IsInteractable = false;
-            Debug.Log("word is :" + wordList.targetWord);
             foreach (char c in wordList.targetWord)
             {
                 SetRandomCharToItem(c);
@@ -108,7 +107,6 @@ namespace Puzzle.Wordle
 
         private void SetFakeCharToItem(string randomLetter, int randomNumber)
         {
-            Debug.Log("random char is :" + randomLetter);
             if (_randomItems.Contains(randomNumber))
             {
                 randomNumber = Random.Range(0, letterItems.Count);
@@ -209,7 +207,6 @@ namespace Puzzle.Wordle
         {
             if (_currentInput.Length != 5)
             {
-                Debug.Log("Guess must be 5 characters long");
                 return;
             }
 
@@ -236,7 +233,6 @@ namespace Puzzle.Wordle
 
             if (_currentInput.ToUpper() == wordList.targetWord)
             {
-                Debug.Log("You Win");
                 _isGameOver = true;
                 foreach (var handle in doorHandles)
                 {

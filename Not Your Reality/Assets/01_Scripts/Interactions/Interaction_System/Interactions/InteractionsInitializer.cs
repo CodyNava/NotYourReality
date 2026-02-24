@@ -13,8 +13,8 @@ namespace Interactions.Interaction_System.Interactions
       {
          interactableObjects =
             new List<InteractableBase>(FindObjectsByType<InteractableBase>(sortMode: FindObjectsSortMode.None));
-         StartCoroutine(ReEnableScripts(false, 0.5f));
-         StartCoroutine(ReEnableScripts(true,0.5f));
+         StartCoroutine(ReEnableScripts(false, 0.1f));
+         StartCoroutine(ReEnableScripts(true,0.1f));
       }
       
       

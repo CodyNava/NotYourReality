@@ -28,18 +28,17 @@ MonoBehaviour:
   - {fileID: 7833122117494664109}
   - {fileID: 7631201559237565795}
   - {fileID: 7044308160324346780}
-  - {fileID: 7442314822613972409}
-  m_RendererFeatureMap: ad6b866f10d7b46c631dc3e36279e7699ca38410f368c261b9b5876ce6694867
+  m_RendererFeatureMap: ad6b866f10d7b46c631dc3e36279e7699ca38410f368c261
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 959
+    m_Bits: 1983
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 959
+    m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 3
@@ -65,11 +64,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: RenderInteractableObjects
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
+    passTag: RenderInteractableObjects
     Event: 450
     filterSettings:
       RenderQueueType: 0
@@ -97,26 +96,6 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 89.9
---- !u!114 &7442314822613972409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: FullScreenPassRendererFeature
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 0
-  passMaterial: {fileID: 2100000, guid: f8f66de015f273e408d3ada5cb5bc5ec, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 0
-  m_Version: 1
 --- !u!114 &7631201559237565795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,11 +106,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: RenderInteractableOutlines
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
+    passTag: RenderInteractableOutlines
     Event: 400
     filterSettings:
       RenderQueueType: 0

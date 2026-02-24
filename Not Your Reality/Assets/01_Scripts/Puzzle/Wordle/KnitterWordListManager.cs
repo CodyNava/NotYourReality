@@ -8,22 +8,19 @@ namespace Puzzle.Wordle
         [Header("Knitter Word List")]
         public TextAsset knitterBundleList;
 
-        public List<List<string>> allBundles = new();
+        private readonly List<List<string>> _allBundles = new();
         public List<string> chosenBundle = new();
 
         private void Awake()
         {
             ParseBundles();
 
-            if (allBundles.Count == 0)
+            if (_allBundles.Count == 0)
             {
-                Debug.LogError("No Bundles Found");
                 return;
             }
 
-            chosenBundle = allBundles[Random.Range(0, allBundles.Count)];
-
-            Debug.Log("[KNITTER] Chosen Bundle: " + string.Join(", ", chosenBundle));
+            chosenBundle = _allBundles[Random.Range(0, _allBundles.Count)];
         }
 
         private void ParseBundles()
@@ -58,7 +55,6 @@ namespace Puzzle.Wordle
         {
             if (bundle.Count != 6)
             {
-                Debug.LogWarning("[KNITTER] Ignored bundle with wrong size: " + bundle.Count);
                 return;
             }
 
@@ -70,11 +66,10 @@ namespace Puzzle.Wordle
                 bundle[4].Length != 3 ||
                 bundle[5].Length != 3)
             {
-                Debug.LogWarning("[KNITTER] Ignored bundle with wrong word length: " + bundle);
                 return;
             }
 
-            allBundles.Add(new List<string>(bundle));
+            _allBundles.Add(new List<string>(bundle));
         }
     }
 }

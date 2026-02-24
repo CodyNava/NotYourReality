@@ -1,32 +1,46 @@
 using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Interactions.Interaction_System.Interactions.Door_Rework
 {
     public class DoorHandle : InteractableBase
     {
-        [Header("Door Reference")]
-        [SerializeField] private Door door;
-
-        [Header("Handle configurations")]
-        [Tooltip("Is the handle on the side of the hinge or not")]
-        [SerializeField] private bool isHingeSide;
-        
-        public bool IsHingeSide
-        {
-            get => isHingeSide;
-            set => isHingeSide = value;
-        }
+        [Header("Door Reference")] [SerializeField]
+        private Door door;
 
         private bool _isHeld;
-        private float DirectionMultiplier => isHingeSide ? -1 : 1;
+
+        private float _directionMultiplier;
+
+        private GameObject _player;
+        private Vector3 _doorPosition;
+        private Vector3 _doorForward;
+
+
+        private void Start()
+        {
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _doorPosition = door.transform.position;
+            _doorForward = door.transform.forward;
+        }
 
         public override void OnInteract()
         {
             base.OnInteract();
             _isHeld = true;
             door.BeginInteraction();
+        }
+
+        private void CalculateDirectionMultiplier()
+        {
+            var playerPosition = _player.transform.position;
+
+            var playerToDoor = playerPosition - _doorPosition;
+            var playerToDoorDot = Vector3.Dot(_doorForward, playerToDoor);
+
+            _directionMultiplier = playerToDoorDot >= 0f ? -1f : 1f;
         }
 
         public void Release()
@@ -46,8 +60,9 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
             TooltipMessage = "Hold E to Interact";
             if (!_isHeld) return;
 
+            CalculateDirectionMultiplier();
             var mouseDeltaX = Mouse.current.delta.ReadValue().x;
-            var signedInput = mouseDeltaX * DirectionMultiplier;
+            var signedInput = mouseDeltaX * _directionMultiplier;
 
             door.ReceiveInput(signedInput);
         }

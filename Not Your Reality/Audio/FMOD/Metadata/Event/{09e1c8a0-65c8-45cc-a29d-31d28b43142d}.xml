@@ -75,7 +75,6 @@
 			<destination>{12dce37a-ccdb-4074-b9d8-893b08e55476}</destination>
 			<destination>{90c07f02-c99a-43a4-8b23-aa2a53430a6b}</destination>
 			<destination>{48451385-76b4-4c05-8a9e-37428f98fbcf}</destination>
-			<destination>{842f1f33-d0e4-431f-80c7-b6ad804f071b}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{5db10295-c8ed-4baf-8ad9-fd5866e77f9e}">
@@ -100,7 +99,7 @@
 	<object class="MixerBusPanner" id="{11c6a0b1-0d3e-487e-9f7b-7ce7589449b9}" />
 	<object class="SingleSound" id="{5d1c532e-5b47-4394-bda9-b42f1cd5cda3}">
 		<property name="length">
-			<value>11.258775510204082</value>
+			<value>9.5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{a0153985-20be-4a51-80b0-2339c977de5e}</destination>
@@ -168,20 +167,6 @@
 		</property>
 		<property name="name">
 			<value>BIR-03d</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{e1f8bbcc-995a-424d-ad2d-972058a63a63}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{e04704bf-ee1e-4f0f-af69-b38ddc68fc9c}</destination>
-		</relationship>
-	</object>
-	<object class="NamedMarker" id="{842f1f33-d0e4-431f-80c7-b6ad804f071b}">
-		<property name="position">
-			<value>9.5</value>
-		</property>
-		<property name="name">
-			<value>BIR-03e</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{e1f8bbcc-995a-424d-ad2d-972058a63a63}</destination>

@@ -32,7 +32,6 @@ namespace Puzzle.Wordle
             }
 
             targetWord = wordListData[Random.Range(0, wordListData.Count)];
-            Debug.Log(targetWord);
         }
     }
 }

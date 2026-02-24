@@ -1,6 +1,7 @@
 ﻿using Interactions.Interaction_System.Interaction_Base_Class;
 using UnityEngine;
 using Player.PlayerMovement.Movement;
+using UI.Menu;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -8,8 +9,8 @@ namespace Interactions.Interaction_System.Interactions
 {
     public class MoveToInspectableItem : InteractableBase
     {
-        [Tooltip("The speed at which the Item goes into focus")]
-        [SerializeField] private float duration = 1f;
+        //[Tooltip("The speed at which the Item goes into focus")]
+        //[SerializeField] private float duration = 1f;
         
         [Tooltip("The camera for this inspectable item")]
         [SerializeField] private GameObject inspectCamera;
@@ -54,6 +55,7 @@ namespace Interactions.Interaction_System.Interactions
         
         private void Inspect()
         {
+            InteractionUI.Instance.Show("TV");
             canvasGroup.blocksRaycasts = true;
             InputManager.Input.Player.Disable();
             InputManager.Input.UI.Disable();
@@ -71,6 +73,7 @@ namespace Interactions.Interaction_System.Interactions
         private void Release()
         {
             canvasGroup.blocksRaycasts = false;
+            InteractionUI.Instance.Hide();
             inspectCamera.SetActive(false);
             _playerController.CameraActive = true;
             Cursor.visible = false;
