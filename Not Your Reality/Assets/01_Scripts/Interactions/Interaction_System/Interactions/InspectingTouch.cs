@@ -3,6 +3,7 @@ using System.GlobalEventSystem;
 using FMODUnity;
 using Interactions.Interaction_System.Interaction_Base_Class;
 using Interactions.Interaction_System.Interactions.Door_Rework;
+using Puzzle.Bedroom;
 using UnityEngine;
 
 namespace Interactions.Interaction_System.Interactions
@@ -13,6 +14,8 @@ namespace Interactions.Interaction_System.Interactions
 
         [SerializeField] private StudioEventEmitter emitter;
         [SerializeField] private RoomVoiceManager manager;
+        
+        [SerializeField] private BedroomUnlock bedroomUnlock;
 
         public override void OnInteract()
         {
@@ -27,6 +30,9 @@ namespace Interactions.Interaction_System.Interactions
             {
                 manager.OnVoiceTriggered(gameObject);
             }
+            
+            if (bedroomUnlock != null)
+                bedroomUnlock.AddItem(this);
 
             if (gameObject.name.Equals("Phone")) { GlobalEventManager.OnPhoneTouched(); }
 
