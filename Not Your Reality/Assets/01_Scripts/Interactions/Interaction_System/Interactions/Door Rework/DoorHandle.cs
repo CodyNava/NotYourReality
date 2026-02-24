@@ -15,9 +15,6 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         private float _directionMultiplier;
 
         private GameObject _player;
-        private Vector3 _playerPosition;
-        private Vector3 _playerForward;
-        private Vector3 _handleForward;
         private Vector3 _doorPosition;
         private Vector3 _doorForward;
 
@@ -38,27 +35,12 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 
         private void CalculateDirectionMultiplier()
         {
-            _playerPosition = _player.transform.position;
-            _playerForward = _player.transform.forward;
-            _handleForward = transform.forward;
+            var playerPosition = _player.transform.position;
 
-            var side = Vector3.Dot(_handleForward, _playerForward);
-
-            var playerToDoor = _playerPosition - _doorPosition;
+            var playerToDoor = playerPosition - _doorPosition;
             var playerToDoorDot = Vector3.Dot(_doorForward, playerToDoor);
 
-            switch (side)
-            {
-                case > 0 when playerToDoorDot > 0://Player on Door-forward looking along handle forward
-                case < 0 when playerToDoorDot > 0://Player on Door-forward looking away from door handle forward
-                    _directionMultiplier = -1f;
-                    break;
-                case < 0 when playerToDoorDot < 0://Player behind Door-forward looking away from door handle forward
-                case > 0 when playerToDoorDot < 0://Player behind Door-forward looking along handle forward
-                    _directionMultiplier = 1f;
-                    break;
-                
-            }
+            _directionMultiplier = playerToDoorDot >= 0f ? -1f : 1f;
         }
 
         public void Release()
