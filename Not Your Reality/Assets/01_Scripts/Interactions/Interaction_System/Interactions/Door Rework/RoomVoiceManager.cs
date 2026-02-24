@@ -6,12 +6,15 @@ using UnityEngine;
 
 namespace Interactions.Interaction_System.Interactions.Door_Rework
 {
-    public class  RoomVoiceManager : MonoBehaviour
+    public class RoomVoiceManager : MonoBehaviour
     {
-        [Header("Normal Voice Colliders (1�7)")]
+        [Header("Normal Voice Colliders")]
         [SerializeField] private List<GameObject> normalVoices;
 
-        [Header("Final Voice Collider (8)")]
+        [Header("Use Final Voice?")]
+        [SerializeField] private bool useFinalVoice = true;
+
+        [Header("Final Voice Collider")]
         [SerializeField] private GameObject finalVoice;
         [SerializeField] private EventReference finalVoiceEvent;
 
@@ -21,21 +24,23 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         [Header("Door Unlock Delay")]
         [SerializeField] private float doorUnlockDelay = 0.5f;
 
-
         [Header("Audio Reference")]
-        [Tooltip("The sound that is played when you unlock a door")]
         [SerializeField] private EventReference unlockSound;
 
         private HashSet<GameObject> playedVoices = new HashSet<GameObject>();
+
         private bool finalPlaying = false;
+        private bool doorUnlocked = false;
+
         private EventInstance finalInstance;
 
         private void Awake()
         {
-            if (finalVoice != null)
+            if (useFinalVoice && finalVoice != null)
             {
                 var col = finalVoice.GetComponent<Collider>();
-                if (col != null) col.enabled = false;
+                if (col != null)
+                    col.enabled = false;
             }
 
             if (doorHandle != null)
@@ -46,24 +51,33 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         {
             if (normalVoices.Contains(voiceObject))
             {
-                if (!playedVoices.Contains(voiceObject))
-                {
-                    var emitter = voiceObject.GetComponent<StudioEventEmitter>();
-                    if (emitter != null)
-                        emitter.Play();
+                if (playedVoices.Contains(voiceObject))
+                    return;
 
-                    playedVoices.Add(voiceObject);
-                }
+                playedVoices.Add(voiceObject);
 
-                if (playedVoices.Count >= normalVoices.Count && finalVoice != null)
+                var emitter = voiceObject.GetComponent<StudioEventEmitter>();
+                if (emitter != null)
+                    emitter.Play();
+
+                if (playedVoices.Count >= normalVoices.Count)
                 {
-                    var col = finalVoice.GetComponent<Collider>();
-                    if (col != null) col.enabled = true;
+                    if (useFinalVoice && finalVoice != null)
+                    {
+                        var col = finalVoice.GetComponent<Collider>();
+                        if (col != null)
+                            col.enabled = true;
+                    }
+                    else
+                    {
+                        UnlockDoor();
+                    }
                 }
             }
-            else if (voiceObject == finalVoice && !finalPlaying)
+            else if (useFinalVoice && voiceObject == finalVoice && !finalPlaying)
             {
                 finalPlaying = true;
+
                 finalInstance = RuntimeManager.CreateInstance(finalVoiceEvent);
                 finalInstance.start();
                 finalInstance.release();
@@ -72,16 +86,26 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 
         private void Update()
         {
-            if (!finalPlaying) return;
+            if (!useFinalVoice || !finalPlaying || doorUnlocked)
+                return;
 
             finalInstance.getPlaybackState(out var state);
+
             if (state == PLAYBACK_STATE.STOPPED)
             {
                 finalPlaying = false;
-                StartCoroutine(UnlockDoorDelayed());
+                UnlockDoor();
             }
         }
 
+        private void UnlockDoor()
+        {
+            if (doorUnlocked)
+                return;
+
+            doorUnlocked = true;
+            StartCoroutine(UnlockDoorDelayed());
+        }
 
         private IEnumerator UnlockDoorDelayed()
         {
@@ -92,6 +116,5 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
 
             RuntimeManager.PlayOneShot(unlockSound, transform.position);
         }
-
     }
 }
