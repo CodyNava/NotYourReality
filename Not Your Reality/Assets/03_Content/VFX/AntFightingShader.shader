@@ -4,8 +4,7 @@ Shader "Unlit/AntFightingTV"
     {
         _MainTex ("Texture (optional)", 2D) = "white" {}
         
-        _BaseColor ("Color", Color) = (0,0,0,0)
-        _NoiseScale ("Noise Scale", Range(10, 800)) = 250
+        _NoiseScale ("Noise Scale", Range(0, 800)) = 250
         _NoiseSpeed ("Noise Speed", Range(0, 50)) = 18
         _NoiseContrast ("Noise Contrast", Range(0.1, 6)) = 2.2
         _MixWithTexture ("Mix With Texture", Range(0,1)) = 0
@@ -15,6 +14,8 @@ Shader "Unlit/AntFightingTV"
         
         _JitterStrength ("Jitter Strength", Range(0, 0.02)) = 0.003
         _JitterSpeed ("Jitter Speed", Range(0, 30)) = 12
+        
+        _EmissionIntensity("Emission Intensity" ,Range(0, 10)) = 1
         
     }
 
@@ -59,7 +60,7 @@ Shader "Unlit/AntFightingTV"
             float _JitterStrength;
             float _JitterSpeed;
 
-            float4 _BaseColor;
+            float _EmissionIntensity;
             
             float hash21(float2 p)
             {
@@ -99,12 +100,16 @@ Shader "Unlit/AntFightingTV"
                 float texLuma = 1.0;
                 if (_MixWithTexture > 0.0001)
                 {
-                    float3 tex = tex2D(_MainTex, uv).rgb * _BaseColor;
+                    float3 tex = tex2D(_MainTex, uv).rgb ;
                     texLuma = dot(tex, float3(0.299, 0.587, 0.114));
                 }
 
+
                 float finalLuma = lerp(bw, texLuma, _MixWithTexture);
-                fixed4 col = fixed4(finalLuma, finalLuma, finalLuma, 1);
+                float3 outRgb = finalLuma.xxx * _EmissionIntensity;
+
+                
+                fixed4 col = fixed4(outRgb, 1);
 
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
