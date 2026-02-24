@@ -193,7 +193,8 @@ GameObject:
   - component: {fileID: 8581092785697926603}
   - component: {fileID: 9085143356578566902}
   - component: {fileID: 5410869164298472667}
-  m_Layer: 0
+  - component: {fileID: 2732539981721233300}
+  m_Layer: 6
   m_Name: TV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,12 +331,33 @@ MonoBehaviour:
   holdInteract: 0
   isHolding: 0
   multipleUse: 0
-  isInteractable: 0
+  isInteractable: 1
   emitter: {fileID: 7352174201161021308}
   manager: {fileID: 2909009956888252397}
   bedroomUnlock: {fileID: 0}
-  targetRenderer: {fileID: 0}
-  newMaterial: {fileID: 0}
+  targetRenderer: {fileID: 5927865691112228158}
+  newMaterial: {fileID: 21300000, guid: 782ab39130bae58438b43fa12da32718, type: 3}
+--- !u!65 &2732539981721233300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195215273770228961}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.83695287, y: 0.51271, z: 0}
+  m_Center: {x: -0.0030580815, y: 0.025685476, z: -0.0000038146973}
 --- !u!1 &296560732972903318
 GameObject:
   m_ObjectHideFlags: 0
