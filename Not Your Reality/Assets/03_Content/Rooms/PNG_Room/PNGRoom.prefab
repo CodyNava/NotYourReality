@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 5167485459994379641}
   - component: {fileID: 920389009844806275}
   - component: {fileID: 8975960829297517367}
-  m_Layer: 0
+  - component: {fileID: 984812605006156434}
+  m_Layer: 6
   m_Name: Record
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,6 +155,30 @@ MonoBehaviour:
   isInteractable: 1
   emitter: {fileID: 5857289752393673358}
   manager: {fileID: 2909009956888252397}
+  bedroomUnlock: {fileID: 0}
+  targetRenderer: {fileID: 8135908857100556695}
+  newMaterial: {fileID: 21300000, guid: 762c1019b0c01fe449fbd32f12ddf248, type: 3}
+--- !u!65 &984812605006156434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14265563872745055}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 1, z: 6.123235e-17}
+  m_Center: {x: -0.0000076293945, y: 0, z: 0}
 --- !u!1 &195215273770228961
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +193,8 @@ GameObject:
   - component: {fileID: 8581092785697926603}
   - component: {fileID: 9085143356578566902}
   - component: {fileID: 5410869164298472667}
-  m_Layer: 0
+  - component: {fileID: 2732539981721233300}
+  m_Layer: 6
   m_Name: TV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,13 +209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195215273770228961}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.19599202, y: 1.7059994, z: -3.0490022}
   m_LocalScale: {x: 1.5373996, y: 1.5374, z: 1.5373996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4537846848321233522}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &9149756618877191424
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -305,9 +331,33 @@ MonoBehaviour:
   holdInteract: 0
   isHolding: 0
   multipleUse: 0
-  isInteractable: 0
+  isInteractable: 1
   emitter: {fileID: 7352174201161021308}
   manager: {fileID: 2909009956888252397}
+  bedroomUnlock: {fileID: 0}
+  targetRenderer: {fileID: 5927865691112228158}
+  newMaterial: {fileID: 21300000, guid: 782ab39130bae58438b43fa12da32718, type: 3}
+--- !u!65 &2732539981721233300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195215273770228961}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.83695287, y: 0.51271, z: 0}
+  m_Center: {x: -0.0030580815, y: 0.025685476, z: -0.0000038146973}
 --- !u!1 &296560732972903318
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +526,8 @@ GameObject:
   - component: {fileID: 7319400694204353076}
   - component: {fileID: 6633253616142441138}
   - component: {fileID: 6198438728719126642}
-  m_Layer: 0
+  - component: {fileID: 5799560913614114909}
+  m_Layer: 6
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,9 +664,33 @@ MonoBehaviour:
   holdInteract: 0
   isHolding: 0
   multipleUse: 0
-  isInteractable: 0
+  isInteractable: 1
   emitter: {fileID: 2124189080885259357}
   manager: {fileID: 2909009956888252397}
+  bedroomUnlock: {fileID: 0}
+  targetRenderer: {fileID: 3370683065434163056}
+  newMaterial: {fileID: 21300000, guid: 20a88dd52bc17db448418d979b3234ad, type: 3}
+--- !u!65 &5799560913614114909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057181658379601768}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.69, y: 0.99999994, z: 6.1232356e-17}
+  m_Center: {x: 0.02, y: -0.00000023841858, z: -0.0000038146973}
 --- !u!1 &1095565476903345351
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +846,9 @@ MonoBehaviour:
   isInteractable: 1
   emitter: {fileID: 9105705339490576994}
   manager: {fileID: 2909009956888252397}
+  bedroomUnlock: {fileID: 0}
+  targetRenderer: {fileID: 6496061487560054801}
+  newMaterial: {fileID: 21300000, guid: a4218f5e3472edf4b8953a64e55aed20, type: 3}
 --- !u!65 &696769472894905835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1564,7 +1642,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8021
+  m_VersionIndex: 8027
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2057,7 +2135,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7836
+  m_VersionIndex: 7842
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3579,7 +3657,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8248
+  m_VersionIndex: 8254
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3907,7 +3985,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5592
+  m_VersionIndex: 5598
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4674,7 +4752,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7185
+  m_VersionIndex: 7191
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5315,7 +5393,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5332
+  m_VersionIndex: 5338
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5774,6 +5852,9 @@ MonoBehaviour:
   isInteractable: 1
   emitter: {fileID: 2247487099448417565}
   manager: {fileID: 2909009956888252397}
+  bedroomUnlock: {fileID: 0}
+  targetRenderer: {fileID: 1603340786693737775}
+  newMaterial: {fileID: 21300000, guid: 09efb812adc619a4da482cd50cc501dd, type: 3}
 --- !u!1 &7138456670217308430
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,7 +6103,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6028
+  m_VersionIndex: 6034
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6755,7 +6836,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5332
+  m_VersionIndex: 5338
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8368,7 +8449,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2809
+  m_VersionIndex: 2815
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8618,7 +8699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2664
+      value: 2670
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Tangents.Array.data[0].x
@@ -9612,7 +9693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_VersionIndex
-      value: 2809
+      value: 2815
       objectReference: {fileID: 0}
     - target: {fileID: 8579803125536839374, guid: 3974a64c8b4b32146bf7e16e0bcb6cd1, type: 3}
       propertyPath: m_Faces.Array.size

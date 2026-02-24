@@ -66,11 +66,11 @@ namespace PNG_Room
 
             Quaternion desiredRot = Quaternion.Euler(euler);
 
-            if (!HasLineOfSightToCamera())
+            /*if (!HasLineOfSightToCamera())
             {
                 ApplyRotation(_lastSafeRotation);
                 return;
-            }
+            }*/
 
             Quaternion nextRot = desiredRot;
 
