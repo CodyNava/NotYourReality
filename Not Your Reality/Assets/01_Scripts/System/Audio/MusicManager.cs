@@ -13,7 +13,6 @@ public class MusicManager : MonoBehaviour
 
     private EventInstance _current;
     private Coroutine _fadeRoutine;
-
     private EventReference _currentMusic;
 
     private void Awake()
@@ -39,6 +38,16 @@ public class MusicManager : MonoBehaviour
             StopCoroutine(_fadeRoutine);
 
         _fadeRoutine = StartCoroutine(CrossfadeTo(music));
+    }
+
+    public void StopMusic(float fadeOutTime = 1f)
+    {
+        if (!_current.isValid()) return;
+
+        if (_fadeRoutine != null)
+            StopCoroutine(_fadeRoutine);
+
+        _fadeRoutine = StartCoroutine(FadeOutAndStop(fadeOutTime));
     }
 
     private IEnumerator CrossfadeTo(EventReference music)
@@ -71,6 +80,23 @@ public class MusicManager : MonoBehaviour
 
         _current = next;
         _current.setVolume(1f);
+    }
+
+    private IEnumerator FadeOutAndStop(float time)
+    {
+        float startVolume = 1f;
+        float t = 0f;
+
+        while (t < time)
+        {
+            t += Time.unscaledDeltaTime;
+            float k = Mathf.Clamp01(t / time);
+            _current.setVolume(Mathf.Lerp(startVolume, 0f, k));
+            yield return null;
+        }
+
+        _current.stop(STOP_MODE.IMMEDIATE);
+        _current.release();
     }
 
     private IEnumerator FadeVolume(EventInstance inst, float from, float to, float time)

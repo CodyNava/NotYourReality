@@ -7,17 +7,20 @@ namespace Puzzle.Balloon_Matryoshka
         [Space]
         [Tooltip("The Tier 1 balloon prefab")]
         [SerializeField] private GameObject balloonPrefab;
+
         [Tooltip("The amount of balloons that should initially spawn")]
         [SerializeField] private int amount;
+
         [Tooltip("The key that drops after the last balloon is destroyed")]
         [SerializeField] private GameObject key;
+
         [SerializeField] private bool holdsKey;
-        
+
         private void Awake()
         {
             for (var i = 0; i < amount; i++)
             {
-                Instantiate (balloonPrefab, transform.position, transform.rotation, transform);
+                Instantiate(balloonPrefab, transform.position, transform.rotation, transform);
             }
         }
 
@@ -25,7 +28,13 @@ namespace Puzzle.Balloon_Matryoshka
         {
             if (transform.childCount > 1) return;
             if (!holdsKey) return;
+
             Instantiate(key, balloon.transform.position, balloon.transform.rotation);
+
+            if (MusicManager.I != null)
+            {
+                MusicManager.I.StopMusic(2f); 
+            }
         }
     }
 }

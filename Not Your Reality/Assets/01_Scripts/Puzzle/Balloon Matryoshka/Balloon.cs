@@ -26,10 +26,6 @@ namespace Puzzle.Balloon_Matryoshka
 
         private void Start()
         {
-            //TODO: Add Rope Rigidbody
-            /*_rb = GetComponent<Rigidbody>();
-            _rope = GetComponent<SpringJoint>();
-            _rope.connectedBody = GameObject.FindWithTag("Rope").GetComponent<Rigidbody>();*/
             _balloonChecker = GetComponentInParent<BalloonChecker>();
         }
 
@@ -41,11 +37,6 @@ namespace Puzzle.Balloon_Matryoshka
             _sizeReached = difference <= 0.05f;
         }
 
-        //TODO: Enable when rope asset is there
-        /*private void FixedUpdate()
-        {
-            _rb.AddForce(Vector3.up, ForceMode.Force);
-        }*/
 
         private void OnCollisionEnter(Collision collision)
         {
