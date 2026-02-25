@@ -51,11 +51,15 @@ namespace UI.Menu
             settingsMenu.SetActive(false);
             _playerController.CameraActive = true;
             InputManager.Input.Player.Enable();
+            InputManager.Input.Inspection.Enable();
+            InputManager.Input.Interaction.Enable();
         }
 
         private void PauseGame()
         {
             InputManager.Input.Player.Disable();
+            InputManager.Input.Inspection.Disable();
+            InputManager.Input.Interaction.Disable();
             _isPaused = true;
             settingsMenu.SetActive(false);
             pauseMenu.SetActive(true);
