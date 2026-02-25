@@ -37,7 +37,7 @@ namespace Puzzle.Wordle
       private void EnterTerminal()
       {
           wordleCanvas.blocksRaycasts = true;
-          InteractionUI.Instance.Show("TV");
+          InteractionUI.Instance.Show("Wordle");
          _isActive = true;
          _playerController.CameraActive = false;
          computerCamera.SetActive(true);

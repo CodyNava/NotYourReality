@@ -38,6 +38,9 @@ namespace UI.Menu
                 case "Inspection":
                     _children.Find(x => x.name == "Inspection").gameObject.SetActive(true);
                     break;
+                case "Wordle":
+                    _children.Find(x => x.name == "Wordle").gameObject.SetActive(true);
+                    break;
             }
         }
 
