@@ -43,8 +43,8 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
                     col.enabled = false;
             }
 
-            if (doorHandle != null)
-                doorHandle.IsInteractable = false;
+            //if (doorHandle != null)
+                //doorHandle.IsInteractable = false;
         }
 
         public void OnVoiceTriggered(GameObject voiceObject)
