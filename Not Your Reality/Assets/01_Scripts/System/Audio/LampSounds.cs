@@ -15,7 +15,7 @@ namespace System.Audio
             Buzz();
         }
 
-        public void Buzz()
+        private void Buzz()
         {
             _eventInstance = RuntimeManager.CreateInstance(lampBuzz.Guid);
             _eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));

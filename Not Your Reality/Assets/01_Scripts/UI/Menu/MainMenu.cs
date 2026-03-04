@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.PlayMainMenu();
+        AudioManager.Instance.PlayMainMenu();
     }
 
 
@@ -21,14 +21,14 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        AudioManager.instance.StopMainMenu();
+        AudioManager.Instance.StopMainMenu();
         SceneManager.LoadScene(gameScene);
-        AudioManager.instance.PlayBasement();
+        AudioManager.Instance.PlayBasement();
     }
 
     public void QuitGame()
     {
-        AudioManager.instance.StopMainMenu();
+        AudioManager.Instance.StopMainMenu();
         Application.Quit();
     }
 }

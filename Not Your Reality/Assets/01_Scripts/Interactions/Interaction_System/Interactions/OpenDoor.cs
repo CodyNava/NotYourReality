@@ -132,17 +132,5 @@ namespace Interactions.Interaction_System.Interactions
                 _joint.useLimits = true;
             }
         }
-
-        public void UnlockDoor()
-        {
-            IsInteractable = true;
-            RuntimeManager.PlayOneShot(unlockSound, transform.position);
-            RuntimeManager.PlayOneShot(voiceLine, transform.position);
-        }
-
-        public void Release()
-        {
-            _isHeld = false;
-        }
     }
 }

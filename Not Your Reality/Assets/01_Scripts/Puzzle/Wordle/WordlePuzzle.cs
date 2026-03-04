@@ -34,10 +34,7 @@ namespace Puzzle.Wordle
         [SerializeField] private Color presentColor = Color.yellow;
         [SerializeField] private Color incorrectColor = Color.red;
         [SerializeField] private Color defaultColor = Color.white;
-
-        //[Header("Animation")]
-        //[SerializeField] private float revealDuration = 1.5f;
-
+        
         [SerializeField] private DoorHandle door;
         [SerializeField] private List<GameObject> doorHandles;
 
@@ -55,7 +52,7 @@ namespace Puzzle.Wordle
 
 
         private readonly List<List<LetterTile>> _board = new();
-        private readonly List<int> _randomItems = new List<int>();
+        private readonly List<int> _randomItems = new();
 
         // ---------------------------
         // UNITY LIFECYCLE
@@ -63,7 +60,6 @@ namespace Puzzle.Wordle
         private void Start()
         {
             ResetWordle();
-            //door.IsInteractable = false;
             foreach (char c in wordList.targetWord)
             {
                 SetRandomCharToItem(c);

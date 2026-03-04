@@ -64,7 +64,7 @@ namespace Puzzle.Wordle
             }
 
             _cam = Camera.main;
-            if (_cam != null) _initialFOV = _cam.fieldOfView;
+            if (_cam) _initialFOV = _cam.fieldOfView;
             _transform = transform.position;
             _rotation = transform.rotation;
             _letterTransform = transform.GetChild(0);

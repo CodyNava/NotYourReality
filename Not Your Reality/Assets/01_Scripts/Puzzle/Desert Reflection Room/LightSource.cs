@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Puzzle.Desert_Reflection_Room
 {
-   
    public class LightSource : MonoBehaviour
    {
       [Tooltip("The length of the light beam")]
@@ -59,7 +58,7 @@ namespace Puzzle.Desert_Reflection_Room
 
                      foreach (var goal in mirrorLightReflection.goals)
                      {
-                        if (hit.collider !=  goal.GetComponent<Collider>()) continue;
+                        if (hit.collider != goal.GetComponent<Collider>()) continue;
                         if (goal.BeenHit()) break;
                         goal.RegisterHit(hit.point);
                      }
@@ -98,7 +97,6 @@ namespace Puzzle.Desert_Reflection_Room
             }
          }
 
-        // mirrorLightReflection.CheckWin();
          if (_reflectionPoints.Count > 1)
          {
             var lastPoint = _reflectionPoints[^1];

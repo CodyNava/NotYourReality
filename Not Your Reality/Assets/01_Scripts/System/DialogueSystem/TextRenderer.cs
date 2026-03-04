@@ -8,7 +8,7 @@ namespace System.DialogueSystem
     public class TextRenderer : MonoBehaviour
     {
         [Header("Root visibility")]
-        [SerializeField] private CanvasGroup subtitleGroup;   // <- das ist dein “SubBox CanvasGroup”
+        [SerializeField] private CanvasGroup subtitleGroup;  
         [SerializeField] private bool toggleRaycast = true;
 
         [Header("UI Refs")]
@@ -28,16 +28,10 @@ namespace System.DialogueSystem
         {
             if (SubtitleSettingsManager.Instance != null)
             {
-                SubtitleSettingsManager.Instance.OnSettingsChanged += ApplySettings;
                 ApplySettings(SubtitleSettingsManager.Instance.currentSettings);
             }
         }
-
-        private void OnDisable()
-        {
-            if (SubtitleSettingsManager.Instance != null)
-                SubtitleSettingsManager.Instance.OnSettingsChanged -= ApplySettings;
-        }
+        
 
         public void ApplySettings(SubtitleSettingsData settings)
         {

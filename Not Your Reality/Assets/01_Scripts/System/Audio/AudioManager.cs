@@ -6,7 +6,7 @@ namespace System.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager instance;
+        public static AudioManager Instance;
 
         [SerializeField] private EventReference mainMenu;
         [SerializeField] private EventReference credits;
@@ -22,7 +22,6 @@ namespace System.Audio
         [SerializeField] private EventReference basement;
 
         private EventInstance _mainMenuInstance;
-        private EventInstance _creditsInstance;
         private EventInstance _birthdayRoomInstance;
         private EventInstance _tvRoomInstance;
         private EventInstance _bathroomInstance;
@@ -36,17 +35,17 @@ namespace System.Audio
 
         private void Awake()
         {
-            if (instance && instance != this)
+            if (Instance && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
 
             _mainMenuInstance = RuntimeManager.CreateInstance(mainMenu);
-            _creditsInstance = RuntimeManager.CreateInstance(credits);
+            RuntimeManager.CreateInstance(credits);
         }
 
         public void PlayMainMenu()
@@ -57,16 +56,6 @@ namespace System.Audio
         public void StopMainMenu()
         {
             _mainMenuInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-
-        public void PlayCredits()
-        {
-            _creditsInstance.start();
-        }
-
-        public void stopCredits()
-        {
-            _creditsInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
         public void PlayBasement()

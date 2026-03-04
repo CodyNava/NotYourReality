@@ -1,5 +1,4 @@
 using System.DialogueSystem.SO;
-using System.DialogueSystem;
 using UnityEngine;
 
 namespace System.DialogueSystem
@@ -13,7 +12,6 @@ namespace System.DialogueSystem
       
       public SubtitleSettingsData currentSettings;
       
-      public event Action<SubtitleSettingsData> OnSettingsChanged;
 
       public void Awake()
       {
@@ -29,18 +27,6 @@ namespace System.DialogueSystem
       {
          Instance = this;
          currentSettings = defaultSettings;
-      }
-      
-      private void ApplySettings(SubtitleSettingsData newSetting)
-      {
-         if (!newSetting) { return; }
-         currentSettings = newSetting;
-         OnSettingsChanged?.Invoke(currentSettings);
-      }
-
-      public void ResetToDefaultSettings()
-      {
-         ApplySettings(defaultSettings);
       }
    }
 }

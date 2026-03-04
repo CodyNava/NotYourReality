@@ -27,12 +27,12 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
         [Header("Audio Reference")]
         [SerializeField] private EventReference unlockSound;
 
-        private HashSet<GameObject> playedVoices = new HashSet<GameObject>();
+        private readonly HashSet<GameObject> _playedVoices = new();
 
-        private bool finalPlaying = false;
-        private bool doorUnlocked = false;
+        private bool _finalPlaying;
+        private bool _doorUnlocked ;
 
-        private EventInstance finalInstance;
+        private EventInstance _finalInstance;
 
         private void Awake()
         {
@@ -42,25 +42,23 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
                 if (col != null)
                     col.enabled = false;
             }
-
-            //if (doorHandle != null)
-                //doorHandle.IsInteractable = false;
+            
         }
 
         public void OnVoiceTriggered(GameObject voiceObject)
         {
             if (normalVoices.Contains(voiceObject))
             {
-                if (playedVoices.Contains(voiceObject))
+                if (_playedVoices.Contains(voiceObject))
                     return;
 
-                playedVoices.Add(voiceObject);
+                _playedVoices.Add(voiceObject);
 
                 var emitter = voiceObject.GetComponent<StudioEventEmitter>();
                 if (emitter != null)
                     emitter.Play();
 
-                if (playedVoices.Count >= normalVoices.Count)
+                if (_playedVoices.Count >= normalVoices.Count)
                 {
                     if (useFinalVoice && finalVoice != null)
                     {
@@ -74,36 +72,36 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
                     }
                 }
             }
-            else if (useFinalVoice && voiceObject == finalVoice && !finalPlaying)
+            else if (useFinalVoice && voiceObject == finalVoice && !_finalPlaying)
             {
-                finalPlaying = true;
+                _finalPlaying = true;
 
-                finalInstance = RuntimeManager.CreateInstance(finalVoiceEvent);
-                finalInstance.start();
-                finalInstance.release();
+                _finalInstance = RuntimeManager.CreateInstance(finalVoiceEvent);
+                _finalInstance.start();
+                _finalInstance.release();
             }
         }
 
         private void Update()
         {
-            if (!useFinalVoice || !finalPlaying || doorUnlocked)
+            if (!useFinalVoice || !_finalPlaying || _doorUnlocked)
                 return;
 
-            finalInstance.getPlaybackState(out var state);
+            _finalInstance.getPlaybackState(out var state);
 
             if (state == PLAYBACK_STATE.STOPPED)
             {
-                finalPlaying = false;
+                _finalPlaying = false;
                 UnlockDoor();
             }
         }
 
         private void UnlockDoor()
         {
-            if (doorUnlocked)
+            if (_doorUnlocked)
                 return;
 
-            doorUnlocked = true;
+            _doorUnlocked = true;
             StartCoroutine(UnlockDoorDelayed());
         }
 

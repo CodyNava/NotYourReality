@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 namespace UI.Menu
 {
     
-    //[ExecuteInEditMode]
     public class JesterEyesMouseFollow : MonoBehaviour
     {
         [SerializeField] private Camera cam;

@@ -14,15 +14,6 @@ namespace Puzzle.Wordle
             letterText.text = letter.ToString().ToUpper();
         }
 
-        public char GetLetter()
-        {
-            if (string.IsNullOrEmpty(letterText.text))
-            {
-                return ' ';
-            }
-            return char.ToUpper(letterText.text[0]);
-        }
-
         public void SetColor(Color color)
         {
             background.color = color;

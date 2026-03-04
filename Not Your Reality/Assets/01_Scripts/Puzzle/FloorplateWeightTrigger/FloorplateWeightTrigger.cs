@@ -54,7 +54,6 @@ namespace Puzzle.FloorplateWeightTrigger
          {
             _targetPos = _startPos + Vector3.down * platformMoveDistance;
             _hasWon = true;
-            Debug.Log("You did it");
             if (toggleObject) winTarget.SetActive(false);
             if (toggleDoor) _collider.enabled = true;
          }
@@ -62,7 +61,6 @@ namespace Puzzle.FloorplateWeightTrigger
          {
             _hasWon = false;
             _targetPos = _startPos;
-            Debug.Log("Not enough");
             if (toggleObject) winTarget.SetActive(true);
             if (toggleDoor) _collider.enabled = false;
          }

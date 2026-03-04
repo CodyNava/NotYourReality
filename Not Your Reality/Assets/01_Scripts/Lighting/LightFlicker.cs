@@ -49,7 +49,7 @@ namespace Lighting
 
             if (_timer >= _delay)
             {
-                _illuminatingObject.intensity = _illuminatingObject.intensity == _originalIntensity ? strength : _originalIntensity;
+                _illuminatingObject.intensity = Mathf.Approximately(_illuminatingObject.intensity, _originalIntensity) ? strength : _originalIntensity;
                 TurnOffBulb();
                 _timer = 0;
                 GenerateDelay();
@@ -58,8 +58,8 @@ namespace Lighting
 
         private void TurnOffBulb()
         {
-            if (lightBulb == null) return;
-            lightBulb.SetActive(_illuminatingObject.intensity == _originalIntensity);
+            if (!lightBulb) return;
+            lightBulb.SetActive(Mathf.Approximately(_illuminatingObject.intensity, _originalIntensity));
         }
 
         private void GenerateDelay()

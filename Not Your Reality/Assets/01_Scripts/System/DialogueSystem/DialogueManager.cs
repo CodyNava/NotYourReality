@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.DialogueSystem.SO;
@@ -16,7 +15,7 @@ namespace System.DialogueSystem
       [SerializeField] private TextRenderer textRenderer;
 
       [Header("Flow")]
-      [SerializeField] private float delayBetweenLines = 0f;
+      [SerializeField] private float delayBetweenLines;
 
       private DialogueSequence _seq;
       private int _index;
@@ -102,7 +101,7 @@ namespace System.DialogueSystem
       {
          
 
-         if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
+         if (!_seq || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
 
          var line = _seq.dialogueTexts[_index];
          if (!line)
@@ -120,7 +119,7 @@ namespace System.DialogueSystem
          {
             int nextIndex = _index + 1;
 
-            if (_seq != null && _seq.dialogueTexts != null && _index < _seq.dialogueTexts.Length)
+            if (_seq && _seq.dialogueTexts != null && _index < _seq.dialogueTexts.Length)
             {
                var next = _seq.dialogueTexts[nextIndex];
                
@@ -138,7 +137,7 @@ namespace System.DialogueSystem
 
       private void TryShowCurrentIfNoMarker()
       {
-         if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
+         if (!_seq || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length) return;
 
          var line = _seq.dialogueTexts[_index];
          if (!line)
@@ -173,7 +172,7 @@ namespace System.DialogueSystem
       {
          _index++;
 
-         if (_seq == null || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length)
+         if (!_seq || _seq.dialogueTexts == null || _index >= _seq.dialogueTexts.Length)
          {
             Stop();
             return;

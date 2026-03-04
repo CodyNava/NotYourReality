@@ -15,7 +15,7 @@ namespace System.DialogueSystem
       [SerializeField] private StudioEventEmitter eventEmitter;
 
       private PLAYBACK_STATE _lastState = PLAYBACK_STATE.STOPPED;
-      private bool _hookedForThisPlay = false;
+      private bool _hookedForThisPlay;
 
       private void Reset()
       {

@@ -1,4 +1,3 @@
-using System;
 using System.GlobalEventSystem;
 using FMODUnity;
 using Interactions.Interaction_System.Interaction_Base_Class;
@@ -37,20 +36,20 @@ namespace Interactions.Interaction_System.Interactions
         {
             base.OnInteract();
 
-            if (emitter != null)
+            if (emitter)
             {
                 emitter.Play();
             }
 
-            if (manager != null)
+            if (manager)
             {
                 manager.OnVoiceTriggered(gameObject);
             }
 
-            if (bedroomUnlock != null)
+            if (bedroomUnlock)
                 bedroomUnlock.AddItem(this);
 
-            if (_initialized && newMaterial != null)
+            if (_initialized && newMaterial)
             {
                 _instancedMaterial.mainTexture = newMaterial.texture;
             }

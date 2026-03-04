@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.GlobalEventSystem;
-using NUnit.Framework;
 using Player.PlayerMovement.Movement;
-using Puzzle.Bedroom;
-using UnityEditor;
 using UnityEngine;
 
 namespace Interactions.Interaction_System.Interactions.Bday_Ending
@@ -33,7 +29,6 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
       [SerializeField] private float fogTargetDensity;
       [SerializeField] private float fogGrowTime;
       [SerializeField] private float fallDuration;
-      //[SerializeField] private Transform newTransformFrontTable;
       [SerializeField] private List<GameObject> fmodEmitter;
       private Transform _playerTransform;
 
@@ -48,14 +43,7 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          GlobalEventManager.OnCake -= CakeCake;
          GlobalEventManager.OnPhone -= PhoneTouched;
       }
-
-      //private void OnTriggerEnter(Collider other)
-      //{
-      //  StartCoroutine(SetPlayerTransform());
-      //   _playerTransform = player.gameObject.transform;
-      //   Debug.Log(_playerTransform);
-      //   this.GetComponent<Collider>().enabled = false;
-      //}
+      
 
       private void CakeCake()
       {
@@ -85,8 +73,6 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          ps.LookActive = false;
          StartCoroutine(EnableCredits());
          StartCoroutine(FallingThroughFloor(fallOffsetPos, fallDuration));
-         
-         //todo credits music here
       }
 
       private IEnumerator DelayAfterPhone()
@@ -104,7 +90,6 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
 
       private IEnumerator FallingThroughFloor(Vector3 offSet, float fallingTime)
       {
-        // StopCoroutine(SetPlayerTransform());
          StartCoroutine(FadeToBlack(1, 0.25f));
          var pT = player.transform;
          var startPos = pT.position;
@@ -126,27 +111,7 @@ namespace Interactions.Interaction_System.Interactions.Bday_Ending
          StartCoroutine(FadeToBlack(0, 0.2f));
          RenderSettings.fogDensity = 0;
       }
-
-     // private IEnumerator SetPlayerTransform()
-     // {
-     //    var t = 0f;
-     //    ps.MoveActive = false;
-     //    while (t < playerToTableTransformSpeed)
-     //    {
-     //       t += Time.deltaTime;
-     //       float lerp = t / playerToTableTransformSpeed;
-     //
-     //       player.gameObject.transform.position = Vector3.Lerp(
-     //          player.gameObject.transform.position,
-     //          newTransformFrontTable.transform.position,
-     //          lerp
-     //       );
-     //       yield return null;
-     //    }
-     // }
-
       
-
       private IEnumerator FogStartsGrowing()
       {
          float startDensity = RenderSettings.fogDensity;

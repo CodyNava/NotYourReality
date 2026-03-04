@@ -41,18 +41,6 @@ namespace Interactions.Interaction_System.Interactions
          
          Physics.IgnoreLayerCollision(gameObject.layer, playerLayerMask, true);
       }
-
-     /* private void LateUpdate()
-      {
-          _cachedTarget = _cam.transform.position + _cam.transform.forward * holdingDistance;
-      }
-
-      private void MoveItem()
-      {
-          var velocity = Vector3.zero;
-          var smoothLerp = Vector3.SmoothDamp(_rb.position, _cachedTarget, ref velocity, 0.05f);
-          _rb.MovePosition(smoothLerp);
-      }*/
       
       private void FixedUpdate()
       {

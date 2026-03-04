@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Player.PlayerMovement.Movement;
 using Puzzle.Bedroom;

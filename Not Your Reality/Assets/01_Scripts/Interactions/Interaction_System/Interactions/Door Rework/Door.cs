@@ -89,15 +89,6 @@ namespace Interactions.Interaction_System.Interactions.Door_Rework
                 _rb.angularVelocity = Vector3.zero;
                 _rb.rotation = _lockRotation;
             }
-            else
-            {
-            }
-        }
-
-        public void UnlockDoor()
-        {
-            RuntimeManager.PlayOneShot(unlockSound, transform.position);
-            RuntimeManager.PlayOneShot(voiceLine, transform.position);
         }
     }
 }
